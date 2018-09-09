@@ -9,5 +9,6 @@ package MazeGame;
  */
 public abstract class Entity{
 	private Obstacle obstacle;
-
+	private int row;
+	private int col;
 }
