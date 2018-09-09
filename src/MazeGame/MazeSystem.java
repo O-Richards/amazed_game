@@ -14,10 +14,10 @@ public class MazeSystem {
 	public void newMaze(int numRows, int numCols) {
 		maze = new Entity[numRows][numCols];
 	}
-	public boolean placeEntity(int row, int col, Entity entity);
-	public void movePlayer(int direction);
+	public boolean placeEntity(int row, int col, Entity entity) {return true;}
+	public void movePlayer(int direction) {}
 	//Perform one game tick
-	public void tick();
+	public void tick() {}
 	
 	
 	
