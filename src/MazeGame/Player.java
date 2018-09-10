@@ -2,6 +2,6 @@ package MazeGame;
 
 import java.util.List;
 
-public class Player extends Entity{
-	private List<Usage> inventory;
+public class Player extends MobileEntity{
+	private List<Usable> inventory;
 }
