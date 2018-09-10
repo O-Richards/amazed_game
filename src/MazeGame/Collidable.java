@@ -5,5 +5,5 @@ public interface Collidable {
 	//I have put returning int here
 	//so you could indicate things like 1 == blocked, 2 == pickup
 	//But this is definitely a poor design
-	public int collide(MobileEntity hitter);
+	public void collide(MobileEntity hitter);
 }

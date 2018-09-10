@@ -7,8 +7,8 @@ public abstract class MobileEntity extends Entity{
 	
 	//Methods needed for collisions
 	public abstract boolean pickupUsable(Usable item);
-	public abstract boolean navigateObstacle(Usable item);
-	public abstract boolean die(Usable item);
+	public abstract boolean navigateObstacle();
+	public abstract boolean die();
 
 
 }
