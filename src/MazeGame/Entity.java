@@ -8,7 +8,6 @@ package MazeGame;
  *
  */
 public abstract class Entity implements Collidable {
-	//helloo
 
 	@Override
 	public String toString() {
