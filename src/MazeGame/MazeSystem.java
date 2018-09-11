@@ -9,20 +9,29 @@ package MazeGame;
  */
 public class MazeSystem {
 	private Player player;
-	private Entity[][] maze;
+	private Tile[][] maze;
 	
 	public void newMaze(int numRows, int numCols) {
-		maze = new Entity[numRows][numCols];
+		maze = new Tile[numRows][numCols];
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numRows; j++) {
-				maze[i][j] = new Tile(i, j);
+				Coord coord = new Coord(i, j);
+				maze[i][j] = new Tile(coord);
 			}
 		}
 	}
-	public boolean placeEntity(int row, int col, Entity entity) {return true;}
-	public void movePlayer(int direction) {}
+	public boolean placeEntity(Coord coord, Entity entity) {
+		throw new UnsupportedOperationException("Not yet implemented");
+		//return true;
+		}
+	public void movePlayer(int direction) {
+		throw new UnsupportedOperationException("Not yet implemented");
+
+	}
 	//Perform one game tick
-	public void tick() {}
+	public void tick() {
+		throw new UnsupportedOperationException("Not yet implemented");
+	}
 	
 	
 	private void showMaze() {
