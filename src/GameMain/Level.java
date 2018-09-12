@@ -19,7 +19,7 @@ public class Level {
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
 		Tile newTile = this.map[c.getX()][c.getY()];
 		//Trigger any/all collisions
-		if (! newTile.collide(entity)) {
+		if (newTile.collide(entity) == Collision.MOVE) {
 			entity.removeFromTile();
 			newTile.addEntity(entity);
 		}
@@ -33,7 +33,7 @@ public class Level {
 		
 	}
 
-	public PlayerMobileEntity getPlayerCoord() {
+	public Coord getPlayerCoord() {
 		// TODO Auto-generated method stub
 		return player.getCoord();
 	}
