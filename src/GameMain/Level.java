@@ -4,7 +4,7 @@ public class Level {
 	
 	private Tile[][] map;
 	private WinCondition winCondition;
-	private Player player;
+	private PlayerMobileEntity player;
 	
 	public void movePlayer(Coord c) {
 		

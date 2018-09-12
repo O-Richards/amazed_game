@@ -2,7 +2,7 @@ package GameMain;
 
 import java.util.ArrayList;
 
-public class Player extends MobileEntity {
+public class PlayerMobileEntity extends MobileEntity {
 
 	private ArrayList<Usable> inventory;
 	// private PlayerState playerState;
