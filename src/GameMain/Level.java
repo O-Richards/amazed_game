@@ -32,7 +32,12 @@ public class Level {
 		}
 	}
 	
-	public void addEntity(Entity e, Coord c) {
+	/**
+	 * @param e The entity to be added
+	 * @param c The coord to add the entity to
+	 * @return True if successful, false otherwise (e.g. tried to add an item on a wall)
+	 */
+	public boolean addEntity(Entity e, Coord c) {
 		Tile placementTile = getTile(c);
 		return placementTile.addEntity(e);
 	}
@@ -48,6 +53,10 @@ public class Level {
 	
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
+	}
+
+	public PlayerMobileEntity getPlayer() {
+		return this.player;
 	}
 	
 }

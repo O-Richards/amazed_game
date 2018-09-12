@@ -17,12 +17,12 @@ public class GameSystem {
 	}
 	
 	public boolean placeEntity(Entity entity, Coord coord) {
-		level.addEntity(coord);
+		return level.addEntity(entity, coord);
 	}
 	
 	public void tick() {
 		for (MobileEntity entity : this.mobileEntities) {
-			Coord nextLoc = entity.nextCoord(level.getPlayerCoord());
+			Coord nextLoc = entity.nextCoord(level.getPlayer());
 			level.moveMobileEntity(entity, nextLoc);
 		}
 		this.level.tick();
