@@ -21,10 +21,12 @@ public class Tile implements Collidable {
 	}
 
 	@Override
-	public void collide(MobileEntity hitter) {
+	public boolean collide(MobileEntity hitter) {
+		boolean collision = false;
 		for (Entity e : this.entities) {
-			e.collide(hitter);
+			collision |= e.collide(hitter);
 		}
+		return collision;
 	}
 	
 }
