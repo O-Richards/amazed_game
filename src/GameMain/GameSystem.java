@@ -17,6 +17,7 @@ public class GameSystem {
 			Coord nextLoc = entity.nextCoord(level.getPlayerCoord());
 			level.moveMobileEntity(entity, nextLoc);
 		}
+		this.level.tick();
 	}
 	
 	
