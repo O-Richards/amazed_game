@@ -6,6 +6,7 @@ public class Tile implements Collidable {
 	private char sprite;
 	private Coord coord;
 	private ArrayList<Entity> entities;
+	private Collision tileCollision = Collision.MOVE;;
 	
 	public Tile(Coord coord) {
 		this.coord = coord;
@@ -21,12 +22,14 @@ public class Tile implements Collidable {
 	}
 
 	@Override
-	public boolean collide(MobileEntity hitter) {
-		boolean collision = false;
+	public Collision collide(MobileEntity hitter) {
+		Collision col = tileCollision;
 		for (Entity e : this.entities) {
-			collision |= e.collide(hitter);
+			if (e.collide(hitter) == Collision.NOMOVE) {
+				col = Collision.NOMOVE;
+			}
 		}
-		return collision;
+		return col;
 	}
 
 	public Coord getCoord() {
