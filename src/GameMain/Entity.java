@@ -3,15 +3,21 @@ package GameMain;
 public abstract class Entity implements Collidable {
 
 	private char sprite;
+	//Tile it is on. Note, if it is in the players inventory, will be null.
 	private Tile tile;
+	
+	Entity(Tile tile) {
+		this.tile = tile;
+	}
 	
 	public void update() {
 		
 	}
 
-	@Override
-	public void collide() {
-		// TODO Auto-generated method stub
-		
+	public void removeFromTile() {
+		if (this.tile != null) {
+			this.tile.removeEntity(this);
+		}
+		this.tile = null;
 	}
 }
