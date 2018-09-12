@@ -28,5 +28,9 @@ public class Tile implements Collidable {
 		}
 		return collision;
 	}
+
+	public Coord getCoord() {
+		return this.coord;
+	}
 	
 }

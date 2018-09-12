@@ -32,5 +32,10 @@ public class Level {
 	public void tick() {
 		
 	}
+
+	public PlayerMobileEntity getPlayerCoord() {
+		// TODO Auto-generated method stub
+		return player.getCoord();
+	}
 	
 }
