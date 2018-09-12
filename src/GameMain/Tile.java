@@ -12,7 +12,6 @@ public class Tile implements Collidable {
 		this.entities = new ArrayList<Entity>();
 	}
 	
-	
 	/**
 	 * @param entity The entity to add to this tile
 	 * @return True if successfully added
