@@ -32,6 +32,5 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	
 }

@@ -9,6 +9,9 @@ public abstract class MobileEntity extends Entity implements Movement {
 
 	private Movement movement;
 	
+	public MobileEntity(Tile tile) {
+		super(tile);
+	}
 
 	public boolean canFly() {
 		return false;
