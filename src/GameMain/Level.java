@@ -56,17 +56,13 @@ public class Level {
 		
 	}
 
-	public Coord getPlayerCoord() {
+	public PlayerMobileEntity getPlayer() {
 		// TODO Auto-generated method stub
-		return player.getCoord();
+		return player;
 	}
 	
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
-	}
-
-	public PlayerMobileEntity getPlayer() {
-		return this.player;
 	}
 	
 }
