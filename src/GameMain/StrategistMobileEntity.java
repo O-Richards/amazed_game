@@ -2,8 +2,8 @@ package GameMain;
 
 public class StrategistMobileEntity extends MobileEntity {
 
-	StrategistMobileEntity(Tile tile) {
-		super(tile);
+	StrategistMobileEntity(Tile tile, Movement movement) {
+		super(tile, movement);
 		// TODO Auto-generated constructor stub
 	}
 

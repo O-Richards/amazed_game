@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
 
-	PlayerMobileEntity(Tile tile) {
-		super(tile);
+	PlayerMobileEntity(Tile tile, Movement movement) {
+		super(tile, movement);
 		// TODO Auto-generated constructor stub
 	}
 

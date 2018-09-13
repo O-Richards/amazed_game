@@ -2,9 +2,9 @@ package GameMain;
 
 public abstract class MobileEntity extends Entity implements Movement {
 	
-	MobileEntity(Tile tile) {
+	MobileEntity(Tile tile, Movement movement) {
 		super(tile);
-		// TODO Auto-generated constructor stub
+		this.movement = movement;
 	}
 
 	private Movement movement;
@@ -13,10 +13,9 @@ public abstract class MobileEntity extends Entity implements Movement {
 		return false;
 	}
 	
-	@Override
-	public Coord nextCoord(PlayerMobileEntity target) {
-		// TODO Auto-generated method stub
-		return null;
+	public Coord nextCoord() {
+		return this.movement.nextCoord();
 	}
-	
+
+
 }

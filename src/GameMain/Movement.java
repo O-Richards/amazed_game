@@ -1,6 +1,6 @@
 package GameMain;
 
 public interface Movement {
-
-	public Coord nextCoord(PlayerMobileEntity target);
+	//In the constructor, consider passing in the target(s) entitie(s)
+	public Coord nextCoord();
 }
