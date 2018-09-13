@@ -14,7 +14,7 @@ public class GameSystem {
 	
 	public void tick() {
 		for (MobileEntity entity : this.mobileEntities) {
-			Coord nextLoc = entity.nextCoord(level.getPlayerCoord());
+			Coord nextLoc = entity.nextCoord(level.getPlayer());
 			level.moveMobileEntity(entity, nextLoc);
 		}
 		this.level.tick();

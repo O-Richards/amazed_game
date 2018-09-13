@@ -33,9 +33,9 @@ public class Level {
 		
 	}
 
-	public Coord getPlayerCoord() {
+	public PlayerMobileEntity getPlayer() {
 		// TODO Auto-generated method stub
-		return player.getCoord();
+		return player;
 	}
 	
 }
