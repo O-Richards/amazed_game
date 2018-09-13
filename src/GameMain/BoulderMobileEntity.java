@@ -22,7 +22,6 @@ public class BoulderMobileEntity extends MobileEntity {
 	public Coord nextCoord() {
 		Coord next = this.getCoord(this.getDirection());
 		this.setDirection(Direction.CENTRE);
-		System.out.println("Boulder.nextCoord: returning " + next);
 		return next;
 	}
 
