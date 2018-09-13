@@ -33,8 +33,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		return true;
 	}
 	
-	@Override
-	public String toString() {
+	public String getSprite() {
 		return "P";
 	}
 }
