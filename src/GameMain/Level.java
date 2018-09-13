@@ -65,4 +65,18 @@ public class Level {
 		return this.map[c.getX()][c.getY()];
 	}
 	
+	@Override
+	public String toString() {
+		//Could change this to be a string builder to avoid O(n^2)
+		//The map should be quite small so it wont make a big difference
+		String ret = new String("");
+		for (int row = 0; row < this.map.length; row++) {
+			for (int col = 0; col < this.map[0].length; col++) {
+				ret += this.map[row][col].toString();
+			}
+			ret += "\n";
+		}
+		return ret;
+	}
+	
 }

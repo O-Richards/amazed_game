@@ -33,4 +33,10 @@ public abstract class Entity implements Collidable {
 		}
 		this.tile = null;
 	}
+
+	@Override
+	public String toString() {
+		return "E";
+	}
+
 }

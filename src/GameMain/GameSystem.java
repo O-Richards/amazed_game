@@ -26,8 +26,15 @@ public class GameSystem {
 		this.level.tick();
 	}
 	
+	public String levelString() {
+		System.out.println("levelString called");
+		return this.level.toString();
+	}
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		GameSystem gs = new GameSystem();
+		System.out.println(gs.levelString());
+		return;
 		
 	}
 

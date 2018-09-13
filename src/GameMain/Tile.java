@@ -1,6 +1,7 @@
 package GameMain;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Tile implements Collidable {
 	private Coord coord;
@@ -43,6 +44,17 @@ public class Tile implements Collidable {
 
 	public Coord getCoord() {
 		return this.coord;
+	}
+	
+	@Override
+	public String toString() {
+		if (this.entities.isEmpty()) {
+			return " ";
+		} else {
+			//TODO: Don't ignore entities after the 1st one
+			Iterator<Entity> entityIt = this.entities.iterator();
+			return entityIt.next().toString();
+		}
 	}
 	
 }

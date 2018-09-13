@@ -28,4 +28,8 @@ public class PlayerMobileEntity extends MobileEntity {
 		return this.getCoord(this.getDirection());
 	}
 	
+	@Override
+	public String toString() {
+		return "P";
+	}
 }

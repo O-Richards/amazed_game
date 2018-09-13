@@ -11,4 +11,11 @@ public class WallTile extends Tile {
 	public Collision collide(MobileEntity hitter) {
 		return Collision.NOMOVE;
 	}
+
+	@Override
+	public String toString() {
+		return "W";
+	}
+	
+	
 }
