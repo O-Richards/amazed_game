@@ -46,6 +46,7 @@ public class GameSystem {
 		GameSystem gs = new GameSystem();
 		//Setup template maze
 		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
+		System.out.println("Use W A S D keys to move me around");
 		while(true) {
 			char c = (char)System.in.read();
 			if (c == 0) break;
