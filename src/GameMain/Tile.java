@@ -12,8 +12,14 @@ public class Tile implements Collidable {
 		this.entities = new ArrayList<Entity>();
 	}
 	
-	public void addEntity(Entity entity) {
+	/**
+	 * @param entity The entity to add to this tile
+	 * @return True if successfully added
+	 */
+	public boolean addEntity(Entity entity) {
 		this.entities.add(entity);
+		//If this were any other tile e.g. WallTile, you would not add the entity, then return false
+		return true;
 	}
 	
 	public void removeEntity(Entity entity) {

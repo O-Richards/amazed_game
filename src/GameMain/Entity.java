@@ -10,7 +10,6 @@ public abstract class Entity implements Collidable {
 		this.tile = tile;
 	}
 	
-	
 	public Coord getCoord() {
 		//TODO: Should really check if the tile is null in some nice way
 		//For now lets leave it raising an exception.
