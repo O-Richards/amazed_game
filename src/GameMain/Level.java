@@ -30,7 +30,9 @@ public class Level {
 			this.map[0][col] = new WallTile(new Coord(0, col));
 			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
 		}
+		//Create the player and place them on the map
 		this.player = new PlayerMobileEntity(this.map[1][1]);
+		moveMobileEntity(this.player, new Coord(1, 1));
 	}
 	
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
@@ -53,11 +55,17 @@ public class Level {
 	}
 	
 	public void tick() {
-		
+		for (int row = 0; row < this.map.length; row++) {
+			for (int col = 0; col < this.map[0].length; col++) {
+				this.map[row][col].tick();
+			}
+		}
+		//Move mobile entities
+		moveMobileEntity(this.player, this.player.nextCoord());
+		//TODO: Add on all mobile entities
 	}
 
 	public PlayerMobileEntity getPlayer() {
-		// TODO Auto-generated method stub
 		return player;
 	}
 	
@@ -77,6 +85,12 @@ public class Level {
 			ret += "\n";
 		}
 		return ret;
+	}
+
+	public void movePlayer(Direction dir) {
+		//TODO: Add error checking
+		this.player.setDirection(dir);
+		
 	}
 	
 }

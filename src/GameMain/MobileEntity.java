@@ -14,6 +14,10 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	public Direction getDirection() {
 		return direction;
+	}	
+	
+	public void setDirection(Direction dir) {
+		this.direction = dir;
 	}
 	
 	public abstract Coord nextCoord();

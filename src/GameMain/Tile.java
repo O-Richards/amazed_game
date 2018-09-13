@@ -12,6 +12,12 @@ public class Tile implements Collidable {
 		this.entities = new ArrayList<Entity>();
 	}
 	
+	public void tick() {
+		for (Entity e : this.entities) {
+			e.tick();
+		}
+	}
+	
 	public boolean containsEntity(Entity e) {
 		return entities.contains(e);
 	}
@@ -22,6 +28,7 @@ public class Tile implements Collidable {
 	 */
 	public boolean addEntity(Entity entity) {
 		this.entities.add(entity);
+		entity.setTile(this);
 		//If this were any other tile e.g. WallTile, you would not add the entity, then return false
 		return true;
 	}
@@ -56,5 +63,6 @@ public class Tile implements Collidable {
 			return entityIt.next().toString();
 		}
 	}
+
 	
 }

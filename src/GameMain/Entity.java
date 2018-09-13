@@ -23,7 +23,7 @@ public abstract class Entity implements Collidable {
 		return this.getCoord().add(dir);
 	}
 	
-	public void update() {
+	public void tick() {
 	
 	}
 
@@ -37,6 +37,10 @@ public abstract class Entity implements Collidable {
 	@Override
 	public String toString() {
 		return "E";
+	}
+
+	public void setTile(Tile tile) {
+		this.tile = tile;
 	}
 
 }
