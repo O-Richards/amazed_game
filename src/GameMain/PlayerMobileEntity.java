@@ -1,29 +1,16 @@
 package GameMain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerMobileEntity extends MobileEntity {
-	private Coord nextCoord;
-	PlayerMobileEntity(Tile tile) {
-		super(tile);
-		this.nextCoord = tile.getCoord();
-	}
-
-	private ArrayList<Usable> inventory;
+	private List<Usable> inventory;
 	// private PlayerState playerState;
 	private Integer treasure;
 	private boolean hover = false;
 	
-	public boolean useItem(Usable u) {
-		if (inventory.contains(u)) {
-			u.use();
-			return true;
-		}
-		return false;
-	}
-
-	public void setNextCoord(Coord coord) {
-		this.nextCoord = coord;
+	PlayerMobileEntity(Tile tile) {
+		super(tile);
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -38,7 +25,7 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	@Override
 	public Coord nextCoord() {
-		return this.nextCoord;
+		return this.getCoord(this.getDirection());
 	}
 	
 }

@@ -3,13 +3,16 @@ package GameMain;
 import java.util.ArrayList;
 
 public class Tile implements Collidable {
-	private char sprite;
 	private Coord coord;
 	private ArrayList<Entity> entities;
 	
 	public Tile(Coord coord) {
 		this.coord = coord;
 		this.entities = new ArrayList<Entity>();
+	}
+	
+	public boolean containsEntity(Entity e) {
+		return entities.contains(e);
 	}
 	
 	/**

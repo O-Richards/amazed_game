@@ -2,5 +2,5 @@ package GameMain;
 
 public interface Usable {
 
-	public void use();
+	public void use(Direction playerDirection, Tile[][] adjTiles);
 }

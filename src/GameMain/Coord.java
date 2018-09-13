@@ -25,4 +25,21 @@ public class Coord {
 		this.y = y;
 	}
 	
+	/**
+	 * @precondition dir must be UP, DOWN, LEFT or RIGHT
+	 * @param dir The direction to move from the coord
+	 * @return A new Coord which as an dir movement from the coord
+	 */
+	public Coord add(Direction dir) {
+		switch(dir) {
+		//Note, no need for breaks as we are always returning.
+		case UP: return new Coord(this.getX(), this.getY() + 1);
+		case DOWN: return new Coord(this.getX(), this.getY() - 1);
+		case LEFT: return new Coord(this.getX() + 1, this.getY());
+		case RIGHT: return new Coord(this.getX() - 1, this.getY());
+		}
+		System.out.println("Coord.add(): unknown direction");
+		return new Coord(0, 0);
+	}
+	
 }
