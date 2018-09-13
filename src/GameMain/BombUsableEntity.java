@@ -1,6 +1,6 @@
 package GameMain;
 
-public class BombUsableEntity extends UsableEntity {
+public class BombUsableEntity extends Entity implements Usable{
 
 	BombUsableEntity(Tile tile) {
 		super(tile);
@@ -8,15 +8,15 @@ public class BombUsableEntity extends UsableEntity {
 	}
 
 	@Override
-	public void use() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public Collision collide(MobileEntity hitter) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void use(Tile[][] adjTiles) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

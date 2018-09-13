@@ -15,10 +15,6 @@ public abstract class Entity implements Collidable {
 		return this.tile.getCoord();
 	}
 	
-	public void use() {
-		
-	}
-	
 	public void update() {
 	
 	}
