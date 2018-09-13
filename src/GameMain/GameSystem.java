@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameSystem {
-
-
 	private List<MobileEntity> mobileEntities;
 	private Level level;
 	
@@ -22,12 +20,11 @@ public class GameSystem {
 	
 	public void tick() {
 		for (MobileEntity entity : this.mobileEntities) {
-			Coord nextLoc = entity.nextCoord(level.getPlayer());
+			Coord nextLoc = entity.nextCoord();
 			level.moveMobileEntity(entity, nextLoc);
 		}
 		this.level.tick();
 	}
-	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -30,7 +30,7 @@ public class Level {
 			this.map[0][col] = new WallTile(new Coord(0, col));
 			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
 		}
-		this.player = new PlayerMobileEntity(this.map[1][1]);
+		this.player = new PlayerMobileEntity(this.map[1][1], new PlayerMovement());
 	}
 	
 	public void moveMobileEntity(MobileEntity entity, Coord c) {

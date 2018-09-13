@@ -3,10 +3,10 @@ package GameMain;
 import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
-
-	PlayerMobileEntity(Tile tile, Movement movement) {
-		super(tile, movement);
-		// TODO Auto-generated constructor stub
+	private Coord nextCoord;
+	PlayerMobileEntity(Tile tile) {
+		super(tile);
+		this.nextCoord = tile.getCoord();
 	}
 
 	private ArrayList<Usable> inventory;
@@ -22,6 +22,10 @@ public class PlayerMobileEntity extends MobileEntity {
 		return false;
 	}
 
+	public void setNextCoord(Coord coord) {
+		this.nextCoord = coord;
+	}
+	
 	@Override
 	public boolean canFly() {
 		return hover;
@@ -29,8 +33,12 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		// TODO Auto-generated method stub
-		return null;
+		return Collision.MOVE;
+	}
+
+	@Override
+	public Coord nextCoord() {
+		return this.nextCoord;
 	}
 	
 }
