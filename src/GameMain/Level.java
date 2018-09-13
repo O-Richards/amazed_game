@@ -5,6 +5,8 @@ public class Level {
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
 	
+	//The map for the game, composed of Tiles.
+	//NOTE: Tile[0][0] is the top left tile
 	private Tile[][] map;
 	private WinCondition winCondition;
 	private PlayerMobileEntity player;
