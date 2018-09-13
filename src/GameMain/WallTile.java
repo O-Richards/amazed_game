@@ -12,8 +12,7 @@ public class WallTile extends Tile {
 		return Collision.NOMOVE;
 	}
 
-	@Override
-	public String toString() {
+	public String getSprite() {
 		return "W";
 	}
 	

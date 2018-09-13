@@ -34,8 +34,7 @@ public abstract class Entity implements Collidable {
 		this.tile = null;
 	}
 
-	@Override
-	public String toString() {
+	public String getSprite() {
 		return "E";
 	}
 

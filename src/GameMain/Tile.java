@@ -53,14 +53,13 @@ public class Tile implements Collidable {
 		return this.coord;
 	}
 	
-	@Override
-	public String toString() {
+	public String getSprite() {
 		if (this.entities.isEmpty()) {
 			return " ";
 		} else {
 			//TODO: Don't ignore entities after the 1st one
 			Iterator<Entity> entityIt = this.entities.iterator();
-			return entityIt.next().toString();
+			return entityIt.next().getSprite();
 		}
 	}
 

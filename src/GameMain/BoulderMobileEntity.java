@@ -18,11 +18,15 @@ public class BoulderMobileEntity extends MobileEntity {
 		return Collision.NOMOVE;
 	}
 
-	@Override
 	public Coord nextCoord() {
 		Coord next = this.getCoord(this.getDirection());
 		this.setDirection(Direction.CENTRE);
 		return next;
+	}
+	
+	@Override
+	public String getSprite() {
+		return "B";
 	}
 
 }

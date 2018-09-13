@@ -93,7 +93,7 @@ public class Level {
 		String ret = new String("");
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
-				ret += this.map[row][col].toString();
+				ret += this.map[row][col].getSprite();
 			}
 			ret += "\n";
 		}
