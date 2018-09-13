@@ -1,6 +1,6 @@
 package GameMain;
 
-public class BombUsableEntity extends Entity implements Usable {
+public class BombUsableEntity extends UsableEntity {
 
 	BombUsableEntity(Tile tile) {
 		super(tile);

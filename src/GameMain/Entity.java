@@ -2,7 +2,6 @@ package GameMain;
 
 public abstract class Entity implements Collidable {
 
-	private char sprite;
 	//Tile it is on. Note, if it is in the players inventory, will be null.
 	private Tile tile;
 	
@@ -14,6 +13,10 @@ public abstract class Entity implements Collidable {
 		//TODO: Should really check if the tile is null in some nice way
 		//For now lets leave it raising an exception.
 		return this.tile.getCoord();
+	}
+	
+	public void use() {
+		
 	}
 	
 	public void update() {

@@ -1,16 +1,10 @@
 package GameMain;
 
-public class HoverEntity extends Entity implements Usable {
+public class HoverEntity extends Entity {
 
 	HoverEntity(Tile tile) {
 		super(tile);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void use() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

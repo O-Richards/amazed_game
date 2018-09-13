@@ -1,16 +1,10 @@
 package GameMain;
 
-public class KeyUsableEntity extends Entity implements Usable {
+public class KeyUsableEntity extends UsableEntity {
 
 	KeyUsableEntity(Tile tile) {
 		super(tile);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void use() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

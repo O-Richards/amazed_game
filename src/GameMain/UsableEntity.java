@@ -1,16 +1,10 @@
 package GameMain;
 
-public class ArrowUsableMobileEntity extends MobileEntity implements Usable {
+public class UsableEntity extends Entity {
 
-	ArrowUsableMobileEntity(Tile tile) {
+	UsableEntity(Tile tile) {
 		super(tile);
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public void use() {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

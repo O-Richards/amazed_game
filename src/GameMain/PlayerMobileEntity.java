@@ -1,21 +1,19 @@
 package GameMain;
 
-import java.util.ArrayList;
-
 public class PlayerMobileEntity extends MobileEntity {
 
-	PlayerMobileEntity(Tile tile) {
-		super(tile);
-		// TODO Auto-generated constructor stub
-	}
-
-	private ArrayList<Usable> inventory;
+	private InventoryTile inventory;
 	// private PlayerState playerState;
 	private Integer treasure;
 	private boolean hover = false;
 	
-	public boolean useItem(Usable u) {
-		if (inventory.contains(u)) {
+	PlayerMobileEntity(Tile tile) {
+		super(tile);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public boolean useItem(UsableEntity u) {
+		if (inventory.containsEntity(u)) {
 			u.use();
 			return true;
 		}
