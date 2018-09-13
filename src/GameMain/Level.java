@@ -54,9 +54,5 @@ public class Level {
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
 	}
-
-	public PlayerMobileEntity getPlayer() {
-		return this.player;
-	}
 	
 }
