@@ -14,13 +14,23 @@ public class Level {
 	}
 	
 	public Level(int nRows, int nCols) {
-		this.map = new Tile[nRows][nCols];
-		for (int row = 0; row < nRows; row++) {
-			for (int col = 0; col < nCols; col++) {
+		//Adds a border of wall tiles to the map.
+		this.map = new Tile[nRows + 2][nCols + 2];
+		for (int row = 1; row < nRows + 1; row++) {
+			for (int col = 1; col < nCols + 1; col++) {
 				this.map[row][col] = new Tile(new Coord(row, col));
 			}
 		}
-		this.player = new PlayerMobileEntity(this.map[0][0]);
+		//Add bordering walls
+		for (int row = 0; row < nRows + 2; row++) {
+			this.map[row][0] = new WallTile(new Coord(row, 0));
+			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1));
+		}
+		for (int col = 0; col < nCols + 2; col++) {
+			this.map[0][col] = new WallTile(new Coord(0, col));
+			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
+		}
+		this.player = new PlayerMobileEntity(this.map[1][1]);
 	}
 	
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
