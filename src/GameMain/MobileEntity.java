@@ -8,6 +8,9 @@ public abstract class MobileEntity extends Entity implements Movement {
 	}
 
 	private Movement movement;
+	private Direction direction;
+	
+	
 
 	public boolean canFly() {
 		return false;

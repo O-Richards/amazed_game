@@ -14,9 +14,8 @@ public class BombUsableEntity extends Entity implements Usable{
 	}
 
 	@Override
-	public void use(Tile[][] adjTiles) {
+	public void use(Direction direction, Tile[][] adjTiles) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
