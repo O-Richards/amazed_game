@@ -29,6 +29,11 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 	
 	@Override
+	public boolean pushEntity() {
+		return true;
+	}
+	
+	@Override
 	public String toString() {
 		return "P";
 	}

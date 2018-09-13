@@ -1,5 +1,8 @@
 package GameMain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Level {
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
@@ -10,6 +13,7 @@ public class Level {
 	private Tile[][] map;
 	private WinCondition winCondition;
 	private PlayerMobileEntity player;
+	private List<MobileEntity> mobileEntities;
 	
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
@@ -18,6 +22,7 @@ public class Level {
 	public Level(int nRows, int nCols) {
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
+		this.mobileEntities = new ArrayList<>();
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
 				this.map[row][col] = new Tile(new Coord(row, col));
@@ -53,6 +58,10 @@ public class Level {
 	 */
 	public boolean addEntity(Entity e, Coord c) {
 		Tile placementTile = getTile(c);
+		//TODO: Make this not crap (will need a refactor)
+		if (e instanceof MobileEntity) {
+			this.mobileEntities.add((MobileEntity)e);
+		}
 		return placementTile.addEntity(e);
 	}
 	
@@ -64,7 +73,9 @@ public class Level {
 		}
 		//Move mobile entities
 		moveMobileEntity(this.player, this.player.nextCoord());
-		//TODO: Add on all mobile entities
+		for (MobileEntity e: this.mobileEntities) {
+			moveMobileEntity(e, e.nextCoord());
+		}
 	}
 
 	public PlayerMobileEntity getPlayer() {

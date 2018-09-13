@@ -38,6 +38,7 @@ public class Coord {
 		case DOWN: return new Coord(this.getX() + 1, this.getY());
 		case LEFT: return new Coord(this.getX(), this.getY() - 1);
 		case RIGHT: return new Coord(this.getX(), this.getY() + 1);
+		case CENTRE: return new Coord(this.getX(), this.getY());
 		}
 		System.out.println("Coord.add(): unknown direction");
 		return new Coord(0, 0);

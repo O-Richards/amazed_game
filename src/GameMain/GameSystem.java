@@ -3,6 +3,7 @@ package GameMain;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class GameSystem {
 	private Level level;
@@ -29,16 +30,29 @@ public class GameSystem {
 	public String levelString() {
 		return this.level.toString();
 	}
-
 	
-	public static void main(String[] args) {
+	public Direction charToDirection(Character c) {
+		c = Character.toLowerCase(c);
+		switch(c) {
+			case 'w': return Direction.UP;
+			case 's': return Direction.DOWN;
+			case 'a': return Direction.LEFT;
+			case 'd': return Direction.RIGHT;
+			default: return Direction.CENTRE;
+		}
+	}
+		
+	public static void main(String[] args) throws IOException {
 		GameSystem gs = new GameSystem();
-		System.out.println(gs.levelString());
-		//gs.tick();
-		gs.movePlayer(Direction.DOWN);
-		System.out.println(gs.levelString());
-		gs.tick();
-		System.out.println(gs.levelString());
+		//Setup template maze
+		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
+		while(true) {
+			char c = (char)System.in.read();
+			if (c == 0) break;
+			gs.movePlayer(gs.charToDirection(new Character(c)));
+			gs.tick();
+			System.out.println(gs.levelString());
+		}
 	}
 	
 
