@@ -1,7 +1,7 @@
 package GameMain;
 
 public class EntityTrackingMovement implements Movement {
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	Direction direction;
 	Entity entity;
 

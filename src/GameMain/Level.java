@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;

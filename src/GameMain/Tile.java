@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Tile implements Collidable {
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
 	

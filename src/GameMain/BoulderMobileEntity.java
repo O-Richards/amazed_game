@@ -11,9 +11,7 @@ public class BoulderMobileEntity extends MobileEntity {
 	@Override
 	public Collision collide(MobileEntity hitter) {
 		if (hitter == this) return Collision.NOMOVE;
-		System.out.println("Boulder collision!!!" + hitter.getDirection());
 		if (hitter.pushEntity()) {
-			System.out.println("Setting direction" + hitter.getDirection());
 			this.setDirection(hitter.getDirection());
 		} else {
 			this.setDirection(Direction.CENTRE);
