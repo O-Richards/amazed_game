@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-	private static final boolean DEBUG = false;
+	private static final boolean DEBUG = true;
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
@@ -125,6 +125,7 @@ public class Level {
 	
 	
 	public boolean hasWon() {
+		if (DEBUG) System.out.println("Level.hasWon() called: Player has " + player.noTreasure() + " treasure, treasure win condition is " + hasSwitchWinCondition);
 		boolean ret = false;
 		if (this.hasSwitchWinCondition)  {
 			ret |= this.switchWinCondition.hasWon();
