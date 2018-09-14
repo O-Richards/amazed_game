@@ -8,7 +8,7 @@ public class Level {
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
-
+	
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the top left tile
 	private Tile[][] map;
@@ -16,16 +16,16 @@ public class Level {
 	private boolean hasSwitchWinCondition;
 	private PlayerMobileEntity player;
 	private List<MobileEntity> mobileEntities;
-
+	
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
 	}
-
+	
 	public Level(int nRows, int nCols) {
 		this.switchWinCondition = new SwitchWinCondition();
 		this.mobileEntities = new ArrayList<>();
 		this.hasSwitchWinCondition = false;
-
+		
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
@@ -46,7 +46,7 @@ public class Level {
 		this.player = new PlayerMobileEntity(this.map[1][1]);
 		moveMobileEntity(this.player, new Coord(1, 1));
 	}
-
+	
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
 		Tile newTile = this.map[c.getX()][c.getY()];
 		//Trigger any/all collisions
@@ -56,7 +56,7 @@ public class Level {
 			newTile.addEntity(entity);
 		}
 	}
-
+	
 	/**
 	 * @param e The entity to be added
 	 * @param c The coord to add the entity to
@@ -70,7 +70,7 @@ public class Level {
 		}
 		return placementTile.addEntity(e);
 	}
-
+	
 	public void tick() {
 		this.switchWinCondition.tick();
 		for (int row = 0; row < this.map.length; row++) {
@@ -88,11 +88,11 @@ public class Level {
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}
-
+	
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
 	}
-
+	
 	@Override
 	public String toString() {
 		//Could change this to be a string builder to avoid O(n^2)
@@ -114,7 +114,7 @@ public class Level {
 		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
 
 	}
-
+	
 	public boolean hasWon() {
 		boolean ret = false;
 		if (this.hasSwitchWinCondition)  {
@@ -133,10 +133,9 @@ public class Level {
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
-
+	
 	public String inventoryString() {
 		return this.player.inventoryString();
 	}
-
-
+	
 }

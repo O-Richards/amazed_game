@@ -2,6 +2,7 @@ package GameMain;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class Tile implements Collidable {
 	private static final boolean DEBUG = false;
@@ -25,7 +26,7 @@ public class Tile implements Collidable {
 	
 	/**
 	 * @param entity The entity to add to this tile
-	 * @return True if successfully added
+	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
 	 */
 	public boolean addEntity(Entity entity) {
 		this.entities.add(entity);
@@ -42,7 +43,8 @@ public class Tile implements Collidable {
 	public Collision collide(MobileEntity hitter) {			
 		if (DEBUG) System.out.println("Checking collisions on Tile: " + this.getCoord());
 		Collision col = Collision.MOVE;
-		for (Entity e : this.entities) {
+		List<Entity> entitiesCopy = new ArrayList<>(this.entities);
+		for (Entity e : entitiesCopy) {
 			//Prevent self collisions
 			if (e != hitter) {
 				if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());

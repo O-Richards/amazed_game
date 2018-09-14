@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import java.io.IOException;
-
+/*
 public class GameController extends Application{
 	private boolean keyPressed; 
 	private boolean action; 
@@ -130,4 +130,4 @@ class MultiThreading implements Runnable
             System.out.println ("Error occured"); 
         } 
     } 
-} 
+} */

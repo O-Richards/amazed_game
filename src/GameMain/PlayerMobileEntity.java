@@ -1,22 +1,32 @@
 package GameMain;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
-	private List<Usable> inventory;
+	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
-	private Integer treasure;
-	private boolean hover = false;
+	// private Integer treasure;
 	
 	PlayerMobileEntity(Tile tile) {
-		super(tile, null);
+		super(tile);
 		Movement movement = new PlayerMovement(this);
 		this.setMovement(movement);
+		this.inventory = new ArrayList<UsableEntity>();
+		// TODO Auto-generated constructor stub
 	}
+	
+	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
+		if (inventory.contains(item)) {
+			item.use(this.getDirection(), adjTiles);
+			inventory.remove(item);
+			return true;
+		}
+		return false;
+	}
+	
 	
 	PlayerMobileEntity(Tile tile, Movement movement) {
 		super(tile, movement);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -31,5 +41,19 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	public String getSprite() {
 		return "P";
+	}
+
+	@Override
+	public boolean pickup(UsableEntity item) {
+		inventory.add(item);
+		return true;
+	}
+	
+	public String inventoryString() {
+		String out = "";
+		for (UsableEntity e : inventory) {
+			out += e.getSprite();
+		}
+		return out;
 	}
 }
