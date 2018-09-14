@@ -13,9 +13,12 @@ public class Level {
 	//NOTE: Tile[0][0] is the top left tile
 	private Tile[][] map;
 	private WinCondition switchWinCondition;
+	private WinCondition treasureWinCondition;
 	private boolean hasSwitchWinCondition;
+	private boolean hasTreasureWinCondition;
 	private PlayerMobileEntity player;
 	private List<MobileEntity> mobileEntities;
+	private int noTreasure;
 	
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
@@ -23,6 +26,7 @@ public class Level {
 	
 	public Level(int nRows, int nCols) {
 		this.switchWinCondition = new SwitchWinCondition();
+		this.treasureWinCondition = new TreasureWinCondition();
 		this.mobileEntities = new ArrayList<>();
 		this.hasSwitchWinCondition = false;
 		
@@ -68,11 +72,15 @@ public class Level {
 		if (e instanceof MobileEntity) {
 			this.mobileEntities.add((MobileEntity)e);
 		}
+		if (e instanceof TreasureEntity) {
+			noTreasure++;
+		}
 		return placementTile.addEntity(e);
 	}
 	
 	public void tick() {
 		this.switchWinCondition.tick();
+		this.treasureWinCondition.tick();
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick();
@@ -115,17 +123,29 @@ public class Level {
 
 	}
 	
+	
 	public boolean hasWon() {
 		boolean ret = false;
 		if (this.hasSwitchWinCondition)  {
 			ret |= this.switchWinCondition.hasWon();
 		}
+		if (this.hasTreasureWinCondition) {
+			if (player.noTreasure() == noTreasure) {
+				treasureWinCondition.setSatisfied();
+				ret |= this.treasureWinCondition.hasWon();
+			}
+		}
 		return ret;
+	}
+	
+	public void setTreasureWinCondition(Boolean status) {
+		this.hasTreasureWinCondition = status;
 	}
 
 	public void setSwitchWinCondition(Boolean status) {
 		this.hasSwitchWinCondition = status;
 	}
+	
 
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking

@@ -60,6 +60,8 @@ public class GameSystem {
 		//Setup template maze
 		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 3));
 		gs.placeSwitch(new Coord(3, 3));
+		gs.placeEntity(new TreasureEntity(null), new Coord(5,6));
+		gs.placeEntity(new TreasureEntity(null), new Coord(10, 2));
 		gs.setSwitchWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
 		Scanner s = new Scanner(System.in);
