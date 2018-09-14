@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Tile implements Collidable {
+	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
 	
@@ -24,7 +25,7 @@ public class Tile implements Collidable {
 	
 	/**
 	 * @param entity The entity to add to this tile
-	 * @return True if successfully added
+	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
 	 */
 	public boolean addEntity(Entity entity) {
 		this.entities.add(entity);
@@ -38,12 +39,17 @@ public class Tile implements Collidable {
 	}
 
 	@Override
-	public Collision collide(MobileEntity hitter) {
+	public Collision collide(MobileEntity hitter) {			
+		if (DEBUG) System.out.println("Checking collisions on Tile: " + this.getCoord());
 		Collision col = Collision.MOVE;
 		for (Entity e : this.entities) {
-			Collision tmpCol = e.collide(hitter);
-			if (tmpCol != Collision.MOVE) {
-				col = tmpCol;
+			//Prevent self collisions
+			if (e != hitter) {
+				if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());
+				Collision tmpCol = e.collide(hitter);
+				if (tmpCol != Collision.MOVE) {
+					col = tmpCol;
+				}
 			}
 		}
 		return col;

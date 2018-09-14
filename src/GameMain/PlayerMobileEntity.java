@@ -6,10 +6,11 @@ public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
 	// private Integer treasure;
-	private boolean hover = false;
 	
 	PlayerMobileEntity(Tile tile) {
 		super(tile);
+		Movement movement = new PlayerMovement(this);
+		this.setMovement(movement);
 		this.inventory = new ArrayList<UsableEntity>();
 		// TODO Auto-generated constructor stub
 	}
@@ -23,9 +24,9 @@ public class PlayerMobileEntity extends MobileEntity {
 		return false;
 	}
 	
-	@Override
-	public boolean canFly() {
-		return hover;
+	
+	PlayerMobileEntity(Tile tile, Movement movement) {
+		super(tile, movement);
 	}
 	
 	@Override
@@ -36,11 +37,6 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public Coord nextCoord() {
 		return this.getCoord(this.getDirection());
-	}
-	
-	@Override
-	public boolean pushEntity() {
-		return true;
 	}
 	
 	public String getSprite() {

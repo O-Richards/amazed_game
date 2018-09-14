@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
+	private static final boolean DEBUG = false;
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
@@ -11,7 +12,8 @@ public class Level {
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the top left tile
 	private Tile[][] map;
-	private WinCondition winCondition;
+	private WinCondition switchWinCondition;
+	private boolean hasSwitchWinCondition;
 	private PlayerMobileEntity player;
 	private List<MobileEntity> mobileEntities;
 	
@@ -20,9 +22,12 @@ public class Level {
 	}
 	
 	public Level(int nRows, int nCols) {
+		this.switchWinCondition = new SwitchWinCondition();
+		this.mobileEntities = new ArrayList<>();
+		this.hasSwitchWinCondition = false;
+		
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
-		this.mobileEntities = new ArrayList<>();
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
 				this.map[row][col] = new Tile(new Coord(row, col));
@@ -45,6 +50,7 @@ public class Level {
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
 		Tile newTile = this.map[c.getX()][c.getY()];
 		//Trigger any/all collisions
+		if (DEBUG) System.out.println("Moving Mobile Entity " + entity.getSprite() + " to " + c);
 		if (newTile.collide(entity) == Collision.MOVE) {
 			entity.removeFromTile();
 			newTile.addEntity(entity);
@@ -66,6 +72,7 @@ public class Level {
 	}
 	
 	public void tick() {
+		this.switchWinCondition.tick();
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick();
@@ -102,8 +109,29 @@ public class Level {
 
 	public void movePlayer(Direction dir) {
 		//TODO: Add error checking
+		if (DEBUG) System.out.println("System setting player dir: " + dir);
 		this.player.setDirection(dir);
-		
+		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
+
+	}
+	
+	public boolean hasWon() {
+		boolean ret = false;
+		if (this.hasSwitchWinCondition)  {
+			ret |= this.switchWinCondition.hasWon();
+		}
+		return ret;
+	}
+
+	public void setSwitchWinCondition(Boolean status) {
+		this.hasSwitchWinCondition = status;
+	}
+
+	public boolean placeSwitch(Coord coord) {
+		//TODO: add error checking
+		SwitchTile newSwitch = new SwitchTile(coord, this.switchWinCondition);
+		this.map[coord.getX()][coord.getY()] = newSwitch;
+		return true;
 	}
 	
 	public String inventoryString() {
