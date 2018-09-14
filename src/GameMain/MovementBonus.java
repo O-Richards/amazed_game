@@ -6,6 +6,16 @@ public abstract class MovementBonus implements Movement {
 	public MovementBonus(Movement baseMovement) {
 		this.baseMovement = baseMovement;
 	}
+	
+	@Override
+	public boolean canFly() {
+		return this.baseMovement.canFly();
+	}
+	
+	@Override
+	public boolean pushEntity() {
+		return this.baseMovement.pushEntity();
+	}
 
 	@Override
 	public Coord nextCoord() {

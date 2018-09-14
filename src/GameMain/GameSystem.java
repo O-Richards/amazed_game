@@ -22,6 +22,10 @@ public class GameSystem {
 		return this.level.placeSwitch(coord);
 	}
 	
+	private void placeWall(Coord coord) {
+		this.level.placeWall(coord);
+	}
+	
 	public void movePlayer(Direction dir) {
 		System.out.println("GameSystem.movePlayer(" + dir + ") called");
 		this.level.movePlayer(dir);
@@ -67,6 +71,8 @@ public class GameSystem {
 		gs.placeSwitch(new Coord(3, 3));
 		gs.placeEntity(new TreasureEntity(null), new Coord(5,6));
 		gs.placeEntity(new TreasureEntity(null), new Coord(10, 2));
+		gs.placeWall(new Coord(4, 5));
+		gs.placeEntity(new HoverPotion(null), new Coord(3, 4));
 		gs.setSwitchWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
 		Scanner s = new Scanner(System.in);
@@ -84,7 +90,7 @@ public class GameSystem {
 			}
 		}
 	}
-	
+
 
 
 

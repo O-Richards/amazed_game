@@ -1,7 +1,7 @@
 package GameMain;
 
 public abstract class MobileEntity extends Entity implements Movement {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	private Movement movement;
 	
 	MobileEntity(Tile tile) {

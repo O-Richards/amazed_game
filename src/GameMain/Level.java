@@ -39,12 +39,12 @@ public class Level {
 		}
 		//Add bordering walls
 		for (int row = 0; row < nRows + 2; row++) {
-			this.map[row][0] = new WallTile(new Coord(row, 0));
-			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1));
+			this.map[row][0] = new EdgeTile(new Coord(row, 0));
+			this.map[row][nRows + 1] = new EdgeTile(new Coord(row, nRows + 1));
 		}
 		for (int col = 0; col < nCols + 2; col++) {
-			this.map[0][col] = new WallTile(new Coord(0, col));
-			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
+			this.map[0][col] = new EdgeTile(new Coord(0, col));
+			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
 		}
 		//Create the player and place them on the map
 		this.player = new PlayerMobileEntity(this.map[1][1]);
@@ -147,6 +147,12 @@ public class Level {
 	}
 	
 
+	/**
+	 * @precondition The coord has an empty tile
+	 * @precondition The coord is valid
+	 * @param coord
+	 * @return
+	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
 		SwitchTile newSwitch = new SwitchTile(coord, this.switchWinCondition);
@@ -156,6 +162,16 @@ public class Level {
 	
 	public String inventoryString() {
 		return this.player.inventoryString();
+	}
+
+	/**
+	 * @precondition The coord has an empty tile
+	 * @precondition The coord is valid
+	 * @param coord
+	 */
+	public void placeWall(Coord coord) {
+		WallTile newWall = new WallTile(coord);
+		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 	
 }
