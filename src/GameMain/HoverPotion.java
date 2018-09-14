@@ -18,7 +18,11 @@ public class HoverPotion extends UsableEntity {
 
 	@Override
 	public void use(Direction playerDirection, Tile[][] adjTiles) {
-		
+	}
+	
+	@Override
+	public String getSprite() {
+		return "H";
 	}
 
 }

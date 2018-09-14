@@ -127,6 +127,12 @@ public class Level {
 		this.hasSwitchWinCondition = status;
 	}
 
+	/**
+	 * @precondition The coord has an empty tile
+	 * @precondition The coord is valid
+	 * @param coord
+	 * @return
+	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
 		SwitchTile newSwitch = new SwitchTile(coord, this.switchWinCondition);
@@ -136,6 +142,16 @@ public class Level {
 	
 	public String inventoryString() {
 		return this.player.inventoryString();
+	}
+
+	/**
+	 * @precondition The coord has an empty tile
+	 * @precondition The coord is valid
+	 * @param coord
+	 */
+	public void placeWall(Coord coord) {
+		WallTile newWall = new WallTile(coord);
+		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 	
 }
