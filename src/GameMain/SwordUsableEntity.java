@@ -32,5 +32,12 @@ public class SwordUsableEntity extends UsableEntity {
 	public String getSprite() {
 		return "S";
 	}
+
+	@Override
+	public Collision collide(MobileEntity hitter) {
+		return Collision.MOVE;
+	}
+	
+	
 	
 }
