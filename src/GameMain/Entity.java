@@ -46,4 +46,16 @@ public abstract class Entity implements Collidable {
 		return tile;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) return false;
+		if (obj == this) return true;
+		if (obj.getClass() != this.getClass()) return false;
+		
+		Entity e = (Entity)obj;
+		if (e.getCoord().equals(this.getCoord())) return true;
+		return false;
+		
+	}
+
 }

@@ -43,5 +43,11 @@ public class Coord {
 		System.out.println("Coord.add(): unknown direction");
 		return new Coord(0, 0);
 	}
+
+	@Override
+	public String toString() {
+		return "Coord [x=" + x + ", y=" + y + "]";
+	}
+	
 	
 }

@@ -1,10 +1,39 @@
 package GameMain;
 
 public class SwitchTile extends Tile {
-
-	public SwitchTile(Coord coord) {
+	private WinCondition winCondition;
+	
+	public SwitchTile(Coord coord, WinCondition winCondition) {
 		super(coord);
-		// TODO Auto-generated constructor stub
+		this.winCondition = winCondition;
+	}
+	
+	@Override
+	public void tick() {
+		super.tick();
+		if (!this.containsEntity(new BoulderMobileEntity(this))) {
+			winCondition.setUnsatisfied();
+		} else {
+			winCondition.setSatisfied();
+		}
+	}
+	
+
+	
+	/**
+	 * @param entity The entity to add to this tile
+	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
+	 */
+	@Override
+	public boolean addEntity(Entity entity) {
+		super.addEntity(entity);
+		//Cannot have items on switches
+		return false;
+	}
+	
+	@Override
+	public String getSprite() {
+		return "@";
 	}
 
 }
