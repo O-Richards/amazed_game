@@ -3,61 +3,63 @@ package GameMain;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class GameSystem {
 	//Consists of a map/ all entities coordinates etc.
 	private Level level;
-	
+
 	public GameSystem() {
 		//Setup level with default size
 		this.level = new Level();
 		System.out.println("aMMMMMMMMMMMazing times starting...");
 	}
-	
+
+	//Places an entitiy in the coordinate specified:
 	public boolean placeEntity(Entity entity, Coord coord) {
 		return level.addEntity(entity, coord);
 	}
-	
+
+	//Moves the player in a direction:
 	public void movePlayer(Direction dir) {
 		this.level.movePlayer(dir);
 	}
 	
+	//Moves and updates all mobile entities:
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
 		this.level.tick();
 	}
-	
+
+	//Prints out a map:
 	public String levelString() {
 		return this.level.toString();
 	}
 	
-	public Direction charToDirection(Character c) {
-		c = Character.toLowerCase(c);
-		switch(c) {
-			case 'w': return Direction.UP;
-			case 's': return Direction.DOWN;
-			case 'a': return Direction.LEFT;
-			case 'd': return Direction.RIGHT;
+	public boolean hasWon() {
+		return this.level.hasWon();
+	}
+	
+	public void setSwitchWinCondition(Boolean status) {
+		this.level.setSwitchWinCondition(status);
+	}
+	
+	public String inventoryString() {
+		return this.level.inventoryString();
+	}
+	
+	public boolean placeSwitch(Coord coord) {
+		return this.level.placeSwitch(coord);
+	}
+    //Direction inputs:
+	public Direction strToDirection(String s) {
+		s = s.toLowerCase();
+		switch(s) {
+			case "w": return Direction.UP;
+			case "s": return Direction.DOWN;
+			case "a": return Direction.LEFT;
+			case "d": return Direction.RIGHT;
 			default: return Direction.CENTRE;
 		}
 	}
-		
-	public static void main(String[] args) throws IOException {
-		GameSystem gs = new GameSystem();
-		//Setup template maze
-		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
-		System.out.println("Use W A S D keys to move me around");
-		while(true) {
-			char c = (char)System.in.read();
-			if (c == 0) break;
-			gs.movePlayer(gs.charToDirection(new Character(c)));
-			gs.tick();
-			System.out.println(gs.levelString());
-		}
-	}
-	
-
-
 
 }
