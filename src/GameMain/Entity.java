@@ -15,6 +15,10 @@ public abstract class Entity implements Collidable {
 		return this.tile.getCoord();
 	}
 	
+	public Tile getTile() {
+		return this.tile;
+	}
+	
 	/**
 	 * @param dir the direction from the entity we want a Coord of.
 	 * @return the Coord of the tile in the direction dir from the entity
@@ -49,7 +53,7 @@ public abstract class Entity implements Collidable {
 		if (obj.getClass() != this.getClass()) return false;
 		
 		Entity e = (Entity)obj;
-		if (e.getCoord().equals(this.getCoord())) return true;
+		if (e.getTile().equals(this.getTile())) return true;
 		return false;
 		
 	}

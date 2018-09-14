@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
@@ -29,6 +29,7 @@ public class Level {
 		this.treasureWinCondition = new TreasureWinCondition();
 		this.mobileEntities = new ArrayList<>();
 		this.hasSwitchWinCondition = false;
+		this.noTreasure = 0;
 		
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
@@ -125,12 +126,17 @@ public class Level {
 	
 	
 	public boolean hasWon() {
-		if (DEBUG) System.out.println("Level.hasWon() called: Player has " + player.noTreasure() + " treasure, treasure win condition is " + hasSwitchWinCondition);
+		if (DEBUG) {
+			System.out.print("Level.hasWon() called: Player has " + player.noTreasure());
+			System.out.print(" treasure, treasure win condition is " + hasTreasureWinCondition);
+			System.out.print("Total treasure is " + this.noTreasure + "\n");
+		}
 		boolean ret = false;
 		if (this.hasSwitchWinCondition)  {
 			ret |= this.switchWinCondition.hasWon();
 		}
 		if (this.hasTreasureWinCondition) {
+			System.out.println("Im here Oli");
 			if (player.noTreasure() == noTreasure) {
 				treasureWinCondition.setSatisfied();
 				ret |= this.treasureWinCondition.hasWon();

@@ -44,6 +44,10 @@ public class GameSystem {
 		this.level.setSwitchWinCondition(status);
 	}
 	
+	private void setTreasureWinCondition(boolean b) {
+		this.level.setTreasureWinCondition(b);
+	}
+	
 	public String levelString() {
 		return this.level.toString();
 	}
@@ -74,6 +78,7 @@ public class GameSystem {
 		gs.placeWall(new Coord(4, 5));
 		gs.placeEntity(new HoverPotion(null), new Coord(3, 4));
 		gs.setSwitchWinCondition(true);
+		gs.setTreasureWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
 		Scanner s = new Scanner(System.in);
 		while(true) {
@@ -90,6 +95,8 @@ public class GameSystem {
 			}
 		}
 	}
+
+
 
 
 
