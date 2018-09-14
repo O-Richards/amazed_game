@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class GameSystem {
+	//Consists of a map/ all entities coordinates etc.
 	private Level level;
 	
 	public GameSystem() {
@@ -19,7 +20,6 @@ public class GameSystem {
 	}
 	
 	public void movePlayer(Direction dir) {
-		System.out.println("GameSystem.movePlayer(" + dir + ") called");
 		this.level.movePlayer(dir);
 	}
 	
@@ -32,13 +32,13 @@ public class GameSystem {
 		return this.level.toString();
 	}
 	
-	public Direction strToDirection(String s) {
-		s = s.toLowerCase();
-		switch(s) {
-			case "w": return Direction.UP;
-			case "s": return Direction.DOWN;
-			case "a": return Direction.LEFT;
-			case "d": return Direction.RIGHT;
+	public Direction charToDirection(Character c) {
+		c = Character.toLowerCase(c);
+		switch(c) {
+			case 'w': return Direction.UP;
+			case 's': return Direction.DOWN;
+			case 'a': return Direction.LEFT;
+			case 'd': return Direction.RIGHT;
 			default: return Direction.CENTRE;
 		}
 	}
@@ -48,12 +48,10 @@ public class GameSystem {
 		//Setup template maze
 		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
 		System.out.println("Use W A S D keys to move me around");
-		Scanner s = new Scanner(System.in);
 		while(true) {
-			String input = s.next();
-			Direction playerDir = gs.strToDirection(input);
-			//System.out.println("Input Dir: " + playerDir);
-			gs.movePlayer(playerDir);
+			char c = (char)System.in.read();
+			if (c == 0) break;
+			gs.movePlayer(gs.charToDirection(new Character(c)));
 			gs.tick();
 			System.out.println(gs.levelString());
 		}
