@@ -31,6 +31,10 @@ public class GameSystem {
 		return this.level.toString();
 	}
 	
+	public String inventoryString() {
+		return this.level.inventoryString();
+	}
+	
 	public Direction charToDirection(Character c) {
 		c = Character.toLowerCase(c);
 		switch(c) {
@@ -46,6 +50,7 @@ public class GameSystem {
 		GameSystem gs = new GameSystem();
 		//Setup template maze
 		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
+		gs.placeEntity(new SwordUsableEntity(null), new Coord(4, 4));
 		System.out.println("Use W A S D keys to move me around");
 		while(true) {
 			char c = (char)System.in.read();
@@ -53,6 +58,7 @@ public class GameSystem {
 			gs.movePlayer(gs.charToDirection(new Character(c)));
 			gs.tick();
 			System.out.println(gs.levelString());
+			System.out.println(gs.inventoryString());
 		}
 	}
 	

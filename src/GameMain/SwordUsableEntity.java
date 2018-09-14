@@ -29,4 +29,8 @@ public class SwordUsableEntity extends UsableEntity {
 		target.addEntity(new KillerEntity(target, false, true));
 	}
 	
+	public String getSprite() {
+		return "S";
+	}
+	
 }

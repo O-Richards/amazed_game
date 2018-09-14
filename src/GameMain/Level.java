@@ -106,4 +106,8 @@ public class Level {
 		
 	}
 	
+	public String inventoryString() {
+		return this.player.inventoryString();
+	}
+	
 }

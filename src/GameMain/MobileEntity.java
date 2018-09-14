@@ -29,6 +29,4 @@ public abstract class MobileEntity extends Entity implements Movement {
 	public boolean pushEntity() {
 		return false;
 	}
-
-
 }

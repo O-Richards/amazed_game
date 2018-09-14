@@ -1,15 +1,16 @@
 package GameMain;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
-	private List<UsableEntity> inventory;
+	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
 	// private Integer treasure;
 	private boolean hover = false;
 	
 	PlayerMobileEntity(Tile tile) {
 		super(tile);
+		this.inventory = new ArrayList<UsableEntity>();
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -50,5 +51,13 @@ public class PlayerMobileEntity extends MobileEntity {
 	public boolean pickup(UsableEntity item) {
 		inventory.add(item);
 		return true;
+	}
+	
+	public String inventoryString() {
+		String out = "";
+		for (UsableEntity e : inventory) {
+			out += e.getSprite();
+		}
+		return out;
 	}
 }
