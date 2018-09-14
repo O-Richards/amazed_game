@@ -33,7 +33,7 @@ public class SwitchTile extends Tile {
 	
 	@Override
 	public String getSprite() {
-		return "S";
+		return "@";
 	}
 
 }

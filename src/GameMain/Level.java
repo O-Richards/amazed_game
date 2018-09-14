@@ -154,4 +154,8 @@ public class Level {
 		return true;
 	}
 	
+	public String inventoryString() {
+		return this.player.inventoryString();
+	}
+	
 }

@@ -1,16 +1,12 @@
 package GameMain;
 
-public class TreasureEntity extends Entity implements Usable {
+public class TreasureEntity extends UsableEntity {
 	
 	TreasureEntity(Tile tile) {
 		super(tile);
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Collision collide(MobileEntity hitter) {
-		return Collision.MOVE;
-	}
 	
 	@Override
 	public void use(Direction playerDirection, Tile[][] adjTiles) {
@@ -21,6 +17,7 @@ public class TreasureEntity extends Entity implements Usable {
 	public String getSprite() {
 		return "$";
 	}
+
 
 
 }

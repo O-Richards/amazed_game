@@ -44,6 +44,10 @@ public class GameSystem {
 		return this.level.toString();
 	}
 	
+	public String inventoryString() {
+		return this.level.inventoryString();
+	}
+	
 	public Direction strToDirection(String s) {
 		s = s.toLowerCase();
 		switch(s) {
@@ -58,6 +62,7 @@ public class GameSystem {
 	public static void main(String[] args) throws IOException {
 		GameSystem gs = new GameSystem();
 		//Setup template maze
+		gs.placeEntity(new SwordUsableEntity(null), new Coord(4, 4));
 		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 3));
 		gs.placeSwitch(new Coord(3, 3));
 		gs.placeEntity(new TreasureEntity(null), new Coord(5,6));
@@ -72,6 +77,7 @@ public class GameSystem {
 			gs.movePlayer(playerDir);
 			gs.tick();
 			System.out.println(gs.levelString());
+			System.out.println(gs.inventoryString());
 			if (gs.hasWon()) {
 				System.out.println("WON THE GAME!!!");
 				break;

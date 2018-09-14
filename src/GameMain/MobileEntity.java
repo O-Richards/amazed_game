@@ -24,6 +24,9 @@ public abstract class MobileEntity extends Entity implements Movement {
 		if (DEBUG) System.out.println("Setting MobileEntity " + this.getSprite() + "Direction to " + this.getDirection());
 	}
 	
+	//TODO: Pull this into movement interface
+	public abstract boolean pickup(UsableEntity item);
+
 	public boolean canFly() {
 		return this.movement.canFly();
 	}	
@@ -34,7 +37,7 @@ public abstract class MobileEntity extends Entity implements Movement {
 	public boolean pushEntity() {
 		return this.movement.pushEntity();
 	}
-	
+
 	public Coord nextCoord() {
 		return this.movement.nextCoord();
 	}
@@ -45,6 +48,5 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	public Movement getMovement() {
 		return this.movement;
-	}
-	
+	}	
 }

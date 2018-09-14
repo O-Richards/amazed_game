@@ -25,4 +25,9 @@ public class BoulderMobileEntity extends MobileEntity {
 		return "B";
 	}
 
+	@Override
+	public boolean pickup(UsableEntity item) {
+		return false;
+	}
+
 }
