@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Tile implements Collidable {
+	private static final boolean DEBUG = true;
 	private Coord coord;
 	private ArrayList<Entity> entities;
 	
@@ -41,6 +42,7 @@ public class Tile implements Collidable {
 	public Collision collide(MobileEntity hitter) {
 		Collision col = Collision.MOVE;
 		for (Entity e : this.entities) {
+			if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());
 			Collision tmpCol = e.collide(hitter);
 			if (tmpCol != Collision.MOVE) {
 				col = tmpCol;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level {
+	private static final boolean DEBUG = true;
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
@@ -45,6 +46,7 @@ public class Level {
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
 		Tile newTile = this.map[c.getX()][c.getY()];
 		//Trigger any/all collisions
+		if (DEBUG) System.out.println("Moving Mobile Entity " + entity.getSprite() + " to " + c);
 		if (newTile.collide(entity) == Collision.MOVE) {
 			entity.removeFromTile();
 			newTile.addEntity(entity);
@@ -74,7 +76,9 @@ public class Level {
 		//Move mobile entities
 		moveMobileEntity(this.player, this.player.nextCoord());
 		for (MobileEntity e: this.mobileEntities) {
-			moveMobileEntity(e, e.nextCoord());
+			if (e.nextCoord() != e.getCoord()) {
+				moveMobileEntity(e, e.nextCoord());
+			}
 		}
 	}
 
@@ -103,7 +107,6 @@ public class Level {
 	public void movePlayer(Direction dir) {
 		//TODO: Add error checking
 		this.player.setDirection(dir);
-		
 	}
 	
 }
