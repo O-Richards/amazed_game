@@ -27,4 +27,8 @@ public class AutoMobileEntity extends MobileEntity {
 		//return null;
 	}
 
+	@Override
+	public boolean pickup(UsableEntity item) {
+		return false;
+	}
 }

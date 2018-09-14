@@ -21,6 +21,7 @@ public abstract class MobileEntity extends Entity implements Movement {
 	}
 	
 	public abstract Coord nextCoord();
+	public abstract boolean pickup(UsableEntity item);
 
 	/**
 	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
