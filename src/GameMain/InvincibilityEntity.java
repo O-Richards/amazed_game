@@ -9,8 +9,16 @@ public class InvincibilityEntity extends Entity {
 
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		// TODO Auto-generated method stub
-		return null;
+		removeFromTile();
+		hitter.setMovement(new InvincibilityBonusAction(hitter.getMovement()));
+		return Collision.MOVE;
 	}
+
+	@Override
+	public String getSprite() {
+		return "I";
+	}
+	
+	
 
 }

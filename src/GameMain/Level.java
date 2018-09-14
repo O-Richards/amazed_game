@@ -19,7 +19,7 @@ public class Level {
 	private PlayerMobileEntity player;
 	private List<MobileEntity> mobileEntities;
 	private int noTreasure;
-	
+
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
 	}
@@ -92,6 +92,7 @@ public class Level {
 		for (MobileEntity e: this.mobileEntities) {
 			moveMobileEntity(e, e.nextCoord());
 		}
+
 	}
 
 	public PlayerMobileEntity getPlayer() {

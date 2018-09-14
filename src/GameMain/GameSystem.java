@@ -77,6 +77,7 @@ public class GameSystem {
 		gs.placeEntity(new TreasureEntity(null), new Coord(10, 2));
 		gs.placeWall(new Coord(4, 5));
 		gs.placeEntity(new HoverPotion(null), new Coord(3, 4));
+		gs.placeEntity(new InvincibilityEntity(null), new Coord(1,5));
 		gs.setSwitchWinCondition(true);
 		gs.setTreasureWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");

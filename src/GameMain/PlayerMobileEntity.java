@@ -61,6 +61,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		return true;
 	}
 	
+	
 	public String inventoryString() {
 		String out = "";
 		for (UsableEntity e : inventory) {
