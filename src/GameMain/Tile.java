@@ -25,7 +25,7 @@ public class Tile implements Collidable {
 	
 	/**
 	 * @param entity The entity to add to this tile
-	 * @return True if successfully added
+	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
 	 */
 	public boolean addEntity(Entity entity) {
 		this.entities.add(entity);

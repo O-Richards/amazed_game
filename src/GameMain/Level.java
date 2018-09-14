@@ -12,7 +12,8 @@ public class Level {
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the top left tile
 	private Tile[][] map;
-	private WinCondition winCondition;
+	private WinCondition switchWinCondition;
+	private boolean hasSwitchWinCondition;
 	private PlayerMobileEntity player;
 	private List<MobileEntity> mobileEntities;
 	
@@ -21,9 +22,12 @@ public class Level {
 	}
 	
 	public Level(int nRows, int nCols) {
+		this.switchWinCondition = new SwitchWinCondition();
+		this.mobileEntities = new ArrayList<>();
+		this.hasSwitchWinCondition = false;
+		
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
-		this.mobileEntities = new ArrayList<>();
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
 				this.map[row][col] = new Tile(new Coord(row, col));
@@ -68,6 +72,7 @@ public class Level {
 	}
 	
 	public void tick() {
+		this.switchWinCondition.tick();
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick();
@@ -108,6 +113,25 @@ public class Level {
 		this.player.setDirection(dir);
 		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
 
+	}
+	
+	public boolean hasWon() {
+		boolean ret = false;
+		if (this.hasSwitchWinCondition)  {
+			ret |= this.switchWinCondition.hasWon();
+		}
+		return ret;
+	}
+
+	public void setSwitchWinCondition(Boolean status) {
+		this.hasSwitchWinCondition = status;
+	}
+
+	public boolean placeSwitch(Coord coord) {
+		//TODO: add error checking
+		SwitchTile newSwitch = new SwitchTile(coord, this.switchWinCondition);
+		this.map[coord.getX()][coord.getY()] = newSwitch;
+		return true;
 	}
 	
 }

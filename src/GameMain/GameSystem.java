@@ -18,6 +18,10 @@ public class GameSystem {
 		return level.addEntity(entity, coord);
 	}
 	
+	public boolean placeSwitch(Coord coord) {
+		return this.level.placeSwitch(coord);
+	}
+	
 	public void movePlayer(Direction dir) {
 		System.out.println("GameSystem.movePlayer(" + dir + ") called");
 		this.level.movePlayer(dir);
@@ -26,6 +30,14 @@ public class GameSystem {
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
 		this.level.tick();
+	}
+	
+	public boolean hasWon() {
+		return this.level.hasWon();
+	}
+	
+	public void setSwitchWinCondition(Boolean status) {
+		this.level.setSwitchWinCondition(status);
 	}
 	
 	public String levelString() {
@@ -46,7 +58,9 @@ public class GameSystem {
 	public static void main(String[] args) throws IOException {
 		GameSystem gs = new GameSystem();
 		//Setup template maze
-		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
+		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 3));
+		gs.placeSwitch(new Coord(3, 3));
+		gs.setSwitchWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
 		Scanner s = new Scanner(System.in);
 		while(true) {
@@ -56,6 +70,10 @@ public class GameSystem {
 			gs.movePlayer(playerDir);
 			gs.tick();
 			System.out.println(gs.levelString());
+			if (gs.hasWon()) {
+				System.out.println("WON THE GAME!!!");
+				break;
+			}
 		}
 	}
 	
