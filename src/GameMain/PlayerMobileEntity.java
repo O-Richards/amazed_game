@@ -9,13 +9,14 @@ public class PlayerMobileEntity extends MobileEntity {
 	private boolean hover = false;
 	
 	PlayerMobileEntity(Tile tile) {
-		super(tile);
-		// TODO Auto-generated constructor stub
+		super(tile, null);
+		Movement movement = new EntityTrackingMovement(this);
+		this.setMovement(movement);
 	}
 	
-	@Override
-	public boolean canFly() {
-		return hover;
+	PlayerMobileEntity(Tile tile, Movement movement) {
+		super(tile, movement);
+		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -26,11 +27,6 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public Coord nextCoord() {
 		return this.getCoord(this.getDirection());
-	}
-	
-	@Override
-	public boolean pushEntity() {
-		return true;
 	}
 	
 	public String getSprite() {
