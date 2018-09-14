@@ -39,13 +39,17 @@ public class Tile implements Collidable {
 	}
 
 	@Override
-	public Collision collide(MobileEntity hitter) {
+	public Collision collide(MobileEntity hitter) {			
+		if (DEBUG) System.out.println("Checking collisions on Tile: " + this.getCoord());
 		Collision col = Collision.MOVE;
 		for (Entity e : this.entities) {
-			if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());
-			Collision tmpCol = e.collide(hitter);
-			if (tmpCol != Collision.MOVE) {
-				col = tmpCol;
+			//Prevent self collisions
+			if (e != hitter) {
+				if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());
+				Collision tmpCol = e.collide(hitter);
+				if (tmpCol != Collision.MOVE) {
+					col = tmpCol;
+				}
 			}
 		}
 		return col;

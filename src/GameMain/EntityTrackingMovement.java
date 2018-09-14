@@ -1,6 +1,7 @@
 package GameMain;
 
 public class EntityTrackingMovement implements Movement {
+	private static final boolean DEBUG = true;
 	Direction direction;
 	Entity entity;
 
@@ -18,6 +19,7 @@ public class EntityTrackingMovement implements Movement {
 	}
 
 	public void setDirection(Direction dir) {
+		if (DEBUG) System.out.println("Setting direction to " + dir);
 		this.direction = dir;
 	}
 

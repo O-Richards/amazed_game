@@ -10,7 +10,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	PlayerMobileEntity(Tile tile) {
 		super(tile, null);
-		Movement movement = new EntityTrackingMovement(this);
+		Movement movement = new PlayerMovement(this);
 		this.setMovement(movement);
 	}
 	

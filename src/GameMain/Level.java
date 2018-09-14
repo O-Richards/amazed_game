@@ -76,9 +76,7 @@ public class Level {
 		//Move mobile entities
 		moveMobileEntity(this.player, this.player.nextCoord());
 		for (MobileEntity e: this.mobileEntities) {
-			if (e.nextCoord() != e.getCoord()) {
-				moveMobileEntity(e, e.nextCoord());
-			}
+			moveMobileEntity(e, e.nextCoord());
 		}
 	}
 
@@ -106,7 +104,10 @@ public class Level {
 
 	public void movePlayer(Direction dir) {
 		//TODO: Add error checking
+		if (DEBUG) System.out.println("System setting player dir: " + dir);
 		this.player.setDirection(dir);
+		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
+
 	}
 	
 }

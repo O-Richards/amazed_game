@@ -1,6 +1,7 @@
 package GameMain;
 
 public abstract class MobileEntity extends Entity implements Movement {
+	public static final boolean DEBUG = true;
 	private Movement movement;
 	
 	MobileEntity(Tile tile) {
@@ -20,6 +21,7 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	public void setDirection(Direction dir) {
 		this.movement.setDirection(dir);
+		if (DEBUG) System.out.println("Setting MobileEntity " + this.getSprite() + "Direction to " + this.getDirection());
 	}
 	
 	public boolean canFly() {
