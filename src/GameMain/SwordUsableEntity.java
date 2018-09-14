@@ -1,6 +1,8 @@
 package GameMain;
 
+
 public class SwordUsableEntity extends UsableEntity {
+	private int noOfUses = 5; 
 
 	SwordUsableEntity(Tile tile) {
 		super(tile);
@@ -27,8 +29,12 @@ public class SwordUsableEntity extends UsableEntity {
 			target = adjTiles[1][1];
 		}
 		target.addEntity(new KillerEntity(target, false, true));
+		noOfUses --; 
 	}
 	
+	public int noOfUsesLeft() {
+		return noOfUses; 
+	}
 	public String getSprite() {
 		return "S";
 	}

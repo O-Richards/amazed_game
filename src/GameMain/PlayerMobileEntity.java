@@ -2,6 +2,8 @@ package GameMain;
 
 import java.util.ArrayList;
 
+import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
@@ -15,6 +17,8 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
+	//Used for consumables as it removes upon use:
+	//No idea how we're able to know the items name
 	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
 		if (inventory.contains(item)) {
 			item.use(this.getDirection(), adjTiles);
@@ -23,6 +27,17 @@ public class PlayerMobileEntity extends MobileEntity {
 		}
 		return false;
 	}
+	/*
+	//Used for swords:
+	public boolean useSword(Tile[][] adjTiles) {
+		if (inventory.contains(INSTANCEOF)) {
+			item.use(this.getDirection(), adjTiles);
+			inventory.remove(item);
+			return true;
+		}
+		return false;
+	}*/
+
 	
 	
 	PlayerMobileEntity(Tile tile, Movement movement) {
@@ -46,6 +61,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public boolean pickup(UsableEntity item) {
 		inventory.add(item);
+		this.iterateOverITEMS();
 		return true;
 	}
 	

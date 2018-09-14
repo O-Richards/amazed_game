@@ -10,6 +10,7 @@ public abstract class UsableEntity extends Entity {
 	@Override
 	public Collision collide(MobileEntity hitter) {
 		if (hitter.pickup(this)) {
+
 			this.removeFromTile();
 		}
 		return Collision.MOVE;

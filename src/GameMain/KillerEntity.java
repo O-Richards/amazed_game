@@ -11,9 +11,10 @@ public class KillerEntity extends Entity {
 		this.killEnemies = killEnemies;
 	}
 	
+
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		// TODO kill object in my square
+		// TODO Auto-generated method stub
 		return null;
 	}
 

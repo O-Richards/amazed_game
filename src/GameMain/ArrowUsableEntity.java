@@ -1,23 +1,16 @@
 package GameMain;
 
-public class ArrowUsableEntity extends UsableEntity {
+public class ArrowUsableEntity extends UsableEntity{
 
 	public ArrowUsableEntity(Tile tile) {
 		super(tile);
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public Collision collide(MobileEntity hitter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
 	public void use(Direction direction, Tile[][] adjTiles) {
 		Tile target;
 		switch (direction) {
-		case UP:
+		case UP:	
 			target = adjTiles[1][0];
 			break;
 		case DOWN:
@@ -33,6 +26,7 @@ public class ArrowUsableEntity extends UsableEntity {
 			target = adjTiles[1][1];
 		}
 		target.addEntity(new KillerEntity(target, false, true));
+	
 	}
 	
 	public String getSprite() {

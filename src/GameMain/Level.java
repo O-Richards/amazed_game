@@ -3,6 +3,8 @@ package GameMain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 public class Level {
 	private static final boolean DEBUG = false;
 	//Some constants
@@ -42,6 +44,9 @@ public class Level {
 			this.map[0][col] = new WallTile(new Coord(0, col));
 			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
 		}
+		
+		//Adds a pit tile to the map: 
+		this.map[0][2] = new PitTile(new Coord(0, 2));
 		//Create the player and place them on the map
 		this.player = new PlayerMobileEntity(this.map[1][1]);
 		moveMobileEntity(this.player, new Coord(1, 1));
@@ -114,6 +119,22 @@ public class Level {
 		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
 
 	}
+	public void playerDo(Action act,Direction dir) {
+		//TODO: Add error checking
+		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
+		//this.player.useItem(act, dir);
+		//Sets the direction: 
+		this.player.setDirection(dir);
+		//Calls the appropriate action: 
+		if(act == Action.SWORD) {
+			this.player.useSword(adjTiles)
+		}else {
+			
+		}
+		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
+
+	}
+
 
 	public boolean hasWon() {
 		boolean ret = false;
