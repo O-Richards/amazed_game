@@ -22,6 +22,10 @@ public class GameSystem {
 		this.level.movePlayer(dir);
 	}
 	
+	public PlayerMobileEntity getPlayer() {
+		return level.getPlayer();
+	}
+	
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
 		this.level.tick();
@@ -51,6 +55,7 @@ public class GameSystem {
 		//Setup template maze
 		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 2));
 		gs.placeEntity(new SwordUsableEntity(null), new Coord(4, 4));
+		gs.placeEntity(new UnlitBombUsableEntity(null), new Coord(1, 5));
 		System.out.println("Use W A S D keys to move me around");
 		while(true) {
 			char c = (char)System.in.read();

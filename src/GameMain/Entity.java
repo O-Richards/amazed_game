@@ -6,13 +6,13 @@ public abstract class Entity implements Collidable {
 	private Tile tile;
 	
 	Entity(Tile tile) {
-		this.tile = tile;
+		this.setTile(tile);
 	}
 	
 	public Coord getCoord() {
 		//TODO: Should really check if the tile is null in some nice way
 		//For now lets leave it raising an exception.
-		return this.tile.getCoord();
+		return this.getTile().getCoord();
 	}
 	
 	/**
@@ -28,10 +28,10 @@ public abstract class Entity implements Collidable {
 	}
 
 	public void removeFromTile() {
-		if (this.tile != null) {
-			this.tile.removeEntity(this);
+		if (this.getTile() != null) {
+			this.getTile().removeEntity(this);
 		}
-		this.tile = null;
+		this.setTile(null);
 	}
 
 	public String getSprite() {
@@ -40,6 +40,10 @@ public abstract class Entity implements Collidable {
 
 	public void setTile(Tile tile) {
 		this.tile = tile;
+	}
+
+	public Tile getTile() {
+		return tile;
 	}
 
 }
