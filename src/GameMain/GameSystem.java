@@ -94,6 +94,6 @@ public class GameSystem {
 
 	//Does the actual action: 
 	public void doAction(Action act,Direction dir) {
-		this.level.playerDo(act,dir);
+		this.level.playerDo();
 	}
 }

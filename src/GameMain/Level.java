@@ -1,5 +1,6 @@
 package GameMain;
 
+import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,7 +128,7 @@ public class Level {
 		this.player.setDirection(dir);
 		//Calls the appropriate action: 
 		if(act == Action.SWORD) {
-			this.player.useSword(adjTiles)
+			this.player.useItem(new SwordUsableEntity(null), adjTiles)
 		}else {
 			
 		}

@@ -2,8 +2,6 @@ package GameMain;
 
 import java.util.ArrayList;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
-
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
@@ -17,13 +15,24 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//Used for consumables as it removes upon use:
 	//No idea how we're able to know the items name
 	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
-		if (inventory.contains(item)) {
+		/*if (inventory.contains(item instanceof )) {
 			item.use(this.getDirection(), adjTiles);
 			inventory.remove(item);
 			return true;
+		}*/
+		//Looks through all elements of the arrayList to find if there is an item of that type:
+		for (UsableEntity inventoryItem : inventory) {
+			/*if(item instanceof inventoryItem.getClass().getName()) {
+				
+			}*/
+			//Alternatively we can simply check if two sprite values match: 
+			if(item.getSprite().equals(inventoryItem.getSprite())) {
+				//inventoryItem.use(playerDirection, adjTiles);
+				
+			}
+			
 		}
 		return false;
 	}
@@ -38,6 +47,11 @@ public class PlayerMobileEntity extends MobileEntity {
 		return false;
 	}*/
 
+	public void printItems() {
+		for (UsableEntity usableEntity : inventory) {
+			System.out.println(usableEntity.getClass().getName());
+		}
+	}
 	
 	
 	PlayerMobileEntity(Tile tile, Movement movement) {
@@ -61,7 +75,6 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public boolean pickup(UsableEntity item) {
 		inventory.add(item);
-		this.iterateOverITEMS();
 		return true;
 	}
 	
