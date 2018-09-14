@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
-	private int treasure;
 	private boolean hover = false;
 
 	
@@ -32,6 +31,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 	
 	public int noTreasure() {
+		int treasure = 0;
 		for (UsableEntity u: inventory) {
 			if (u instanceof TreasureEntity) {
 				treasure++;
