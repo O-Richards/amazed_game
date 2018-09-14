@@ -10,7 +10,7 @@ public class Level {
 	private static final int DEFAULT_NCOLS = 30;
 	
 	//The map for the game, composed of Tiles.
-	//NOTE: Tile[0][0] is the top left tile
+	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
 	private WinCondition switchWinCondition;
 	private WinCondition treasureWinCondition;
@@ -107,7 +107,7 @@ public class Level {
 		//Could change this to be a string builder to avoid O(n^2)
 		//The map should be quite small so it wont make a big difference
 		String ret = new String("");
-		for (int row = 0; row < this.map.length; row++) {
+		for (int row = this.map.length - 1; row >= 0; row--) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				ret += this.map[row][col].getSprite();
 			}
