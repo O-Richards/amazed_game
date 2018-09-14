@@ -28,6 +28,7 @@ public class GameController {
 				break;
 			}
 		}
+		s.close();
 	}
 	
 
