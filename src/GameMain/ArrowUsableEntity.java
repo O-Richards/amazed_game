@@ -6,6 +6,12 @@ public class ArrowUsableEntity extends UsableEntity {
 		super(tile);
 		// TODO Auto-generated constructor stub
 	}
+	@Override
+	public Collision collide(MobileEntity hitter) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	@Override
 	public void use(Direction direction, Tile[][] adjTiles) {
@@ -30,7 +36,7 @@ public class ArrowUsableEntity extends UsableEntity {
 	}
 	
 	public String getSprite() {
-		return "S";
+		return "->";
 	}
 	
 }
