@@ -1,5 +1,5 @@
 package GameMain;
 
 public enum Action {
-	ARROW, SWORD, BOMB
+	ARROW, SWORD, BOMB, CONSUME
 }

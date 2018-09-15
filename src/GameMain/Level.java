@@ -128,9 +128,11 @@ public class Level {
 		this.player.setDirection(dir);
 		//Calls the appropriate action: 
 		if(act == Action.SWORD) {
-			this.player.useItem(new SwordUsableEntity(null), adjTiles)
-		}else {
-			
+			this.player.useItem(new SwordUsableEntity(null), );
+		}else if(act == Action.ARROW){
+			this.player.useItem(new ArrowUsableEntity(null), );
+		}else if(act == Action.BOMB) {
+			this.player.useItem(new BombUsableEntity(null), );
 		}
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
 

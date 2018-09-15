@@ -17,7 +17,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	//No idea how we're able to know the items name
 	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
-		/*if (inventory.contains(item instanceof )) {
+		/*if (inventory.contains(item)) {
 			item.use(this.getDirection(), adjTiles);
 			inventory.remove(item);
 			return true;
@@ -29,7 +29,7 @@ public class PlayerMobileEntity extends MobileEntity {
 			}*/
 			//Alternatively we can simply check if two sprite values match: 
 			if(item.getSprite().equals(inventoryItem.getSprite())) {
-				//inventoryItem.use(playerDirection, adjTiles);
+				inventoryItem.use(getDirection(), adjTiles);
 				
 			}
 			
@@ -77,6 +77,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		inventory.add(item);
 		return true;
 	}
+	
 	
 	public String inventoryString() {
 		String out = "";

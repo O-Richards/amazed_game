@@ -48,5 +48,8 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	public Movement getMovement() {
 		return this.movement;
-	}	
+	}
+	public boolean canDie() {
+		return true; 
+	}
 }

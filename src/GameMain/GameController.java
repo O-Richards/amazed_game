@@ -34,6 +34,7 @@ public class GameController {
 					
 				}
 			}
+			
 			gs.tick();
 			System.out.println(gs.levelString());
 			System.out.println(gs.inventoryString());
