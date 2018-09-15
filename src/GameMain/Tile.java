@@ -8,7 +8,7 @@ public class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
-	private WinCondition winCondition;
+	private SingleWinCondition winCondition;
 	
 	public Tile(Coord coord) {
 		this.coord = coord;

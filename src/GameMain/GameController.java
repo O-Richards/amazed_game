@@ -76,9 +76,12 @@ public class GameController {
 		l.placePit(new Coord(9,9));
 		l.placeExit(new Coord(11,1));
 		l.addEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
-		l.setEnableSwitchWinCondition(true);
-		l.setEnableTreasureWinCondition(true);
-		l.setEnableExitsWinCondition(true);
+		
+		l.enableWinCondition(WinType.EXIT);
+		l.enableWinCondition(WinType.ENEMIES);
+		l.enableWinCondition(WinType.SWITCH);
+		l.enableWinCondition(WinType.TREASURE);
+
 		System.out.println("Use W A S D keys to move me around");
 		System.out.println("Use WASD followed by keys J to fire arrows OR K to swing with sword");
 		System.out.println("Use keys L to place bomb");

@@ -18,13 +18,14 @@ public class Level implements EntityMover {
 	private Tile[][] map;
 	private PlayerMobileEntity player;
 	private Integer tickNum = 0;
+	private WinSystem winSystem;
 
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
 	}
 
 	public Level(int nRows, int nCols) {
-
+		this.winSystem = new WinSystem();
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
@@ -120,24 +121,11 @@ public class Level implements EntityMover {
 
 	}
 
+	/**
+	 * @return True if the player has won the game, false else
+	 */
 	public boolean hasWon() {
-		if (DEBUG) {
-			System.out.print("Level.hasWon() called: Player has " + player.noTreasure());
-			System.out.print(" treasure, treasure win condition is " + enableTreasureWinCondition);
-			System.out.print("Total treasure is " + this.noTreasure + "\n");
-		}
-		boolean ret = false;
-		if (this.enableSwitchWinCondition)  {
-			ret |= this.switchWinCondition.hasWon();
-		}
-		if (this.enableTreasureWinCondition) {
-			ret |= this.treasureWinCondition.hasWon();
-		}
-		//Doesn't need to have switches or treasure? 
-		if(this.enableExitsWinCondition) {
-			ret |= this.exitsWinCondition.hasWon();
-		}
-		return ret;
+		return this.winSystem.hasWon() != WinType.FALSE;
 	}
 	
 	public boolean hasLost() {
@@ -153,7 +141,7 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.switchWinCondition);
+		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition());
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
@@ -225,18 +213,8 @@ public class Level implements EntityMover {
 		return result;
 	}
 
-	public void setEnableSwitchWinCondition(boolean enableSwitchWinCondition) {
-		this.enableSwitchWinCondition = enableSwitchWinCondition;
+	public void enableWinCondition(WinType winType) {
+		this.winSystem.enableWinCondition(winType);
 	}
-
-	public void setEnableTreasureWinCondition(boolean enableTreasureWinCondition) {
-		this.enableTreasureWinCondition = enableTreasureWinCondition;
-	}
-
-	public void setEnableExitsWinCondition(boolean enableExitsWinCondition) {
-		this.enableExitsWinCondition = enableExitsWinCondition;
-	}
-	
-	
 
 }
