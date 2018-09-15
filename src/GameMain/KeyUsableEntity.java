@@ -11,9 +11,11 @@ public class KeyUsableEntity extends UsableEntity {
 
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		if (hitter.pickup(this)) {
-			hitter.setKeyCode(keyCode);
-			this.removeFromTile();
+		if (hitter.getKeyCode() == -1) {
+			if (hitter.pickup(this)) {
+				hitter.setKeyCode(keyCode);
+				this.removeFromTile();
+			}
 		}
 		return Collision.MOVE;
 	}
