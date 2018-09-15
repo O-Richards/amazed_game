@@ -16,6 +16,7 @@ public class Level {
 	private WinCondition treasureWinCondition;
 	private boolean hasSwitchWinCondition;
 	private boolean hasTreasureWinCondition;
+	private boolean hasExistWinCondition; 
 	private PlayerMobileEntity player;
 	private List<MobileEntity> mobileEntities;
 	private int noTreasure;
@@ -60,6 +61,15 @@ public class Level {
 			entity.removeFromTile();
 			newTile.addEntity(entity);
 		}
+		//Checks if mobileEntity has moved to an exit or a pit Tile()
+		if(newTile instanceof PitTile) {
+			PitTile aPitTile = (PitTile) newTile; 
+			//Calls the die condition for the mobile entity
+		}else if(newTile instanceof ExitTile) {
+			ExitTile anExitTile  = (ExitTile) newTile; 
+			hasExistWinCondition = anExitTile.hasWon(); 
+		}
+
 	}
 	
 	/**
@@ -141,6 +151,10 @@ public class Level {
 				treasureWinCondition.setSatisfied();
 				ret |= this.treasureWinCondition.hasWon();
 			}
+		}
+		//Doesn't need to have switches or treasure? 
+		if(this.hasExistWinCondition) {
+			ret = true; 
 		}
 		return ret;
 	}
