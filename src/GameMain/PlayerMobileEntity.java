@@ -16,7 +16,20 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
+	/* (non-Javadoc)
+	 * @see GameMain.MobileEntity#move()
+	 * The added functionality of the overriden method is that it updates the coords of all items in the inventory
+	 */
+	@Override
+	public void move() {
+		super.move();
+		for (UsableEntity item : this.inventory) {
+			item.setCoord(this.getCoord());
+		}
+	}
+	
 	public boolean useItem(UsableEntity item) {
+		 System.out.println("Player using " + item.getSprite());
 		//Looks through all elements of the arrayList to find if there is an item of that type:
 		for (UsableEntity inventoryItem : inventory) {
 			if(item.equals(inventoryItem)) {

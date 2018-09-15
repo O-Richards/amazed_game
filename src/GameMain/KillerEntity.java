@@ -7,6 +7,7 @@ public class KillerEntity extends Entity {
 	
 	KillerEntity(Coord coord, boolean killPlayer, boolean killEnemies) {
 		super(coord);
+		System.out.println("Killer entity placed at " + coord);
 		this.killPlayer = killPlayer;
 		this.killEnemies = killEnemies;
 	}

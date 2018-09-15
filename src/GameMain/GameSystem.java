@@ -92,6 +92,7 @@ public class GameSystem {
 	//Get action: 
 	public void performAction(String input) {
 		//Check if the player has made an actual movement: 
+		System.out.println("GameSystem.performAction perfoming " + input);
 		Direction playerDir = this.isAction(input);
 		if(playerDir != null) {
 			//Get the action the player has made: 
