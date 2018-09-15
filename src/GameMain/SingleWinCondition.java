@@ -1,18 +1,18 @@
 package GameMain;
 
 public class SingleWinCondition implements WinCondition {
-	private WinType win;
+	private WinType type;
 	
-	SingleWinCondition() {
-		win = WinType.FALSE;
+	SingleWinCondition(WinType type) {
+		this.type = type;
 	}
 
-	public WinType hasWon() {
-		return win;
+	public WinType getType() {
+		return type;
 	}
 
-	public void setWin(WinType win) {
-		this.win = win;
+	public void setType(WinType type) {
+		this.type = type;
 	}
 	
 }

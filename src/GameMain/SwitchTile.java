@@ -16,7 +16,7 @@ public class SwitchTile extends Tile {
 	public boolean addEntity(Entity entity) {
 		super.addEntity(entity);
 		if (this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
-			this.winCondition.setWin(WinType.SWITCH);
+			this.winCondition.setType(WinType.WIN);
 		}
 		//Cannot have items on switches
 		return false;
@@ -25,7 +25,7 @@ public class SwitchTile extends Tile {
 	@Override
 	public void removeEntity(Entity entity) {
 		if (entity.equals(new BoulderMobileEntity(this.getCoord()))) {
-			this.winCondition.setWin(WinType.FALSE);
+			this.winCondition.setType(WinType.SWITCH);
 		}
 		super.removeEntity(entity);
 	}

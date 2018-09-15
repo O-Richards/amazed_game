@@ -16,26 +16,33 @@ public class WinSystem implements WinCondition {
 	}
 
 	@Override
-	public WinType hasWon() {
-		for (WinCondition cond : this.winConditions) {
-			WinType condStatus = cond.hasWon();
-			if (condStatus != WinType.FALSE && this.winEnabled.contains(condStatus)) {
-				return condStatus;
+	public WinType getType() {
+		// for an enabled win type
+		for (WinType type : this.winEnabled) {
+			WinType curWin = null;
+			// check to see if it does not exist (not in win state) amongst conditions
+			for (WinCondition cond : this.winConditions) {
+				// if it exists then no win
+				if (type == cond.getType()) {
+					curWin = type;
+				}
 			}
+			// if an enabled win type is not in win state amongst all win conditions, the game is won
+			if (curWin != type) return WinType.WIN;
 		}
 		return WinType.FALSE;
 	}
 
 	@Override
-	public void setWin(WinType winType) {
+	public void setType(WinType winType) {
 	}
 	
 	/**
 	 * @return A new win condition that must be satisfied for this win condition to be satisfied
 	 * This can then be given to a switch tile etc. to notify the WinSystem if it is satisfied
 	 */
-	public WinCondition newWinCondition() {
-		WinCondition newCond = new SingleWinCondition();
+	public WinCondition newWinCondition(WinType type) {
+		WinCondition newCond = new SingleWinCondition(type);
 		this.addWinCondition(newCond);
 		return newCond;
 	}

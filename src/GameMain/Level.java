@@ -125,7 +125,8 @@ public class Level implements EntityMover {
 	 * @return True if the player has won the game, false else
 	 */
 	public boolean hasWon() {
-		return this.winSystem.hasWon() != WinType.FALSE;
+		if (DEBUG) System.out.println(this.winSystem.getType());
+		return this.winSystem.getType() == WinType.WIN;
 	}
 	
 	public boolean hasLost() {
@@ -141,7 +142,7 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition());
+		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.SWITCH));
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
