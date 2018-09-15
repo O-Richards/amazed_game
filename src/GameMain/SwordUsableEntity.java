@@ -31,7 +31,7 @@ public class SwordUsableEntity extends UsableEntity {
 		target.addEntity(new KillerEntity(target, false, true));
 		noOfUses --; 
 	}
-	
+	@Override
 	public int noOfUsesLeft() {
 		return noOfUses; 
 	}

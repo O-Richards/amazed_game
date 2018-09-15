@@ -16,4 +16,5 @@ public abstract class UsableEntity extends Entity {
 	}
 	
 	public abstract void use(Direction playerDirection, Tile[][] adjTiles);
+	public abstract int noOfUsesLeft();
 }

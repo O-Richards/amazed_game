@@ -18,4 +18,10 @@ public class BombUsableEntity extends UsableEntity {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public int noOfUsesLeft() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

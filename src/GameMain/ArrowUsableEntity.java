@@ -30,7 +30,12 @@ public class ArrowUsableEntity extends UsableEntity{
 	}
 	
 	public String getSprite() {
-		return "->";
+		return ">";
+	}
+	@Override
+	public int noOfUsesLeft() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

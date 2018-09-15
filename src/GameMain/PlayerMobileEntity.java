@@ -31,7 +31,10 @@ public class PlayerMobileEntity extends MobileEntity {
 			//Alternatively we can simply check if two sprite values match: 
 			if(item.getSprite().equals(inventoryItem.getSprite())) {
 				inventoryItem.use(getDirection(), adjTiles);
-				
+				if (inventoryItem.noOfUsesLeft() == 0) {
+					inventory.remove(inventoryItem);
+				}
+				break;
 			}
 			
 		}

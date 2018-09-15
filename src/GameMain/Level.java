@@ -1,10 +1,8 @@
 package GameMain;
 
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.jws.soap.SOAPBinding.Use;
 
 public class Level {
 	private static final boolean DEBUG = false;
@@ -139,13 +137,16 @@ public class Level {
 		//this.player.useItem(act, dir);
 		//Sets the direction: 
 		this.player.setDirection(dir);
+		//An arrayList of all adjacent Tiles: 
 		//Calls the appropriate action: 
 		if(act == Action.SWORD) {
-			//this.player.useItem(new SwordUsableEntity(null), );
+			this.player.useItem(new SwordUsableEntity(null), getTile(c));
 		}else if(act == Action.ARROW){
 			//this.player.useItem(new ArrowUsableEntity(null), );
 		}else if(act == Action.BOMB) {
 			//this.player.useItem(new BombUsableEntity(null), );
+		}else {
+			//Function to consume item? 
 		}
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
 
