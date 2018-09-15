@@ -76,7 +76,35 @@ public class GameSystem {
 		}
 	}
 	
-	 //Checks if it is an action input: 
+
+	
+
+
+	
+	//Get action: 
+	public void performAction(String input) {
+		//Check if the player has made an actual movement: 
+		Direction playerDir = this.isAction(input);
+		if(playerDir != null) {
+			//Get the action the player has made: 
+			Action playerAction = this.action(input);		
+			doAction(playerAction, playerDir);
+		}
+	}
+	
+	//Gets the action: i.e. represented by the last char: 
+	public Action action(String s) {
+		s = s.toLowerCase();
+		char temp = s.charAt(s.length()-1);
+		switch(temp) {
+			//Cases for shooting an arrow
+			case 'j': return Action.ARROW;
+			case 'k': return Action.SWORD;
+			case 'l': return Action.BOMB;
+			default: return null;
+		}
+	}
+	//Checks if it is an action input: 
 	public Direction isAction(String s) {
 		s = s.toLowerCase();
 		switch(s) {
@@ -95,19 +123,6 @@ public class GameSystem {
 			default: return null;
 		}
 	}
-	 //Gets the action:  
-	public Action action(String s) {
-		s = s.toLowerCase();
-		char temp = s.charAt(s.length()-1);
-		switch(temp) {
-			//Cases for shooting an arrow
-			case 'j': return Action.ARROW;
-			case 'k': return Action.SWORD;
-			case 'l': return Action.BOMB;
-			default: return null;
-		}
-	}
-
 	//Does the actual action: 
 	public void doAction(Action act,Direction dir) {
 		throw new UnsupportedOperationException("Player actions net yet supported");
