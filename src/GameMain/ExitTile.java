@@ -1,6 +1,6 @@
 package GameMain;
 
-public class ExitTile extends Tile implements WinCondition{
+public class ExitTile extends Tile {
 	
 	//private WinCondition winCondition;<-??
 	private boolean hitTile; 
@@ -16,29 +16,8 @@ public class ExitTile extends Tile implements WinCondition{
 		hitTile = true; 
 		return Collision.MOVE; 
 	}
+	
 	public String getSprite() {
 		return "!";
-	}
-
-
-	@Override
-	public boolean hasWon() {
-		return hitTile;
-	}
-
-	@Override
-	public void setUnsatisfied() {
-		
-	}
-
-	@Override
-	public void setSatisfied() {
-		
-	}
-
-	@Override
-	public void tick(Integer tickNum) {
-		// TODO Auto-generated method stub
-		
 	}
 }

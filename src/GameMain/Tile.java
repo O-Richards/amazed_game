@@ -8,6 +8,7 @@ public class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
+	private WinCondition winCondition;
 	
 	public Tile(Coord coord) {
 		this.coord = coord;
@@ -19,6 +20,7 @@ public class Tile implements Collidable {
 		for (Entity e : listCopy) {
 			e.tick(tickNum);
 		}
+		
 	}
 	
 	public boolean containsEntity(Entity e) {

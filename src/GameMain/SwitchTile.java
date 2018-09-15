@@ -8,18 +8,6 @@ public class SwitchTile extends Tile {
 		this.winCondition = winCondition;
 	}
 	
-	@Override
-	public void tick(int tickNum) {
-		super.tick(tickNum);
-		if (!this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
-			winCondition.setUnsatisfied();
-		} else {
-			winCondition.setSatisfied();
-		}
-	}
-	
-
-	
 	/**
 	 * @param entity The entity to add to this tile
 	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall

@@ -1,12 +1,19 @@
 package GameMain;
 
-public interface WinCondition {
+public class WinCondition {
 
-	public boolean hasWon();
-
-	public void setUnsatisfied();
-
-	public void setSatisfied();
+	private boolean won;
 	
-	public void tick(Integer tickNum);
+	WinCondition() {
+		won = false;
+	}
+
+	public boolean hasWon() {
+		return won;
+	}
+
+	public void setWon(boolean won) {
+		this.won = won;
+	}
+	
 }

@@ -8,7 +8,7 @@ public class TreasureEntity extends UsableEntity {
 	
 	@Override
 	public Boolean use(Direction playerDirection, Tile[][] adjTiles) {
-		return true;
+		return false;
 	}
 	
 	@Override

@@ -1,5 +1,8 @@
 package GameMain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column
@@ -13,25 +16,27 @@ public class Level implements EntityMover {
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
-	private WinCondition switchWinCondition;
-	private WinCondition treasureWinCondition;
-	private boolean hasSwitchWinCondition;
-	private boolean hasTreasureWinCondition;
-	private boolean hasExistWinCondition; 
+	// initialise win condition
+	private List<WinCondition> switchWinConditions;
+	private List<WinCondition> treasureWinConditions;
+	private List<WinCondition> exitsWinConditions;
+	private List<WinCondition> enemiesWinConditions;
+	// enable win condition
+	private boolean enableSwitchWinCondition;
+	private boolean enableTreasureWinCondition;
+	private boolean enableExitsWinCondition; 
 	private PlayerMobileEntity player;
-
-	private int noTreasure;
+	private Integer tickNum = 0;
 
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
 	}
 
 	public Level(int nRows, int nCols) {
-		this.switchWinCondition = new SwitchWinCondition();
-		this.treasureWinCondition = new TreasureWinCondition();
-		this.hasSwitchWinCondition = false;
-
-		this.noTreasure = 0;
+		this.switchWinConditions = new ArrayList<WinCondition>();
+		this.treasureWinConditions = new ArrayList<WinCondition>();
+		this.exitsWinConditions = new ArrayList<WinCondition>();
+		this.enemiesWinConditions = new ArrayList<WinCondition>();
 
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
@@ -56,34 +61,6 @@ public class Level implements EntityMover {
 		this.addEntity(player, playerCoord);
 	}
 
-
-/*Keeping this for Geoffreys reference
->>>>>>> master
-	public void moveMobileEntity(MobileEntity entity, Coord c) {
-		Tile newTile = this.map[c.getX()][c.getY()];
-		//Trigger any/all collisions
-		if (DEBUG) System.out.println("Moving Mobile Entity " + entity.getSprite() + " to " + c);
-		if (newTile.collide(entity) == Collision.MOVE) {
-			entity.removeFromTile();
-			newTile.addEntity(entity);
-		}
-		
-		
-		//Checks if mobileEntity has moved to an exit or a pit Tile()
-		if(newTile instanceof PitTile) {
-			PitTile aPitTile = (PitTile) newTile; 
-			//Death should be handled in the player
-			//Calls the die condition for the mobile entity(death condition in a different branch)
-		}else if(newTile instanceof ExitTile) {
-			ExitTile anExitTile  = (ExitTile) newTile; 
-			hasExistWinCondition = anExitTile.hasWon(); 
-		}
-	}
-<<<<<<< HEAD
-
-=======
-**/
-
 	/**
 	 * @param e The entity to be added
 	 * @param c The coord to add the entity to
@@ -91,17 +68,13 @@ public class Level implements EntityMover {
 	 */
 	public boolean addEntity(Entity e, Coord c) {
 		Tile placementTile = getTile(c);
-		if (e instanceof TreasureEntity) {
-			noTreasure++;
-		}
 		e.setEntityMover(this);
 		return placementTile.addEntity(e);
 	}
 
 	
-	public void tick(int tickNum) {
-		this.switchWinCondition.tick(tickNum);
-		this.treasureWinCondition.tick(tickNum);
+	public void tick() {
+		this.tickNum++;
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick(tickNum);
@@ -112,7 +85,6 @@ public class Level implements EntityMover {
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}
-
 	
 	/**
 	 * @precondtion c is a valid coord i.e. on the map
@@ -161,60 +133,28 @@ public class Level implements EntityMover {
 
 	}
 
-	public void playerDo(Action act,Direction dir) {
-		//TODO: Add error checking
-		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
-		//this.player.useItem(act, dir);
-		//Sets the direction: 
-		this.player.setDirection(dir);
-		//An arrayList of all adjacent Tiles: 
-		//Calls the appropriate action: 
-		if(act == Action.SWORD) {
-			//this.player.useItem(new SwordUsableEntity(this.player.getCoord()), getTile(c));
-		}else if(act == Action.ARROW){
-			//this.player.useItem(new ArrowUsableEntity(null), );
-		}else if(act == Action.BOMB) {
-			//this.player.useItem(new BombUsableEntity(null), );
-		}else {
-			//Function to consume item? 
-		}
-		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
-
-	}
-
 	public boolean hasWon() {
 		if (DEBUG) {
 			System.out.print("Level.hasWon() called: Player has " + player.noTreasure());
-			System.out.print(" treasure, treasure win condition is " + hasTreasureWinCondition);
+			System.out.print(" treasure, treasure win condition is " + enableTreasureWinCondition);
 			System.out.print("Total treasure is " + this.noTreasure + "\n");
 		}
 		boolean ret = false;
-		if (this.hasSwitchWinCondition)  {
+		if (this.enableSwitchWinCondition)  {
 			ret |= this.switchWinCondition.hasWon();
 		}
-		if (this.hasTreasureWinCondition) {
-			if (player.noTreasure() == noTreasure) {
-				treasureWinCondition.setSatisfied();
-				ret |= this.treasureWinCondition.hasWon();
-			}
+		if (this.enableTreasureWinCondition) {
+			ret |= this.treasureWinCondition.hasWon();
 		}
 		//Doesn't need to have switches or treasure? 
-		if(this.hasExistWinCondition) {
-			ret = true; 
+		if(this.enableExitsWinCondition) {
+			ret |= this.exitsWinCondition.hasWon();
 		}
 		return ret;
 	}
 	
 	public boolean hasLost() {
 		return !this.player.isAlive();
-	}
-	
-	public void setTreasureWinCondition(Boolean status) {
-		this.hasTreasureWinCondition = status;
-	}
-
-	public void setSwitchWinCondition(Boolean status) {
-		this.hasSwitchWinCondition = status;
 	}
 	
 
@@ -296,6 +236,18 @@ public class Level implements EntityMover {
 			if (result == Collision.MOVE) return result;
 		}
 		return result;
+	}
+
+	public void setEnableSwitchWinCondition(boolean enableSwitchWinCondition) {
+		this.enableSwitchWinCondition = enableSwitchWinCondition;
+	}
+
+	public void setEnableTreasureWinCondition(boolean enableTreasureWinCondition) {
+		this.enableTreasureWinCondition = enableTreasureWinCondition;
+	}
+
+	public void setEnableExitsWinCondition(boolean enableExitsWinCondition) {
+		this.enableExitsWinCondition = enableExitsWinCondition;
 	}
 	
 	
