@@ -2,12 +2,13 @@ package GameMain;
 
 public class DoorTile extends Tile {
 	
-	private static int doorCode = 1;
+	private static int doorCodeGenerator = 1;
 	
 	private static synchronized int generateDoorCode() {
-		return doorCode++;
+		return doorCodeGenerator++;
 	}
-	
+
+	private int doorCode;
 	
 	public DoorTile(Coord coord) {
 		super(coord);

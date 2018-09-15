@@ -2,11 +2,13 @@ package GameMain;
 
 public class KeyUsableEntity extends UsableEntity {
 	
-	private static int keyCode = 1;
+	private static int keyCodeGenerator = 1;
 	
 	private static synchronized int generateKeyCode() {
-		return keyCode++;
+		return keyCodeGenerator++;
 	}
+	
+	private int keyCode;
 
 	KeyUsableEntity(Coord coord) {
 		super(coord);
