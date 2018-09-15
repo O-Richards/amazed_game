@@ -4,7 +4,6 @@ public class EnemyMobileEntity extends MobileEntity {
 
 	EnemyMobileEntity(Coord coord) {
 		super(coord);
-		// TODO Auto-generated constructor stub
 	}
 
 	
