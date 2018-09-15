@@ -12,10 +12,10 @@ public class HoverPotion extends UsableEntity {
 		if (hitter.pickup(this)) {
 			this.removeFromTile();
 			//Applying decorator pattern to the player's movements
-			//i.e. we wrap the player's movemetn with a hover bonus
+			//i.e. we wrap the player's movement with a hover bonus
 			hitter.setMovement(new HoverBonusMovement(hitter.getMovement()));
 		}
-		return Collision.MOVE;		
+		return Collision.MOVE;
 	}
 
 	@Override

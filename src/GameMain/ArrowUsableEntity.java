@@ -2,8 +2,8 @@ package GameMain;
 
 public class ArrowUsableEntity extends UsableEntity{
 
-	public ArrowUsableEntity(Tile tile) {
-		super(tile);
+	public ArrowUsableEntity(Coord coord) {
+		super(coord);
 		// TODO Auto-generated constructor stub
 	}
 	@Override
@@ -25,7 +25,7 @@ public class ArrowUsableEntity extends UsableEntity{
 		default:
 			target = adjTiles[1][1];
 		}
-		target.addEntity(new KillerEntity(target, false, true));
+		target.addEntity(new KillerEntity(target.getCoord(), false, true));
 	
 	}
 	

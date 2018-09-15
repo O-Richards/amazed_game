@@ -1,9 +1,5 @@
 package GameMain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 /**
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column
@@ -25,7 +21,6 @@ public class Level implements EntityMover {
 	private PlayerMobileEntity player;
 
 	private int noTreasure;
-	
 
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);

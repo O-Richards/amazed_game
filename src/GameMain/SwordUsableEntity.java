@@ -39,5 +39,4 @@ public class SwordUsableEntity extends UsableEntity {
 	public String getSprite() {
 		return "S";
 	}
-	
 }

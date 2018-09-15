@@ -16,6 +16,12 @@ public abstract class MovementBonus implements Movement {
 	public boolean pushEntity() {
 		return this.baseMovement.pushEntity();
 	}
+	
+
+	@Override
+	public boolean canDie() {
+		return this.baseMovement.canDie();
+	}
 
 	@Override
 	public Coord nextCoord() {
@@ -41,4 +47,6 @@ public abstract class MovementBonus implements Movement {
 	public Coord getCoord(Direction dir) {
 		return this.baseMovement.getCoord(dir);
 	}
+	
+	
 }

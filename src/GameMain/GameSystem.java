@@ -29,7 +29,10 @@ public class GameSystem {
 		this.level.movePlayer(dir);
 	}
 	
-	//Moves and updates all mobile entities:
+	public PlayerMobileEntity getPlayer() {
+		return level.getPlayer();
+	}
+	
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
 		this.level.tick(tickNum++);
@@ -70,8 +73,7 @@ public class GameSystem {
 			default: return Direction.CENTRE;
 		}
 	}
-
- 
+	
 	 //Checks if it is an action input: 
 	public Direction isAction(String s) {
 		s = s.toLowerCase();
@@ -101,6 +103,37 @@ public class GameSystem {
 			case 'k': return Action.SWORD;
 			case 'l': return Action.BOMB;
 			default: return null;
+		}
+	}
+	public static void main(String[] args) throws IOException {
+		GameSystem gs = new GameSystem();
+		//Setup template maze
+		gs.placeEntity(new SwordUsableEntity(null), new Coord(4, 4));
+		gs.placeEntity(new UnlitBombUsableEntity(null), new Coord(1, 5));
+		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 3));
+		gs.placeSwitch(new Coord(3, 3));
+		gs.placeEntity(new TreasureEntity(null), new Coord(5,6));
+		gs.placeEntity(new TreasureEntity(null), new Coord(10, 2));
+		gs.placeWall(new Coord(4, 5));
+		gs.placeEntity(new HoverPotion(null), new Coord(3, 4));
+		gs.placeEntity(new InvincibilityEntity(null), new Coord(1,5));
+		gs.setSwitchWinCondition(true);
+		gs.setTreasureWinCondition(true);
+		System.out.println("Use W A S D keys to move me around");
+		Scanner s = new Scanner(System.in);
+		while(true) {
+			String input = s.next();
+			Direction playerDir = gs.strToDirection(input);
+			//System.out.println("Input Dir: " + playerDir);
+			gs.movePlayer(playerDir);
+			gs.tick();
+			System.out.println(gs.levelString());
+			System.out.println(gs.inventoryString());
+			if (gs.hasWon()) {
+				System.out.println("WON THE GAME!!!");
+				break;
+			}
+>>>>>>> master
 		}
 	}
 

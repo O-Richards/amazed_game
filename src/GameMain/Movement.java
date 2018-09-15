@@ -22,6 +22,10 @@ public interface Movement {
 		return false;
 	}
 	
+	default public boolean canDie() {
+		return true;
+	}
+	
 	public Direction getDirection();	
 	
 	public void setDirection(Direction dir);

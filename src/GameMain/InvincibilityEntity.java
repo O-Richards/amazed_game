@@ -1,6 +1,6 @@
 package GameMain;
 
-public class InvincibilityEntity extends Entity {
+public class InvincibilityEntity extends UsableEntity {
 
 	InvincibilityEntity(Coord coord) {
 		super(coord);
@@ -9,8 +9,26 @@ public class InvincibilityEntity extends Entity {
 
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		// TODO Auto-generated method stub
-		return null;
+		if (hitter.pickup(this)) {
+			this.removeFromTile();
+			//Applying decorator pattern to the player's movements
+			//i.e. we wrap the player's movement with a hover bonus
+			hitter.setMovement(new InvincibilityBonusAction(hitter.getMovement()));
+		}
+		return Collision.MOVE;
 	}
+	
+
+	@Override
+	public String getSprite() {
+		return "I";
+	}
+
+	@Override
+	public void use(Direction playerDirection, Tile[][] adjTiles) {
+		
+	}
+	
+	
 
 }

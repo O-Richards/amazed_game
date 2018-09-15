@@ -5,7 +5,7 @@ public abstract class Entity implements Collidable {
 	//Coord the entity is on. Note if in inventory, this will be null
 	private Coord coord;
 	protected EntityMover entityMover;
-	
+
 	Entity(Coord coord) {
 		this.coord = coord;
 	}
