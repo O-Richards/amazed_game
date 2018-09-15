@@ -31,6 +31,15 @@ public abstract class MobileEntity extends Entity implements Movement {
 		this.entityMover.moveEntity(this, nextCoord);
 	}
 	
+	/**
+	 * Move to a specified coord
+	 * @param c The coord to move to
+	 */
+	public void move(Coord c) {
+		this.entityMover.moveEntity(this, c);
+
+	}
+	
 	public Direction getDirection() {
 		return this.movement.getDirection();
 	}	

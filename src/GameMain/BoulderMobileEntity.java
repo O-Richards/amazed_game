@@ -12,9 +12,8 @@ public class BoulderMobileEntity extends MobileEntity {
 	public Collision collide(MobileEntity hitter) {
 		if (hitter == this) return Collision.NOMOVE;
 		if (hitter.pushEntity()) {
-			this.setDirection(hitter.getDirection());
+			this.move(this.getCoord(hitter.getDirection()));
 		} else {
-			this.setDirection(Direction.CENTRE);
 		}
 		//We return nomove, so the first keystroke pushes the boulder, the next the player
 		return Collision.NOMOVE;
