@@ -1,7 +1,5 @@
 package GameMain;
 
-import java.util.List;
-
 public class ExitTile extends Tile {
 	
 	private WinCondition enemyCondition;
@@ -16,10 +14,10 @@ public class ExitTile extends Tile {
 	@Override
 	protected void updateWinCondition() {
 		// TODO Auto-generated method stub
-		if (!this.containsEntity(new PlayerMobileEntity(this.getCoord()))) {
-			this.winCondition.setType(WinType.EXIT);
-		} else {
+		if (this.containsEntity(new PlayerMobileEntity(this.getCoord()))) {
 			this.winCondition.setType(WinType.WIN);
+		} else {
+			this.winCondition.setType(WinType.EXIT);
 		}
 		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
 			this.enemyCondition.setType(WinType.ENEMY);
