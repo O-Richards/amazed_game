@@ -2,8 +2,8 @@ package GameMain;
 
 public class SwordUsableEntity extends UsableEntity {
 
-	SwordUsableEntity(Tile tile) {
-		super(tile);
+	SwordUsableEntity(Coord coord) {
+		super(coord);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,7 +26,7 @@ public class SwordUsableEntity extends UsableEntity {
 		default:
 			target = adjTiles[1][1];
 		}
-		target.addEntity(new KillerEntity(target, false, true));
+		target.addEntity(new KillerEntity(target.getCoord().add(direction), false, true));
 	}
 	
 	public String getSprite() {

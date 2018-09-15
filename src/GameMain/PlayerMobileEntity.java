@@ -8,8 +8,8 @@ public class PlayerMobileEntity extends MobileEntity {
 	private boolean hover = false;
 
 	
-	PlayerMobileEntity(Tile tile) {
-		super(tile);
+	PlayerMobileEntity(Coord coord) {
+		super(coord);
 		Movement movement = new PlayerMovement(this);
 		this.setMovement(movement);
 		this.inventory = new ArrayList<UsableEntity>();
@@ -26,8 +26,8 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 	
 	
-	PlayerMobileEntity(Tile tile, Movement movement) {
-		super(tile, movement);
+	PlayerMobileEntity(Coord coord, Movement movement) {
+		super(coord, movement);
 	}
 	
 	public int noTreasure() {

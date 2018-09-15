@@ -2,8 +2,8 @@ package GameMain;
 
 public class BoulderMobileEntity extends MobileEntity {
 
-	BoulderMobileEntity(Tile tile) {
-		super(tile);
+	BoulderMobileEntity(Coord coord) {
+		super(coord);
 		this.setMovement(new BoulderMovement(this));
 		this.setDirection(Direction.CENTRE);
 	}

@@ -2,8 +2,8 @@ package GameMain;
 
 public class KeyUsableEntity extends UsableEntity {
 
-	KeyUsableEntity(Tile tile) {
-		super(tile);
+	KeyUsableEntity(Coord coord) {
+		super(coord);
 		// TODO Auto-generated constructor stub
 	}
 
