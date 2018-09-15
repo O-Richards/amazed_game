@@ -6,8 +6,6 @@ public class EnemyMobileEntity extends MobileEntity {
 		super(coord);
 		// TODO Auto-generated constructor stub
 	}
-
-	
 	
 	@Override
 	public Collision collide(MobileEntity hitter) {

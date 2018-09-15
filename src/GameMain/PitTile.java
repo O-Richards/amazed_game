@@ -8,7 +8,13 @@ public class PitTile extends Tile {
 	}
 	
 	public Collision collide(MobileEntity hitter) {
-		return Collision.MOVE; 
+		if (hitter.canFly()) {
+			return Collision.MOVE;
+		} else {
+			hitter.killEnemy();
+			hitter.killPlayer();
+			return Collision.NOMOVE;
+		} 
 	}
 	public String getSprite() {
 		return "O";

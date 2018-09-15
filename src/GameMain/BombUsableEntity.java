@@ -21,7 +21,7 @@ public class BombUsableEntity extends UsableEntity {
 	@Override
 	public String getSprite() {
 		// TODO Auto-generated method stub
-		return "B";
+		return "b";
 	}
 
 }

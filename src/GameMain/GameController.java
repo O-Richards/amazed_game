@@ -18,6 +18,7 @@ public class GameController {
 		gs.placeWall(new Coord(4, 5));
 		gs.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
 		gs.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
+		gs.placePit(new Coord(9,9));
 		gs.placeEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
 		gs.setSwitchWinCondition(true);
 		gs.setTreasureWinCondition(true);
@@ -53,7 +54,4 @@ public class GameController {
 		s.close();
 	}
 	
-
-
-
 }

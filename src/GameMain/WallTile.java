@@ -9,11 +9,7 @@ public class WallTile extends Tile {
 	
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		if (hitter.canFly()) {
-			return Collision.MOVE;
-		} else {
-			return Collision.NOMOVE;
-		}
+		return Collision.NOMOVE;
 	}
 
 	public String getSprite() {

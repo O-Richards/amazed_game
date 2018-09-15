@@ -26,6 +26,10 @@ public class GameSystem {
 	public void placeWall(Coord coord) {
 		this.level.placeWall(coord);
 	}
+	
+	public void placePit(Coord coord) {
+		this.level.placePit(coord);
+	}
 
 	public void movePlayer(Direction dir) {
 		this.level.movePlayer(dir);

@@ -182,8 +182,6 @@ public class Level implements EntityMover {
 
 	}
 
-
-
 	public boolean hasWon() {
 		if (DEBUG) {
 			System.out.print("Level.hasWon() called: Player has " + player.noTreasure());
@@ -248,6 +246,11 @@ public class Level implements EntityMover {
 		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 
+	public void placePit(Coord coord) {
+		PitTile newPit = new PitTile(coord);
+		this.map[coord.getX()][coord.getY()] = newPit;
+	}
+	
 	@Override
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
