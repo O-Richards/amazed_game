@@ -15,6 +15,12 @@ public class TreasureEntity extends UsableEntity {
 		return "$";
 	}
 
+	@Override
+	public int noOfUsesLeft() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 
 }
