@@ -27,4 +27,10 @@ public class HoverPotion extends UsableEntity {
 		return "H";
 	}
 
+	@Override
+	public int noOfUsesLeft() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

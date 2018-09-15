@@ -19,4 +19,10 @@ public class KeyUsableEntity extends UsableEntity {
 		
 	}
 
+	@Override
+	public int noOfUsesLeft() {
+		// TODO Auto-generated method stub
+		return 0;//<- does a key have no of uses? 
+	}
+
 }
