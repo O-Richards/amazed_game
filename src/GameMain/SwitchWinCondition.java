@@ -24,7 +24,7 @@ public class SwitchWinCondition implements WinCondition {
 	}
 
 	@Override
-	public void tick() {
+	public void tick(Integer tickNum) {
 		//Assume all switches are filled at the start of the tick, then see if anyone triggers it
 		this.switchesFilled = true;
 	}

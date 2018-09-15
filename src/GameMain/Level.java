@@ -20,6 +20,7 @@ public class Level implements EntityMover {
 	private WinCondition treasureWinCondition;
 	private boolean hasSwitchWinCondition;
 	private boolean hasTreasureWinCondition;
+	private boolean hasExistWinCondition; 
 	private PlayerMobileEntity player;
 	private int noTreasure;
 	
@@ -49,12 +50,37 @@ public class Level implements EntityMover {
 			this.map[0][col] = new EdgeTile(new Coord(0, col));
 			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
 		}
+		//Creates an exit: 
+		this.map[10][10] = new ExitTile(new Coord(10,10));
 		//Create the player and place them on the map
 		Coord playerCoord = new Coord(1, 1);
 		this.player = new PlayerMobileEntity(new Coord(1, 1));
 		this.addEntity(player, playerCoord);
 	}
+
 	
+/*Keeping this for Geoffreys reference
+	public void moveMobileEntity(MobileEntity entity, Coord c) {
+		Tile newTile = this.map[c.getX()][c.getY()];
+		//Trigger any/all collisions
+		if (DEBUG) System.out.println("Moving Mobile Entity " + entity.getSprite() + " to " + c);
+		if (newTile.collide(entity) == Collision.MOVE) {
+			entity.removeFromTile();
+			newTile.addEntity(entity);
+		}
+		
+		
+		//Checks if mobileEntity has moved to an exit or a pit Tile()
+		if(newTile instanceof PitTile) {
+			PitTile aPitTile = (PitTile) newTile; 
+			//Death should be handled in the player
+			//Calls the die condition for the mobile entity(death condition in a different branch)
+		}else if(newTile instanceof ExitTile) {
+			ExitTile anExitTile  = (ExitTile) newTile; 
+			hasExistWinCondition = anExitTile.hasWon(); 
+		}
+	}
+**/
 	/**
 	 * @param e The entity to be added
 	 * @param c The coord to add the entity to
@@ -70,8 +96,8 @@ public class Level implements EntityMover {
 	}
 	
 	public void tick(int tickNum) {
-		this.switchWinCondition.tick();
-		this.treasureWinCondition.tick();
+		this.switchWinCondition.tick(tickNum);
+		this.treasureWinCondition.tick(tickNum);
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick(tickNum);
@@ -147,6 +173,10 @@ public class Level implements EntityMover {
 				ret |= this.treasureWinCondition.hasWon();
 			}
 		}
+		//Doesn't need to have switches or treasure? 
+		if(this.hasExistWinCondition) {
+			ret = true; 
+		}
 		return ret;
 	}
 	
@@ -187,15 +217,16 @@ public class Level implements EntityMover {
 	}
 
 	@Override
-	public void moveEntity(MobileEntity e, Direction dir) {
+	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
 		if (nextTile != null) {
 			if (nextTile.collide(e) == Collision.MOVE) {
 				e.removeFromTile();
 				nextTile.addEntity(e);
+				return Collision.MOVE;
 			}
 		}
-		
+		return Collision.NOMOVE;	
 	}
 
 	@Override
@@ -204,21 +235,28 @@ public class Level implements EntityMover {
 		currentTile.removeEntity(e);
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see GameMain.EntityMover#moveEntity(GameMain.MobileEntity, GameMain.Coord)
+	 * Move the entity one tile closer to the nextCoord
+	 */
+	
 	@Override
-	public void moveEntity(MobileEntity e, Coord nextCoord) {
+	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
 		if (DEBUG) System.out.println("Level.moveEntity moving " + e.getSprite());
-		while (!nextCoord.equals(e.getCoord())) {
-			Direction xDir = e.getCoord().minusX(nextCoord);
-			if (xDir != Direction.CENTRE) {
-				this.moveEntity(e, xDir);
-			}
-			Direction yDir = e.getCoord().minusY(nextCoord);
-			if (yDir != Direction.CENTRE) {
-				this.moveEntity(e, yDir);
-
-			}
+		Collision result = Collision.NOMOVE;
+		Direction xDir = e.getCoord().minusX(nextCoord);
+		if (xDir != Direction.CENTRE) {
+			result = this.moveEntity(e, xDir);
+			if (result == Collision.MOVE) return result;
 		}
-		
+		Direction yDir = e.getCoord().minusY(nextCoord);
+		if (yDir != Direction.CENTRE) {
+			result = this.moveEntity(e, yDir);
+			if (result == Collision.MOVE) return result;
+		}
+		return result;
 	}
+	
 	
 }

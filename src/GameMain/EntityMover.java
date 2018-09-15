@@ -9,8 +9,9 @@ public interface EntityMover {
 	/**
 	 * @param e The entity to move
 	 * @param dir The direction to move the entity in
+	 * @return TODO
 	 */
-	public void moveEntity(MobileEntity e, Direction dir);
+	public Collision moveEntity(MobileEntity e, Direction dir);
 		
 	/**
  	 * @precondition c is valid i.e. on the map
@@ -19,6 +20,6 @@ public interface EntityMover {
 	 */
 	public void removeEntity(Entity entity, Coord c);
 
-	public void moveEntity(MobileEntity e, Coord nextCoord);
+	public Collision moveEntity(MobileEntity e, Coord nextCoord);
 	
 }
