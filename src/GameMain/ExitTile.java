@@ -17,7 +17,7 @@ public class ExitTile extends Tile implements WinCondition{
 		return Collision.MOVE; 
 	}
 	public String getSprite() {
-		return "-";
+		return "!";
 	}
 
 

@@ -48,6 +48,8 @@ public class Level {
 			this.map[0][col] = new EdgeTile(new Coord(0, col));
 			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
 		}
+		//Creates an exit: 
+		this.map[10][10] = new ExitTile(new Coord(10,10));
 		//Create the player and place them on the map
 		this.player = new PlayerMobileEntity(this.map[1][1]);
 		moveMobileEntity(this.player, new Coord(1, 1));
@@ -64,7 +66,7 @@ public class Level {
 		//Checks if mobileEntity has moved to an exit or a pit Tile()
 		if(newTile instanceof PitTile) {
 			PitTile aPitTile = (PitTile) newTile; 
-			//Calls the die condition for the mobile entity
+			//Calls the die condition for the mobile entity(death condition in a different branch)
 		}else if(newTile instanceof ExitTile) {
 			ExitTile anExitTile  = (ExitTile) newTile; 
 			hasExistWinCondition = anExitTile.hasWon(); 
