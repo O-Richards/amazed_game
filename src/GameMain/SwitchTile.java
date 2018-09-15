@@ -15,8 +15,19 @@ public class SwitchTile extends Tile {
 	@Override
 	public boolean addEntity(Entity entity) {
 		super.addEntity(entity);
+		if (this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
+			this.winCondition.setWon(true);
+		}
 		//Cannot have items on switches
 		return false;
+	}
+	
+	@Override
+	public void removeEntity(Entity entity) {
+		if (entity.equals(new BoulderMobileEntity(this.getCoord()))) {
+			this.winCondition.setWon(false);
+		}
+		super.removeEntity(entity);
 	}
 	
 	@Override
