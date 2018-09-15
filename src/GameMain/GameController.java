@@ -33,7 +33,7 @@ public class GameController {
 		System.out.println("Sprite Key: E = enemy P = player B = boulder $ = Treasure b = bomb H = hover potion S = sword @ = switch");
 		Scanner s = new Scanner(System.in);
 		while(true) {
-			String input = s.next();
+			String input = s.nextLine();
 			//Getting the direction: 
 			Direction playerDir = gs.strToDirection(input);
 			gs.movePlayer(playerDir);
