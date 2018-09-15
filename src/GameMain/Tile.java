@@ -33,11 +33,13 @@ public abstract class Tile implements Collidable {
 	public boolean addEntity(Entity entity) {
 		entities.add(entity);
 		entity.setCoord(this.getCoord());
+		updateWinCondition();
 		return true;
 	}
 	
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
+		updateWinCondition();
 	}
 
 	/**
@@ -76,7 +78,6 @@ public abstract class Tile implements Collidable {
 		if (defaultCol == Collision.NOMOVE) {
 			col = defaultCol;
 		}
-		updateWinCondition();
 		return collideExt(hitter, col);
 	}
 

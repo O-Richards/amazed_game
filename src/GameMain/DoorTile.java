@@ -1,7 +1,5 @@
 package GameMain;
 
-import java.util.List;
-
 public class DoorTile extends Tile {
 	
 	private WinCondition enemyCondition;

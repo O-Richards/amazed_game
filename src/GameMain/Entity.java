@@ -48,7 +48,6 @@ public abstract class Entity implements Collidable {
 		Entity e = (Entity)obj;
 		if (e.getCoord().equals(this.getCoord())) return true;
 		return false;
-		
 	}
 
 	public void setEntityMover(EntityMover entityMover) {

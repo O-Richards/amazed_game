@@ -1,7 +1,5 @@
 package GameMain;
 
-import java.util.List;
-
 public class SwitchTile extends Tile {
 	
 	private WinCondition enemyCondition;
