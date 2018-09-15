@@ -303,8 +303,7 @@ public class Level implements EntityMover {
 	
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
-		// TODO Auto-generated method stub
-		
+		this.addEntity(entity, c);
 	}
 	
 	
