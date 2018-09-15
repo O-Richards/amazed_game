@@ -1,18 +1,25 @@
 package GameMain;
 
+import java.time.LocalTime;
+
 public class InvincibilityBonusAction extends MovementBonus {
+	
+	private LocalTime time;
 
 	public InvincibilityBonusAction(Movement baseMovement) {
 		super(baseMovement);
+		this.time = LocalTime.now();
 	}
 
+	
 	@Override
 	public boolean canDie() {
-		//if (after certain number of ticks) {
-		// returns false else returns true
-		return false;
+		LocalTime timeCounter = time.plusSeconds(30);
+		if (LocalTime.now().compareTo(timeCounter) > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	
-
 }

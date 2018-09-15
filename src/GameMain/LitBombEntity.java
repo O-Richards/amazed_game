@@ -8,7 +8,7 @@ public class LitBombEntity extends Entity {
 	}
 
 	
-	public void explode(Tile[][] adjTiles) {
+	public void explode(Tile[][] adjTiles)  {	
 		Tile up = adjTiles[1][0];
 		up.addEntity(new KillerEntity(up, true, true));
 		Tile down = adjTiles[1][2];

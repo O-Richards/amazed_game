@@ -13,6 +13,7 @@ public class InvincibilityEntity extends Entity {
 		hitter.setMovement(new InvincibilityBonusAction(hitter.getMovement()));
 		return Collision.MOVE;
 	}
+	
 
 	@Override
 	public String getSprite() {
