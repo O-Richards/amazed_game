@@ -6,6 +6,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
 	private boolean hover = false;
+	private int keyCode = -1;
 
 	
 	PlayerMobileEntity(Coord coord) {
@@ -68,4 +69,15 @@ public class PlayerMobileEntity extends MobileEntity {
 		}
 		return out;
 	}
+
+	public int getKeyCode() {
+		return keyCode;
+	}
+
+	public void setKeyCode(int keyCode) {
+		this.keyCode = keyCode;
+	}
+
+	
+	
 }

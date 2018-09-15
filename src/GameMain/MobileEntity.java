@@ -51,6 +51,10 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	//TODO: Pull this into movement interface
 	public abstract boolean pickup(UsableEntity item);
+	
+	public abstract void setKeyCode(int keyCode);
+	
+	public abstract int getKeyCode();
 
 	public boolean canFly() {
 		return this.movement.canFly();
@@ -73,5 +77,8 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	public Movement getMovement() {
 		return this.movement;
-	}	
+	}
+	
+	
+	
 }

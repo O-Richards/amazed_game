@@ -202,6 +202,11 @@ public class Level implements EntityMover {
 		return true;
 	}
 	
+	public void placeDoor(Coord coord) {
+		DoorTile newDoor = new DoorTile(coord);
+		this.map[coord.getX()][coord.getY()] = newDoor;
+	}
+	
 	public String inventoryString() {
 		return this.player.inventoryString();
 	}

@@ -1,16 +1,21 @@
 package GameMain;
 
 public class KeyUsableEntity extends UsableEntity {
+	
+	private static int keyCode = 1;
 
 	KeyUsableEntity(Coord coord) {
 		super(coord);
-		// TODO Auto-generated constructor stub
+		this.keyCode++;
 	}
 
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		// TODO Auto-generated method stub
-		return null;
+		if (hitter.pickup(this)) {
+			hitter.setKeyCode(keyCode);
+			this.removeFromTile();
+		}
+		return Collision.MOVE;
 	}
 
 	@Override
@@ -18,5 +23,12 @@ public class KeyUsableEntity extends UsableEntity {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public String getSprite() {
+		return "K";
+	}
+	
+	
 
 }
