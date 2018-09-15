@@ -16,13 +16,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//No idea how we're able to know the items name
 	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
-		/*if (inventory.contains(item)) {
-			item.use(this.getDirection(), adjTiles);
-			inventory.remove(item);
-			return true;
-		}*/
 		//Looks through all elements of the arrayList to find if there is an item of that type:
 		for (UsableEntity inventoryItem : inventory) {
 			if(item.equals(inventoryItem)) {

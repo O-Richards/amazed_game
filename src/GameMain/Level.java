@@ -6,10 +6,13 @@ package GameMain;
  */
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
-	//Some constants
+	//Some constants 
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
-
+	
+	//Constants for getting adj tiles: 
+	private static final int ADJ_NROWS = 2; 
+	private static final int ADJ_NCOLS = 2; 
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
@@ -170,7 +173,7 @@ public class Level implements EntityMover {
 		//An arrayList of all adjacent Tiles: 
 		//Calls the appropriate action: 
 		if(act == Action.SWORD) {
-			//this.player.useItem(new SwordUsableEntity(this.player.getCoord()), getTile(c));
+			this.player.useItem(new SwordUsableEntity(this.player.getCoord()), getTile(c));
 		}else if(act == Action.ARROW){
 			//this.player.useItem(new ArrowUsableEntity(null), );
 		}else if(act == Action.BOMB) {
@@ -180,6 +183,16 @@ public class Level implements EntityMover {
 		}
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
 
+	}
+	//Grabs the tiles adjacent to the current position: 
+	public Tile[][] grabAdjTiles(){
+		//private Tile[][] map;
+		//this.map = new Tile[nRows + 2][nCols + 2];
+		Tile[][] adjTiles = new Tile[ADJ_NROWS][ADJ_NCOLS];
+		//UP DOWN LEFT AND RIGHT COORDINATES: 
+		adjTiles[0][0] = this.getTile(this.player.getCoord().add(UP));
+		adjTiles[1][0] = this.player.getCoord();
+		return map;
 	}
 
 	public boolean hasWon() {
