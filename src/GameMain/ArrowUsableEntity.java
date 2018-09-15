@@ -8,10 +8,13 @@ public class ArrowUsableEntity extends UsableEntity{
 	}
 	@Override
 	public Boolean use(Direction direction) {
-		KillerEntity killEntity  =new KillerEntity(this.getCoord(direction), false, true);
-		return false;
+		ShootingArrowMobileEntity shootingArrow = new ShootingArrowMobileEntity(getCoord());
+		EntityTrackingMovement arrowMove = new EntityTrackingMovement(shootingArrow);
+		arrowMove.setDirection(direction);
+		shootingArrow.setMovement(arrowMove);
+		return true;
 	}
-	
+
 	public String getSprite() {
 		return ">";
 	}
