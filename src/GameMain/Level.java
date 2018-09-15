@@ -301,6 +301,12 @@ public class Level implements EntityMover {
 		return result;
 	}
 	
+	@Override
+	public void placeEntity(Entity entity, Coord c) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 
 }

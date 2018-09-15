@@ -79,6 +79,7 @@ public class GameSystem {
     //Direction inputs:
 	public Direction strToDirection(String s) {
 		s = s.toLowerCase();
+
 		switch(s) {
 			case "w": return Direction.UP;
 			case "s": return Direction.DOWN;
@@ -132,7 +133,6 @@ public class GameSystem {
 	}
 	//Does the actual action: 
 	public void doAction(Action act,Direction dir) {
-		throw new UnsupportedOperationException("Player actions net yet supported");
-		//this.level.playerDo();
+		this.level.playerDo(act, dir);
 	}
 }
