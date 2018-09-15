@@ -28,4 +28,9 @@ public interface EntityMover {
 	 */
 	public void placeEntity(Entity entity, Coord c);
 	
+	/**
+	 * @param c The coord to kill all enemies on
+	 */
+	public void killEnemyEntities(Coord c);
+	
 }

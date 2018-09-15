@@ -10,9 +10,6 @@ public class Level implements EntityMover {
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
 
-	//Constants for getting adj tiles:
-	private static final int ADJ_NROWS = 2;
-	private static final int ADJ_NCOLS = 2;
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
@@ -304,6 +301,16 @@ public class Level implements EntityMover {
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
 		this.addEntity(entity, c);
+	}
+
+	/* (non-Javadoc)
+	 * @see GameMain.EntityMover#killEnemyEntities(GameMain.Coord)
+	 * Remove all enemy entities on a tile
+	 */
+	@Override
+	public void killEnemyEntities(Coord c) {
+		this.getTile(c).killEnemyEntities();
+		
 	}
 
 
