@@ -7,9 +7,9 @@ public class ArrowUsableEntity extends UsableEntity{
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public Boolean use(Direction direction, Tile[][] adjTiles) {
+	public Boolean use(Direction direction) {
 		Tile target;
-		switch (direction) {
+		/*switch (direction) {
 		case UP:	
 			target = adjTiles[1][0];
 			break;
@@ -24,7 +24,7 @@ public class ArrowUsableEntity extends UsableEntity{
 			break;
 		default:
 			target = adjTiles[1][1];
-		}
+		}*/
 		target.addEntity(new KillerEntity(target.getCoord(), false, true));
 		return false;
 	}

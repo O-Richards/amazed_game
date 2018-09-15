@@ -16,11 +16,11 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
+	public boolean useItem(UsableEntity item) {
 		//Looks through all elements of the arrayList to find if there is an item of that type:
 		for (UsableEntity inventoryItem : inventory) {
 			if(item.equals(inventoryItem)) {
-				Boolean hasUsesLeft = inventoryItem.use(getDirection(), adjTiles);
+				Boolean hasUsesLeft = inventoryItem.use(getDirection(),currentTile);
 				if (!hasUsesLeft) {
 					inventory.remove(inventoryItem);
 				}

@@ -170,10 +170,9 @@ public class Level implements EntityMover {
 		//this.player.useItem(act, dir);
 		//Sets the direction: 
 		this.player.setDirection(dir);
-		//An arrayList of all adjacent Tiles: 
 		//Calls the appropriate action: 
 		if(act == Action.SWORD) {
-			this.player.useItem(new SwordUsableEntity(this.player.getCoord()), getTile(c));
+			this.player.useItem(new SwordUsableEntity(this.player.getCoord()));
 		}else if(act == Action.ARROW){
 			//this.player.useItem(new ArrowUsableEntity(null), );
 		}else if(act == Action.BOMB) {
@@ -184,16 +183,7 @@ public class Level implements EntityMover {
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
 
 	}
-	//Grabs the tiles adjacent to the current position: 
-	public Tile[][] grabAdjTiles(){
-		//private Tile[][] map;
-		//this.map = new Tile[nRows + 2][nCols + 2];
-		Tile[][] adjTiles = new Tile[ADJ_NROWS][ADJ_NCOLS];
-		//UP DOWN LEFT AND RIGHT COORDINATES: 
-		adjTiles[0][0] = this.getTile(this.player.getCoord().add(UP));
-		adjTiles[1][0] = this.player.getCoord();
-		return map;
-	}
+
 
 	public boolean hasWon() {
 		if (DEBUG) {

@@ -17,10 +17,10 @@ public abstract class UsableEntity extends Entity {
 	
 	/**
 	 * @param playerDirection Direction the player is facing
-	 * @param adjTiles The surrounding tiles
+	 * @param Tile the current Tile the player is on
 	 * @return True if the item has uses left, false else.
 	 */
-	public Boolean use(Direction playerDirection, Tile[][] adjTiles) {
+	public Boolean use(Direction playerDirection,Tile currentTile) {
 		return true;
 	}
 }
