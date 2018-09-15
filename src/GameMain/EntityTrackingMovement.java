@@ -2,7 +2,7 @@ package GameMain;
 
 public class EntityTrackingMovement implements Movement {
 	private static final boolean DEBUG = false;
-	Direction direction;
+	Direction direction = Direction.CENTRE;
 	MobileEntity entity;
 
 	public EntityTrackingMovement(MobileEntity entity) {
