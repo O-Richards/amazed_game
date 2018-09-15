@@ -76,6 +76,7 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	public void setKeyCode(int keyCode) {
 		this.keyCode = keyCode;
+		System.out.println("keyCode = " + keyCode);
 	}
 
 	

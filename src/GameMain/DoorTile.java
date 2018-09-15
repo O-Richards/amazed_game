@@ -3,10 +3,15 @@ package GameMain;
 public class DoorTile extends Tile {
 	
 	private static int doorCode = 1;
-
+	
+	private static synchronized int generateDoorCode() {
+		return doorCode++;
+	}
+	
+	
 	public DoorTile(Coord coord) {
 		super(coord);
-		doorCode++;
+		this.doorCode = DoorTile.generateDoorCode();
 		// TODO Auto-generated constructor stub
 	}
 
