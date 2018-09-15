@@ -37,16 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="5" language="java" name="GameMain.EdgeTile" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/EdgeTile.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="515" y="168"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="GameMain.BombUsableEntity" project="group-aMAZEd" 
+  <class id="5" language="java" name="GameMain.BombUsableEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/BombUsableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="991" y="1454"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="GameMain.MobileEntity" project="group-aMAZEd" 
+  <class id="6" language="java" name="GameMain.MobileEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/MobileEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1756" y="1209"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="GameMain.Tile" project="group-aMAZEd" file="/group-aMAZEd/src/GameMain/Tile.java" 
+  <class id="7" language="java" name="GameMain.Tile" project="group-aMAZEd" file="/group-aMAZEd/src/GameMain/Tile.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="923" y="-321"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -73,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="GameMain.KillerEntity" project="group-aMAZEd" 
+  <class id="8" language="java" name="GameMain.KillerEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/KillerEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="875" y="990"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -82,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="GameMain.BoulderMobileEntity" project="group-aMAZEd" 
+  <class id="9" language="java" name="GameMain.BoulderMobileEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/BoulderMobileEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2004" y="1572"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="GameMain.InvincibilityEntity" project="group-aMAZEd" 
+  <class id="10" language="java" name="GameMain.InvincibilityEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/InvincibilityEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="840" y="1187"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,7 +91,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="GameMain.SwitchTile" project="group-aMAZEd" 
+  <class id="11" language="java" name="GameMain.SwitchTile" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/SwitchTile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1267" y="-1004"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -109,25 +100,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="GameMain.TreasureWinCondition" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/TreasureWinCondition.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1701" y="-1133"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="14" language="java" name="GameMain.HoverPotion" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/HoverPotion.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1193" y="1463"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="15" language="java" name="GameMain.Entity" project="group-aMAZEd" 
+  <class id="12" language="java" name="GameMain.Entity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Entity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1435" y="815"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -136,7 +109,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="GameMain.PitTile" project="group-aMAZEd" 
+  <class id="13" language="java" name="GameMain.PitTile" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/PitTile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="717" y="159"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -145,7 +118,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="GameMain.PlayerMovement" project="group-aMAZEd" 
+  <class id="14" language="java" name="GameMain.PlayerMovement" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/PlayerMovement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2164" y="1337"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -154,16 +127,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="18" language="java" name="GameMain.EntityMover" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/EntityMover.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1765" y="440"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="19" language="java" name="GameMain.GameSystem" project="group-aMAZEd" 
+  <class id="15" language="java" name="GameMain.GameSystem" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/GameSystem.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="313" width="215" x="1649" y="-800"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -172,7 +136,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="20" language="java" name="GameMain.Collision" project="group-aMAZEd" 
+  <enumeration id="16" language="java" name="GameMain.Collision" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Collision.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1461" y="-457"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -181,7 +145,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="21" language="java" name="GameMain.Coord" project="group-aMAZEd" 
+  <class id="17" language="java" name="GameMain.Coord" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Coord.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1502" y="-34"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -190,16 +154,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="22" language="java" name="GameMain.MovementBonus" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/MovementBonus.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2300" y="701"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="23" language="java" name="GameMain.ExitTile" project="group-aMAZEd" 
+  <class id="18" language="java" name="GameMain.ExitTile" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/ExitTile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1453" y="-804"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -208,7 +163,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="24" language="java" name="GameMain.Movement" project="group-aMAZEd" 
+  <interface id="19" language="java" name="GameMain.Movement" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Movement.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2133" y="945"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -217,7 +172,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="25" language="java" name="GameMain.SwordUsableEntity" project="group-aMAZEd" 
+  <class id="20" language="java" name="GameMain.SwordUsableEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/SwordUsableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1391" y="1454"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -226,16 +181,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="26" language="java" name="GameMain.SwitchWinCondition" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/SwitchWinCondition.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2181" y="-1149"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="27" language="java" name="GameMain.InventoryTile" project="group-aMAZEd" 
+  <class id="21" language="java" name="GameMain.InventoryTile" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/InventoryTile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="900" y="150"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -244,7 +190,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="28" language="java" name="GameMain.DoorTile" project="group-aMAZEd" 
+  <class id="22" language="java" name="GameMain.DoorTile" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/DoorTile.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1055" y="150"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -253,7 +199,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="29" language="java" name="GameMain.Level" project="group-aMAZEd" 
+  <class id="23" language="java" name="GameMain.Level" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Level.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="511" width="229" x="1649" y="-447"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -262,16 +208,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="30" language="java" name="GameMain.BoulderMovement" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/BoulderMovement.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2438" y="1326"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <enumeration id="31" language="java" name="GameMain.Direction" project="group-aMAZEd" 
+  <enumeration id="24" language="java" name="GameMain.Direction" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Direction.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="2687" y="1302"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -280,25 +217,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="32" language="java" name="GameMain.EntityTrackingMovement" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/EntityTrackingMovement.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2450" y="997"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="33" language="java" name="GameMain.HoverBonusMovement" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/HoverBonusMovement.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2651" y="726"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="34" language="java" name="GameMain.PlayerMobileEntity" project="group-aMAZEd" 
+  <class id="25" language="java" name="GameMain.PlayerMobileEntity" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/PlayerMobileEntity.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1645" y="1733"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -307,7 +226,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="35" language="java" name="GameMain.Collidable" project="group-aMAZEd" 
+  <interface id="26" language="java" name="GameMain.Collidable" project="group-aMAZEd" 
     file="/group-aMAZEd/src/GameMain/Collidable.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="1360" y="241"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -316,261 +235,100 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="36" language="java" name="GameMain.UsableEntity" project="group-aMAZEd" 
-    file="/group-aMAZEd/src/GameMain/UsableEntity.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1182" y="1177"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <realization id="37">    
-    <end type="SOURCE" refId="29"/>    
-    <end type="TARGET" refId="18"/>  
-  </realization>  
-  <realization id="38">    
-    <end type="SOURCE" refId="32"/>    
-    <end type="TARGET" refId="24"/>  
-  </realization>  
-  <generalization id="39">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <association id="40">    
-    <end type="SOURCE" refId="22" navigable="false">      
-      <attribute id="41" name="baseMovement"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="43">    
-    <end type="SOURCE" refId="34"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="44">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="45">    
-    <bendpoint x="2746" y="398"/>    
-    <bendpoint x="2930" y="1016"/>    
-    <bendpoint x="2802" y="1728"/>    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="46" name="player"/>      
-      <multiplicity id="47" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="34" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="48">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <generalization id="49">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <association id="50">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="51" name="movement"/>      
-      <multiplicity id="52" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="24" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="53">    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="54" name="treasureWinCondition"/>      
-      <multiplicity id="55" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="56">    
-    <end type="SOURCE" refId="25"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <generalization id="57">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <realization id="58">    
-    <end type="SOURCE" refId="26"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <association id="59">    
-    <bendpoint x="2224" y="-454"/>    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="60" name="switchWinCondition"/>      
-      <multiplicity id="61" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="62">    
-    <end type="SOURCE" refId="33"/>    
-    <end type="TARGET" refId="22"/>  
-  </generalization>  
-  <association id="63">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="64" name="entities"/>      
-      <multiplicity id="65" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="15" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="66">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="32"/>  
-  </generalization>  
-  <generalization id="67">    
-    <end type="SOURCE" refId="5"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="68">    
-    <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="69" name="entityMover"/>      
-      <multiplicity id="70" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="71">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <association id="72">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="73" name="entity"/>      
-      <multiplicity id="74" minimum="0" maximum="1"/>    
+  <association id="27">    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="28" name="map"/>      
+      <multiplicity id="29" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="75">    
-    <bendpoint x="1539" y="1172"/>    
-    <end type="SOURCE" refId="34" navigable="false">      
-      <attribute id="76" name="inventory"/>      
-      <multiplicity id="77" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="36" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="78">    
-    <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="79" name="direction"/>      
-      <multiplicity id="80" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="31" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="81">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="36"/>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="7"/>  
   </generalization>  
-  <association id="82">    
-    <end type="SOURCE" refId="29" navigable="false">      
-      <attribute id="83" name="map"/>      
-      <multiplicity id="84" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="85">    
-    <end type="SOURCE" refId="30"/>    
-    <end type="TARGET" refId="32"/>  
-  </generalization>  
-  <generalization id="86">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <association id="87">    
-    <end type="SOURCE" refId="19" navigable="false">      
-      <attribute id="88" name="level"/>      
-      <multiplicity id="89" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="29" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="90">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <generalization id="91">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <generalization id="92">    
-    <bendpoint x="1186" y="1044"/>    
-    <end type="SOURCE" refId="36"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <realization id="93">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="4"/>  
-  </realization>  
-  <generalization id="94">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="36"/>  
-  </generalization>  
-  <generalization id="95">    
-    <end type="SOURCE" refId="28"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <realization id="96">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="35"/>  
-  </realization>  
-  <association id="97">    
-    <bendpoint x="1452" y="436"/>    
+  <association id="31">    
     <end type="SOURCE" refId="15" navigable="false">      
-      <attribute id="98" name="coord"/>      
-      <multiplicity id="99" minimum="0" maximum="1"/>    
+      <attribute id="32" name="level"/>      
+      <multiplicity id="33" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
+    <end type="TARGET" refId="23" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="100">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="101" name="coord"/>      
-      <multiplicity id="102" minimum="0" maximum="1"/>    
+  <generalization id="34">    
+    <end type="SOURCE" refId="25"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="36">    
+    <end type="SOURCE" refId="18"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="37">    
+    <bendpoint x="2746" y="398"/>    
+    <bendpoint x="2930" y="1016"/>    
+    <bendpoint x="2802" y="1728"/>    
+    <end type="SOURCE" refId="23" navigable="false">      
+      <attribute id="38" name="player"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="21" navigable="true"/>    
+    <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="103">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="8"/>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="12"/>  
   </generalization>  
-  <generalization id="104">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="8"/>  
-  </generalization>  
-  <realization id="105">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="35"/>  
-  </realization>  
-  <association id="106">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="107" name="winCondition"/>      
-      <multiplicity id="108" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="109">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="15"/>  
-  </generalization>  
-  <realization id="110">    
+  <generalization id="41">    
     <end type="SOURCE" refId="22"/>    
-    <end type="TARGET" refId="24"/>  
-  </realization>  
-  <realization id="111">    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <realization id="42">    
     <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="24"/>  
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <association id="43">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="44" name="coord"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="46">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="47" name="entities"/>      
+      <multiplicity id="48" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="12" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="49">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="50">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <realization id="51">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="26"/>  
+  </realization>  
+  <generalization id="52">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="53">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <realization id="54">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="19"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
