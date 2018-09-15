@@ -27,7 +27,7 @@ public class PlayerMobileEntity extends MobileEntity {
 			item.setCoord(this.getCoord());
 		}
 	}
-	
+	//Given an item finds the item in the inventory an uses it: 
 	public boolean useItem(UsableEntity item) {
 		 System.out.println("Player using " + item.getSprite());
 		//Looks through all elements of the arrayList to find if there is an item of that type:

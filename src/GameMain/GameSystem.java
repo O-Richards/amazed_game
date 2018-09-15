@@ -5,9 +5,9 @@ public class GameSystem {
 	private Level level;
 
 	private Integer tickNum = 0;
-	
+
+	//Setup level with default size
 	public GameSystem() {
-		//Setup level with default size
 		this.level = new Level();
 		System.out.println("aMMMMMMMMMMMazing times starting...");
 	}
@@ -32,28 +32,30 @@ public class GameSystem {
 	public void placeDoor(Coord coord) {
 		this.level.placeDoor(coord);
 	}
-	
-	public void movePlayer(Direction dir) {
-		this.level.movePlayer(dir);
-	}
-	
+	//Returns the player: 
 	public PlayerMobileEntity getPlayer() {
 		return level.getPlayer();
 	}
-	
+	//Moves the player given a direction: 
+	public void movePlayer(Direction dir) {
+		this.level.movePlayer(dir);
+	}
+
+	//Updates the game on every tick: 
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
 		this.level.tick(tickNum++);
 	}
-	
+	//Checks if player has won the game:
 	public boolean hasWon() {
 		return this.level.hasWon();
 	}
-	
+	//Checks if player has lost: 
 	public boolean hasLost() {
 		return this.level.hasLost();
 	}
 	
+	//Triggers for the win condition: 
 	public void setSwitchWinCondition(Boolean status) {
 		this.level.setSwitchWinCondition(status);
 	}
@@ -68,7 +70,7 @@ public class GameSystem {
 		return this.level.toString();
 	}
 	
-
+	//Returns a string of items in the inventory: 
 	public String inventoryString() {
 		return this.level.inventoryString();
 	}

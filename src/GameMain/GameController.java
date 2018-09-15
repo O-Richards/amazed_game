@@ -9,6 +9,7 @@ public class GameController {
 	public static void main(String[] args) throws IOException {
 		GameSystem gs = new GameSystem();
 		//Setup template maze
+		//Placing items on the map: 
 		gs.placeEntity(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
 		gs.placeEntity(new UnlitBombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
 		gs.placeEntity(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
@@ -25,6 +26,7 @@ public class GameController {
 		gs.placeEntity(new ArrowUsableEntity(null), new Coord(5,8));
 
 		gs.placeDoor(new Coord(4,1));
+		//Places some win conditions: 
 		gs.setSwitchWinCondition(true);
 		gs.setTreasureWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
