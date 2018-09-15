@@ -6,13 +6,13 @@ package GameMain;
  */
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
-	//Some constants 
+	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
-	
-	//Constants for getting adj tiles: 
-	private static final int ADJ_NROWS = 2; 
-	private static final int ADJ_NCOLS = 2; 
+
+	//Constants for getting adj tiles:
+	private static final int ADJ_NROWS = 2;
+	private static final int ADJ_NCOLS = 2;
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
@@ -20,7 +20,7 @@ public class Level implements EntityMover {
 	private WinCondition treasureWinCondition;
 	private boolean hasSwitchWinCondition;
 	private boolean hasTreasureWinCondition;
-	private boolean hasExistWinCondition; 
+	private boolean hasExistWinCondition;
 	private PlayerMobileEntity player;
 
 	private int noTreasure;
@@ -70,16 +70,16 @@ public class Level implements EntityMover {
 			entity.removeFromTile();
 			newTile.addEntity(entity);
 		}
-		
-		
+
+
 		//Checks if mobileEntity has moved to an exit or a pit Tile()
 		if(newTile instanceof PitTile) {
-			PitTile aPitTile = (PitTile) newTile; 
+			PitTile aPitTile = (PitTile) newTile;
 			//Death should be handled in the player
 			//Calls the die condition for the mobile entity(death condition in a different branch)
 		}else if(newTile instanceof ExitTile) {
-			ExitTile anExitTile  = (ExitTile) newTile; 
-			hasExistWinCondition = anExitTile.hasWon(); 
+			ExitTile anExitTile  = (ExitTile) newTile;
+			hasExistWinCondition = anExitTile.hasWon();
 		}
 	}
 <<<<<<< HEAD
@@ -101,7 +101,7 @@ public class Level implements EntityMover {
 		return placementTile.addEntity(e);
 	}
 
-	
+
 	public void tick(int tickNum) {
 		this.switchWinCondition.tick(tickNum);
 		this.treasureWinCondition.tick(tickNum);
@@ -116,7 +116,7 @@ public class Level implements EntityMover {
 		return player;
 	}
 
-	
+
 	/**
 	 * @precondtion c is a valid coord i.e. on the map
 	 * @param c The coord of the tile to fetch
@@ -125,7 +125,7 @@ public class Level implements EntityMover {
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
 	}
-	
+
 	/**
 	 * @precondtion c is a valid coord i.e. on the map
 	 * @param c The coord of the tile to fetch
@@ -141,7 +141,7 @@ public class Level implements EntityMover {
 			return this.getTile(wantedCoord);
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		//Could change this to be a string builder to avoid O(n^2)
@@ -168,9 +168,9 @@ public class Level implements EntityMover {
 		//TODO: Add error checking
 		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
 		//this.player.useItem(act, dir);
-		//Sets the direction: 
+		//Sets the direction:
 		this.player.setDirection(dir);
-		//Calls the appropriate action: 
+		//Calls the appropriate action:
 		if(act == Action.SWORD) {
 			this.player.useItem(new SwordUsableEntity(this.player.getCoord()));
 		}else if(act == Action.ARROW){
@@ -178,7 +178,7 @@ public class Level implements EntityMover {
 		}else if(act == Action.BOMB) {
 			//this.player.useItem(new BombUsableEntity(null), );
 		}else {
-			//Function to consume item? 
+			//Function to consume item?
 		}
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
 
@@ -201,17 +201,17 @@ public class Level implements EntityMover {
 				ret |= this.treasureWinCondition.hasWon();
 			}
 		}
-		//Doesn't need to have switches or treasure? 
+		//Doesn't need to have switches or treasure?
 		if(this.hasExistWinCondition) {
-			ret = true; 
+			ret = true;
 		}
 		return ret;
 	}
-	
+
 	public boolean hasLost() {
 		return !this.player.isAlive();
 	}
-	
+
 	public void setTreasureWinCondition(Boolean status) {
 		this.hasTreasureWinCondition = status;
 	}
@@ -219,7 +219,7 @@ public class Level implements EntityMover {
 	public void setSwitchWinCondition(Boolean status) {
 		this.hasSwitchWinCondition = status;
 	}
-	
+
 
 	/**
 	 * @precondition The coord has an empty tile
@@ -253,12 +253,12 @@ public class Level implements EntityMover {
 		PitTile newPit = new PitTile(coord);
 		this.map[coord.getX()][coord.getY()] = newPit;
 	}
-	
+
 	public void placeDoor(Coord coord) {
 		DoorTile newDoor = new DoorTile(coord);
 		this.map[coord.getX()][coord.getY()] = newDoor;
 	}
-	
+
 	@Override
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
@@ -269,7 +269,7 @@ public class Level implements EntityMover {
 				return Collision.MOVE;
 			}
 		}
-		return Collision.NOMOVE;	
+		return Collision.NOMOVE;
 	}
 
 	@Override
@@ -278,12 +278,12 @@ public class Level implements EntityMover {
 		currentTile.removeEntity(e);
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see GameMain.EntityMover#moveEntity(GameMain.MobileEntity, GameMain.Coord)
 	 * Move the entity one tile closer to the nextCoord
 	 */
-	
+
 	@Override
 	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
 		if (DEBUG) System.out.println("Level.moveEntity moving " + e.getSprite());
@@ -300,13 +300,12 @@ public class Level implements EntityMover {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
-		// TODO Auto-generated method stub
-	
+		this.addEntity(entity, c);
 	}
-	
-	
+
+
 
 }
