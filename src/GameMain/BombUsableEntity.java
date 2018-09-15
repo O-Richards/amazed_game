@@ -2,8 +2,8 @@ package GameMain;
 
 public class BombUsableEntity extends UsableEntity {
 
-	BombUsableEntity(Tile tile) {
-		super(tile);
+	BombUsableEntity(Coord coord) {
+		super(coord);
 		// TODO Auto-generated constructor stub
 	}
 

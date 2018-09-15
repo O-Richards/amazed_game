@@ -4,6 +4,8 @@ public class GameSystem {
 	//Consists of a map/ all entities coordinates etc.
 	private Level level;
 
+	private Integer tickNum = 0;
+	
 	public GameSystem() {
 		//Setup level with default size
 		this.level = new Level();
@@ -30,7 +32,7 @@ public class GameSystem {
 	//Moves and updates all mobile entities:
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
-		this.level.tick();
+		this.level.tick(tickNum++);
 	}
 	
 	public boolean hasWon() {

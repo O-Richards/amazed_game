@@ -2,8 +2,8 @@ package GameMain;
 
 public abstract class UsableEntity extends Entity {
 
-	UsableEntity(Tile tile) {
-		super(tile);
+	UsableEntity(Coord coord) {
+		super(coord);
 		// TODO Auto-generated constructor stub
 	}
 

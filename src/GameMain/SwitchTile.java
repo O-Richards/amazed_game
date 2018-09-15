@@ -9,9 +9,9 @@ public class SwitchTile extends Tile {
 	}
 	
 	@Override
-	public void tick() {
-		super.tick();
-		if (!this.containsEntity(new BoulderMobileEntity(this))) {
+	public void tick(int tickNum) {
+		super.tick(tickNum);
+		if (!this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
 			winCondition.setUnsatisfied();
 		} else {
 			winCondition.setSatisfied();

@@ -43,10 +43,54 @@ public class Coord {
 		System.out.println("Coord.add(): unknown direction");
 		return new Coord(0, 0);
 	}
+	
+	/**
+	 * Get the x direction from this to c2
+	 * @param c2 The point to compare to
+	 * @return LEFT if c2 is to the left of this, RIGHT if c2 is to the right of this. Centre else.
+	 */
+	public Direction minusX(Coord c2) {
+		Integer difference = this.getX() - c2.getX();
+		if (difference.equals(0)) {
+			return Direction.CENTRE;
+		} else if (difference < 0) {
+			return Direction.UP;
+		} else {
+			return Direction.DOWN;
+		}
+	}
+	
+	/**
+	 * Get the y direction from this to c2
+	 * @param c2 The point to compare to
+	 * @return UP if c2 is to the up of this, DOWN if c2 is to the down of this. Centre else.
+	 */
+	public Direction minusY(Coord c2) {
+		Integer difference = this.getY() - c2.getY();
+		if (difference.equals(0)) {
+			return Direction.CENTRE;
+		} else if (difference < 0) {
+			return Direction.RIGHT;
+		} else {
+			return Direction.LEFT;
+		}
+	}
 
 	@Override
 	public String toString() {
 		return "Coord [x=" + x + ", y=" + y + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) return false;
+		if (obj instanceof Coord) {
+			Coord objCoord = (Coord)obj;
+			if (objCoord.getX().equals(this.getX()) && objCoord.getY().equals(this.getY())) {
+				return true;
+			}
+		}
+		return false;	
 	}
 	
 	

@@ -8,5 +8,5 @@ public interface WinCondition {
 
 	public void setSatisfied();
 	
-	public void tick();
+	public void tick(Integer tickNum);
 }

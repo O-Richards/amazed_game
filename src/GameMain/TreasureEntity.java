@@ -2,10 +2,9 @@ package GameMain;
 
 public class TreasureEntity extends UsableEntity {
 	
-	TreasureEntity(Tile tile) {
-		super(tile);
+	TreasureEntity(Coord coord) {
+		super(coord);
 	}
-	
 	
 	@Override
 	public void use(Direction playerDirection, Tile[][] adjTiles) {

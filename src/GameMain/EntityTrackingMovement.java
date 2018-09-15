@@ -3,15 +3,15 @@ package GameMain;
 public class EntityTrackingMovement implements Movement {
 	private static final boolean DEBUG = false;
 	Direction direction;
-	Entity entity;
+	MobileEntity entity;
 
-	public EntityTrackingMovement(Entity entity) {
+	public EntityTrackingMovement(MobileEntity entity) {
 		super();
 		this.entity = entity;
 	}
 	
 	public Coord nextCoord() {
-		return this.entity.getCoord(direction);
+		return this.getCoord(this.getDirection());
 	}
 
 	public Direction getDirection() {
@@ -32,4 +32,5 @@ public class EntityTrackingMovement implements Movement {
 	public Coord getCoord(Direction dir) {
 		return this.entity.getCoord(dir);
 	}
+
 }
