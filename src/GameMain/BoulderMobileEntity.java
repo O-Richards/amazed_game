@@ -29,16 +29,4 @@ public class BoulderMobileEntity extends MobileEntity {
 		return false;
 	}
 
-	@Override
-	public void setKeyCode(int keyCode) {
-		keyCode = -1;
-	}
-
-	@Override
-	public int getKeyCode() {
-		return -1;
-	}
-	
-	
-
 }

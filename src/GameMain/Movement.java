@@ -29,4 +29,5 @@ public interface Movement {
 	public Coord getCoord();
 	
 	public Coord getCoord(Direction dir);
+
 }
