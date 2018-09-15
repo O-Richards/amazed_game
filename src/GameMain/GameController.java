@@ -24,7 +24,7 @@ public class GameController {
 		if(playerDir != null) {
 			//Get the action the player has made: 
 			Action playerAction = this.action(input);		
-			doAction(playerAction, playerDir);
+			// doAction(playerAction, playerDir);
 		}
 	}
 	
@@ -58,12 +58,6 @@ public class GameController {
 			case "l": return Direction.CENTRE;
 			default: return null;
 		}
-	}
-	
-	//Does the actual action: 
-	public void doAction(Action act,Direction dir) {
-		throw new UnsupportedOperationException("Player actions net yet supported");
-		//this.level.playerDo();
 	}
 	
 	public static void main(String[] args) throws IOException {
