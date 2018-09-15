@@ -1,8 +1,8 @@
 package GameMain;
 
-public class KeyUsableEntity extends UsableEntity {
+public class BombUsableEntity extends UsableEntity {
 
-	KeyUsableEntity(Coord coord) {
+	BombUsableEntity(Coord coord) {
 		super(coord);
 		// TODO Auto-generated constructor stub
 	}
@@ -16,7 +16,6 @@ public class KeyUsableEntity extends UsableEntity {
 	@Override
 	public void use(Direction direction, Tile[][] adjTiles) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

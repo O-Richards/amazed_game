@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class GameSystem {
 	private Level level;
+	private Integer tickNum = 0;
 	
 	public GameSystem() {
 		//Setup level with default size
@@ -37,7 +38,7 @@ public class GameSystem {
 	
 	public void tick() {
 		System.out.println("TickTock Goes The Clock");
-		this.level.tick();
+		this.level.tick(tickNum++);
 	}
 	
 	public boolean hasWon() {
@@ -100,6 +101,7 @@ public class GameSystem {
 				break;
 			}
 		}
+		s.close();
 	}
 
 

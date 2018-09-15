@@ -1,10 +1,11 @@
 package GameMain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Level {
-	private static final boolean DEBUG = false;
+/**
+ * @author Oli
+ * @invariant map[][] always has at least 1 row and 1 column
+ */
+public class Level implements EntityMover {
+	private static final boolean DEBUG = true;
 	//Some constants
 	private static final int DEFAULT_NROWS = 30;
 	private static final int DEFAULT_NCOLS = 30;
@@ -16,8 +17,8 @@ public class Level {
 	private WinCondition treasureWinCondition;
 	private boolean hasSwitchWinCondition;
 	private boolean hasTreasureWinCondition;
+	private boolean hasExistWinCondition; 
 	private PlayerMobileEntity player;
-	private List<MobileEntity> mobileEntities;
 	private int noTreasure;
 
 	public Level() {
@@ -27,7 +28,6 @@ public class Level {
 	public Level(int nRows, int nCols) {
 		this.switchWinCondition = new SwitchWinCondition();
 		this.treasureWinCondition = new TreasureWinCondition();
-		this.mobileEntities = new ArrayList<>();
 		this.hasSwitchWinCondition = false;
 		this.noTreasure = 0;
 		
@@ -47,11 +47,16 @@ public class Level {
 			this.map[0][col] = new EdgeTile(new Coord(0, col));
 			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
 		}
+		//Creates an exit: 
+		this.map[10][10] = new ExitTile(new Coord(10,10));
 		//Create the player and place them on the map
-		this.player = new PlayerMobileEntity(this.map[1][1]);
-		moveMobileEntity(this.player, new Coord(1, 1));
+		Coord playerCoord = new Coord(1, 1);
+		this.player = new PlayerMobileEntity(new Coord(1, 1));
+		this.addEntity(player, playerCoord);
 	}
+
 	
+/*Keeping this for Geoffreys reference
 	public void moveMobileEntity(MobileEntity entity, Coord c) {
 		Tile newTile = this.map[c.getX()][c.getY()];
 		//Trigger any/all collisions
@@ -60,8 +65,19 @@ public class Level {
 			entity.removeFromTile();
 			newTile.addEntity(entity);
 		}
+		
+		
+		//Checks if mobileEntity has moved to an exit or a pit Tile()
+		if(newTile instanceof PitTile) {
+			PitTile aPitTile = (PitTile) newTile; 
+			//Death should be handled in the player
+			//Calls the die condition for the mobile entity(death condition in a different branch)
+		}else if(newTile instanceof ExitTile) {
+			ExitTile anExitTile  = (ExitTile) newTile; 
+			hasExistWinCondition = anExitTile.hasWon(); 
+		}
 	}
-	
+**/
 	/**
 	 * @param e The entity to be added
 	 * @param c The coord to add the entity to
@@ -69,38 +85,50 @@ public class Level {
 	 */
 	public boolean addEntity(Entity e, Coord c) {
 		Tile placementTile = getTile(c);
-		//TODO: Make this not crap (will need a refactor)
-		if (e instanceof MobileEntity) {
-			this.mobileEntities.add((MobileEntity)e);
-		}
 		if (e instanceof TreasureEntity) {
 			noTreasure++;
 		}
+		e.setEntityMover(this);
 		return placementTile.addEntity(e);
 	}
 	
-	public void tick() {
-		this.switchWinCondition.tick();
-		this.treasureWinCondition.tick();
+	public void tick(int tickNum) {
+		this.switchWinCondition.tick(tickNum);
+		this.treasureWinCondition.tick(tickNum);
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
-				this.map[row][col].tick();
+				this.map[row][col].tick(tickNum);
 			}
 		}
-		//Move mobile entities
-		moveMobileEntity(this.player, this.player.nextCoord());
-		for (MobileEntity e: this.mobileEntities) {
-			moveMobileEntity(e, e.nextCoord());
-		}
-
 	}
 
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}
 	
+	/**
+	 * @precondtion c is a valid coord i.e. on the map
+	 * @param c The coord of the tile to fetch
+	 * @return The tile at Coord c
+	 */
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
+	}
+	
+	/**
+	 * @precondtion c is a valid coord i.e. on the map
+	 * @param c The coord of the tile to fetch
+	 * @param dirFromC The direction of the tile wanted from c
+	 * @return The tile at dirFromC from c. Returns null if the tile is off the map
+	 */
+	private Tile getTile(Coord c, Direction dirFromC) {
+		//Check if we are going off the end of the map.
+		Coord wantedCoord = c.add(dirFromC);
+		if (wantedCoord.getX() >= this.map.length || wantedCoord.getY() >= this.map[0].length) {
+			return null;
+		} else {
+			return this.getTile(wantedCoord);
+		}
 	}
 	
 	@Override
@@ -125,7 +153,6 @@ public class Level {
 
 	}
 	
-	
 	public boolean hasWon() {
 		if (DEBUG) {
 			System.out.print("Level.hasWon() called: Player has " + player.noTreasure());
@@ -142,6 +169,10 @@ public class Level {
 				treasureWinCondition.setSatisfied();
 				ret |= this.treasureWinCondition.hasWon();
 			}
+		}
+		//Doesn't need to have switches or treasure? 
+		if(this.hasExistWinCondition) {
+			ret = true; 
 		}
 		return ret;
 	}
@@ -181,5 +212,48 @@ public class Level {
 		WallTile newWall = new WallTile(coord);
 		this.map[coord.getX()][coord.getY()] = newWall;
 	}
+
+	@Override
+	public Collision moveEntity(MobileEntity e, Direction dir) {
+		Tile nextTile = this.getTile(e.getCoord(), dir);
+		if (nextTile != null) {
+			if (nextTile.collide(e) == Collision.MOVE) {
+				e.removeFromTile();
+				nextTile.addEntity(e);
+				return Collision.MOVE;
+			}
+		}
+		return Collision.NOMOVE;	
+	}
+
+	@Override
+	public void removeEntity(Entity e, Coord c) {
+		Tile currentTile = this.getTile(c);
+		currentTile.removeEntity(e);
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see GameMain.EntityMover#moveEntity(GameMain.MobileEntity, GameMain.Coord)
+	 * Move the entity one tile closer to the nextCoord
+	 */
+	
+	@Override
+	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
+		if (DEBUG) System.out.println("Level.moveEntity moving " + e.getSprite());
+		Collision result = Collision.NOMOVE;
+		Direction xDir = e.getCoord().minusX(nextCoord);
+		if (xDir != Direction.CENTRE) {
+			result = this.moveEntity(e, xDir);
+			if (result == Collision.MOVE) return result;
+		}
+		Direction yDir = e.getCoord().minusY(nextCoord);
+		if (yDir != Direction.CENTRE) {
+			result = this.moveEntity(e, yDir);
+			if (result == Collision.MOVE) return result;
+		}
+		return result;
+	}
+	
 	
 }

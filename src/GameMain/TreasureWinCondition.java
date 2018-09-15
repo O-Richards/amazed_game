@@ -26,7 +26,7 @@ public class TreasureWinCondition implements WinCondition {
 	}
 
 	@Override
-	public void tick() {
+	public void tick(Integer tickNum) {
 		this.allTreasureCollected = true;
 		
 	}

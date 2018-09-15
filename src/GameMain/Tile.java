@@ -14,9 +14,10 @@ public class Tile implements Collidable {
 		this.entities = new ArrayList<Entity>();
 	}
 	
-	public void tick() {
-		for (Entity e : this.entities) {
-			e.tick();
+	public void tick(int tickNum) {
+		List<Entity> listCopy = new ArrayList<>(this.entities);
+		for (Entity e : listCopy) {
+			e.tick(tickNum);
 		}
 	}
 	
@@ -30,7 +31,7 @@ public class Tile implements Collidable {
 	 */
 	public boolean addEntity(Entity entity) {
 		this.entities.add(entity);
-		entity.setTile(this);
+		entity.setCoord(this.getCoord());
 		//If this were any other tile e.g. WallTile, you would not add the entity, then return false
 		return true;
 	}

@@ -2,17 +2,18 @@ package GameMain;
 
 public abstract class Entity implements Collidable {
 
-	//Tile it is on. Note, if it is in the players inventory, will be null.
-	private Tile tile;
-	
-	Entity(Tile tile) {
-		this.setTile(tile);
+	//Coord the entity is on. Note if in inventory, this will be null
+	private Coord coord;
+	protected EntityMover entityMover;
+
+	Entity(Coord coord) {
+		this.coord = coord;
 	}
 	
 	public Coord getCoord() {
 		//TODO: Should really check if the tile is null in some nice way
 		//For now lets leave it raising an exception.
-		return this.getTile().getCoord();
+		return this.coord;
 	}
 	
 	/**
@@ -23,27 +24,20 @@ public abstract class Entity implements Collidable {
 		return this.getCoord().add(dir);
 	}
 	
-	public void tick() {
+	public void tick(Integer tickNum) {
 	
 	}
 
 	public void removeFromTile() {
-		if (this.getTile() != null) {
-			this.getTile().removeEntity(this);
-		}
-		this.setTile(null);
+		this.entityMover.removeEntity(this, this.getCoord());
 	}
 
 	public String getSprite() {
 		return "E";
 	}
 
-	public void setTile(Tile tile) {
-		this.tile = tile;
-	}
-
-	public Tile getTile() {
-		return tile;
+	public void setCoord(Coord coord) {
+		this.coord = coord;
 	}
 
 	@Override
@@ -53,9 +47,13 @@ public abstract class Entity implements Collidable {
 		if (obj.getClass() != this.getClass()) return false;
 		
 		Entity e = (Entity)obj;
-		if (e.getTile().equals(this.getTile())) return true;
+		if (e.getCoord().equals(this.getCoord())) return true;
 		return false;
 		
+	}
+
+	public void setEntityMover(EntityMover entityMover) {
+		this.entityMover = entityMover;
 	}
 
 }

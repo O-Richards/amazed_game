@@ -2,7 +2,7 @@ package GameMain;
 
 public class PlayerMovement extends EntityTrackingMovement {
 
-	public PlayerMovement(Entity entity) {
+	public PlayerMovement(MobileEntity entity) {
 		super(entity);
 	}
 	
@@ -11,6 +11,13 @@ public class PlayerMovement extends EntityTrackingMovement {
 	 */
 	public boolean pushEntity() {
 		return true;
+	}
+	
+	@Override
+	public Coord nextCoord() {
+		Coord ret = super.nextCoord();
+		this.setDirection(Direction.CENTRE);
+		return ret;
 	}
 
 	

@@ -3,16 +3,41 @@ package GameMain;
 public abstract class MobileEntity extends Entity implements Movement {
 	public static final boolean DEBUG = false;
 	private Movement movement;
+	private Integer lastTick = 0;
 	
-	MobileEntity(Tile tile) {
-		super(tile);
+	MobileEntity(Coord coord) {
+		super(coord);
 		this.movement = new EntityTrackingMovement(this);
 	}
 
 
-	MobileEntity(Tile tile, Movement movement) {
-		super(tile);
+	MobileEntity(Coord coord, Movement movement) {
+		super(coord);
 		this.movement = movement;
+	}
+	
+	@Override
+	public void tick(Integer tickNum) {
+		//Make sure to only move once per tick
+		if (this.lastTick != tickNum) {
+			this.lastTick = tickNum;
+			this.move();
+		}
+	}
+	
+	public void move() {
+		Coord nextCoord = this.nextCoord();
+		if (DEBUG) System.out.println("Moving sprite " + this.getSprite() + " to " + nextCoord);
+		this.entityMover.moveEntity(this, nextCoord);
+	}
+	
+	/**
+	 * Move to a specified coord
+	 * @param c The coord to move to
+	 */
+	public void move(Coord c) {
+		this.entityMover.moveEntity(this, c);
+
 	}
 	
 	public Direction getDirection() {

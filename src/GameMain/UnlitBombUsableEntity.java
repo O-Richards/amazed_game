@@ -2,13 +2,13 @@ package GameMain;
 
 public class UnlitBombUsableEntity extends UsableEntity {
 	
-	UnlitBombUsableEntity(Tile tile) {
-		super(tile);
+	UnlitBombUsableEntity(Coord coord) {
+		super(coord);
 	}
 
 	@Override
 	public void use(Direction playerDirection, Tile[][] adjTiles) {
-		LitBombEntity litBomb = new LitBombEntity(adjTiles[1][1]);
+		LitBombEntity litBomb = new LitBombEntity(adjTiles[1][1].getCoord());
 		litBomb.getSprite();
 		litBomb.explode(adjTiles);
 	}
