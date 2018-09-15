@@ -14,7 +14,7 @@ public class SwordUsableEntity extends UsableEntity {
 		KillerEntity killEntity = new KillerEntity(this.getCoord(direction), false, true);
 		this.entityMover.placeEntity(killEntity, this.getCoord(direction));
 		noOfUses --; 
-		return noOfUses < 0;
+		return noOfUses > 0;
 	}
 		
 

@@ -1,6 +1,6 @@
 package GameMain;
-
-public class LitBombEntity extends Entity {
+//GOING TO REMOVE THIS !@!@!@!@!@!@!
+public class LitBombEntity extends UsableEntity {
 	
 	LitBombEntity(Coord coord) {
 		super(coord);
@@ -17,6 +17,7 @@ public class LitBombEntity extends Entity {
 		this.entityMover.placeEntity(killEntity2, this.getCoord(Direction.DOWN));
 		this.entityMover.placeEntity(killEntity3, this.getCoord(Direction.LEFT));
 		this.entityMover.placeEntity(killEntity4, this.getCoord(Direction.RIGHT));
+		
 	}
 
 	@Override
@@ -24,14 +25,11 @@ public class LitBombEntity extends Entity {
 		return Collision.MOVE;
 	}
 
+
 	@Override
 	public String getSprite() {
-		return "X";
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
-	
-	
-	
-	
-	
+
 }

@@ -174,9 +174,9 @@ public class Level implements EntityMover {
 		if(act == Action.SWORD) {
 			this.player.useItem(new SwordUsableEntity(this.player.getCoord()));
 		}else if(act == Action.ARROW){
-			//this.player.useItem(new ArrowUsableEntity(null), );
+			this.player.useItem(new ArrowUsableEntity(this.player.getCoord()));
 		}else if(act == Action.BOMB) {
-			//this.player.useItem(new BombUsableEntity(null), );
+			this.player.useItem(new UnlitBombUsableEntity(this.player.getCoord()));
 		}else {
 			//Function to consume item?
 		}

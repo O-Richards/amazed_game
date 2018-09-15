@@ -4,25 +4,25 @@ public class KillerEntity extends Entity {
 
 	private boolean killPlayer;
 	private boolean killEnemies;
-	private int numberOfTicks; 
-	
+	private int noOfTicks; 
 	KillerEntity(Coord coord, boolean killPlayer, boolean killEnemies) {
 		super(coord);
 		System.out.println("Killer entity placed at " + coord);
 		this.killPlayer = killPlayer;
 		this.killEnemies = killEnemies;
+		noOfTicks = 2; 
 	}
 	
+
 	@Override
 	public void tick(Integer tickNum) {
-		 if(numberOfTicks <= 0) {
-			 numberOfTicks --; 
+
+		 if(noOfTicks > 0) {
+			 noOfTicks --; 
 		 }else{
-			//remove itself from the map: 
 			 this.removeFromTile(); 
 		 }
 	}
-	
 	@Override
 	public Collision collide(MobileEntity hitter) {
 		if (killPlayer) hitter.killPlayer();
