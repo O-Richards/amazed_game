@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
-	// private Integer treasure;
+	private boolean hover = false;
+
 	
 	PlayerMobileEntity(Tile tile) {
 		super(tile);
@@ -58,6 +59,16 @@ public class PlayerMobileEntity extends MobileEntity {
 		super(tile, movement);
 	}
 	
+	public int noTreasure() {
+		int treasure = 0;
+		for (UsableEntity u: inventory) {
+			if (u instanceof TreasureEntity) {
+				treasure++;
+			}
+		}
+		return treasure;
+	}
+	
 	@Override
 	public Collision collide(MobileEntity hitter) {
 		return Collision.MOVE;
@@ -67,6 +78,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	public Coord nextCoord() {
 		return this.getCoord(this.getDirection());
 	}
+
 	
 	public String getSprite() {
 		return "P";

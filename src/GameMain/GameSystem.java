@@ -14,7 +14,14 @@ public class GameSystem {
 	public boolean placeEntity(Entity entity, Coord coord) {
 		return level.addEntity(entity, coord);
 	}
-
+	
+	public boolean placeSwitch(Coord coord) {
+		return this.level.placeSwitch(coord);
+	}
+	
+	private void placeWall(Coord coord) {
+		this.level.placeWall(coord);
+	}
 
 	public void movePlayer(Direction dir) {
 		this.level.movePlayer(dir);
@@ -35,6 +42,11 @@ public class GameSystem {
 	}
 	
 
+	private void setTreasureWinCondition(boolean b) {
+		this.level.setTreasureWinCondition(b);
+	}
+	
+
 	public String levelString() {
 		return this.level.toString();
 	}
@@ -45,9 +57,6 @@ public class GameSystem {
 	}
 	
 
-	public boolean placeSwitch(Coord coord) {
-		return this.level.placeSwitch(coord);
-	}
     //Direction inputs:
 	public Direction strToDirection(String s) {
 		s = s.toLowerCase();
@@ -59,6 +68,7 @@ public class GameSystem {
 			default: return Direction.CENTRE;
 		}
 	}
+
  
 	 //Checks if it is an action input: 
 	public Direction isAction(String s) {
@@ -91,6 +101,7 @@ public class GameSystem {
 			default: return null;
 		}
 	}
+
 
 	//Does the actual action: 
 	public void doAction(Action act,Direction dir) {

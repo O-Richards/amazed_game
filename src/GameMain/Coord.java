@@ -34,8 +34,8 @@ public class Coord {
 		switch(dir) {
 		//Note, no need for breaks as we are always returning.
 		//Also, note change of direction due to the orientation of the map
-		case UP: return new Coord(this.getX() - 1, this.getY());
-		case DOWN: return new Coord(this.getX() + 1, this.getY());
+		case UP: return new Coord(this.getX() + 1, this.getY());
+		case DOWN: return new Coord(this.getX() - 1, this.getY());
 		case LEFT: return new Coord(this.getX(), this.getY() - 1);
 		case RIGHT: return new Coord(this.getX(), this.getY() + 1);
 		case CENTRE: return new Coord(this.getX(), this.getY());
