@@ -22,4 +22,10 @@ public interface EntityMover {
 
 	public Collision moveEntity(MobileEntity e, Coord nextCoord);
 	
+	/**
+	 * @param entity The entity to be placed on the map
+	 * @param c The coord to place the entitiy
+	 */
+	public void placeEntity(Entity entity, Coord c);
+	
 }

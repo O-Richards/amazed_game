@@ -10,26 +10,9 @@ public class SwordUsableEntity extends UsableEntity {
 
 	@Override
 	public Boolean use(Direction direction) {
-		Tile target;
 		// Coordinates of current location: 
-		this.getCoord(); 
-		/*switch (direction) {
-		case UP:
-			target = adjTiles[0][0];
-			break;
-		case DOWN:
-			target = adjTiles[0][2];
-			break;
-		case LEFT:
-			target = adjTiles[1][0];
-			break;
-		case RIGHT:
-			target = adjTiles[1][2];
-			break;
-		default:
-			target = adjTiles[1][1];
-		}*/
-		target.addEntity(new KillerEntity(target.getCoord().add(direction), false, true));
+		KillerEntity killEntity = new KillerEntity(this.getCoord(direction), false, true);
+		this.entityMover.placeEntity(killEntity, this.getCoord(direction));
 		noOfUses --; 
 		return noOfUses < 0;
 	}
