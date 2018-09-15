@@ -23,11 +23,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		}*/
 		//Looks through all elements of the arrayList to find if there is an item of that type:
 		for (UsableEntity inventoryItem : inventory) {
-			/*if(item instanceof inventoryItem.getClass().getName()) {
-				
-			}*/
-			//Alternatively we can simply check if two sprite values match: 
-			if(item.getSprite().equals(inventoryItem.getSprite())) {
+			if(item.equals(inventoryItem)) {
 				Boolean hasUsesLeft = inventoryItem.use(getDirection(), adjTiles);
 				if (!hasUsesLeft) {
 					inventory.remove(inventoryItem);
