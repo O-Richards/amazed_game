@@ -16,7 +16,7 @@ public class InvincibilityBonusAction extends MovementBonus {
 	public boolean canDie() {
 		LocalTime timeCounter = time.plusSeconds(30);
 		if (LocalTime.now().compareTo(timeCounter) > 0) {
-			return true;
+			return super.canDie();
 		} else {
 			return false;
 		}

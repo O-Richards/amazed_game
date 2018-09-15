@@ -13,9 +13,7 @@ public class KillerEntity extends Entity {
 	
 	@Override
 	public Collision collide(MobileEntity hitter) {
-		if (killPlayer == true && hitter.canDie() == false) {
-			killPlayer = false;
-		}
+		//implement for invincibility
 
 		// TODO kill object in my square
 		return null;
