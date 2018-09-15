@@ -32,9 +32,7 @@ public abstract class Entity implements Collidable {
 		this.entityMover.removeEntity(this, this.getCoord());
 	}
 
-	public String getSprite() {
-		return "E";
-	}
+	public abstract String getSprite();
 
 	public void setCoord(Coord coord) {
 		this.coord = coord;

@@ -19,4 +19,11 @@ public class KillerEntity extends Entity {
 		return null;
 	}
 
+
+	@Override
+	public String getSprite() {
+		// TODO Auto-generated method stub
+		return "X";
+	}
+
 }

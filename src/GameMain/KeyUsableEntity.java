@@ -12,4 +12,9 @@ public class KeyUsableEntity extends UsableEntity {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String getSprite() {
+		return "K";
+	}
 }

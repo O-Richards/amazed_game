@@ -79,4 +79,19 @@ public class PlayerMobileEntity extends MobileEntity {
 		}
 		return out;
 	}
+
+	@Override
+	public boolean killPlayer() {
+		if (this.canDie()) {
+			this.entityMover.removeEntity(this, this.getCoord());
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean killEnemy() {
+		return false;
+	}
 }

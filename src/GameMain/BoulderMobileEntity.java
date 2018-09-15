@@ -29,4 +29,16 @@ public class BoulderMobileEntity extends MobileEntity {
 		return false;
 	}
 
+	@Override
+	public boolean killPlayer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean killEnemy() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
