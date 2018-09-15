@@ -1,5 +1,5 @@
 package GameMain;
 
 public enum WinType {
-	SWITCH, ENEMIES, TREASURE, EXIT, WIN, FALSE
+	SWITCH, ENEMY, TREASURE, EXIT, WIN, FALSE
 }

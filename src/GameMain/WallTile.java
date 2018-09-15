@@ -1,10 +1,11 @@
 package GameMain;
 
+import java.util.List;
+
 public class WallTile extends Tile {
 
 	public WallTile(Coord coord) {
 		super(coord);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -15,6 +16,9 @@ public class WallTile extends Tile {
 	public String getSprite() {
 		return "W";
 	}
-	
-	
+
+	@Override
+	protected void updateWinCondition() {
+			
+	}
 }

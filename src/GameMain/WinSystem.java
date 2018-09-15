@@ -17,24 +17,27 @@ public class WinSystem implements WinCondition {
 
 	@Override
 	public WinType getType() {
+		boolean win = true;
 		// for an enabled win type
 		for (WinType type : this.winEnabled) {
-			WinType curWin = null;
+			win = true;
 			// check to see if it does not exist (not in win state) amongst conditions
 			for (WinCondition cond : this.winConditions) {
 				// if it exists then no win
 				if (type == cond.getType()) {
-					curWin = type;
+					// System.out.println(type);
+					win = false;
 				}
 			}
 			// if an enabled win type is not in win state amongst all win conditions, the game is won
-			if (curWin != type) return WinType.WIN;
+			if (win) return WinType.WIN;
 		}
 		return WinType.FALSE;
 	}
 
 	@Override
 	public void setType(WinType winType) {
+		
 	}
 	
 	/**

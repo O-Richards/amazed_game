@@ -1,5 +1,7 @@
 package GameMain;
 
+import java.util.List;
+
 public class PitTile extends Tile {
 
 	public PitTile(Coord coord) {
@@ -7,7 +9,8 @@ public class PitTile extends Tile {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Collision collide(MobileEntity hitter) {
+	@Override
+	public Collision collideExt(MobileEntity hitter, Collision col) {
 		if (hitter.canFly()) {
 			return Collision.MOVE;
 		} else {
@@ -18,6 +21,11 @@ public class PitTile extends Tile {
 	}
 	public String getSprite() {
 		return "O";
+	}
+
+	@Override
+	protected void updateWinCondition() {
+		
 	}
 
 }

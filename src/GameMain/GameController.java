@@ -78,7 +78,7 @@ public class GameController {
 		l.addEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
 		
 		l.enableWinCondition(WinType.EXIT);
-		l.enableWinCondition(WinType.ENEMIES);
+		l.enableWinCondition(WinType.ENEMY);
 		l.enableWinCondition(WinType.SWITCH);
 		l.enableWinCondition(WinType.TREASURE);
 

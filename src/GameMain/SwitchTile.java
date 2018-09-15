@@ -1,33 +1,30 @@
 package GameMain;
 
+import java.util.List;
+
 public class SwitchTile extends Tile {
+	
+	private WinCondition enemyCondition;
 	private WinCondition winCondition;
 	
-	public SwitchTile(Coord coord, WinCondition winCondition) {
+	public SwitchTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition) {
 		super(coord);
 		this.winCondition = winCondition;
+		this.enemyCondition = enemyCondition;
 	}
-	
-	/**
-	 * @param entity The entity to add to this tile
-	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
-	 */
+
 	@Override
-	public boolean addEntity(Entity entity) {
-		super.addEntity(entity);
+	protected void updateWinCondition() {
 		if (this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
+			this.winCondition.setType(WinType.SWITCH);
+		} else {
 			this.winCondition.setType(WinType.WIN);
 		}
-		//Cannot have items on switches
-		return false;
-	}
-	
-	@Override
-	public void removeEntity(Entity entity) {
-		if (entity.equals(new BoulderMobileEntity(this.getCoord()))) {
-			this.winCondition.setType(WinType.SWITCH);
+		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
+			this.enemyCondition.setType(WinType.ENEMY);
+		} else {
+			this.enemyCondition.setType(WinType.WIN);
 		}
-		super.removeEntity(entity);
 	}
 	
 	@Override

@@ -1,8 +1,5 @@
 package GameMain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column
@@ -30,7 +27,7 @@ public class Level implements EntityMover {
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
-				this.map[row][col] = new Tile(new Coord(row, col));
+				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.TREASURE));
 			}
 		}
 		//Add bordering walls
@@ -142,7 +139,7 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.SWITCH));
+		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.SWITCH));
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
@@ -168,7 +165,7 @@ public class Level implements EntityMover {
 	}
 
 	public void placeExit(Coord coord) {
-		ExitTile newExit = new ExitTile(coord);
+		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.EXIT));
 		this.map[coord.getX()][coord.getY()] = newExit;
 	}
 	

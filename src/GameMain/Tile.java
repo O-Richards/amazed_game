@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Tile implements Collidable {
+public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
-	private SingleWinCondition winCondition;
+	private Collision defaultCol;
 	
 	public Tile(Coord coord) {
 		this.coord = coord;
@@ -20,7 +20,6 @@ public class Tile implements Collidable {
 		for (Entity e : listCopy) {
 			e.tick(tickNum);
 		}
-		
 	}
 	
 	public boolean containsEntity(Entity e) {
@@ -32,14 +31,13 @@ public class Tile implements Collidable {
 	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
 	 */
 	public boolean addEntity(Entity entity) {
-		this.entities.add(entity);
+		entities.add(entity);
 		entity.setCoord(this.getCoord());
-		//If this were any other tile e.g. WallTile, you would not add the entity, then return false
 		return true;
 	}
 	
 	public void removeEntity(Entity entity) {
-		this.entities.remove(entity);
+		entities.remove(entity);
 	}
 
 	/**
@@ -51,24 +49,42 @@ public class Tile implements Collidable {
 	 * @param hitter The mobile entity that is walking into the collidable object
 	 * @return MOVE if the movement is possible, NOMOVE if the movement is blocked
 	 */
+
+	/**
+	 * Collide the hitter with the Tile. MobileHitters have a bunch of methods
+	 * that can be called e.g. canFly(), pickupUsable() etc.
+	 * The general idea is that the mobile entities will collide with a tile
+	 * when they try to move onto it, which will then cause them to collide with
+	 * each entity on the tile. (Think Composition Pattern)
+	 * @param hitter The mobile entity that is walking into the collidable object
+	 * @return MOVE if the movement is possible, NOMOVE if the movement is blocked
+	 */
+	
 	@Override
 	public Collision collide(MobileEntity hitter) {			
-		if (DEBUG) System.out.println("Checking collisions on Tile: " + this.getCoord());
 		Collision col = Collision.MOVE;
-		List<Entity> entitiesCopy = new ArrayList<>(this.entities);
-		for (Entity e : entitiesCopy) {
+		List<Entity> entities = this.getEntities();
+		for (Entity e : entities) {
 			//Prevent self collisions
 			if (e != hitter) {
-				if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());
 				Collision tmpCol = e.collide(hitter);
 				if (tmpCol != Collision.MOVE) {
 					col = tmpCol;
 				}
 			}
 		}
-		return col;
+		if (defaultCol == Collision.NOMOVE) {
+			col = defaultCol;
+		}
+		updateWinCondition();
+		return collideExt(hitter, col);
 	}
 
+	public Collision collideExt(MobileEntity hitter, Collision col) {
+		return col;
+	}
+	protected abstract void updateWinCondition();
+	
 	public Coord getCoord() {
 		return this.coord;
 	}
@@ -83,5 +99,8 @@ public class Tile implements Collidable {
 		}
 	}
 
+	private List<Entity> getEntities() {
+		return new ArrayList<>(entities);
+	}	
 	
 }
