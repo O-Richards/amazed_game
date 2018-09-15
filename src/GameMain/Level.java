@@ -251,6 +251,11 @@ public class Level implements EntityMover {
 		this.map[coord.getX()][coord.getY()] = newPit;
 	}
 	
+	public void placeDoor(Coord coord) {
+		DoorTile newDoor = new DoorTile(coord);
+		this.map[coord.getX()][coord.getY()] = newDoor;
+	}
+	
 	@Override
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
