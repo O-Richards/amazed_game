@@ -48,11 +48,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		return false;
 	}*/
 
-	public void printItems() {
-		for (UsableEntity usableEntity : inventory) {
-			System.out.println(usableEntity.getClass().getName());
-		}
-	}
+	
 	
 	
 	PlayerMobileEntity(Tile tile, Movement movement) {
