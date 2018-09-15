@@ -18,6 +18,7 @@ public class GameController {
 		gs.placeWall(new Coord(4, 5));
 		gs.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
 		gs.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
+		gs.placeEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
 		gs.setSwitchWinCondition(true);
 		gs.setTreasureWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
@@ -42,6 +43,10 @@ public class GameController {
 			//gs.checkInventory(); 
 			if (gs.hasWon()) {
 				System.out.println("WON THE GAME!!!");
+				break;
+			}
+			if (gs.hasLost()) {
+				System.out.println("LOST THE GAME!!!");
 				break;
 			}
 		}

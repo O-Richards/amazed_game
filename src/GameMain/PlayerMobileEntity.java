@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
+	private boolean alive = true;
 	// private PlayerState playerState;
 	
 	PlayerMobileEntity(Coord coord) {
@@ -84,14 +85,20 @@ public class PlayerMobileEntity extends MobileEntity {
 	public boolean killPlayer() {
 		if (this.canDie()) {
 			this.entityMover.removeEntity(this, this.getCoord());
+			this.alive = false;
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	
 	@Override
 	public boolean killEnemy() {
 		return false;
 	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+	
 }

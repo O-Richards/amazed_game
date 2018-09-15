@@ -44,6 +44,10 @@ public class GameSystem {
 		return this.level.hasWon();
 	}
 	
+	public boolean hasLost() {
+		return this.level.hasLost();
+	}
+	
 	public void setSwitchWinCondition(Boolean status) {
 		this.level.setSwitchWinCondition(status);
 	}
@@ -75,12 +79,7 @@ public class GameSystem {
 			default: return Direction.CENTRE;
 		}
 	}
-	
 
-	
-
-
-	
 	//Get action: 
 	public void performAction(String input) {
 		//Check if the player has made an actual movement: 

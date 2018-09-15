@@ -102,7 +102,6 @@ public class Level implements EntityMover {
 	public void tick(int tickNum) {
 		this.switchWinCondition.tick(tickNum);
 		this.treasureWinCondition.tick(tickNum);
-
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick(tickNum);
@@ -196,7 +195,6 @@ public class Level implements EntityMover {
 			ret |= this.switchWinCondition.hasWon();
 		}
 		if (this.hasTreasureWinCondition) {
-			System.out.println("Im here Oli");
 			if (player.noTreasure() == noTreasure) {
 				treasureWinCondition.setSatisfied();
 				ret |= this.treasureWinCondition.hasWon();
@@ -207,6 +205,10 @@ public class Level implements EntityMover {
 			ret = true; 
 		}
 		return ret;
+	}
+	
+	public boolean hasLost() {
+		return !this.player.isAlive();
 	}
 	
 	public void setTreasureWinCondition(Boolean status) {
