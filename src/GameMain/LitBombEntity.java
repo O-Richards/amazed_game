@@ -8,18 +8,15 @@ public class LitBombEntity extends Entity {
 	}
 
 	
-	public void explode(Tile[][] adjTiles)  {	
-		Tile up = adjTiles[1][0];
-		up.addEntity(new KillerEntity(this.getCoord(Direction.UP), true, true));
-		Tile down = adjTiles[1][2];
-		down.addEntity(new KillerEntity(this.getCoord(Direction.DOWN), true, true));
-		Tile left = adjTiles[0][1];
-		left.addEntity(new KillerEntity(this.getCoord(Direction.LEFT), true, true));
-		Tile right = adjTiles[2][1];
-		right.addEntity(new KillerEntity(this.getCoord(Direction.RIGHT), true, true));
-		Tile centre = adjTiles[1][1];
-		centre.addEntity(new KillerEntity(this.getCoord(Direction.CENTRE), true, true));
-		
+	public void explode()  {	
+		KillerEntity killEntity1 = new KillerEntity(this.getCoord(Direction.UP), true, true);
+		KillerEntity killEntity2 = new KillerEntity(this.getCoord(Direction.DOWN), true, true);
+		KillerEntity killEntity3 = new KillerEntity(this.getCoord(Direction.LEFT), true, true);
+		KillerEntity killEntity4 = new KillerEntity(this.getCoord(Direction.RIGHT), true, true);
+		this.entityMover.placeEntity(killEntity1, this.getCoord(Direction.UP));
+		this.entityMover.placeEntity(killEntity2, this.getCoord(Direction.DOWN));
+		this.entityMover.placeEntity(killEntity3, this.getCoord(Direction.LEFT));
+		this.entityMover.placeEntity(killEntity4, this.getCoord(Direction.RIGHT));
 	}
 
 	@Override
