@@ -60,6 +60,14 @@ public abstract class MobileEntity extends Entity implements Movement {
 	public boolean pushEntity() {
 		return this.movement.pushEntity();
 	}
+	
+	public void setKeyCode(int keyCode) {
+		keyCode = -1;
+	}
+	
+	public int getKeyCode() {
+		return -1;
+	}
 
 	public Coord nextCoord() {
 		return this.movement.nextCoord();

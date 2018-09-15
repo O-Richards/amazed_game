@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	private boolean alive = true;
+	private int keyCode = -1;
 	// private PlayerState playerState;
 	
 	PlayerMobileEntity(Coord coord) {
@@ -99,6 +100,15 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	public boolean isAlive() {
 		return alive;
+	}
+	
+	public int getKeyCode() {
+		return keyCode;
+	}
+
+	public void setKeyCode(int keyCode) {
+		this.keyCode = keyCode;
+		System.out.println("keyCode = " + keyCode);
 	}
 	
 }

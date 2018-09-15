@@ -20,6 +20,9 @@ public class GameController {
 		gs.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
 		gs.placePit(new Coord(9,9));
 		gs.placeEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
+		gs.placeEntity(new KeyUsableEntity(null), new Coord(2,5));
+		gs.placeEntity(new KeyUsableEntity(null), new Coord(7,8));
+		gs.placeDoor(new Coord(4,1));
 		gs.setSwitchWinCondition(true);
 		gs.setTreasureWinCondition(true);
 		System.out.println("Use W A S D keys to move me around");
