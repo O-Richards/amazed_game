@@ -14,14 +14,8 @@ public class BombUsableEntity extends UsableEntity {
 	}
 
 	@Override
-	public void use(Direction direction, Tile[][] adjTiles) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public int noOfUsesLeft() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Boolean use(Direction direction, Tile[][] adjTiles) {
+		return false;
 	}
 
 }

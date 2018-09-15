@@ -7,10 +7,11 @@ public class UnlitBombUsableEntity extends UsableEntity {
 	}
 
 	@Override
-	public void use(Direction playerDirection, Tile[][] adjTiles) {
+	public Boolean use(Direction playerDirection, Tile[][] adjTiles) {
 		LitBombEntity litBomb = new LitBombEntity(adjTiles[1][1].getCoord());
 		litBomb.getSprite();
 		litBomb.explode(adjTiles);
+		return false;
 	}
 
 	@Override

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	// private PlayerState playerState;
-	private boolean hover = false;
-
 	
 	PlayerMobileEntity(Coord coord) {
 		super(coord);
@@ -30,8 +28,8 @@ public class PlayerMobileEntity extends MobileEntity {
 			}*/
 			//Alternatively we can simply check if two sprite values match: 
 			if(item.getSprite().equals(inventoryItem.getSprite())) {
-				inventoryItem.use(getDirection(), adjTiles);
-				if (inventoryItem.noOfUsesLeft() == 0) {
+				Boolean hasUsesLeft = inventoryItem.use(getDirection(), adjTiles);
+				if (!hasUsesLeft) {
 					inventory.remove(inventoryItem);
 				}
 				break;
@@ -41,15 +39,9 @@ public class PlayerMobileEntity extends MobileEntity {
 		return false;
 	}
 	
-	
-<<<<<<< HEAD
-	
-	PlayerMobileEntity(Tile tile, Movement movement) {
-		super(tile, movement);
-=======
+
 	PlayerMobileEntity(Coord coord, Movement movement) {
 		super(coord, movement);
->>>>>>> master
 	}
 	
 	public int noTreasure() {

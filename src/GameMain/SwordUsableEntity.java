@@ -6,11 +6,10 @@ public class SwordUsableEntity extends UsableEntity {
 
 	SwordUsableEntity(Coord coord) {
 		super(coord);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public void use(Direction direction, Tile[][] adjTiles) {
+	public Boolean use(Direction direction, Tile[][] adjTiles) {
 		Tile target;
 		switch (direction) {
 		case UP:
@@ -30,12 +29,10 @@ public class SwordUsableEntity extends UsableEntity {
 		}
 		target.addEntity(new KillerEntity(target.getCoord().add(direction), false, true));
 		noOfUses --; 
+		return noOfUses < 0;
 	}
-	@Override
-	public int noOfUsesLeft() {
-		return noOfUses; 
+		
 
-	}
 	public String getSprite() {
 		return "S";
 	}

@@ -7,20 +7,12 @@ public class TreasureEntity extends UsableEntity {
 	}
 	
 	@Override
-	public void use(Direction playerDirection, Tile[][] adjTiles) {
+	public Boolean use(Direction playerDirection, Tile[][] adjTiles) {
+		return true;
 	}
 	
 	@Override
 	public String getSprite() {
 		return "$";
 	}
-
-	@Override
-	public int noOfUsesLeft() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
 }

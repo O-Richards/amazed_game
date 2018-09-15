@@ -1,5 +1,7 @@
 package GameMain;
 
+import java.io.IOException;
+
 public class GameSystem {
 	//Consists of a map/ all entities coordinates etc.
 	private Level level;
@@ -21,7 +23,7 @@ public class GameSystem {
 		return this.level.placeSwitch(coord);
 	}
 	
-	private void placeWall(Coord coord) {
+	public void placeWall(Coord coord) {
 		this.level.placeWall(coord);
 	}
 
@@ -47,7 +49,7 @@ public class GameSystem {
 	}
 	
 
-	private void setTreasureWinCondition(boolean b) {
+	public void setTreasureWinCondition(Boolean b) {
 		this.level.setTreasureWinCondition(b);
 	}
 	
@@ -105,41 +107,10 @@ public class GameSystem {
 			default: return null;
 		}
 	}
-	public static void main(String[] args) throws IOException {
-		GameSystem gs = new GameSystem();
-		//Setup template maze
-		gs.placeEntity(new SwordUsableEntity(null), new Coord(4, 4));
-		gs.placeEntity(new UnlitBombUsableEntity(null), new Coord(1, 5));
-		gs.placeEntity(new BoulderMobileEntity(null), new Coord(2, 3));
-		gs.placeSwitch(new Coord(3, 3));
-		gs.placeEntity(new TreasureEntity(null), new Coord(5,6));
-		gs.placeEntity(new TreasureEntity(null), new Coord(10, 2));
-		gs.placeWall(new Coord(4, 5));
-		gs.placeEntity(new HoverPotion(null), new Coord(3, 4));
-		gs.placeEntity(new InvincibilityEntity(null), new Coord(1,5));
-		gs.setSwitchWinCondition(true);
-		gs.setTreasureWinCondition(true);
-		System.out.println("Use W A S D keys to move me around");
-		Scanner s = new Scanner(System.in);
-		while(true) {
-			String input = s.next();
-			Direction playerDir = gs.strToDirection(input);
-			//System.out.println("Input Dir: " + playerDir);
-			gs.movePlayer(playerDir);
-			gs.tick();
-			System.out.println(gs.levelString());
-			System.out.println(gs.inventoryString());
-			if (gs.hasWon()) {
-				System.out.println("WON THE GAME!!!");
-				break;
-			}
->>>>>>> master
-		}
-	}
-
 
 	//Does the actual action: 
 	public void doAction(Action act,Direction dir) {
-		this.level.playerDo();
+		throw new UnsupportedOperationException("Player actions net yet supported");
+		//this.level.playerDo();
 	}
 }

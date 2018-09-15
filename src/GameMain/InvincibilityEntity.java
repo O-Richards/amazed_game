@@ -25,10 +25,9 @@ public class InvincibilityEntity extends UsableEntity {
 	}
 
 	@Override
-	public void use(Direction playerDirection, Tile[][] adjTiles) {
-		
+	public Boolean use(Direction playerDirection, Tile[][] adjTiles) {
+		return false;
 	}
-	
 	
 
 }

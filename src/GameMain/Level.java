@@ -50,13 +50,6 @@ public class Level implements EntityMover {
 			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
 		}
 
-		
-		//Adds a pit tile to the map: 
-		this.map[0][2] = new PitTile(new Coord(0, 2));
-
-		//Creates an exit: 
-		this.map[10][10] = new ExitTile(new Coord(10,10));
-
 		//Create the player and place them on the map
 		Coord playerCoord = new Coord(1, 1);
 		this.player = new PlayerMobileEntity(new Coord(1, 1));
@@ -178,7 +171,7 @@ public class Level implements EntityMover {
 		//An arrayList of all adjacent Tiles: 
 		//Calls the appropriate action: 
 		if(act == Action.SWORD) {
-			this.player.useItem(new SwordUsableEntity(null), getTile(c));
+			//this.player.useItem(new SwordUsableEntity(this.player.getCoord()), getTile(c));
 		}else if(act == Action.ARROW){
 			//this.player.useItem(new ArrowUsableEntity(null), );
 		}else if(act == Action.BOMB) {

@@ -15,6 +15,12 @@ public abstract class UsableEntity extends Entity {
 		return Collision.MOVE;
 	}
 	
-	public abstract void use(Direction playerDirection, Tile[][] adjTiles);
-	public abstract int noOfUsesLeft();
+	/**
+	 * @param playerDirection Direction the player is facing
+	 * @param adjTiles The surrounding tiles
+	 * @return True if the item has uses left, false else.
+	 */
+	public Boolean use(Direction playerDirection, Tile[][] adjTiles) {
+		return true;
+	}
 }

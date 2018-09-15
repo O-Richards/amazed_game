@@ -12,17 +12,4 @@ public class KeyUsableEntity extends UsableEntity {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void use(Direction direction, Tile[][] adjTiles) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int noOfUsesLeft() {
-		// TODO Auto-generated method stub
-		return 0;//<- does a key have no of uses? 
-	}
-
 }
