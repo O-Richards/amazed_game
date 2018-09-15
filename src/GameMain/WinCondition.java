@@ -2,18 +2,18 @@ package GameMain;
 
 public class WinCondition {
 
-	private boolean won;
+	private WinType win;
 	
 	WinCondition() {
-		won = false;
+		win = WinType.FALSE;
 	}
 
-	public boolean hasWon() {
-		return won;
+	public WinType getWin() {
+		return win;
 	}
 
-	public void setWon(boolean won) {
-		this.won = won;
+	public void setWin(WinType win) {
+		this.win = win;
 	}
 	
 }

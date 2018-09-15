@@ -16,15 +16,6 @@ public class Level implements EntityMover {
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
-	// initialise win condition
-	private List<WinCondition> switchWinConditions;
-	private List<WinCondition> treasureWinConditions;
-	private List<WinCondition> exitsWinConditions;
-	private List<WinCondition> enemiesWinConditions;
-	// enable win condition
-	private boolean enableSwitchWinCondition;
-	private boolean enableTreasureWinCondition;
-	private boolean enableExitsWinCondition; 
 	private PlayerMobileEntity player;
 	private Integer tickNum = 0;
 
@@ -33,10 +24,6 @@ public class Level implements EntityMover {
 	}
 
 	public Level(int nRows, int nCols) {
-		this.switchWinConditions = new ArrayList<WinCondition>();
-		this.treasureWinConditions = new ArrayList<WinCondition>();
-		this.exitsWinConditions = new ArrayList<WinCondition>();
-		this.enemiesWinConditions = new ArrayList<WinCondition>();
 
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
