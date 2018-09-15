@@ -31,6 +31,10 @@ public class GameSystem {
 		this.level.placePit(coord);
 	}
 
+	public void placeExit(Coord coord) {
+		this.level.placeExit(coord);
+	}
+	
 	public void movePlayer(Direction dir) {
 		this.level.movePlayer(dir);
 	}

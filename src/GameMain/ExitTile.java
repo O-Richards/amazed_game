@@ -26,12 +26,10 @@ public class ExitTile extends Tile implements WinCondition{
 		return hitTile;
 	}
 
-
 	@Override
 	public void setUnsatisfied() {
 		
 	}
-
 
 	@Override
 	public void setSatisfied() {

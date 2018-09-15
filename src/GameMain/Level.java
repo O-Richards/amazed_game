@@ -7,8 +7,8 @@ package GameMain;
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
 	//Some constants
-	private static final int DEFAULT_NROWS = 30;
-	private static final int DEFAULT_NCOLS = 30;
+	private static final int DEFAULT_NROWS = 15;
+	private static final int DEFAULT_NCOLS = 15;
 
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
@@ -249,6 +249,11 @@ public class Level implements EntityMover {
 	public void placePit(Coord coord) {
 		PitTile newPit = new PitTile(coord);
 		this.map[coord.getX()][coord.getY()] = newPit;
+	}
+
+	public void placeExit(Coord coord) {
+		ExitTile newExit = new ExitTile(coord);
+		this.map[coord.getX()][coord.getY()] = newExit;
 	}
 	
 	@Override
