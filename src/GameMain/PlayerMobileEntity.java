@@ -40,17 +40,6 @@ public class PlayerMobileEntity extends MobileEntity {
 		}
 		return false;
 	}
-	/*
-	//Used for swords:
-	public boolean useSword(Tile[][] adjTiles) {
-		if (inventory.contains(INSTANCEOF)) {
-			item.use(this.getDirection(), adjTiles);
-			inventory.remove(item);
-			return true;
-		}
-		return false;
-	}*/
-
 	
 	
 	
