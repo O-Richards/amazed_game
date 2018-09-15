@@ -1,7 +1,5 @@
 package GameMain;
 
-import java.io.IOException;
-
 public class GameSystem {
 	//Consists of a map/ all entities coordinates etc.
 	private Level level;

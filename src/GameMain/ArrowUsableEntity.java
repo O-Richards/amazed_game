@@ -12,7 +12,7 @@ public class ArrowUsableEntity extends UsableEntity{
 		EntityTrackingMovement arrowMove = new EntityTrackingMovement(shootingArrow);
 		arrowMove.setDirection(direction);
 		shootingArrow.setMovement(arrowMove);
-		return true;
+		return false;
 	}
 
 	public String getSprite() {

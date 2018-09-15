@@ -22,6 +22,8 @@ public class GameController {
 		gs.placeEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
 		gs.placeEntity(new KeyUsableEntity(null), new Coord(2,5));
 		gs.placeEntity(new KeyUsableEntity(null), new Coord(7,8));
+		gs.placeEntity(new ArrowUsableEntity(null), new Coord(5,8));
+
 		gs.placeDoor(new Coord(4,1));
 		gs.setSwitchWinCondition(true);
 		gs.setTreasureWinCondition(true);
