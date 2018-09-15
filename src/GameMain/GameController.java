@@ -24,7 +24,7 @@ public class GameController {
 		System.out.println("Use W A S D keys to move me around");
 		System.out.println("Use WASD followed by keys J to fire arrows OR K to swing with sword");
 		System.out.println("Use keys L to place bomb");
-
+		System.out.println("Sprite Key: E = enemy P = player B = boulder $ = Treasure b = bomb H = hover potion S = sword @ = switch");
 		Scanner s = new Scanner(System.in);
 		while(true) {
 			String input = s.next();
