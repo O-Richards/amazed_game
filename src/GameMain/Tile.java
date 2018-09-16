@@ -74,6 +74,7 @@ public abstract class Tile implements Collidable {
 	public Collision collideExt(MobileEntity hitter, Collision col) {
 		return col;
 	}
+	
 	protected abstract void updateWinCondition();
 	
 	public Coord getCoord() {

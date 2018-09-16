@@ -27,7 +27,7 @@ public class Level implements EntityMover {
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
-				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.TREASURE));
+				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.WIN));
 			}
 		}
 		//Add bordering walls
