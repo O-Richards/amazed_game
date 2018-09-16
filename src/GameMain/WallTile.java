@@ -9,7 +9,7 @@ public class WallTile extends Tile {
 	}
 	
 	@Override
-	public Collision collide(MobileEntity hitter) {
+	public Collision collideExt(MobileEntity hitter, Collision col) {
 		return Collision.NOMOVE;
 	}
 

@@ -10,9 +10,13 @@ public class Level implements EntityMover {
 	private static final int DEFAULT_NROWS = 15;
 	private static final int DEFAULT_NCOLS = 15;
 
+	//Constants for getting adj tiles:
+	private static final int ADJ_NROWS = 2;
+	private static final int ADJ_NCOLS = 2;
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
+
 	private PlayerMobileEntity player;
 	private Integer tickNum = 0;
 	private WinSystem winSystem;
@@ -57,9 +61,7 @@ public class Level implements EntityMover {
 		return placementTile.addEntity(e);
 	}
 
-	
-	public void tick() {
-		this.tickNum++;
+	public void tick(int tickNum) {
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick(tickNum);
@@ -70,7 +72,7 @@ public class Level implements EntityMover {
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}
-	
+
 	/**
 	 * @precondtion c is a valid coord i.e. on the map
 	 * @param c The coord of the tile to fetch
@@ -79,7 +81,7 @@ public class Level implements EntityMover {
 	private Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
 	}
-	
+
 	/**
 	 * @precondtion c is a valid coord i.e. on the map
 	 * @param c The coord of the tile to fetch
@@ -95,7 +97,7 @@ public class Level implements EntityMover {
 			return this.getTile(wantedCoord);
 		}
 	}
-	
+
 	@Override
 	public String toString() {
 		//Could change this to be a string builder to avoid O(n^2)
@@ -121,15 +123,33 @@ public class Level implements EntityMover {
 	/**
 	 * @return True if the player has won the game, false else
 	 */
+	public void playerDo(Action act,Direction dir) {
+		//TODO: Add error checking
+		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
+		//this.player.useItem(act, dir);
+		//Sets the direction:
+		this.player.setDirection(dir);
+		//Calls the appropriate action:
+		if(act == Action.SWORD) {
+			this.player.useItem(new SwordUsableEntity(this.player.getCoord()));
+		}else if(act == Action.ARROW){
+			this.player.useItem(new ArrowUsableEntity(this.player.getCoord()));
+		}else if(act == Action.BOMB) {
+			this.player.useItem(new UnlitBombUsableEntity(this.player.getCoord()));
+		}else {
+			//Function to consume item?
+		}
+		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
+	}
+
 	public boolean hasWon() {
 		if (DEBUG) System.out.println(this.winSystem.getType());
 		return this.winSystem.getType() == WinType.WIN;
 	}
-	
+
 	public boolean hasLost() {
 		return !this.player.isAlive();
 	}
-	
 
 	/**
 	 * @precondition The coord has an empty tile
@@ -169,6 +189,11 @@ public class Level implements EntityMover {
 		this.map[coord.getX()][coord.getY()] = newExit;
 	}
 	
+	public void placeDoor(Coord coord) {
+		DoorTile newDoor = new DoorTile(coord, this.winSystem.newWinCondition(WinType.ENEMY));
+		this.map[coord.getX()][coord.getY()] = newDoor;
+	}
+
 	@Override
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
@@ -179,7 +204,7 @@ public class Level implements EntityMover {
 				return Collision.MOVE;
 			}
 		}
-		return Collision.NOMOVE;	
+		return Collision.NOMOVE;
 	}
 
 	@Override
@@ -188,12 +213,12 @@ public class Level implements EntityMover {
 		currentTile.removeEntity(e);
 	}
 
-	
+
 	/* (non-Javadoc)
 	 * @see GameMain.EntityMover#moveEntity(GameMain.MobileEntity, GameMain.Coord)
 	 * Move the entity one tile closer to the nextCoord
 	 */
-	
+
 	@Override
 	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
 		if (DEBUG) System.out.println("Level.moveEntity moving " + e.getSprite());
@@ -215,4 +240,8 @@ public class Level implements EntityMover {
 		this.winSystem.enableWinCondition(winType);
 	}
 
+	@Override
+	public void placeEntity(Entity entity, Coord c) {
+		this.addEntity(entity, c);
+	}
 }

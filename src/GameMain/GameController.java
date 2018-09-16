@@ -18,13 +18,14 @@ public class GameController {
 	}
 
 	//Get action: 
-	private void performAction(String input) {
+	private void performAction(Level l, String input) {
 		//Check if the player has made an actual movement: 
+		System.out.println("GameSystem.performAction perfoming " + input);
 		Direction playerDir = this.isAction(input);
 		if(playerDir != null) {
 			//Get the action the player has made: 
 			Action playerAction = this.action(input);		
-			// doAction(playerAction, playerDir);
+			l.playerDo(playerAction, playerDir);
 		}
 	}
 	
@@ -40,6 +41,7 @@ public class GameController {
 			default: return null;
 		}
 	}
+	
 	//Checks if it is an action input: 
 	private Direction isAction(String s) {
 		s = s.toLowerCase();
@@ -82,23 +84,40 @@ public class GameController {
 		l.enableWinCondition(WinType.SWITCH);
 		l.enableWinCondition(WinType.TREASURE);
 
+		l.placeEntity(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
+		l.placeEntity(new UnlitBombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
+		l.placeEntity(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
+		l.placeSwitch(new Coord(3, 3));
+		l.placeEntity(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
+		l.placeEntity(new TreasureEntity(new Coord(10, 2)), new Coord(10, 2));
+		l.placeWall(new Coord(4, 5));
+		l.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
+		l.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
+		l.placePit(new Coord(9,9));
+		l.placeEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
+		l.placeEntity(new KeyUsableEntity(null), new Coord(2,5));
+		l.placeEntity(new KeyUsableEntity(null), new Coord(7,8));
+		l.placeEntity(new ArrowUsableEntity(null), new Coord(5,8));
+
+		l.placeDoor(new Coord(4,1));
+		
 		System.out.println("Use W A S D keys to move me around");
 		System.out.println("Use WASD followed by keys J to fire arrows OR K to swing with sword");
 		System.out.println("Use keys L to place bomb");
 		System.out.println("Sprite Key: E = enemy P = player B = boulder $ = Treasure b = bomb H = hover potion S = sword @ = switch");
 		Scanner s = new Scanner(System.in);
+		Integer tickTime = 0;
 		while(true) {
-			String input = s.next();
+			String input = s.nextLine();
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
 			l.movePlayer(playerDir);
 
 			//System.out.println("Input Dir: " + playerDir);
 			//performs an action: 
-			gc.performAction(input); 
+			gc.performAction(l, input); 
 		
-			
-			l.tick();
+			l.tick(tickTime++);
 			System.out.println(l.toString());
 			System.out.println(l.inventoryString());
 			//l.checkInventory(); 

@@ -32,13 +32,13 @@ public class Coord {
 	 */
 	public Coord add(Direction dir) {
 		switch(dir) {
-		//Note, no need for breaks as we are always returning.
-		//Also, note change of direction due to the orientation of the map
-		case UP: return new Coord(this.getX() + 1, this.getY());
-		case DOWN: return new Coord(this.getX() - 1, this.getY());
-		case LEFT: return new Coord(this.getX(), this.getY() - 1);
-		case RIGHT: return new Coord(this.getX(), this.getY() + 1);
-		case CENTRE: return new Coord(this.getX(), this.getY());
+			//Note, no need for breaks as we are always returning.
+			//Also, note change of direction due to the orientation of the map
+			case UP: return new Coord(this.getX() + 1, this.getY());
+			case DOWN: return new Coord(this.getX() - 1, this.getY());
+			case LEFT: return new Coord(this.getX(), this.getY() - 1);
+			case RIGHT: return new Coord(this.getX(), this.getY() + 1);
+			case CENTRE: return new Coord(this.getX(), this.getY());
 		}
 		System.out.println("Coord.add(): unknown direction");
 		return new Coord(0, 0);

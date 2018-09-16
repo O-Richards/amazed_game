@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
 	private boolean alive = true;
+	private int keyCode = -1;
 	// private PlayerState playerState;
 	
 	PlayerMobileEntity(Coord coord) {
@@ -15,17 +16,24 @@ public class PlayerMobileEntity extends MobileEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//No idea how we're able to know the items name
-	public boolean useItem(UsableEntity item, Tile[][] adjTiles) {
-		/*if (inventory.contains(item)) {
-			item.use(this.getDirection(), adjTiles);
-			inventory.remove(item);
-			return true;
-		}*/
+	/* (non-Javadoc)
+	 * @see GameMain.MobileEntity#move()
+	 * The added functionality of the overriden method is that it updates the coords of all items in the inventory
+	 */
+	@Override
+	public void move() {
+		super.move();
+		for (UsableEntity item : this.inventory) {
+			item.setCoord(this.getCoord());
+		}
+	}
+	
+	public boolean useItem(UsableEntity item) {
+		 System.out.println("Player using " + item.getSprite());
 		//Looks through all elements of the arrayList to find if there is an item of that type:
 		for (UsableEntity inventoryItem : inventory) {
 			if(item.equals(inventoryItem)) {
-				Boolean hasUsesLeft = inventoryItem.use(getDirection(), adjTiles);
+				Boolean hasUsesLeft = inventoryItem.use(getDirection());
 				if (!hasUsesLeft) {
 					inventory.remove(inventoryItem);
 				}
@@ -99,6 +107,15 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	public boolean isAlive() {
 		return alive;
+	}
+	
+	public int getKeyCode() {
+		return keyCode;
+	}
+
+	public void setKeyCode(int keyCode) {
+		this.keyCode = keyCode;
+		System.out.println("keyCode = " + keyCode);
 	}
 	
 }

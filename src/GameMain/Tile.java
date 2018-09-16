@@ -8,7 +8,6 @@ public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
-	private Collision defaultCol;
 	
 	public Tile(Coord coord) {
 		this.coord = coord;
@@ -65,12 +64,16 @@ public abstract class Tile implements Collidable {
 				}
 			}
 		}
-		if (defaultCol == Collision.NOMOVE) {
-			col = defaultCol;
-		}
 		return collideExt(hitter, col);
 	}
 
+	
+	/**
+	 * Allows to extend the regular collide behavior and is implemented by the relevant subclasses
+	 * @param hitter
+	 * @param col
+	 * @return
+	 */
 	public Collision collideExt(MobileEntity hitter, Collision col) {
 		return col;
 	}

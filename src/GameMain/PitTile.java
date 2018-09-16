@@ -12,7 +12,7 @@ public class PitTile extends Tile {
 	@Override
 	public Collision collideExt(MobileEntity hitter, Collision col) {
 		if (hitter.canFly()) {
-			return Collision.MOVE;
+			return col;
 		} else {
 			hitter.killEnemy();
 			hitter.killPlayer();
