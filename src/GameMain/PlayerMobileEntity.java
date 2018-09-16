@@ -8,7 +8,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	private int keyCode = -1;
 	// private PlayerState playerState;
 	
-	PlayerMobileEntity(Coord coord) {
+	public PlayerMobileEntity(Coord coord) {
 		super(coord);
 		Movement movement = new PlayerMovement(this);
 		this.setMovement(movement);
