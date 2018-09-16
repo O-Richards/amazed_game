@@ -45,9 +45,4 @@ public abstract class TestingMover implements EntityMover {
 		return false;
 	}
 
-	@Override
-	public boolean checkSpecialTile(Coord c, Object obj) {
-		return false;
-	}	
-
 }
