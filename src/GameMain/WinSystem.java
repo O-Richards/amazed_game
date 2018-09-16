@@ -10,7 +10,7 @@ public class WinSystem implements WinCondition {
 	// enable win condition
 	private Set<WinType> winEnabled;
 	
-	WinSystem() {
+	public WinSystem() {
 		this.winConditions = new ArrayList<WinCondition>();
 		this.winEnabled = new HashSet<WinType>();
 	}

@@ -2,7 +2,7 @@ package GameMain;
 
 public class HoverPotion extends UsableEntity {
 
-	HoverPotion(Coord coord) {
+	public HoverPotion(Coord coord) {
 		super(coord);
 		// TODO Auto-generated constructor stub
 	}
