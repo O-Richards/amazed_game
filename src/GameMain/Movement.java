@@ -26,9 +26,26 @@ public interface Movement {
 		return true;
 	}
 	
+	/**
+	 * @return The current direction of movement
+	 */
 	public Direction getDirection();	
 	
+	/**
+	 * @param dir The direction of movement to be set
+	 */
 	public void setDirection(Direction dir);
+	
+	/**
+	 * @precondition the speed must be 0 or 1
+	 * @param speed The speed of the movement in tiles/tick
+	 */
+	public void setSpeed(Integer speed);
+	
+	/**
+	 * @return The current speed of movement
+	 */
+	public Integer getSpeed();
 	
 	public Coord getCoord();
 	
