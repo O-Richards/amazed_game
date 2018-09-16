@@ -1,8 +1,8 @@
 package GameTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import GameMain.Collision;
 import GameMain.Coord;
@@ -11,7 +11,7 @@ import GameMain.PlayerMobileEntity;
 import GameMain.WinSystem;
 import GameMain.WinType;
 
-class DoorTileTest {
+public class DoorTileTest {
 	//If we collide with a door tile without a key: 
 	PlayerMobileEntity p;
 	DoorTile d; 
@@ -19,7 +19,7 @@ class DoorTileTest {
 	WinSystem winSystem;
 
 	@Test
-	void initialConditions(){
+	public void initialConditions(){
 		c = new Coord(2, 2);
 		p = new PlayerMobileEntity(c);
 		winSystem = new WinSystem();
@@ -27,13 +27,13 @@ class DoorTileTest {
 	}
 	//If it collides without the right key: 
 	@Test
-	void testCollideExt() {
+	public void testCollideExt() {
 		initialConditions();
 		assertEquals(d.collideExt(p, Collision.NOMOVE), Collision.NOMOVE);
 	}
 
 	@Test
-	void testGetSprite() {
+	public void testGetSprite() {
 		initialConditions();
 		assertEquals(d.getSprite(), "D");
 	}

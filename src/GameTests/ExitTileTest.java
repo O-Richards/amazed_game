@@ -1,20 +1,20 @@
 package GameTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 
 import GameMain.*;
 
-class ExitTileTest {
+public class ExitTileTest {
 	PlayerMobileEntity p;
 	ExitTile E; 
 	Coord c ;
 	WinSystem winSystem;
 	//Initial conditions:
 	@Test
-	void initialConditions(){
+	public void initialConditions(){
 		c = new Coord(2, 2);
 		p = new PlayerMobileEntity(c);
 		winSystem = new WinSystem();
@@ -22,18 +22,18 @@ class ExitTileTest {
 	}
 	//Checks that the player wins upon exit: 
 	@Test
-	void testUpdateWinCondition() {
+	public void testUpdateWinCondition() {
 		
 	}
 
 	@Test
-	void testGetSprite() {
+	public void testGetSprite() {
 		initialConditions();
 		assertEquals(E.getSprite(), "!");
 	}
 
 	@Test
-	void testExitTile() {
+	public void testExitTile() {
 	}
 
 }

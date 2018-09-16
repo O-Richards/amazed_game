@@ -1,16 +1,13 @@
 package GameTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import java.text.ParsePosition;
-
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import GameMain.*;
 
 
-class HoverPotionTest {
+public class HoverPotionTest {
 	Coord c;
 	PlayerMobileEntity p;
 	HoverPotion h; 
@@ -27,19 +24,19 @@ class HoverPotionTest {
 	
 	//Returns a sprite of the Hover potion
 	@Test
-	void testGetSprite() {
+	public void testGetSprite() {
 		setUp();
 		assertEquals(h.getSprite(), new String("H"));
 	}
 	
 	@Test
-	void testUse() {
+	public void testUse() {
 		setUp();
 		assertFalse(h.use(d));
 	}
 
 	@Test
-	void testHoverPotion() {
+	public void testHoverPotion() {
 		setUp();
 		assertTrue(p.pickup(h));
 		p.setMovement(new HoverBonusMovement(p.getMovement()));

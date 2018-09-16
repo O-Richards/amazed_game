@@ -1,20 +1,20 @@
 package GameTests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import GameMain.Coord;
 import GameMain.Direction;
 
-class CoordTest {
+public class CoordTest {
 	
 	Coord c;
 	Integer x;
 	Integer y;
 
 	@Test
-	void testGetX() {
+	public void testGetX() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -22,7 +22,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testSetX() {
+	public void testSetX() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -31,7 +31,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testGetY() {
+	public void testGetY() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -39,7 +39,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testSetY() {
+	public void testSetY() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -48,7 +48,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testAdd() {
+	public void testAdd() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -63,7 +63,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testMinusX() {
+	public void testMinusX() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -72,7 +72,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testMinusY() {
+	public void testMinusY() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
@@ -81,7 +81,7 @@ class CoordTest {
 	}
 
 	@Test
-	void testEqualsObject() {
+	public void testEqualsObject() {
 		x = new Integer(5);
 		y = new Integer(8);
 		c = new Coord(x, y);
