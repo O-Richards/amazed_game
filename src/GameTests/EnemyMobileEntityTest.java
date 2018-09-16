@@ -4,46 +4,33 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import GameMain.Coord;
+import GameMain.EnemyMobileEntity;
+import GameMain.KeyUsableEntity;
+import GameMain.UsableEntity;
+
 public class EnemyMobileEntityTest {
 
-	@Test
-	public void testGetSprite() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMove() {
-		fail("Not yet implemented");
+	Coord c;
+	EnemyMobileEntity e;
+	UsableEntity u;
+	
+	public void setUp() {
+		c = new Coord(5, 8);
+		e = new EnemyMobileEntity(c);
+		u = new KeyUsableEntity(c);
 	}
 
 	@Test
 	public void testPickup() {
-		fail("Not yet implemented");
+		setUp();
+		assertFalse(e.pickup(u));
 	}
 
 	@Test
 	public void testKillPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testKillEnemy() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEnemyMobileEntityCoord() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testEnemyMobileEntityCoordLevel() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCollide() {
-		fail("Not yet implemented");
+		setUp();
+		assertFalse(e.killPlayer());
 	}
 
 }
