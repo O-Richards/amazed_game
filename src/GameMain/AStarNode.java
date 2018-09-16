@@ -74,26 +74,26 @@ public class AStarNode
 		// SHOULD WORK THOUGH
 		// Calls getCoord on the map position indicated and creates node with that coord
 		//make new nodes for tiles where MOVE is possible
-		if(map[curX+1][curY].collide(hitter)==Collision.MOVE&& 
-				!(map[curX+1][curY].collide(hitter)==Collision.NOMOVE)) {
+		if(map[curX+1][curY].collide(hitter, false)==Collision.MOVE&& 
+				!(map[curX+1][curY].collide(hitter, false)==Collision.NOMOVE)) {
 			AStarNode newNeighbour = new AStarNode(map[curX+1][curY].getCoord());
 			newNeighbour.setgCost(this.gCost+1);
 			neighbours.add(newNeighbour);
 		}
-		if(map[curX-1][curY].collide(hitter)==Collision.MOVE && 
-				!(map[curX-1][curY].collide(hitter)==Collision.NOMOVE )) {
+		if(map[curX-1][curY].collide(hitter, false)==Collision.MOVE && 
+				!(map[curX-1][curY].collide(hitter, false)==Collision.NOMOVE )) {
 			AStarNode newNeighbour = new AStarNode(map[curX-1][curY].getCoord());
 			newNeighbour.setgCost(this.gCost+1);
 			neighbours.add(newNeighbour);
 		}
-		if(map[curX][curY+1].collide(hitter)==Collision.MOVE&& 
-				!(map[curX][curY+1].collide(hitter)==Collision.NOMOVE)) {
+		if(map[curX][curY+1].collide(hitter, false)==Collision.MOVE&& 
+				!(map[curX][curY+1].collide(hitter, false)==Collision.NOMOVE)) {
 			AStarNode newNeighbour = new AStarNode(map[curX][curY+1].getCoord());
 			newNeighbour.setgCost(this.gCost+1);
 			neighbours.add(newNeighbour);
 		}
-		if(map[curX][curY-1].collide(hitter)==Collision.MOVE&& 
-				!(map[curX][curY-1].collide(hitter)==Collision.NOMOVE )) {
+		if(map[curX][curY-1].collide(hitter, false)==Collision.MOVE&& 
+				!(map[curX][curY-1].collide(hitter, false)==Collision.NOMOVE )) {
 			AStarNode newNeighbour = new AStarNode(map[curX][curY-1].getCoord());
 			newNeighbour.setgCost(this.gCost+1);
 			neighbours.add(newNeighbour);
