@@ -9,7 +9,7 @@ public class ArrowUsableEntity extends UsableEntity{
 		//Keeps looping until it kills something: 
 		Coord target = this.getCoord();
 		this.entityMover.placeEntity(new ArrowMobileEntity(target, direction), target);
-		return true;
+		return false;
 	}
 
 	public String getSprite() {
