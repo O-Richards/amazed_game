@@ -42,8 +42,10 @@ public class EnemyMobileEntity extends MobileEntity {
 	
 	@Override
 	public void move() {
-		Coord nextCoord = this.nextCoord();
-		if (DEBUG) System.out.println("Moving sprite " + this.getSprite() + " to " + nextCoord);
+		Coord goal = this.level.getPlayer().getCoord();
+		AStarSearch astar = new AStarSearch(this.level.getMap(),this,goal);
+		//hmm? pop first coord from list?
+		Coord nextCoord = astar.findPath().get(0);
 		this.entityMover.moveEntity(this, nextCoord);
 	}
 }
