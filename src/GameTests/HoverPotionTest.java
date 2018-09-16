@@ -2,28 +2,48 @@ package GameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.text.ParsePosition;
+
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-class HoverPotionTest {
+import GameMain.*;
 
+
+class HoverPotionTest {
+	Coord c;
+	PlayerMobileEntity p;
+	HoverPotion h; 
+ 	UsableEntity u;
+ 	Tile tile; 
+ 	Direction d; 
+	@Test
+	public void setUp() {
+		c = new Coord(5, 8);
+		d = Direction.DOWN;
+		p = new PlayerMobileEntity(c);
+		h = new HoverPotion(c);
+	}
+	
+	//Returns a sprite of the Hover potion
 	@Test
 	void testGetSprite() {
-		fail("Not yet implemented");
+		setUp();
+		assertEquals(h.getSprite(), new String("H"));
 	}
-
-	@Test
-	void testCollide() {
-		fail("Not yet implemented");
-	}
-
+	
 	@Test
 	void testUse() {
-		fail("Not yet implemented");
+		setUp();
+		assertFalse(h.use(d));
 	}
 
 	@Test
 	void testHoverPotion() {
-		fail("Not yet implemented");
+		setUp();
+		assertTrue(p.pickup(h));
+		p.setMovement(new HoverBonusMovement(p.getMovement()));
+		assertTrue(p.canFly());
 	}
 
 }
