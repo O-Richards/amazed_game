@@ -33,12 +33,4 @@ public interface EntityMover {
 	 * @return true if an enemy is killed , false otherwise
 	 */
 	public boolean killEnemyEntities(Coord c);
-	
-	/**
-	 * @param c The coord to check
-	 * @param obj the type of type to check
-	 * @return true if tile is a wall/edge tile
-	 */
-	boolean checkSpecialTile(Coord c, Object obj);
-
 }
