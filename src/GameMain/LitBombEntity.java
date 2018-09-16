@@ -1,5 +1,6 @@
 package GameMain;
 //GOING TO REMOVE THIS !@!@!@!@!@!@!
+/*
 public class LitBombEntity extends UsableEntity {
 	
 	LitBombEntity(Coord coord) {
@@ -32,4 +33,4 @@ public class LitBombEntity extends UsableEntity {
 		return null;
 	}
 
-}
+}*/

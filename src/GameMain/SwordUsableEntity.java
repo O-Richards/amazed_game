@@ -10,9 +10,8 @@ public class SwordUsableEntity extends UsableEntity {
 
 	@Override
 	public Boolean use(Direction direction) {
-		// Coordinates of current location: 
-		KillerEntity killEntity = new KillerEntity(this.getCoord(direction), false, true);
-		this.entityMover.placeEntity(killEntity, this.getCoord(direction));
+		// Kills enemies in the direction of given: 
+		this.entityMover.killEnemyEntities(this.getCoord(direction));
 		noOfUses --; 
 		return noOfUses > 0;
 	}

@@ -1,21 +1,20 @@
 package GameMain;
 
 public class BoulderMobileEntity extends MobileEntity {
-
+	//Creating a boulder entity: 
 	BoulderMobileEntity(Coord coord) {
 		super(coord);
 		this.setMovement(new BoulderMovement(this));
 		this.setDirection(Direction.CENTRE);
 	}
 
+	//Handles Collisions between the boulder and what it hits: 
 	@Override
 	public Collision collide(MobileEntity hitter) {
 		if (hitter == this) return Collision.NOMOVE;
 		if (hitter.pushEntity()) {
 			this.move(this.getCoord(hitter.getDirection()));
-		} else {
-		}
-		//We return nomove, so the first keystroke pushes the boulder, the next the player
+		} 
 		return Collision.NOMOVE;
 	}
 	

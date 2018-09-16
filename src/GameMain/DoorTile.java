@@ -12,10 +12,11 @@ public class DoorTile extends Tile {
 		this.enemyCondition = enemyCondition;
 		this.doorCode = DoorTile.generateDoorCode();
 	}
+	
 	private static synchronized int generateDoorCode() {
 		return doorCodeGenerator++;
 	}
-
+	
 	@Override
 	protected void updateWinCondition() {
 		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {

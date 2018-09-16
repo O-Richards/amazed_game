@@ -1,16 +1,23 @@
 package GameMain;
 
 public class ArrowUsableEntity extends UsableEntity{
-
+	private Coord currentTargetCoord; 
 	public ArrowUsableEntity(Coord coord) {
 		super(coord);
 	}
 	@Override
 	public Boolean use(Direction direction) {
-		ShootingArrowMobileEntity shootingArrow = new ShootingArrowMobileEntity(getCoord());
-		EntityTrackingMovement arrowMove = new EntityTrackingMovement(shootingArrow);
-		arrowMove.setDirection(direction);
-		shootingArrow.setMovement(arrowMove);
+		//Keeps looping until it kills something: 
+		currentTargetCoord = new Coord(this.getCoord().getX(), this.getCoord().getY());
+		
+		while(!this.entityMover.killEnemyEntities(currentTargetCoord)) {
+			//if the next coordinate is valid 
+			currentTargetCoord = currentTargetCoord.add(direction);
+			//Still horrible: should change? 
+			if(this.entityMover.checkSpecialTile(currentTargetCoord, new WallTile(currentTargetCoord))) {
+				break;
+			}
+		}
 		return false;
 	}
 

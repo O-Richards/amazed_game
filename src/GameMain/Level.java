@@ -14,9 +14,6 @@ public class Level implements EntityMover {
 	private static final int DEFAULT_NROWS = 15;
 	private static final int DEFAULT_NCOLS = 15;
 
-	//Constants for getting adj tiles:
-	private static final int ADJ_NROWS = 2;
-	private static final int ADJ_NCOLS = 2;
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
@@ -40,12 +37,12 @@ public class Level implements EntityMover {
 		}
 		//Add bordering walls
 		for (int row = 0; row < nRows + 2; row++) {
-			this.map[row][0] = new EdgeTile(new Coord(row, 0));
-			this.map[row][nRows + 1] = new EdgeTile(new Coord(row, nRows + 1));
+			this.map[row][0] = new WallTile(new Coord(row, 0));
+			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1));
 		}
 		for (int col = 0; col < nCols + 2; col++) {
-			this.map[0][col] = new EdgeTile(new Coord(0, col));
-			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
+			this.map[0][col] = new WallTile(new Coord(0, col));
+			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
 		}
 
 		//Create the player and place them on the map
@@ -68,9 +65,10 @@ public class Level implements EntityMover {
 	public void tick() {
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
-				this.map[row][col].tick(tickNum++);
+				this.map[row][col].tick(tickNum);
 			}
 		}
+		this.tickNum++;
 	}
 
 	public PlayerMobileEntity getPlayer() {
@@ -172,7 +170,6 @@ public class Level implements EntityMover {
 		return this.player.inventoryString();
 	}
 
-
 	/**
 	 * @precondition The coord has an empty tile
 	 * @precondition The coord is valid
@@ -255,5 +252,21 @@ public class Level implements EntityMover {
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
 		this.addEntity(entity, c);
+	}
+
+	/* (non-Javadoc)
+	 * @see GameMain.EntityMover#killEnemyEntities(GameMain.Coord)
+	 * Remove all enemy entities on a tile
+	 */
+	@Override
+	public boolean killEnemyEntities(Coord c) {
+		return (this.getTile(c).killEnemyEntities()); 
+		
+	}
+
+	//Checks if a Coord hits a wall or an edge tile: 
+	@Override
+	public boolean checkSpecialTile(Coord c,Object obj) {
+		return (this.getTile(c).equals(obj));
 	}
 }
