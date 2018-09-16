@@ -4,21 +4,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class ExitTileTest {
 
+import GameMain.*;
+
+class ExitTileTest {
+	PlayerMobileEntity p;
+	ExitTile E; 
+	Coord c ;
+	WinSystem winSystem;
+	//Initial conditions:
+	@Test
+	void initialConditions(){
+		c = new Coord(2, 2);
+		p = new PlayerMobileEntity(c);
+		winSystem = new WinSystem();
+		E = new ExitTile(c, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.EXIT));
+	}
+	//Checks that the player wins upon exit: 
 	@Test
 	void testUpdateWinCondition() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	void testGetSprite() {
-		fail("Not yet implemented");
+		initialConditions();
+		assertEquals(E.getSprite(), "!");
 	}
 
 	@Test
 	void testExitTile() {
-		fail("Not yet implemented");
 	}
 
 }
