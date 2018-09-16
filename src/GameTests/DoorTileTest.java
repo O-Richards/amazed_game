@@ -32,8 +32,6 @@ class DoorTileTest {
 		assertEquals(d.collideExt(p, Collision.NOMOVE), Collision.NOMOVE);
 	}
 	
-	
-	
 	@Test
 	void testUpdateWinCondition() {
 		fail("Not yet implemented");

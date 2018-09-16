@@ -13,8 +13,7 @@ public class ArrowMobileEntityTest {
 	ArrowMobileEntity a;
 	UsableEntity u;
 	
-	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		c = new Coord(5, 8);
 		d = Direction.DOWN;
 		p = new PlayerMobileEntity(c);
@@ -23,16 +22,19 @@ public class ArrowMobileEntityTest {
 	
 	@Test
 	public void testPickup() {
+		setUp();
 		assertFalse(a.pickup(u));
 	}
 
 	@Test
 	public void testKillPlayer() {
+		setUp();
 		assertFalse(a.killEnemy());
 	}
 
 	@Test
 	public void testKillEnemy() {
+		setUp();
 		assertFalse(a.killPlayer());
 	}
 
