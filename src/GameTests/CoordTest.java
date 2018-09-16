@@ -59,22 +59,19 @@ class CoordTest {
 
 	@Test
 	void testMinusX() {
-		fail("Not yet implemented");
+		Coord c2 = new Coord(0, 0);
+		assertEquals(c.minusX(c2), Direction.DOWN);
 	}
 
 	@Test
 	void testMinusY() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testToString() {
-		fail("Not yet implemented");
+		Coord c2 = new Coord(0, 0);
+		assertEquals(c.minusY(c2), Direction.DOWN);
 	}
 
 	@Test
 	void testEqualsObject() {
-		fail("Not yet implemented");
+		assertEquals(c, c);
 	}
 
 }
