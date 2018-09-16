@@ -32,17 +32,17 @@ public class Level implements EntityMover {
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
-				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.WIN));
+				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.WIN));
 			}
 		}
 		//Add bordering walls
 		for (int row = 0; row < nRows + 2; row++) {
-			this.map[row][0] = new WallTile(new Coord(row, 0));
-			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1));
+			this.map[row][0] = new WallTile(new Coord(row, 0), this.winSystem.newWinCondition(WinType.WIN));
+			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1), this.winSystem.newWinCondition(WinType.WIN));
 		}
 		for (int col = 0; col < nCols + 2; col++) {
-			this.map[0][col] = new WallTile(new Coord(0, col));
-			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
+			this.map[0][col] = new WallTile(new Coord(0, col), this.winSystem.newWinCondition(WinType.WIN));
+			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col), this.winSystem.newWinCondition(WinType.WIN));
 		}
 
 		//Create the player and place them on the map
@@ -161,7 +161,7 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.SWITCH));
+		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.SWITCH));
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
@@ -176,22 +176,22 @@ public class Level implements EntityMover {
 	 * @param coord
 	 */
 	public void placeWall(Coord coord) {
-		WallTile newWall = new WallTile(coord);
+		WallTile newWall = new WallTile(coord, this.winSystem.newWinCondition(WinType.WIN));
 		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 
 	public void placePit(Coord coord) {
-		PitTile newPit = new PitTile(coord);
+		PitTile newPit = new PitTile(coord, this.winSystem.newWinCondition(WinType.WIN));
 		this.map[coord.getX()][coord.getY()] = newPit;
 	}
 
 	public void placeExit(Coord coord) {
-		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.EXIT));
+		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.EXIT));
 		this.map[coord.getX()][coord.getY()] = newExit;
 	}
 	
 	public void placeDoor(Coord coord) {
-		DoorTile newDoor = new DoorTile(coord, this.winSystem.newWinCondition(WinType.ENEMY));
+		DoorTile newDoor = new DoorTile(coord, this.winSystem.newWinCondition(WinType.WIN));
 		this.map[coord.getX()][coord.getY()] = newDoor;
 	}
 
@@ -199,7 +199,7 @@ public class Level implements EntityMover {
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
 		if (nextTile != null) {
-			if (nextTile.collide(e) == Collision.MOVE) {
+			if (nextTile.collide(e, true) == Collision.MOVE) {
 				e.removeFromTile();
 				nextTile.addEntity(e);
 				return Collision.MOVE;

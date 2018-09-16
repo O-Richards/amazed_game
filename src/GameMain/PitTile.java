@@ -2,8 +2,8 @@ package GameMain;
 
 public class PitTile extends Tile {
 
-	public PitTile(Coord coord) {
-		super(coord);
+	public PitTile(Coord coord, WinCondition enemyCondition) {
+		super(coord, enemyCondition);
 		// TODO Auto-generated constructor stub
 	}
 	

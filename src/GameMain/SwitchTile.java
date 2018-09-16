@@ -2,26 +2,19 @@ package GameMain;
 
 public class SwitchTile extends Tile {
 	
-	private WinCondition enemyCondition;
-	private WinCondition winCondition;
+	private WinCondition switchCondition;
 	
 	public SwitchTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition) {
-		super(coord);
-		this.winCondition = winCondition;
-		this.enemyCondition = enemyCondition;
+		super(coord, enemyCondition);
+		this.switchCondition = winCondition;
 	}
 
 	@Override
 	protected void updateWinCondition() {
 		if (this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
-			this.winCondition.setType(WinType.WIN);
+			this.switchCondition.setType(WinType.WIN);
 		} else {
-			this.winCondition.setType(WinType.SWITCH);
-		}
-		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
-			this.enemyCondition.setType(WinType.ENEMY);
-		} else {
-			this.enemyCondition.setType(WinType.WIN);
+			this.switchCondition.setType(WinType.SWITCH);
 		}
 	}
 	

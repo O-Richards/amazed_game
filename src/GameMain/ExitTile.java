@@ -2,13 +2,11 @@ package GameMain;
 
 public class ExitTile extends Tile {
 	
-	private WinCondition enemyCondition;
 	private WinCondition winCondition;
 
 	public ExitTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition) {
-		super(coord);
+		super(coord, enemyCondition);
 		this.winCondition = winCondition;
-		this.enemyCondition = enemyCondition;
 	}
 
 	@Override
@@ -19,11 +17,6 @@ public class ExitTile extends Tile {
 			this.winCondition.setType(WinType.WIN);
 		} else {
 			this.winCondition.setType(WinType.EXIT);
-		}
-		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
-			this.enemyCondition.setType(WinType.ENEMY);
-		} else {
-			this.enemyCondition.setType(WinType.WIN);
 		}
 	}
 	

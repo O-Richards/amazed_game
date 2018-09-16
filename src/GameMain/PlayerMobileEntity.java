@@ -61,7 +61,8 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 	
 	@Override
-	public Collision collide(MobileEntity hitter) {
+	public Collision collide(MobileEntity hitter, boolean recall) {
+		if (recall) hitter.collide(this, false);
 		return Collision.MOVE;
 	}
 
