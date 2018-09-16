@@ -43,8 +43,7 @@ public class GameController {
 			//System.out.println("Input Dir: " + playerDir);
 			//performs an action: 
 			gs.performAction(input); 
-		
-			
+			//Updates all entities: 
 			gs.tick();
 			System.out.println(gs.levelString());
 			System.out.println(gs.inventoryString());

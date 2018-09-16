@@ -76,7 +76,10 @@ public class GameSystem {
 	}
 	
 
-    //Direction inputs:
+    /**
+     * @param s a string which   
+     * @return an enum of the direction wanted
+     */
 	public Direction strToDirection(String s) {
 		s = s.toLowerCase();
 
@@ -89,7 +92,10 @@ public class GameSystem {
 		}
 	}
 
-	//Get action: 
+	/**
+	 * Executes the action:
+	 * @param input a string which contains the direction and action
+	 */
 	public void performAction(String input) {
 		//Check if the player has made an actual movement: 
 		System.out.println("GameSystem.performAction perfoming " + input);
@@ -101,7 +107,11 @@ public class GameSystem {
 		}
 	}
 	
-	//Gets the action: i.e. represented by the last char: 
+	/**
+	 * Given a string gets the last character of the string to do the action: 
+	 * @param s the string we want to get the action from
+	 * @return returns the action we want
+	 */
 	public Action action(String s) {
 		s = s.toLowerCase();
 		char temp = s.charAt(s.length()-1);
@@ -113,7 +123,11 @@ public class GameSystem {
 			default: return null;
 		}
 	}
-	//Checks if it is an action input: 
+	/**
+	 * Checks if it is an action input:
+	 * @param Given a string
+	 * @return the direction the string is giving: 
+	 */
 	public Direction isAction(String s) {
 		s = s.toLowerCase();
 		switch(s) {
@@ -132,7 +146,10 @@ public class GameSystem {
 			default: return null;
 		}
 	}
-	//Does the actual action: 
+	/**Does the actual action: 
+	 * @param act the action to do: 
+	 * @param dir the direction to execute the action: 
+	 */
 	public void doAction(Action act,Direction dir) {
 		this.level.playerDo(act, dir);
 	}
