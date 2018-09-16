@@ -10,9 +10,11 @@ public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
+	private WinCondition enemyCondition;
 	
-	public Tile(Coord coord) {
+	public Tile(Coord coord, WinCondition enemyCondition) {
 		this.coord = coord;
+		this.enemyCondition = enemyCondition;
 		this.entities = new ArrayList<Entity>();
 	}
 	
@@ -35,12 +37,14 @@ public abstract class Tile implements Collidable {
 		entities.add(entity);
 		entity.setCoord(this.getCoord());
 		updateWinCondition();
+		updateEnemyCondition();
 		return true;
 	}
 	
 	public void removeEntity(Entity entity) {
 		entities.remove(entity);
 		updateWinCondition();
+		updateEnemyCondition();
 	}
 
 	/**
@@ -78,6 +82,14 @@ public abstract class Tile implements Collidable {
 	 */
 	public Collision collideExt(MobileEntity hitter, Collision col) {
 		return col;
+	}
+	
+	protected void updateEnemyCondition() {
+		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
+			this.enemyCondition.setType(WinType.ENEMY);
+		} else {
+			this.enemyCondition.setType(WinType.WIN);
+		}
 	}
 	
 	protected abstract void updateWinCondition();

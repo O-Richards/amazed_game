@@ -2,14 +2,12 @@ package GameMain;
 
 public class DoorTile extends Tile {
 	
-	private WinCondition enemyCondition;
 	private static int doorCodeGenerator = 1;
 	private int doorCode;
 	private boolean open = false;
 
 	public DoorTile(Coord coord, WinCondition enemyCondition) {
-		super(coord);
-		this.enemyCondition = enemyCondition;
+		super(coord, enemyCondition);
 		this.doorCode = DoorTile.generateDoorCode();
 	}
 	
@@ -19,11 +17,6 @@ public class DoorTile extends Tile {
 	
 	@Override
 	protected void updateWinCondition() {
-		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
-			this.enemyCondition.setType(WinType.ENEMY);
-		} else {
-			this.enemyCondition.setType(WinType.WIN);
-		}
 	}
 
 	@Override

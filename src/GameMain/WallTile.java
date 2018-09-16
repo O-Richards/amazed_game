@@ -2,8 +2,8 @@ package GameMain;
 
 public class WallTile extends Tile {
 
-	public WallTile(Coord coord) {
-		super(coord);
+	public WallTile(Coord coord, WinCondition enemyCondition) {
+		super(coord, enemyCondition);
 	}
 	
 	@Override
