@@ -4,91 +4,50 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import GameMain.BombUsableEntity;
+import GameMain.Coord;
+import GameMain.Direction;
+import GameMain.EnemyMobileEntity;
+import GameMain.EntityTrackingMovement;
+import GameMain.UsableEntity;
+
 public class MobileEntityTest {
 
-	@Test
-	public void testTick() {
-		fail("Not yet implemented");
+	EnemyMobileEntity e;
+	UsableEntity u;
+	EntityTrackingMovement m;
+	
+	public void setup() {
+		Coord c = new Coord(5, 8);
+		e = new EnemyMobileEntity(c);
+		u = new BombUsableEntity(c);
+		m = new EntityTrackingMovement(e);
 	}
-
+	
 	@Test
-	public void testMobileEntityCoord() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMobileEntityCoordMovement() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMove() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMoveCoord() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetDirection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetDirection() {
-		fail("Not yet implemented");
+	public void testSetGetDirection() {
+		setup();
+		e.setDirection(Direction.DOWN);
+		assertEquals(e.getDirection(), Direction.DOWN);
 	}
 
 	@Test
 	public void testPickup() {
-		fail("Not yet implemented");
+		setup();
+		assertFalse(e.pickup(u));
 	}
 
 	@Test
 	public void testCanFly() {
-		fail("Not yet implemented");
+		setup();
+		assertFalse(e.canFly());
 	}
 
 	@Test
-	public void testPushEntity() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetKeyCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetKeyCode() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testNextCoord() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetMovement() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetMovement() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testKillPlayer() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testKillEnemy() {
-		fail("Not yet implemented");
+	public void testSetGetMovement() {
+		setup();
+		e.setMovement(m);
+		assertEquals(m, e.getMovement());
 	}
 
 }
