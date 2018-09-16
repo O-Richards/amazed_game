@@ -12,7 +12,6 @@ public class AStarNode
 	
 	public AStarNode(Coord coord) {
 		this.coord = coord;
-		//System.out.println(coord.toString());
 	}
 	
 	public int getfCost() {
@@ -60,12 +59,10 @@ public class AStarNode
 	}
 	/**
 	Gets the neighbours by checking adjacent squares in the map and creating new nodes
-	for tiles that are adjacent and legal to traverse. Removes need to make directed graph before
+	for tiles that are adjacent and legal to traverse. No need to make directed graph before
 	making AStarSearch.
 	*/
 	public List<AStarNode> getNeighbors(Tile[][] map, MobileEntity hitter) {
-		//System.out.println("Neighbours of:");
-		//System.out.println(this.getCoord().toString());
 		int curX = this.getCoord().getX();
 		int curY = this.getCoord().getY();
 		List<AStarNode> neighbours = new ArrayList<AStarNode>();

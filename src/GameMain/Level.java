@@ -71,6 +71,9 @@ public class Level implements EntityMover {
 		this.tickNum++;
 	}
 
+	public Tile[][] getMap() {
+		return this.map;
+	}
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}
@@ -262,11 +265,5 @@ public class Level implements EntityMover {
 	public boolean killEnemyEntities(Coord c) {
 		return (this.getTile(c).killEnemyEntities()); 
 		
-	}
-
-	//Checks if a Coord hits a wall or an edge tile: 
-	@Override
-	public boolean checkSpecialTile(Coord c,Object obj) {
-		return (this.getTile(c).equals(obj));
 	}
 }

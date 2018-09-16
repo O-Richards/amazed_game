@@ -2,10 +2,15 @@ package GameMain;
 
 public class EnemyMobileEntity extends MobileEntity {
 
+	private Level level;
 	EnemyMobileEntity(Coord coord) {
 		super(coord);
 	}
-	
+	EnemyMobileEntity(Coord coord, Level level) {
+		super(coord);
+		this.level = level;
+
+	}
 	@Override
 	public Collision collide(MobileEntity hitter, boolean recall) {
 		hitter.killPlayer();
@@ -34,5 +39,13 @@ public class EnemyMobileEntity extends MobileEntity {
 	public String getSprite() {
 		return "E";
 	}
-
+	
+	@Override
+	public void move() {
+		Coord goal = this.level.getPlayer().getCoord();
+		AStarSearch astar = new AStarSearch(this.level.getMap(),this,goal);
+		//hmm? pop first coord from list?
+		Coord nextCoord = astar.findPath().get(0);
+		this.entityMover.moveEntity(this, nextCoord);
+	}
 }
