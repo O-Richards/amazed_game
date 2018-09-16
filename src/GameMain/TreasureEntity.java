@@ -2,7 +2,7 @@ package GameMain;
 
 public class TreasureEntity extends UsableEntity {
 	
-	TreasureEntity(Coord coord) {
+	public TreasureEntity(Coord coord) {
 		super(coord);
 	}
 	
