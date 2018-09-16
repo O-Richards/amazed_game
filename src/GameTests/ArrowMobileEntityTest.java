@@ -10,7 +10,6 @@ public class ArrowMobileEntityTest {
 	Coord c;
 	Direction d;
 	PlayerMobileEntity p;
-	EnemyMobileEntity e;
 	ArrowMobileEntity a;
 	UsableEntity u;
 	
@@ -19,7 +18,6 @@ public class ArrowMobileEntityTest {
 		c = new Coord(5, 8);
 		d = Direction.DOWN;
 		p = new PlayerMobileEntity(c);
-		e = new EnemyMobileEntity(c);
 		a = new ArrowMobileEntity(c, d);
 	}
 	
@@ -36,13 +34,6 @@ public class ArrowMobileEntityTest {
 	@Test
 	public void testKillEnemy() {
 		assertFalse(a.killPlayer());
-	}
-
-	@Test
-	public void testCollide() {
-		a.collide(p, true);
-		assertTrue(p.isAlive());
-		a.collide(e, true);
 	}
 
 }
