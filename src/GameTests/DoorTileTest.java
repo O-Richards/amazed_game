@@ -31,20 +31,10 @@ class DoorTileTest {
 		initialConditions();
 		assertEquals(d.collideExt(p, Collision.NOMOVE), Collision.NOMOVE);
 	}
-	
-	@Test
-	void testUpdateWinCondition() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetSprite() {
-		fail("Not yet implemented");
+		initialConditions();
+		assertEquals(d.getSprite(), "D");
 	}
-
-	@Test
-	void testDoorTile() {
-		fail("Not yet implemented");
-	}
-
 }
