@@ -12,8 +12,6 @@ public class UnlitBombUsableEntity extends UsableEntity {
 		this.entityMover.killEnemyEntities(this.getCoord(Direction.DOWN));
 		this.entityMover.killEnemyEntities(this.getCoord(Direction.LEFT));
 		this.entityMover.killEnemyEntities(this.getCoord(Direction.RIGHT));		
-		//litBomb.getSprite();
-		//litBomb.explode();
 		return false;
 	}
 
