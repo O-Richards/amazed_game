@@ -2,6 +2,10 @@ package GameTests;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.awt.List;
+import java.util.HashMap;
+import java.util.Map;
+
 import GameMain.Collision;
 import GameMain.Coord;
 import GameMain.Direction;
@@ -18,7 +22,6 @@ public abstract class TestingMover implements EntityMover {
 	@Override
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		moveEntity(e, e.getCoord(dir));
-		fail("Should not move entities");
 		return null;
 	}
 
