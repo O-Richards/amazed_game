@@ -10,5 +10,5 @@ public interface Collidable {
 	 * @param hitter The mobile entity that is walking into the collidable object
 	 * @return MOVE if the movement is possible, NOMOVE if the movement is blocked
 	 */
-	public Collision collide(MobileEntity hitter);
+	public Collision collide(MobileEntity hitter, boolean recall);
 }

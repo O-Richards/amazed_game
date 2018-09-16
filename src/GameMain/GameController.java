@@ -73,7 +73,7 @@ public class GameController {
 		l.enableWinCondition(WinType.TREASURE);
 
 		l.placeEntity(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
-		l.placeEntity(new UnlitBombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
+		l.placeEntity(new BombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
 		l.placeEntity(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
 		l.placeSwitch(new Coord(3, 3));
 		l.placeEntity(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
@@ -83,7 +83,7 @@ public class GameController {
 		l.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
 		l.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
 		l.placePit(new Coord(9,9));
-		l.placeEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
+		l.placeEntity(new EnemyMobileEntity(new Coord(15, 15),l), new Coord(15, 15));
 		l.placeEntity(new KeyUsableEntity(null), new Coord(2,5));
 		l.placeEntity(new KeyUsableEntity(null), new Coord(7,8));
 		l.placeEntity(new ArrowUsableEntity(null), new Coord(5,8));
