@@ -20,7 +20,7 @@ import GameMain.WinSystem;
 import GameMain.WinType;
 import junit.framework.TestCase;
 
-public class TileTest extends TestCase {
+public class testTile extends TestCase {
 	List<Tile> tiles;
 	Tile switchTile;
 	Tile exitTile;
@@ -57,29 +57,35 @@ public class TileTest extends TestCase {
 		}
 	}
 
-	@Test
-	public void testAddEntity() {
-		fail("Not yet implemented");
-	}
+
 
 	@Test
 	public void testRemoveEntity() {
-		fail("Not yet implemented");
-	}
+		Entity entity = new HoverPotion(tileCoord)l
+		for (Tile t : tiles) {
+			t.addEntity(entity);
+			assertTrue(t.containsEntity(entity));
+			t.removeEntity(entity);
+			assertFalse(t.containsEntity(entity));
 
+		}	
+	}
+/*
 	@Test
 	public void testCollide() {
 		fail("Not yet implemented");
 	}
-
+*/
+/*
 	@Test
 	public void testCollideExt() {
 		fail("Not yet implemented");
 	}
-
+*/
 	@Test
 	public void testUpdateEnemyCondition() {
-		fail("Not yet implemented");
+		Entity entity = new EnemyMobileEntity(tileCoord)l
+
 	}
 
 	@Test
@@ -100,6 +106,14 @@ public class TileTest extends TestCase {
 	@Test
 	public void testKillEnemyEntities() {
 		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testAddEntity() {
+		Entity entity = new HoverPotion(tileCoord)l
+		for (Tile t : tiles) {
+			t.addEntity(entity);
+			assertTrue(t.containsEntity(entity));
 	}
 
 }
