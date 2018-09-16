@@ -27,6 +27,7 @@ public class WinSystem implements WinCondition {
 				if (type == cond.getType()) {
 					// System.out.println(type);
 					win = false;
+					break;
 				}
 			}
 			// if an enabled win type is not in win state amongst all win conditions, the game is won
