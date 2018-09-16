@@ -2,7 +2,7 @@ package GameMain;
 
 public class InvincibilityEntity extends UsableEntity {
 
-	InvincibilityEntity(Coord coord) {
+	public InvincibilityEntity(Coord coord) {
 		super(coord);
 		// TODO Auto-generated constructor stub
 	}

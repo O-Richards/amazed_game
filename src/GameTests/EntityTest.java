@@ -4,51 +4,45 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import GameMain.Coord;
+import GameMain.Direction;
+import GameMain.Entity;
+import GameMain.InvincibilityEntity;
+
 public class EntityTest {
 
-	@Test
-	public void testEntity() {
-		fail("Not yet implemented");
+	private Entity e;
+	private Coord c;
+	
+	public void setup() {
+		c = new Coord(5, 8);
+		e = new InvincibilityEntity(c);
 	}
 
 	@Test
 	public void testGetCoord() {
-		fail("Not yet implemented");
+		setup();
+		assertEquals(c, e.getCoord());
 	}
 
 	@Test
 	public void testGetCoordDirection() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testTick() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveFromTile() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetSprite() {
-		fail("Not yet implemented");
+		setup();
+		Coord tmp = c.add(Direction.DOWN);
+		assertEquals(tmp, e.getCoord(Direction.DOWN));
 	}
 
 	@Test
 	public void testSetCoord() {
-		fail("Not yet implemented");
+		setup();
+		Coord tmp = c.add(Direction.DOWN);
+		e.setCoord(tmp);
+		assertEquals(tmp, e.getCoord());
 	}
 
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		setup();
+		assertEquals(e, new InvincibilityEntity(c));
 	}
-
-	@Test
-	public void testSetEntityMover() {
-		fail("Not yet implemented");
-	}
-
 }
