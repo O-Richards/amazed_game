@@ -4,6 +4,10 @@ package GameMain;
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column
  */
+/**
+ * @author Alexander
+ *
+ */
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
 	//Some constants
@@ -236,6 +240,14 @@ public class Level implements EntityMover {
 		return result;
 	}
 
+	
+	/**
+	 * @precondition To enable SWITCH : must be switch on map
+	 * @precondition To enable EXIT : must be exit on map
+	 * @precondition To enable ENEMY : must be ENEMY on map
+	 * @precondition To enable TREASURE : must be treasure on map
+	 * @param winType
+	 */
 	public void enableWinCondition(WinType winType) {
 		this.winSystem.enableWinCondition(winType);
 	}

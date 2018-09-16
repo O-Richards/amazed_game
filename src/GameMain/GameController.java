@@ -66,19 +66,6 @@ public class GameController {
 		GameController gc = new GameController();
 		Level l = new Level();
 		//Setup template maze
-		l.addEntity(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
-		l.addEntity(new UnlitBombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
-		l.addEntity(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
-		l.placeSwitch(new Coord(3, 3));
-		l.addEntity(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
-		l.addEntity(new TreasureEntity(new Coord(10, 2)), new Coord(10, 2));
-		l.placeWall(new Coord(4, 5));
-		l.addEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
-		l.addEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
-		l.placePit(new Coord(9,9));
-		l.placeExit(new Coord(11,1));
-		l.addEntity(new EnemyMobileEntity(new Coord(7, 7)), new Coord(7, 7));
-		
 		l.enableWinCondition(WinType.EXIT);
 		l.enableWinCondition(WinType.ENEMY);
 		l.enableWinCondition(WinType.SWITCH);
@@ -91,6 +78,7 @@ public class GameController {
 		l.placeEntity(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
 		l.placeEntity(new TreasureEntity(new Coord(10, 2)), new Coord(10, 2));
 		l.placeWall(new Coord(4, 5));
+		l.placeExit(new Coord(6, 1));
 		l.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
 		l.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
 		l.placePit(new Coord(9,9));
