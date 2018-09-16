@@ -1,20 +1,16 @@
 package GameMain;
 
+/**
+ * Applying composite pattern to win conditions
+ */
 public interface WinCondition {
 	/**
-	 * Returns true if the player has won, False otherwise
-	 * @return
+	 * @return True if the win condition has been satisfied. false else
 	 */
-	public boolean hasWon();
+	public WinType getType();
+	
 	/**
-	 * 
+	 * @param satisfied sets the win condition as satisfied by winType
 	 */
-	public void setUnsatisfied();
-
-	public void setSatisfied();
-	/**
-	 * 
-	 * @param tickNum
-	 */
-	public void tick(Integer tickNum);
+	public void setType(WinType winType);
 }

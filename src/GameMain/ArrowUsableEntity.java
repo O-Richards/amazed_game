@@ -17,9 +17,6 @@ public class ArrowUsableEntity extends UsableEntity{
 			if(this.entityMover.checkSpecialTile(currentTargetCoord, new WallTile(currentTargetCoord))) {
 				break;
 			}
-			if(this.entityMover.checkSpecialTile(currentTargetCoord, new EdgeTile(currentTargetCoord))) {
-				break;
-			}
 		}
 		return false;
 	}

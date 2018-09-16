@@ -24,6 +24,7 @@ public abstract class Entity implements Collidable {
 		return this.getCoord().add(dir);
 	}
 	
+	// only used by mobileEntities to get movement rate
 	public void tick(Integer tickNum) {
 	
 	}
@@ -47,7 +48,6 @@ public abstract class Entity implements Collidable {
 		Entity e = (Entity)obj;
 		if (e.getCoord().equals(this.getCoord())) return true;
 		return false;
-		
 	}
 
 	public void setEntityMover(EntityMover entityMover) {

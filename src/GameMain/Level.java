@@ -4,50 +4,45 @@ package GameMain;
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column
  */
+/**
+ * @author Alexander
+ *
+ */
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
 	//Some constants
-	private static final int DEFAULT_NROWS = 30;
-	private static final int DEFAULT_NCOLS = 30;
+	private static final int DEFAULT_NROWS = 15;
+	private static final int DEFAULT_NCOLS = 15;
 
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
-	private WinCondition switchWinCondition;
-	private WinCondition treasureWinCondition;
-	private boolean hasSwitchWinCondition;
-	private boolean hasTreasureWinCondition;
-	private boolean hasExistWinCondition;
-	private PlayerMobileEntity player;
 
-	private int noTreasure;
+	private PlayerMobileEntity player;
+	private Integer tickNum = 0;
+	private WinSystem winSystem;
 
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
 	}
 
 	public Level(int nRows, int nCols) {
-		this.switchWinCondition = new SwitchWinCondition();
-		this.treasureWinCondition = new TreasureWinCondition();
-		this.hasSwitchWinCondition = false;
-
-		this.noTreasure = 0;
-
+		this.winSystem = new WinSystem();
 		//Adds a border of wall tiles to the map.
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
-				this.map[row][col] = new Tile(new Coord(row, col));
+				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.WIN));
 			}
 		}
 		//Add bordering walls
 		for (int row = 0; row < nRows + 2; row++) {
-			this.map[row][0] = new EdgeTile(new Coord(row, 0));
-			this.map[row][nRows + 1] = new EdgeTile(new Coord(row, nRows + 1));
+			this.map[row][0] = new WallTile(new Coord(row, 0));
+			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1));
 		}
 		for (int col = 0; col < nCols + 2; col++) {
-			this.map[0][col] = new EdgeTile(new Coord(0, col));
-			this.map[nRows + 1][col] = new EdgeTile(new Coord(nRows + 1, col));
+			this.map[0][col] = new WallTile(new Coord(0, col));
+			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col));
 		}
 
 		//Create the player and place them on the map
@@ -56,7 +51,6 @@ public class Level implements EntityMover {
 		this.addEntity(player, playerCoord);
 	}
 
-
 	/**
 	 * @param e The entity to be added
 	 * @param c The coord to add the entity to
@@ -64,28 +58,22 @@ public class Level implements EntityMover {
 	 */
 	public boolean addEntity(Entity e, Coord c) {
 		Tile placementTile = getTile(c);
-		if (e instanceof TreasureEntity) {
-			noTreasure++;
-		}
 		e.setEntityMover(this);
 		return placementTile.addEntity(e);
 	}
 
-
-	public void tick(int tickNum) {
-		this.switchWinCondition.tick(tickNum);
-		this.treasureWinCondition.tick(tickNum);
+	public void tick() {
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick(tickNum);
 			}
 		}
+		this.tickNum++;
 	}
 
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}
-
 
 	/**
 	 * @precondtion c is a valid coord i.e. on the map
@@ -134,6 +122,9 @@ public class Level implements EntityMover {
 
 	}
 
+	/**
+	 * @return True if the player has won the game, false else
+	 */
 	public void playerDo(Action act,Direction dir) {
 		//TODO: Add error checking
 		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
@@ -151,45 +142,16 @@ public class Level implements EntityMover {
 			//Function to consume item?
 		}
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
-
 	}
 
-
 	public boolean hasWon() {
-		if (DEBUG) {
-			System.out.print("Level.hasWon() called: Player has " + player.noTreasure());
-			System.out.print(" treasure, treasure win condition is " + hasTreasureWinCondition);
-			System.out.print("Total treasure is " + this.noTreasure + "\n");
-		}
-		boolean ret = false;
-		if (this.hasSwitchWinCondition)  {
-			ret |= this.switchWinCondition.hasWon();
-		}
-		if (this.hasTreasureWinCondition) {
-			if (player.noTreasure() == noTreasure) {
-				treasureWinCondition.setSatisfied();
-				ret |= this.treasureWinCondition.hasWon();
-			}
-		}
-		//Doesn't need to have switches or treasure?
-		if(this.hasExistWinCondition) {
-			ret = true;
-		}
-		return ret;
+		if (DEBUG) System.out.println(this.winSystem.getType());
+		return this.winSystem.getType() == WinType.WIN;
 	}
 
 	public boolean hasLost() {
 		return !this.player.isAlive();
 	}
-
-	public void setTreasureWinCondition(Boolean status) {
-		this.hasTreasureWinCondition = status;
-	}
-
-	public void setSwitchWinCondition(Boolean status) {
-		this.hasSwitchWinCondition = status;
-	}
-
 
 	/**
 	 * @precondition The coord has an empty tile
@@ -199,7 +161,7 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.switchWinCondition);
+		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.SWITCH));
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
@@ -207,7 +169,6 @@ public class Level implements EntityMover {
 	public String inventoryString() {
 		return this.player.inventoryString();
 	}
-
 
 	/**
 	 * @precondition The coord has an empty tile
@@ -224,8 +185,13 @@ public class Level implements EntityMover {
 		this.map[coord.getX()][coord.getY()] = newPit;
 	}
 
+	public void placeExit(Coord coord) {
+		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.ENEMY), this.winSystem.newWinCondition(WinType.EXIT));
+		this.map[coord.getX()][coord.getY()] = newExit;
+	}
+	
 	public void placeDoor(Coord coord) {
-		DoorTile newDoor = new DoorTile(coord);
+		DoorTile newDoor = new DoorTile(coord, this.winSystem.newWinCondition(WinType.ENEMY));
 		this.map[coord.getX()][coord.getY()] = newDoor;
 	}
 
@@ -271,6 +237,18 @@ public class Level implements EntityMover {
 		return result;
 	}
 
+	
+	/**
+	 * @precondition To enable SWITCH : must be switch on map
+	 * @precondition To enable EXIT : must be exit on map
+	 * @precondition To enable ENEMY : must be ENEMY on map
+	 * @precondition To enable TREASURE : must be treasure on map
+	 * @param winType
+	 */
+	public void enableWinCondition(WinType winType) {
+		this.winSystem.enableWinCondition(winType);
+	}
+
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
 		this.addEntity(entity, c);
@@ -291,9 +269,4 @@ public class Level implements EntityMover {
 	public boolean checkSpecialTile(Coord c,Object obj) {
 		return (this.getTile(c).equals(obj));
 	}
-
-
-
-
-
 }

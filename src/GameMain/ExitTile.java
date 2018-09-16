@@ -1,46 +1,33 @@
 package GameMain;
 
-public class ExitTile extends Tile implements WinCondition{
+public class ExitTile extends Tile {
 	
-	//private WinCondition winCondition;<-??
-	private boolean hitTile; 
+	private WinCondition enemyCondition;
+	private WinCondition winCondition;
 
-	public ExitTile(Coord coord) {
+	public ExitTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition) {
 		super(coord);
-		hitTile = false; 
-		// TODO Auto-generated constructor stub
+		this.winCondition = winCondition;
+		this.enemyCondition = enemyCondition;
 	}
 
-	
-	public Collision collide(MobileEntity hitter) {
-		hitTile = true; 
-		return Collision.MOVE; 
+	@Override
+	protected void updateWinCondition() {
+		// TODO Auto-generated method stub
+		System.out.println(this.containsEntity(new PlayerMobileEntity(this.getCoord())));
+		if (this.containsEntity(new PlayerMobileEntity(this.getCoord()))) {
+			this.winCondition.setType(WinType.WIN);
+		} else {
+			this.winCondition.setType(WinType.EXIT);
+		}
+		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
+			this.enemyCondition.setType(WinType.ENEMY);
+		} else {
+			this.enemyCondition.setType(WinType.WIN);
+		}
 	}
+	
 	public String getSprite() {
 		return "!";
-	}
-
-
-	@Override
-	public boolean hasWon() {
-		return hitTile;
-	}
-
-
-	@Override
-	public void setUnsatisfied() {
-		
-	}
-
-
-	@Override
-	public void setSatisfied() {
-		
-	}
-
-	@Override
-	public void tick(Integer tickNum) {
-		// TODO Auto-generated method stub
-		
 	}
 }

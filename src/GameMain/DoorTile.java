@@ -1,25 +1,36 @@
 package GameMain;
 
 public class DoorTile extends Tile {
-
+	
+	private WinCondition enemyCondition;
 	private static int doorCodeGenerator = 1;
+	private int doorCode;
+	private boolean open = false;
+
+	public DoorTile(Coord coord, WinCondition enemyCondition) {
+		super(coord);
+		this.enemyCondition = enemyCondition;
+		this.doorCode = DoorTile.generateDoorCode();
+	}
 	
 	private static synchronized int generateDoorCode() {
 		return doorCodeGenerator++;
 	}
-
-	private int doorCode;
-	//Generates a door tile: 
-	public DoorTile(Coord coord) {
-		super(coord);
-		this.doorCode = DoorTile.generateDoorCode();
-		// TODO Auto-generated constructor stub
+	
+	@Override
+	protected void updateWinCondition() {
+		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
+			this.enemyCondition.setType(WinType.ENEMY);
+		} else {
+			this.enemyCondition.setType(WinType.WIN);
+		}
 	}
 
 	@Override
-	public Collision collide(MobileEntity hitter) {
-		if (hitter.getKeyCode() == doorCode) {
-			return Collision.MOVE;
+	public Collision collideExt(MobileEntity hitter, Collision col) {
+		if (hitter.getKeyCode() == doorCode || open == true) {
+			open = true;
+			return col;
 		} else {
 			return Collision.NOMOVE;
 		}

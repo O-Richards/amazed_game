@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
+//import com.sun.org.apache.bcel.internal.generic.NEW;
 
-public class Tile implements Collidable {
+public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
 	private ArrayList<Entity> entities;
@@ -32,14 +32,15 @@ public class Tile implements Collidable {
 	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
 	 */
 	public boolean addEntity(Entity entity) {
-		this.entities.add(entity);
+		entities.add(entity);
 		entity.setCoord(this.getCoord());
-		//If this were any other tile e.g. WallTile, you would not add the entity, then return false
+		updateWinCondition();
 		return true;
 	}
 	
 	public void removeEntity(Entity entity) {
-		this.entities.remove(entity);
+		entities.remove(entity);
+		updateWinCondition();
 	}
 
 	/**
@@ -51,24 +52,36 @@ public class Tile implements Collidable {
 	 * @param hitter The mobile entity that is walking into the collidable object
 	 * @return MOVE if the movement is possible, NOMOVE if the movement is blocked
 	 */
+	
 	@Override
 	public Collision collide(MobileEntity hitter) {			
-		if (DEBUG) System.out.println("Checking collisions on Tile: " + this.getCoord());
 		Collision col = Collision.MOVE;
-		List<Entity> entitiesCopy = new ArrayList<>(this.entities);
-		for (Entity e : entitiesCopy) {
+		List<Entity> entities = this.getEntities();
+		for (Entity e : entities) {
 			//Prevent self collisions
 			if (e != hitter) {
-				if (DEBUG) System.out.println("Checking collisions with " + e.getSprite() + " by " + hitter.getSprite());
 				Collision tmpCol = e.collide(hitter);
 				if (tmpCol != Collision.MOVE) {
 					col = tmpCol;
 				}
 			}
 		}
-		return col;
+		return collideExt(hitter, col);
 	}
 
+	
+	/**
+	 * Allows to extend the regular collide behavior and is implemented by the relevant subclasses
+	 * @param hitter
+	 * @param col
+	 * @return
+	 */
+	public Collision collideExt(MobileEntity hitter, Collision col) {
+		return col;
+	}
+	
+	protected abstract void updateWinCondition();
+	
 	public Coord getCoord() {
 		return this.coord;
 	}
@@ -103,6 +116,8 @@ public class Tile implements Collidable {
 		return false;
 	}
 	
-	
+	private List<Entity> getEntities() {
+		return new ArrayList<>(entities);
+	}	
 	
 }
