@@ -25,7 +25,7 @@ class testBoulderUsableEntityTest {
 			//For this test we do not need to override any methods
 		};
 		
-		BoulderMobileEntity boulder = BoulderMobileEntity(new Coord(1, 1));
+		BoulderMobileEntity boulder = new BoulderMobileEntity(new Coord(1, 1));
 		boulder.setEntityMover(mover);
 		boulder.tick(0);
 	}
@@ -45,7 +45,7 @@ class testBoulderUsableEntityTest {
 		PlayerMobileEntity player = new PlayerMobileEntity(new Coord(3, 1));
 		player.setDirection(Direction.DOWN);
 		boulder.setEntityMover(mover);
-		boulder.collide(player);
+		boulder.collide(player, false);
 		boulder.tick(0);
 		verify(mover).moveEntity(boulder, new Coord(1, 1));
 	}
