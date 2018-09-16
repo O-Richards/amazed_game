@@ -8,7 +8,7 @@ public class ArrowUsableEntity extends UsableEntity{
 	@Override
 	public Boolean use(Direction direction) {
 		//Keeps looping until it kills something: 
-		currentTargetCoord = new Coord(this.getCoord().getX(), this.getCoord().getY());
+		currentTargetCoord = this.getCoord();
 		
 		while(!this.entityMover.killEnemyEntities(currentTargetCoord)) {
 			//if the next coordinate is valid 
