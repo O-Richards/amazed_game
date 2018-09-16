@@ -1,40 +1,41 @@
 package GameMain;
 
-public class ShootingArrowMobileEntity extends MobileEntity {
-
-	ShootingArrowMobileEntity(Coord coord) {
+public class ArrowMobileEntity extends MobileEntity {
+	
+	ArrowMobileEntity(Coord coord, Direction dir) {
 		super(coord);
-		// TODO Auto-generated constructor stub
+		this.setDirection(dir);
 	}
 
 	@Override
 	public Collision collide(MobileEntity hitter, boolean recall) {
 		hitter.killEnemy();
-		this.entityMover.removeEntity(this, this.getCoord());
-		if (recall) hitter.collide(this, false);
+		this.removeFromTile();
 		return Collision.MOVE;
 	}
 
 	@Override
 	public boolean pickup(UsableEntity item) {
+		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	@Override
 	public boolean killPlayer() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean killEnemy() {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
-
 	@Override
 	public String getSprite() {
-		return "*";
+		// TODO Auto-generated method stub
+		return ">";
 	}
-
 
 }

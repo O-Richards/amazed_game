@@ -8,7 +8,7 @@ public class HoverPotion extends UsableEntity {
 	}
 
 	@Override
-	public Collision collide(MobileEntity hitter) {
+	public Collision collide(MobileEntity hitter, boolean recall) {
 		if (hitter.pickup(this)) {
 			this.removeFromTile();
 			//Applying decorator pattern to the player's movements

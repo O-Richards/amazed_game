@@ -58,13 +58,13 @@ public abstract class Tile implements Collidable {
 	 */
 	
 	@Override
-	public Collision collide(MobileEntity hitter) {			
+	public Collision collide(MobileEntity hitter, boolean recall) {			
 		Collision col = Collision.MOVE;
 		List<Entity> entities = this.getEntities();
 		for (Entity e : entities) {
 			//Prevent self collisions
 			if (e != hitter) {
-				Collision tmpCol = e.collide(hitter);
+				Collision tmpCol = e.collide(hitter, recall);
 				if (tmpCol != Collision.MOVE) {
 					col = tmpCol;
 				}

@@ -7,9 +7,9 @@ public class EnemyMobileEntity extends MobileEntity {
 	}
 	
 	@Override
-	public Collision collide(MobileEntity hitter) {
+	public Collision collide(MobileEntity hitter, boolean recall) {
 		hitter.killPlayer();
-		// TODO Auto-generated method stub
+		if (recall) hitter.collide(this, false);
 		return Collision.MOVE;
 	}
 

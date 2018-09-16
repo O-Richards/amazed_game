@@ -199,7 +199,7 @@ public class Level implements EntityMover {
 	public Collision moveEntity(MobileEntity e, Direction dir) {
 		Tile nextTile = this.getTile(e.getCoord(), dir);
 		if (nextTile != null) {
-			if (nextTile.collide(e) == Collision.MOVE) {
+			if (nextTile.collide(e, true) == Collision.MOVE) {
 				e.removeFromTile();
 				nextTile.addEntity(e);
 				return Collision.MOVE;
