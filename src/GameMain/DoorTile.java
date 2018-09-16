@@ -28,6 +28,7 @@ public class DoorTile extends Tile {
 			return Collision.NOMOVE;
 		}
 	}
+	
 
 	@Override
 	public String getSprite() {
