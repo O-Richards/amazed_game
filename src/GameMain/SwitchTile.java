@@ -14,9 +14,9 @@ public class SwitchTile extends Tile {
 	@Override
 	protected void updateWinCondition() {
 		if (this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
-			this.winCondition.setType(WinType.SWITCH);
-		} else {
 			this.winCondition.setType(WinType.WIN);
+		} else {
+			this.winCondition.setType(WinType.SWITCH);
 		}
 		if (this.containsEntity(new EnemyMobileEntity(this.getCoord()))) {
 			this.enemyCondition.setType(WinType.ENEMY);
