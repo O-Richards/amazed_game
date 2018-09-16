@@ -66,6 +66,7 @@ public class GameController {
 		GameController gc = new GameController();
 		Level l = new Level();
 		//Setup template maze
+
 		l.enableWinCondition(WinType.EXIT);
 		l.enableWinCondition(WinType.ENEMY);
 		l.enableWinCondition(WinType.SWITCH);

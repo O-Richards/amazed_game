@@ -2,11 +2,14 @@ package GameMain;
 
 public abstract class MovementBonus implements Movement {
 	private Movement baseMovement;
-	
+	/**
+	 * 
+	 * @param baseMovement
+	 */
 	public MovementBonus(Movement baseMovement) {
 		this.baseMovement = baseMovement;
 	}
-	
+
 	@Override
 	public boolean canFly() {
 		return this.baseMovement.canFly();

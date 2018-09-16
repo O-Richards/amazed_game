@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//import com.sun.org.apache.bcel.internal.generic.NEW;
+
 public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
@@ -94,6 +96,26 @@ public abstract class Tile implements Collidable {
 		}
 	}
 
+	/**
+	 * Remove all enemy entities from the tile
+	 * Use this for bombs, swords etc.
+	 * @Return true if an item is removed from tile false otherwise: 
+	 */
+	public boolean killEnemyEntities() {
+		Iterator<Entity> it = this.entities.iterator();
+		System.out.println(getCoord()+ "Current Coordinates");
+		while (it.hasNext()) {
+			Entity e = it.next();
+			//Removes the enemy: 
+			if (e.equals(new EnemyMobileEntity(this.getCoord()))) {
+				it.remove();
+				return true; 
+			}
+
+		}
+		return false;
+	}
+	
 	private List<Entity> getEntities() {
 		return new ArrayList<>(entities);
 	}	

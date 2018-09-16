@@ -4,7 +4,6 @@ public abstract class UsableEntity extends Entity {
 
 	UsableEntity(Coord coord) {
 		super(coord);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
