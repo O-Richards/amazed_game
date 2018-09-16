@@ -1,7 +1,5 @@
 package GameMain;
 
-import java.util.List;
-
 public class WallTile extends Tile {
 
 	public WallTile(Coord coord) {

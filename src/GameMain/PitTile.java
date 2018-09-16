@@ -1,7 +1,5 @@
 package GameMain;
 
-import java.util.List;
-
 public class PitTile extends Tile {
 
 	public PitTile(Coord coord) {
