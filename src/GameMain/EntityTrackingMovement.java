@@ -2,8 +2,8 @@ package GameMain;
 
 public class EntityTrackingMovement implements Movement {
 	private static final boolean DEBUG = false;
-	Direction direction = Direction.CENTRE;
-	MobileEntity entity;
+	private Direction direction = Direction.CENTRE;
+	private MobileEntity entity;
 
 	public EntityTrackingMovement(MobileEntity entity) {
 		super();
