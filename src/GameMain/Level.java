@@ -71,6 +71,9 @@ public class Level implements EntityMover {
 		this.tickNum++;
 	}
 
+	public Tile[][] getMap() {
+		return this.map;
+	}
 	public PlayerMobileEntity getPlayer() {
 		return player;
 	}

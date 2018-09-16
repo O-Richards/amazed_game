@@ -32,17 +32,17 @@ public class AStarSearch
 	 * @param node is goal node to create path from
 	 * @return
 	 */
-	protected List<AStarNode> makePath(AStarNode node) {
-		LinkedList<AStarNode> path = new LinkedList<AStarNode>();
+	protected List<Coord> makePath(AStarNode node) {
+		LinkedList<Coord> path = new LinkedList<Coord>();
 		while(node.getParent() != null) {
-			path.addFirst(node);
+			path.addFirst(node.getCoord());
 			node = node.getParent();
 		}
 		
 		return path;
 	}
 	
-	public List<AStarNode> findPath() {
+	public List<Coord> findPath() {
 		
 		Comparator<AStarNode> nodeComparator = new Comparator<AStarNode>() {
 			@Override

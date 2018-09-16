@@ -83,7 +83,7 @@ public class GameController {
 		l.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
 		l.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
 		l.placePit(new Coord(9,9));
-		l.placeEntity(new EnemyMobileEntity(new Coord(7, 7),l), new Coord(7, 7));
+		l.placeEntity(new EnemyMobileEntity(new Coord(15, 15),l), new Coord(15, 15));
 		l.placeEntity(new KeyUsableEntity(null), new Coord(2,5));
 		l.placeEntity(new KeyUsableEntity(null), new Coord(7,8));
 		l.placeEntity(new ArrowUsableEntity(null), new Coord(5,8));
