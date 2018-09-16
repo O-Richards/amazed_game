@@ -4,6 +4,7 @@ public class EntityTrackingMovement implements Movement {
 	private static final boolean DEBUG = false;
 	Direction direction = Direction.CENTRE;
 	MobileEntity entity;
+	Integer speed = 0;
 
 	public EntityTrackingMovement(MobileEntity entity) {
 		super();
@@ -11,7 +12,11 @@ public class EntityTrackingMovement implements Movement {
 	}
 	
 	public Coord nextCoord() {
-		return this.getCoord(this.getDirection());
+		if (this.getSpeed() > 0) {
+			return this.getCoord(this.getDirection());
+		} else {
+			return this.getCoord();
+		}
 	}
 
 	public Direction getDirection() {
@@ -31,6 +36,16 @@ public class EntityTrackingMovement implements Movement {
 	@Override
 	public Coord getCoord(Direction dir) {
 		return this.entity.getCoord(dir);
+	}
+
+	@Override
+	public void setSpeed(Integer speed) {
+		this.speed = speed;
+	}
+
+	@Override
+	public Integer getSpeed() {
+		return this.speed;
 	}
 
 }

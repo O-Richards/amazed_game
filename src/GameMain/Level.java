@@ -114,23 +114,31 @@ public class Level implements EntityMover {
 		return ret;
 	}
 
-	public void movePlayer(Direction dir) {
+	/**
+	 * @param dir the direction the player is moving in
+	 */
+	public void setPlayerDirection(Direction dir) {
 		//TODO: Add error checking
 		if (DEBUG) System.out.println("System setting player dir: " + dir);
 		this.player.setDirection(dir);
 		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
 
 	}
+	
+	/**
+	 * @param speed the speed the direction is moving at (in direction set by setPlayerDirection)
+	 */
+	public void setPlayerSpeed(Integer speed) {
+		this.player.setSpeed(speed);
+	}
 
 	/**
 	 * @return True if the player has won the game, false else
 	 */
-	public void playerDo(Action act,Direction dir) {
+	public void useItem(Action act) {
 		//TODO: Add error checking
-		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
-		//this.player.useItem(act, dir);
+		if (DEBUG) System.out.println("Setting up action " + act);
 		//Sets the direction:
-		this.player.setDirection(dir);
 		//Calls the appropriate action:
 		if(act == Action.SWORD) {
 			this.player.useItem(new SwordUsableEntity(this.player.getCoord()));
@@ -269,4 +277,7 @@ public class Level implements EntityMover {
 	public boolean checkSpecialTile(Coord c,Object obj) {
 		return (this.getTile(c).equals(obj));
 	}
+
+
+
 }

@@ -16,7 +16,6 @@ public class PlayerMovement extends EntityTrackingMovement {
 	@Override
 	public Coord nextCoord() {
 		Coord ret = super.nextCoord();
-		this.setDirection(Direction.CENTRE);
 		return ret;
 	}
 

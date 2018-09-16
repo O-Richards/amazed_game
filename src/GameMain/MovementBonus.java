@@ -50,6 +50,17 @@ public abstract class MovementBonus implements Movement {
 	public Coord getCoord(Direction dir) {
 		return this.baseMovement.getCoord(dir);
 	}
+
+	@Override
+	public void setSpeed(Integer speed) {
+		this.baseMovement.setSpeed(speed);
+		
+	}
+
+	@Override
+	public Integer getSpeed() {
+		return this.baseMovement.getSpeed();
+	}
 	
 	
 }

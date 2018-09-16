@@ -38,10 +38,12 @@ public abstract class MobileEntity extends Entity implements Movement {
 		this.entityMover.moveEntity(this, c);
 	}
 	
+	@Override
 	public Direction getDirection() {
 		return this.movement.getDirection();
 	}	
 	
+	@Override
 	public void setDirection(Direction dir) {
 		this.movement.setDirection(dir);
 		if (DEBUG) System.out.println("Setting MobileEntity " + this.getSprite() + "Direction to " + this.getDirection());
@@ -49,7 +51,8 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	//TODO: Pull this into movement interface
 	public abstract boolean pickup(UsableEntity item);
-
+	
+	@Override
 	public boolean canFly() {
 		return this.movement.canFly();
 	}	
@@ -57,9 +60,26 @@ public abstract class MobileEntity extends Entity implements Movement {
 	/**
 	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
 	 */
+	@Override
 	public boolean pushEntity() {
 		return this.movement.pushEntity();
 	}
+	
+	@Override
+	public Coord nextCoord() {
+		return this.movement.nextCoord();
+	}
+	
+	@Override
+	public void setSpeed(Integer speed) {
+		this.movement.setSpeed(speed);
+	}
+
+	@Override
+	public Integer getSpeed() {
+		return this.movement.getSpeed();
+	}
+
 	
 	public void setKeyCode(int keyCode) {
 		keyCode = -1;
@@ -68,10 +88,8 @@ public abstract class MobileEntity extends Entity implements Movement {
 	public int getKeyCode() {
 		return -1;
 	}
+	
 
-	public Coord nextCoord() {
-		return this.movement.nextCoord();
-	}
 	
 	public void setMovement(Movement movement) {
 		this.movement = movement;

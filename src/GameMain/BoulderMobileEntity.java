@@ -9,6 +9,7 @@ public class BoulderMobileEntity extends MobileEntity {
 	}
 
 	//Handles Collisions between the boulder and what it hits: 
+	//Moves the boulder in here
 	@Override
 	public Collision collide(MobileEntity hitter) {
 		if (hitter == this) return Collision.NOMOVE;
