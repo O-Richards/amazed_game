@@ -308,8 +308,8 @@ public class Level implements EntityMover {
 	 * Remove all enemy entities on a tile
 	 */
 	@Override
-	public void killEnemyEntities(Coord c) {
-		this.getTile(c).killEnemyEntities();
+	public boolean killEnemyEntities(Coord c) {
+		return (this.getTile(c).killEnemyEntities()); 
 		
 	}
 

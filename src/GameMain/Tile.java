@@ -84,15 +84,18 @@ public class Tile implements Collidable {
 	/**
 	 * Remove all enemy entities from the tile
 	 * Use this for bombs, swords etc.
+	 * @Return true if an item is removed from tile false otherwise: 
 	 */
-	public void killEnemyEntities() {
+	public boolean killEnemyEntities() {
 		Iterator<Entity> it = this.entities.iterator();
 		while (it.hasNext()) {
 			Entity e = it.next();
 			if (e.equals(new EnemyMobileEntity(this.getCoord()))) {
 				it.remove();
+				return true; 
 			}
 		}
+		return false;
 	}
 
 	
