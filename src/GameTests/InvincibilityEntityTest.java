@@ -4,26 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import GameMain.Coord;
+import GameMain.Direction;
+import GameMain.InvincibilityEntity;
+
 public class InvincibilityEntityTest {
 
-	@Test
-	public void testGetSprite() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testCollide() {
-		fail("Not yet implemented");
-	}
-
+	InvincibilityEntity i;
+	
 	@Test
 	public void testUse() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testInvincibilityEntity() {
-		fail("Not yet implemented");
+		i = new InvincibilityEntity(new Coord(5, 8));
+		assertFalse(i.use(Direction.UP));
 	}
 
 }
