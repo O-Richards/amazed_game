@@ -1,9 +1,9 @@
 package GameMain;
 
-public class Coord {
+public class Coord {	
 	private Integer x;
 	private Integer y;
-	
+	//Coordinates of the current position: 
 	Coord(Integer x, Integer y) {
 		this.x = x;
 		this.y = y;

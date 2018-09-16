@@ -9,7 +9,7 @@ public class DoorTile extends Tile {
 	}
 
 	private int doorCode;
-	
+	//Generates a door tile: 
 	public DoorTile(Coord coord) {
 		super(coord);
 		this.doorCode = DoorTile.generateDoorCode();

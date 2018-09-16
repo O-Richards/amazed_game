@@ -1,9 +1,9 @@
 package GameMain;
 
 public class EdgeTile extends Tile {
+	//Placed on run, prevent the player from moving off: 
 	public EdgeTile(Coord coord) {
 		super(coord);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -15,5 +15,13 @@ public class EdgeTile extends Tile {
 		return "|";
 	}
 	
-	
+	@Override
+	 public boolean equals(Object obj) {
+			if (obj == null) return false;
+			if (obj == this) return true;
+			if (obj.getClass() != this.getClass()) return false;
+			Tile t = (EdgeTile)obj;
+			if (t.getCoord().equals(this.getCoord())) return true;
+			return false;
+	 }
 }

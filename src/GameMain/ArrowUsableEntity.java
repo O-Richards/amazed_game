@@ -7,39 +7,23 @@ public class ArrowUsableEntity extends UsableEntity{
 	}
 	@Override
 	public Boolean use(Direction direction) {
-		/*
-		ShootingArrowMobileEntity shootingArrow = new ShootingArrowMobileEntity(getCoord());
-		EntityTrackingMovement arrowMove = new EntityTrackingMovement(shootingArrow);	
-		arrowMove.setDirection(direction);
-		shootingArrow.setMovement(arrowMove);*/
 		//Keeps looping until it kills something: 
-		currentTargetCoord = new Coord(this.getCoord().getX(), this.getCoord().getY()); 
+		currentTargetCoord = new Coord(this.getCoord().getX(), this.getCoord().getY());
+		
 		while(!this.entityMover.killEnemyEntities(currentTargetCoord)) {
-			addCoord(direction);
+			//if the next coordinate is valid 
+			currentTargetCoord = currentTargetCoord.add(direction);
+			//Still horrible: should change? 
+			if(this.entityMover.checkSpecialTile(currentTargetCoord, new WallTile(currentTargetCoord))) {
+				break;
+			}
+			if(this.entityMover.checkSpecialTile(currentTargetCoord, new EdgeTile(currentTargetCoord))) {
+				break;
+			}
 		}
-		//setting the coordinates so that the player doesn't fly: 
 		return false;
 	}
-	public void addCoord(Direction d) {
-		int x = this.currentTargetCoord.getX();
-		int y = this.currentTargetCoord.getY(); 
-		switch (d) {
-		case UP:
-			currentTargetCoord.setX(x+1);
-			break;
-		case DOWN:
-			currentTargetCoord.setX(x-1);
-			break;
-		case LEFT:
-			currentTargetCoord.setX(y-1);
-			break;
-		case RIGHT:
-			currentTargetCoord.setX(y+1);
-			break;
-		default:
-			break;
-		}
-	}
+
 	public String getSprite() {
 		return ">";
 	}

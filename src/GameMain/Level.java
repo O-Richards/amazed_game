@@ -313,6 +313,12 @@ public class Level implements EntityMover {
 		
 	}
 
+	//Checks if a Coord hits a wall or an edge tile: 
+	@Override
+	public boolean checkSpecialTile(Coord c,Object obj) {
+		return (this.getTile(c).equals(obj));
+	}
+
 
 
 }

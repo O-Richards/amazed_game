@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 public class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
@@ -88,15 +90,19 @@ public class Tile implements Collidable {
 	 */
 	public boolean killEnemyEntities() {
 		Iterator<Entity> it = this.entities.iterator();
+		System.out.println(getCoord()+ "Current Coordinates");
 		while (it.hasNext()) {
 			Entity e = it.next();
+			//Removes the enemy: 
 			if (e.equals(new EnemyMobileEntity(this.getCoord()))) {
 				it.remove();
 				return true; 
 			}
+
 		}
 		return false;
 	}
-
+	
+	
 	
 }
