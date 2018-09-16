@@ -2,23 +2,28 @@ package GameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
+
+import GameMain.ArrowUsableEntity;
+import GameMain.Coord;
+import GameMain.Direction;
 
 class ArrowUsableEntityTest {
 
-	@Test
-	void testGetSprite() {
-		fail("Not yet implemented");
+	Coord c;
+	Direction d;
+	ArrowUsableEntity a;
+	
+	@Before
+	public void setUp() throws Exception {
+		c = new Coord(5, 8);
+		d = Direction.DOWN;
+		a = new ArrowUsableEntity(c);
 	}
-
+	
 	@Test
 	void testUse() {
-		fail("Not yet implemented");
+		assertFalse(a.use(d));
 	}
-
-	@Test
-	void testArrowUsableEntity() {
-		fail("Not yet implemented");
-	}
-
 }

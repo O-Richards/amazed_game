@@ -3,7 +3,7 @@ package GameMain;
 public class EnemyMobileEntity extends MobileEntity {
 
 	private Level level;
-	EnemyMobileEntity(Coord coord) {
+	public EnemyMobileEntity(Coord coord) {
 		super(coord);
 	}
 	EnemyMobileEntity(Coord coord, Level level) {

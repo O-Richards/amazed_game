@@ -10,7 +10,7 @@ private static int keyCodeGenerator = 1;
 	
 	private int keyCode;
 
-	KeyUsableEntity(Coord coord) {
+	public KeyUsableEntity(Coord coord) {
 		super(coord);
 		this.keyCode = KeyUsableEntity.generateKeyCode();
 	}

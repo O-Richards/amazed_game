@@ -2,7 +2,7 @@ package GameMain;
 
 public class ArrowMobileEntity extends MobileEntity {
 	
-	ArrowMobileEntity(Coord coord, Direction dir) {
+	public ArrowMobileEntity(Coord coord, Direction dir) {
 		super(coord);
 		this.setDirection(dir);
 	}
