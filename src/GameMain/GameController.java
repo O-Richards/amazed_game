@@ -94,7 +94,6 @@ public class GameController {
 		System.out.println("Use keys L to place bomb");
 		System.out.println("Sprite Key: E = enemy P = player B = boulder $ = Treasure b = bomb H = hover potion S = sword @ = switch");
 		Scanner s = new Scanner(System.in);
-		Integer tickTime = 0;
 		while(true) {
 			String input = s.nextLine();
 			//Getting the direction: 
@@ -105,7 +104,7 @@ public class GameController {
 			//performs an action: 
 			gc.performAction(l, input); 
 		
-			l.tick(tickTime++);
+			l.tick();
 			System.out.println(l.toString());
 			System.out.println(l.inventoryString());
 			//l.checkInventory(); 

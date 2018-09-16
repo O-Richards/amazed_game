@@ -65,10 +65,10 @@ public class Level implements EntityMover {
 		return placementTile.addEntity(e);
 	}
 
-	public void tick(int tickNum) {
+	public void tick() {
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
-				this.map[row][col].tick(tickNum);
+				this.map[row][col].tick(tickNum++);
 			}
 		}
 	}
