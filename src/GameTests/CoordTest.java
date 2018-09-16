@@ -2,38 +2,59 @@ package GameTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-class CoordTest {
+import GameMain.ArrowMobileEntity;
+import GameMain.Coord;
+import GameMain.Direction;
+import GameMain.PlayerMobileEntity;
 
-	@Test
-	void testCoord() {
-		fail("Not yet implemented");
+class CoordTest {
+	
+	Coord c;
+	Integer x;
+	Integer y;
+	
+	@Before
+	public void setUp() throws Exception {
+		x = new Integer(5);
+		y = new Integer(8);
+		c = new Coord(x, y);
 	}
 
 	@Test
 	void testGetX() {
-		fail("Not yet implemented");
+		assertEquals(c.getX(), x);
 	}
 
 	@Test
 	void testSetX() {
-		fail("Not yet implemented");
+		c.setX(y);
+		assertEquals(c.getX(), y);
 	}
 
 	@Test
 	void testGetY() {
-		fail("Not yet implemented");
+		assertEquals(c.getY(), y);
 	}
 
 	@Test
 	void testSetY() {
-		fail("Not yet implemented");
+		c.setY(x);
+		assertEquals(c.getY(), x);
 	}
 
 	@Test
 	void testAdd() {
-		fail("Not yet implemented");
+		c.add(Direction.DOWN);
+		assertEquals(c.getX(), new Integer(4));
+		c.add(Direction.UP);
+		assertEquals(c.getX(), new Integer(5));
+		c.add(Direction.LEFT);
+		assertEquals(c.getX(), new Integer(7));
+		c.add(Direction.RIGHT);
+		assertEquals(c.getX(), new Integer(8));
 	}
 
 	@Test
