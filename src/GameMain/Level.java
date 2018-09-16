@@ -57,33 +57,6 @@ public class Level implements EntityMover {
 	}
 
 
-/*Keeping this for Geoffreys reference
->>>>>>> master
-	public void moveMobileEntity(MobileEntity entity, Coord c) {
-		Tile newTile = this.map[c.getX()][c.getY()];
-		//Trigger any/all collisions
-		if (DEBUG) System.out.println("Moving Mobile Entity " + entity.getSprite() + " to " + c);
-		if (newTile.collide(entity) == Collision.MOVE) {
-			entity.removeFromTile();
-			newTile.addEntity(entity);
-		}
-
-
-		//Checks if mobileEntity has moved to an exit or a pit Tile()
-		if(newTile instanceof PitTile) {
-			PitTile aPitTile = (PitTile) newTile;
-			//Death should be handled in the player
-			//Calls the die condition for the mobile entity(death condition in a different branch)
-		}else if(newTile instanceof ExitTile) {
-			ExitTile anExitTile  = (ExitTile) newTile;
-			hasExistWinCondition = anExitTile.hasWon();
-		}
-	}
-<<<<<<< HEAD
-
-=======
-**/
-
 	/**
 	 * @param e The entity to be added
 	 * @param c The coord to add the entity to
@@ -318,6 +291,8 @@ public class Level implements EntityMover {
 	public boolean checkSpecialTile(Coord c,Object obj) {
 		return (this.getTile(c).equals(obj));
 	}
+
+
 
 
 
