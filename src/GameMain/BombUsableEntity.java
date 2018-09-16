@@ -7,7 +7,7 @@ public class BombUsableEntity extends UsableEntity {
 	private boolean explode = false;
 	private boolean timerStarted = false;
 	
-	BombUsableEntity(Coord coord) {
+	public BombUsableEntity(Coord coord) {
 		super(coord);
 	}
 
