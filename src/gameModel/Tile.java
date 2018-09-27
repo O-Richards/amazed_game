@@ -9,13 +9,13 @@ import java.util.List;
 public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
-	private ArrayList<Entity> entities;
 	private WinCondition enemyCondition;
+	private UsableEntity item = null;
+	private MobileEntity mobileEntity = null;
 	
 	public Tile(Coord coord, WinCondition enemyCondition) {
 		this.coord = coord;
 		this.enemyCondition = enemyCondition;
-		this.entities = new ArrayList<Entity>();
 	}
 	
 	public void tick(int tickNum) {
@@ -25,10 +25,11 @@ public abstract class Tile implements Collidable {
 		}
 	}
 	
-	public boolean containsEntity(Entity e) {
-		return entities.contains(e);
+	public void addUsableEntity(UsableEntity item) throws EntityPlacementException {
+		if (this.item != null) {
+			throw new EntityPlacementException("Occupied tile");
+		}
 	}
-	
 	/**
 	 * @param entity The entity to add to this tile
 	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
@@ -132,4 +133,15 @@ public abstract class Tile implements Collidable {
 		return new ArrayList<>(entities);
 	}	
 	
+}
+
+class EntityPlacementException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8634948987228608288L;
+
+	public EntityPlacementException(String msg) {
+		super(msg);
+	}
 }
