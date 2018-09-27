@@ -87,7 +87,11 @@ public abstract class Tile implements Collidable {
 		}
 		//If a mobile entity hits an item: 
 		//if a player collides with a usable entity 
-		
+		if(hitter.pickup(item)) {
+			
+		}
+		//enemy calls kill on square when moved
+		 
 		return collideExt(hitter, col);
 	}
 
