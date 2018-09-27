@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-//import com.sun.org.apache.bcel.internal.generic.NEW;
-
 public abstract class Tile implements Collidable {
 	private static final boolean DEBUG = false;
 	private Coord coord;
@@ -24,29 +22,39 @@ public abstract class Tile implements Collidable {
 			e.tick(tickNum);
 		}
 	}
-	
+	/**
+	 * Adds a usable item to the tile: 
+	 * @param item
+	 * @throws EntityPlacementException
+	 */
 	public void addUsableEntity(UsableEntity item) throws EntityPlacementException {
 		if (this.item != null) {
 			throw new EntityPlacementException("Occupied tile");
 		}
-	}
-	/**
-	 * @param entity The entity to add to this tile
-	 * @return True if a new entity can be placed here. False else e.g. placing an item on a wall
-	 */
-	public boolean addEntity(Entity entity) {
-		entities.add(entity);
-		entity.setCoord(this.getCoord());
-		updateWinCondition();
-		updateEnemyCondition();
-		return true;
+		this.item = item; 
 	}
 	
-	public void removeEntity(Entity entity) {
-		entities.remove(entity);
-		updateWinCondition();
-		updateEnemyCondition();
+	public void addMoveableEntity(MobileEntity entity) throws EntityPlacementException {
+		if(this.mobileEntity != null) {
+			throw new EntityPlacementException("Mobile Entity on tile");
+		}
+		this.mobileEntity = entity; 
 	}
+	
+	public MobileEntity getMoveableEntity() {
+		return mobileEntity;
+		
+	}
+	public Entity getItem() {
+		
+	}
+	/**
+	 * @param entity the entity on an adjacent tile to be moved onto this tile
+	 */
+	public void moveMobileEntityOnto(MobileEntity entity) {
+		entity.collide(this, recall)
+	}
+	
 
 	/**
 	 * Collide the hitter with the Tile. MobileHitters have a bunch of methods
@@ -61,8 +69,7 @@ public abstract class Tile implements Collidable {
 	@Override
 	public Collision collide(MobileEntity hitter, boolean recall) {			
 		Collision col = Collision.MOVE;
-		List<Entity> entities = this.getEntities();
-		for (Entity e : entities) {
+		/*for (Entity e : entities) {
 			//Prevent self collisions
 			if (e != hitter) {
 				Collision tmpCol = e.collide(hitter, recall);
@@ -70,7 +77,17 @@ public abstract class Tile implements Collidable {
 					col = tmpCol;
 				}
 			}
+		}*/
+		//If two mobile entities hit: 
+		if(this.mobileEntity != hitter) {
+			Collision tmpCol = mobileEntity.collide(hitter, recall);
+			if (tmpCol != Collision.MOVE) {
+				col = tmpCol;
+			}
 		}
+		//If a mobile entity hits an item: 
+		//if a player collides with a usable entity 
+		
 		return collideExt(hitter, col);
 	}
 
@@ -129,9 +146,7 @@ public abstract class Tile implements Collidable {
 		return false;
 	}
 	
-	private List<Entity> getEntities() {
-		return new ArrayList<>(entities);
-	}	
+
 	
 }
 
