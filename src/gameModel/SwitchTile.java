@@ -11,7 +11,7 @@ public class SwitchTile extends Tile {
 
 	@Override
 	protected void updateWinCondition() {
-		if (this.containsEntity(new BoulderMobileEntity(this.getCoord()))) {
+		if (this.getItem().equals((new BoulderMobileEntity(this.getCoord())))) {
 			this.switchCondition.setType(WinType.WIN);
 		} else {
 			this.switchCondition.setType(WinType.SWITCH);

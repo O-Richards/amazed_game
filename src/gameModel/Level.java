@@ -197,49 +197,6 @@ public class Level implements EntityMover {
 		DoorTile newDoor = new DoorTile(coord, this.winSystem.newWinCondition(WinType.WIN));
 		this.map[coord.getX()][coord.getY()] = newDoor;
 	}
-
-	@Override
-	public Collision moveEntity(MobileEntity e, Direction dir) {
-		Tile nextTile = this.getTile(e.getCoord(), dir);
-		if (nextTile != null) {
-			if (nextTile.collide(e, true) == Collision.MOVE) {
-				e.removeFromTile();
-				nextTile.addEntity(e);
-				return Collision.MOVE;
-			}
-		}
-		return Collision.NOMOVE;
-	}
-
-	@Override
-	public void removeEntity(Entity e, Coord c) {
-		Tile currentTile = this.getTile(c);
-		currentTile.removeEntity(e);
-	}
-
-
-	/* (non-Javadoc)
-	 * @see GameMain.EntityMover#moveEntity(GameMain.MobileEntity, GameMain.Coord)
-	 * Move the entity one tile closer to the nextCoord
-	 */
-
-	@Override
-	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
-		if (DEBUG) System.out.println("Level.moveEntity moving " + e.getSprite());
-		Collision result = Collision.NOMOVE;
-		Direction xDir = e.getCoord().minusX(nextCoord);
-		if (xDir != Direction.CENTRE) {
-			result = this.moveEntity(e, xDir);
-			if (result == Collision.MOVE) return result;
-		}
-		Direction yDir = e.getCoord().minusY(nextCoord);
-		if (yDir != Direction.CENTRE) {
-			result = this.moveEntity(e, yDir);
-			if (result == Collision.MOVE) return result;
-		}
-		return result;
-	}
-
 	
 	/**
 	 * @precondition To enable SWITCH : must be switch on map
@@ -255,15 +212,5 @@ public class Level implements EntityMover {
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
 		this.addEntity(entity, c);
-	}
-
-	/* (non-Javadoc)
-	 * @see GameMain.EntityMover#killEnemyEntities(GameMain.Coord)
-	 * Remove all enemy entities on a tile
-	 */
-	@Override
-	public boolean killEnemyEntities(Coord c) {
-		return (this.getTile(c).killEnemyEntities()); 
-		
 	}
 }

@@ -12,8 +12,7 @@ public class ExitTile extends Tile {
 	@Override
 	protected void updateWinCondition() {
 		// TODO Auto-generated method stub
-		System.out.println(this.containsEntity(new PlayerMobileEntity(this.getCoord())));
-		if (this.containsEntity(new PlayerMobileEntity(this.getCoord()))) {
+		if (this.getPlayer() != null) {
 			this.winCondition.setType(WinType.WIN);
 		} else {
 			this.winCondition.setType(WinType.EXIT);

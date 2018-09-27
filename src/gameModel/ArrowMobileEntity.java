@@ -8,26 +8,7 @@ public class ArrowMobileEntity extends MobileEntity {
 	}
 
 	@Override
-	public Collision collide(MobileEntity hitter, boolean recall) {
-		hitter.killEnemy();
-		this.removeFromTile();
-		return Collision.MOVE;
-	}
-
-	@Override
 	public boolean pickup(UsableEntity item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean killPlayer() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean killEnemy() {
 		// TODO Auto-generated method stub
 		return false;
 	}

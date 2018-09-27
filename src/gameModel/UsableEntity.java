@@ -5,14 +5,6 @@ public abstract class UsableEntity extends Entity {
 	UsableEntity(Coord coord) {
 		super(coord);
 	}
-
-	@Override
-	public Collision collide(MobileEntity hitter, boolean recall) {
-		if (hitter.pickup(this)) {
-			this.removeFromTile();
-		}
-		return Collision.MOVE;
-	}
 	
 	/**
 	 * @param direction Direction the item is to be used in

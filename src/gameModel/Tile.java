@@ -33,6 +33,7 @@ public abstract class Tile {
 		if(this.enemy != null) {
 			throw new EntityPlacementException("Enemy on tile");
 		}
+		if (player != null) player.kill();
 		this.enemy = enemy; 
 	}
 	
@@ -41,6 +42,11 @@ public abstract class Tile {
 			throw new EntityPlacementException("Player on tile");
 		}
 		this.player = player; 
+	}
+
+	public PlayerMobileEntity getPlayer() {
+		return this.player;
+		
 	}
 	
 	public MobileEntity getEnemy() {
@@ -75,22 +81,15 @@ public abstract class Tile {
 	}
 	
 	public String getSprite() {
-		if (this.enemy != null) {
+		if (this.player != null) {
+			return this.player.getSprite();
+		} else if (this.enemy != null) {
 			return this.enemy.getSprite();
 		} else if (this.item != null) {
 			return this.item.getSprite();
 		} else {
 			return " ";
 		}
-	}
-
-	/**
-	 * Remove all enemy entities from the tile
-	 * Use this for bombs, swords etc.
-	 * @Return true if an item is removed from tile false otherwise: 
-	 */
-	public void killEnemyEntity() {
-		this.enemy = null;
 	}
 }
 

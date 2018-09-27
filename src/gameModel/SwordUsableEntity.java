@@ -8,13 +8,13 @@ public class SwordUsableEntity extends UsableEntity {
 		super(coord);
 	}
 
-	@Override
-	public Boolean use(Direction direction) {
-		// Kills enemies in the direction of given: 
-		this.entityMover.killEnemyEntities(this.getCoord(direction));
-		noOfUses --; 
-		return noOfUses > 0;
-	}
+//	@Override
+//	public Boolean use(Direction direction) {
+//		// Kills enemies in the direction of given: 
+//		this.entityMover.kill(this.getCoord(direction));
+//		noOfUses --; 
+//		return noOfUses > 0;
+//	}
 		
 
 	public String getSprite() {

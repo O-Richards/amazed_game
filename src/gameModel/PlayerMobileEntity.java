@@ -59,12 +59,6 @@ public class PlayerMobileEntity extends MobileEntity {
 		}
 		return treasure;
 	}
-	
-	@Override
-	public Collision collide(MobileEntity hitter, boolean recall) {
-		if (recall) hitter.collide(this, false);
-		return Collision.MOVE;
-	}
 
 	@Override
 	public Coord nextCoord() {
@@ -91,8 +85,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		return out;
 	}
 
-	@Override
-	public boolean killPlayer() {
+	public boolean kill() {
 		if (this.canDie()) {
 			this.entityMover.removeEntity(this, this.getCoord());
 			this.alive = false;
@@ -100,11 +93,6 @@ public class PlayerMobileEntity extends MobileEntity {
 		} else {
 			return false;
 		}
-	}
-	
-	@Override
-	public boolean killEnemy() {
-		return false;
 	}
 
 	public boolean isAlive() {

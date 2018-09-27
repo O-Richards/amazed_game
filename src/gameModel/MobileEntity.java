@@ -5,6 +5,7 @@ public abstract class MobileEntity extends Entity implements Movement {
 	private Movement movement;
 	private Integer lastTick = 0;
 	
+	
 	MobileEntity(Coord coord) {
 		super(coord);
 		this.movement = new EntityTrackingMovement(this);
@@ -80,8 +81,4 @@ public abstract class MobileEntity extends Entity implements Movement {
 	public Movement getMovement() {
 		return this.movement;
 	}
-	
-	public abstract boolean killPlayer();
-	
-	public abstract boolean killEnemy();
 }

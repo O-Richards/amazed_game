@@ -1,6 +1,6 @@
 package gameModel;
 
-public abstract class Entity implements Collidable {
+public abstract class Entity {
 
 	//Coord the entity is on. Note if in inventory, this will be null
 	private Coord coord;

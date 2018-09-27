@@ -12,11 +12,11 @@ public class PitTile extends Tile {
 		if (hitter.canFly()) {
 			return col;
 		} else {
-			hitter.killEnemy();
-			hitter.killPlayer();
+			hitter.kill();
 			return Collision.NOMOVE;
 		} 
 	}
+	
 	public String getSprite() {
 		return "O";
 	}

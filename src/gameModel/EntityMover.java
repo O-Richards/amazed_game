@@ -27,10 +27,5 @@ public interface EntityMover {
 	 * @param c The coord to place the entity
 	 */
 	public void placeEntity(Entity entity, Coord c);
-	
-	/**
-	 * @param c The coord to kill all enemies on
-	 * @return true if an enemy is killed , false otherwise
-	 */
-	public boolean killEnemyEntities(Coord c);
+
 }

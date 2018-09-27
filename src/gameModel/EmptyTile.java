@@ -11,7 +11,7 @@ public class EmptyTile extends Tile {
 
 	@Override
 	protected void updateWinCondition() {
-		if (this.containsEntity(new TreasureEntity(this.getCoord()))) {
+		if (this.getItem().equals((new TreasureEntity(this.getCoord())))) {
 			this.winCondition.setType(WinType.TREASURE);
 		} else {
 			this.winCondition.setType(WinType.WIN);
