@@ -6,16 +6,25 @@ public abstract class Tile {
 	private UsableEntity item = null;
 	private MobileEntity enemy = null;
 	private PlayerMobileEntity player = null;
+	private EntityMover entityMover;
 	
-	public Tile(Coord coord, WinCondition enemyCondition) {
+	
+	public Tile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
 		this.coord = coord;
 		this.enemyCondition = enemyCondition;
+		this.entityMover = entityMover;
 	}
-	
+		
 	public void tick(int tickNum) {
-		item.tick(tickNum);
-		enemy.tick(tickNum);
-		player.tick(tickNum);
+		if (item != null) item.tick(tickNum);
+		if (enemy != null) enemy.tick(tickNum);
+		if (player != null) player.tick(tickNum);
+		//move the enemy
+		if (enemy != null && enemy.lastMoveTickNum() != tickNum) {
+			Coord nextCoord = enemy.nextCoord();
+			entityMover.moveEntity(enemy, nextCoord);
+			enemy.setLastMoveTickNum(tickNum);
+		}
 	}
 	/**
 	 * Adds a usable item to the tile: 
@@ -29,6 +38,11 @@ public abstract class Tile {
 		this.item = item; 
 	}
 	
+	/**
+	 * Add an enemy to a tile
+	 * @param enemy
+	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
+	 */
 	public void addEnemy(MobileEntity enemy) throws EntityPlacementException {
 		if(this.enemy != null) {
 			throw new EntityPlacementException("Enemy on tile");
@@ -37,11 +51,23 @@ public abstract class Tile {
 		this.enemy = enemy; 
 	}
 	
+	/**
+	 * @param player The player to be added to the tile
+	 * @throws EntityPlacementException if there is an error placing the player e.g. walking onto a wall or locked door
+	 */
 	public void addPlayer(PlayerMobileEntity player) throws EntityPlacementException {
 		if(this.player != null) {
 			throw new EntityPlacementException("Player on tile");
 		}
 		this.player = player; 
+		if (this.item != null) {
+			this.player.pickup(this.item);
+			this.removeItem();
+		}
+	}
+
+	private void removeItem() {
+		this.item = null;
 	}
 
 	public PlayerMobileEntity getPlayer() {
@@ -57,14 +83,9 @@ public abstract class Tile {
 		return this.item;
 	}
 
+
 	/**
-	 * Collide the hitter with the Tile. MobileHitters have a bunch of methods
-	 * that can be called e.g. canFly(), pickupUsable() etc.
-	 * The general idea is that the mobile entities will collide with a tile
-	 * when they try to move onto it, which will then cause them to collide with
-	 * each entity on the tile. (Think Composition Pattern)
-	 * @param hitter The mobile entity that is walking into the collidable object
-	 * @return MOVE if the movement is possible, NOMOVE if the movement is blocked
+	 * Check if there are any enemies on the tile to update the enemies win condition
 	 */
 	protected void updateEnemyCondition() {
 		if (this.enemy == null) {
@@ -75,11 +96,14 @@ public abstract class Tile {
 	}
 	
 	protected abstract void updateWinCondition();
-	
+		
 	public Coord getCoord() {
 		return this.coord;
 	}
 	
+	/**
+	 * @return A simple char to represent the tile (for debugging)
+	 */
 	public String getSprite() {
 		if (this.player != null) {
 			return this.player.getSprite();
@@ -94,9 +118,7 @@ public abstract class Tile {
 }
 
 class EntityPlacementException extends Exception {
-	/**
-	 * 
-	 */
+	//Forced to add this to make the java gods happy
 	private static final long serialVersionUID = 8634948987228608288L;
 
 	public EntityPlacementException(String msg) {
