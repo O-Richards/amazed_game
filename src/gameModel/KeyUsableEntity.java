@@ -14,18 +14,11 @@ private static int keyCodeGenerator = 1;
 		super(coord);
 		this.keyCode = KeyUsableEntity.generateKeyCode();
 	}
-
+	
 	@Override
-	public Collision collide(MobileEntity hitter, boolean recall) {
-		if (hitter.getKeyCode() == -1) {
-			if (hitter.pickup(this)) {
-				hitter.setKeyCode(keyCode);
-				this.removeFromTile();
-			}
-		}
-		return Collision.MOVE;
+	public void applyToPlayer(PlayerMobileEntity player) {
+		player.setKeyCode(keyCode);
 	}
-
 
 	@Override
 	public String getSprite() {

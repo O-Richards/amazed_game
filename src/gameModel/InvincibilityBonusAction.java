@@ -10,7 +10,6 @@ public class InvincibilityBonusAction extends MovementBonus {
 		super(baseMovement);
 		this.time = LocalTime.now();
 	}
-
 	
 	@Override
 	public boolean canDie() {

@@ -23,6 +23,7 @@ public class EnemyMobileEntity extends MobileEntity {
 		return "E";
 	}
 	
+	/* Left here for reference, should be replaced by this.nextCoord()
 	@Override
 	public void move() {
 		Coord goal = this.level.getPlayer().getCoord();
@@ -31,4 +32,5 @@ public class EnemyMobileEntity extends MobileEntity {
 		Coord nextCoord = astar.findPath().get(0);
 		this.entityMover.moveEntity(this, nextCoord);
 	}
+	*/
 }

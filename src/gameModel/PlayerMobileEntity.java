@@ -65,7 +65,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		return this.getCoord(this.getDirection());
 	}
 
-	
+	@Override
 	public String getSprite() {
 		return "P";
 	}
@@ -73,6 +73,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public boolean pickup(UsableEntity item) {
 		inventory.add(item);
+		item.applyToPlayer(this);
 		return true;
 	}
 	

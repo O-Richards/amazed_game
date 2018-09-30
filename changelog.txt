@@ -1,0 +1,6 @@
+30/09/18 Oliver Richards
+    * Added a applyToPlayer method to useable items that is called when an
+    item is picked up by a player. This is used for potions 
+    * Changed enemies so the tile asks them where they want to move, then the
+    tile asks the level to move them
+    * 

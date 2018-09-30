@@ -1,11 +1,11 @@
 package gameModel;
 
-public class SwitchTile extends Tile {
+public class SwitchTile extends EmptyTile {
 	
 	private WinCondition switchCondition;
 	
-	public SwitchTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition) {
-		super(coord, enemyCondition);
+	public SwitchTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition, EntityMover entityMover) {
+		super(coord, enemyCondition, entityMover);
 		this.switchCondition = winCondition;
 	}
 

@@ -8,16 +8,9 @@ public class InvincibilityEntity extends UsableEntity {
 	}
 
 	@Override
-	public Collision collide(MobileEntity hitter, boolean recall) {
-		if (hitter.pickup(this)) {
-			this.removeFromTile();
-			//Applying decorator pattern to the player's movements
-			//i.e. we wrap the player's movement with a hover bonus
-			hitter.setMovement(new InvincibilityBonusAction(hitter.getMovement()));
-		}
-		return Collision.MOVE;
+	public void applyToPlayer(PlayerMobileEntity player) {
+		player.setMovement(new InvincibilityBonusAction(player.getMovement()));
 	}
-	
 
 	@Override
 	public String getSprite() {

@@ -3,7 +3,8 @@ package gameModel;
 public abstract class MobileEntity extends Entity implements Movement {
 	public static final boolean DEBUG = false;
 	private Movement movement;
-	private Integer lastTick = 0;
+	private Integer lastTick = -1;
+	private int lastMoveTickNum = -1;
 	
 	
 	MobileEntity(Coord coord) {
@@ -21,22 +22,7 @@ public abstract class MobileEntity extends Entity implements Movement {
 		//Make sure to only move once per tick
 		if (this.lastTick != tickNum) {
 			this.lastTick = tickNum;
-			this.move();
 		}
-	}
-	
-	public void move() {
-		Coord nextCoord = this.nextCoord();
-		if (DEBUG) System.out.println("Moving sprite " + this.getSprite() + " to " + nextCoord);
-		this.entityMover.moveEntity(this, nextCoord);
-	}
-	
-	/**
-	 * Move to a specified coord
-	 * @param c The coord to move to
-	 */
-	public void move(Coord c) {
-		this.entityMover.moveEntity(this, c);
 	}
 	
 	public Direction getDirection() {
@@ -80,5 +66,13 @@ public abstract class MobileEntity extends Entity implements Movement {
 	
 	public Movement getMovement() {
 		return this.movement;
+	}
+
+	public int lastMoveTickNum() {
+		return this.lastMoveTickNum;
+	}
+
+	public void setLastMoveTickNum(int tickNum) {
+		this.lastMoveTickNum  = tickNum;
 	}
 }

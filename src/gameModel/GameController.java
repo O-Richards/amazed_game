@@ -66,6 +66,11 @@ public class GameController {
 		GameController gc = new GameController();
 		Level l = new Level();
 		//Setup template maze
+		try {
+			l.addPlayer(new Coord(1, 1));
+		} catch (EntityPlacementException e) {
+			e.printStackTrace();
+		}
 
 		l.enableWinCondition(WinType.EXIT);
 		l.enableWinCondition(WinType.ENEMY);

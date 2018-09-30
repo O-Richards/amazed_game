@@ -62,7 +62,7 @@ public class AStarNode
 	for tiles that are adjacent and legal to traverse. No need to make directed graph before
 	making AStarSearch.
 	*/
-	public List<AStarNode> getNeighbors(Tile[][] map, MobileEntity hitter) {
+	public List<AStarNode> getNeighbors(EmptyTile[][] map, MobileEntity hitter) {
 		int curX = this.getCoord().getX();
 		int curY = this.getCoord().getY();
 		List<AStarNode> neighbours = new ArrayList<AStarNode>();

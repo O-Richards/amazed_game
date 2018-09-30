@@ -17,11 +17,11 @@ import java.util.List;
 public class AStarSearch 
 {
 	
-	private Tile[][] map;
+	private EmptyTile[][] map;
 	private MobileEntity hitter;
 	private Coord goal;
 	
-	public AStarSearch(Tile[][] map, MobileEntity hitter, Coord goal) {
+	public AStarSearch(EmptyTile[][] map, MobileEntity hitter, Coord goal) {
 		this.map = map;
 		this.hitter = hitter;
 		this.goal = goal;

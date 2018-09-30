@@ -14,4 +14,12 @@ public abstract class UsableEntity extends Entity {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	/**
+	 * Called when an item is picked up by the player. Allows effects to be applied to the player
+	 * @param player
+	 */
+	public void applyToPlayer(PlayerMobileEntity player) {
+		//By default does nothing
+	}
 }
