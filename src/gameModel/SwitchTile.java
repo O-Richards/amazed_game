@@ -1,6 +1,6 @@
 package gameModel;
 
-public class SwitchTile extends EmptyTile {
+public class SwitchTile extends Tile {
 	
 	private WinCondition switchCondition;
 	

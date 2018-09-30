@@ -6,8 +6,8 @@ public class DoorTile extends Tile {
 	private int doorCode;
 	private boolean open = false;
 
-	public DoorTile(Coord coord, WinCondition enemyCondition) {
-		super(coord, enemyCondition);
+	public DoorTile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
+		super(coord, enemyCondition, entityMover);
 		this.doorCode = DoorTile.generateDoorCode();
 	}
 	

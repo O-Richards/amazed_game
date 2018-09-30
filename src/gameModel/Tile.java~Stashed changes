@@ -1,0 +1,22 @@
+package gameModel;
+
+public interface Tile {
+	//For decorator pattern:
+	public Tile getBaseTile();
+	
+	public void tick(int tickNum);
+	public void addItem(UsableEntity item) throws EntityPlacementException;
+	public void addEnemy(MobileEntity enemy) throws EntityPlacementException;
+	public void addPlayer(PlayerMobileEntity player) throws EntityPlacementException;
+	public void removeItem();
+	public PlayerMobileEntity getPlayer();
+	public MobileEntity getEnemy();
+	public Entity getItem();
+	
+	//Potentially these should be removed
+	public void updateEnemyCondition();
+	public void updateWinCondition();
+	
+	public Coord getCoord();
+	public String getSprite();
+}

@@ -2,8 +2,8 @@ package gameModel;
 
 public class PitTile extends Tile {
 
-	public PitTile(Coord coord, WinCondition enemyCondition) {
-		super(coord, enemyCondition);
+	public PitTile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
+		super(coord, enemyCondition, entityMover);
 		// TODO Auto-generated constructor stub
 	}
 	

@@ -6,8 +6,7 @@ public abstract class Tile {
 	private UsableEntity item = null;
 	private MobileEntity enemy = null;
 	private PlayerMobileEntity player = null;
-	private EntityMover entityMover;
-	
+	private EntityMover entityMover;	
 	
 	public Tile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
 		this.coord = coord;
@@ -56,7 +55,7 @@ public abstract class Tile {
 	 * @throws EntityPlacementException if there is an error placing the player e.g. walking onto a wall or locked door
 	 */
 	public void addPlayer(PlayerMobileEntity player) throws EntityPlacementException {
-		if(this.player != null) {
+		if (this.player != null) {
 			throw new EntityPlacementException("Player on tile");
 		}
 		this.player = player; 
@@ -66,7 +65,7 @@ public abstract class Tile {
 		}
 	}
 
-	private void removeItem() {
+	public void removeItem() {
 		this.item = null;
 	}
 
@@ -87,14 +86,14 @@ public abstract class Tile {
 	/**
 	 * Check if there are any enemies on the tile to update the enemies win condition
 	 */
-	protected void updateEnemyCondition() {
+	public void updateEnemyCondition() {
 		if (this.enemy == null) {
 			this.enemyCondition.setType(WinType.WIN);
 		} else {
 			this.enemyCondition.setType(WinType.ENEMY);
 		}
 	}
-	
+
 	protected abstract void updateWinCondition();
 		
 	public Coord getCoord() {
