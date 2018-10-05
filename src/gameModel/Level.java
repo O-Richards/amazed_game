@@ -252,7 +252,7 @@ public class Level implements EntityMover {
 	}
 
 	@Override
-	public boolean canMoveTo(Coord c) {
+	public boolean isTraversable(Coord c) {
 		Tile movementTile = this.getTile(c);
 		return movementTile.canMoveTo();
 	}

@@ -5,13 +5,16 @@ import java.util.List;
 public class AStarNode
 {
 	
-	public Coord coord;
-	public AStarNode parent;
+	private Coord coord;
+	private AStarNode parent;
+	private EntityMover entityMover;
+	
 	int gCost;  // cost from start to node
 	int hCost; // cost to goal from node by default (heuristic)
 	
-	public AStarNode(Coord coord) {
+	public AStarNode(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
+		this.entityMover = entityMover;
 	}
 	
 	public int getfCost() {
@@ -28,9 +31,11 @@ public class AStarNode
 	public void setgCost(int cost) {
 		this.gCost = cost;
 	}
+	
 	public int getgCost() {
 		return this.gCost;
 	}
+	
 	public void sethCost(Coord dest) {
 		Coord curCoord = this.getCoord();
 		int diffX = dest.getX() - curCoord.getX();
@@ -38,12 +43,19 @@ public class AStarNode
 		
 		this.hCost = (Math.abs(diffX) + Math.abs(diffY));
 	}
+	
 	public int gethCost() {
 		return this.hCost;
 	}
+	
 	public Coord getCoord() {
 		return this.coord;
 	}
+	
+	public Coord getCoord(Direction dir) {
+		return this.getCoord().add(dir);
+	}
+	
 	/**
 	 * get abs value of cost to next
 	 * @param next
@@ -62,7 +74,7 @@ public class AStarNode
 	for tiles that are adjacent and legal to traverse. No need to make directed graph before
 	making AStarSearch.
 	*/
-	public List<AStarNode> getNeighbors(EmptyTile[][] map, MobileEntity hitter) {
+	public List<AStarNode> getNeighbors() {
 		int curX = this.getCoord().getX();
 		int curY = this.getCoord().getY();
 		List<AStarNode> neighbours = new ArrayList<AStarNode>();
@@ -71,29 +83,13 @@ public class AStarNode
 		// SHOULD WORK THOUGH
 		// Calls getCoord on the map position indicated and creates node with that coord
 		//make new nodes for tiles where MOVE is possible
-		if(map[curX+1][curY].collide(hitter, false)==Collision.MOVE&& 
-				!(map[curX+1][curY].collide(hitter, false)==Collision.NOMOVE)) {
-			AStarNode newNeighbour = new AStarNode(map[curX+1][curY].getCoord());
-			newNeighbour.setgCost(this.gCost+1);
-			neighbours.add(newNeighbour);
-		}
-		if(map[curX-1][curY].collide(hitter, false)==Collision.MOVE && 
-				!(map[curX-1][curY].collide(hitter, false)==Collision.NOMOVE )) {
-			AStarNode newNeighbour = new AStarNode(map[curX-1][curY].getCoord());
-			newNeighbour.setgCost(this.gCost+1);
-			neighbours.add(newNeighbour);
-		}
-		if(map[curX][curY+1].collide(hitter, false)==Collision.MOVE&& 
-				!(map[curX][curY+1].collide(hitter, false)==Collision.NOMOVE)) {
-			AStarNode newNeighbour = new AStarNode(map[curX][curY+1].getCoord());
-			newNeighbour.setgCost(this.gCost+1);
-			neighbours.add(newNeighbour);
-		}
-		if(map[curX][curY-1].collide(hitter, false)==Collision.MOVE&& 
-				!(map[curX][curY-1].collide(hitter, false)==Collision.NOMOVE )) {
-			AStarNode newNeighbour = new AStarNode(map[curX][curY-1].getCoord());
-			newNeighbour.setgCost(this.gCost+1);
-			neighbours.add(newNeighbour);
+		for (Direction dir : Direction.values()) {
+			Coord curCoord = this.getCoord(dir);
+			if (this.entityMover.canMoveTo(curCoord)) {
+				AStarNode newNeighbour = new AStarNode(curCoord, this.entityMover);
+				newNeighbour.setgCost(this.gCost+1);
+				neighbours.add(newNeighbour);
+			}
 		}
 		return neighbours;
 	}
