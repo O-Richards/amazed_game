@@ -16,15 +16,13 @@ import java.util.List;
  */
 public class AStarSearch 
 {
-	
-	private EmptyTile[][] map;
-	private MobileEntity hitter;
+	private EntityMover entityMover;
+	private Coord start;
 	private Coord goal;
 	
-	public AStarSearch(EmptyTile[][] map, MobileEntity hitter, Coord goal) {
-		this.map = map;
-		this.hitter = hitter;
+	public AStarSearch(Coord start, Coord goal, EntityMover entityMover) {
 		this.goal = goal;
+		this.entityMover = entityMover;
 	}
 	
 	/**
@@ -56,7 +54,7 @@ public class AStarSearch
 		List<AStarNode> closed = new ArrayList<>();
 		
 		// init priority queue with origin node
-		AStarNode origin = new AStarNode(hitter.getCoord());
+		AStarNode origin = new AStarNode(this.start, this.entityMover);
 		origin.setgCost(0);
 		open.add(origin);
 		
@@ -74,7 +72,7 @@ public class AStarSearch
 			//if we have not expanded current node
 			if (!closed.contains(current)) {			
 				closed.add(current);
-				List<AStarNode> neighbours = current.getNeighbors(this.map,this.hitter);	
+				List<AStarNode> neighbours = current.getNeighbors();	
 				
 				for(AStarNode neighbour: neighbours) {
 					//unvisitied nodes only

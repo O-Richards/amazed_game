@@ -27,5 +27,7 @@ public interface EntityMover {
 	 * @param c The coord to place the entity
 	 */
 	public void placeEntity(Entity entity, Coord c);
+	
+	public void kill(Coord c);
 
 }

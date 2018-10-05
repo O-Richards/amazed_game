@@ -7,15 +7,15 @@ public class PitTile extends Tile {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Collision collideExt(MobileEntity hitter, Collision col) {
-		if (hitter.canFly()) {
-			return col;
-		} else {
-			hitter.kill();
-			return Collision.NOMOVE;
-		} 
-	}
+//	@Override
+//	public Collision collideExt(MobileEntity hitter, Collision col) {
+//		if (hitter.canFly()) {
+//			return col;
+//		} else {
+//			hitter.kill();
+//			return Collision.NOMOVE;
+//		} 
+//	}
 	
 	public String getSprite() {
 		return "O";

@@ -33,10 +33,10 @@ public class BombUsableEntity extends UsableEntity {
 	}
 
 	private void explodeBomb() {
-		this.entityMover.killEnemyEntities(this.getCoord(Direction.UP));
-		this.entityMover.killEnemyEntities(this.getCoord(Direction.DOWN));
-		this.entityMover.killEnemyEntities(this.getCoord(Direction.LEFT));
-		this.entityMover.killEnemyEntities(this.getCoord(Direction.RIGHT));
+		this.entityMover.kill(this.getCoord(Direction.UP));
+		this.entityMover.kill(this.getCoord(Direction.DOWN));
+		this.entityMover.kill(this.getCoord(Direction.LEFT));
+		this.entityMover.kill(this.getCoord(Direction.RIGHT));
 		this.entityMover.removeEntity(this, this.getCoord());
 	}
 	

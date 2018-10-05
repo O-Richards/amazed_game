@@ -19,15 +19,15 @@ public class DoorTile extends Tile {
 	protected void updateWinCondition() {
 	}
 
-	@Override
-	public Collision collideExt(MobileEntity hitter, Collision col) {
-		if (hitter.getKeyCode() == doorCode || open == true) {
-			open = true;
-			return col;
-		} else {
-			return Collision.NOMOVE;
-		}
-	}
+//	@Override
+//	public Collision collideExt(MobileEntity hitter, Collision col) {
+//		if (hitter.getKeyCode() == doorCode || open == true) {
+//			open = true;
+//			return col;
+//		} else {
+//			return Collision.NOMOVE;
+//		}
+//	}
 	
 
 	@Override
