@@ -18,7 +18,12 @@ public class DoorTile extends Tile {
 	@Override
 	protected void updateWinCondition() {
 	}
-
+	
+	@Override
+	public boolean canMoveTo() {
+		return this.open == true && super.canMoveTo();
+	}
+/*
 	@Override
 	public Collision collideExt(MobileEntity hitter, Collision col) {
 		if (hitter.getKeyCode() == doorCode || open == true) {
@@ -28,7 +33,7 @@ public class DoorTile extends Tile {
 			return Collision.NOMOVE;
 		}
 	}
-	
+	*/
 
 	@Override
 	public String getSprite() {

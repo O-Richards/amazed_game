@@ -114,6 +114,10 @@ public abstract class Tile {
 			return " ";
 		}
 	}
+
+	public boolean canMoveTo() {
+		return this.enemy == null;
+	}
 }
 
 class EntityPlacementException extends Exception {

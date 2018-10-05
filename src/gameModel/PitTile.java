@@ -6,7 +6,7 @@ public class PitTile extends Tile {
 		super(coord, enemyCondition, entityMover);
 		// TODO Auto-generated constructor stub
 	}
-	
+	/*
 	@Override
 	public Collision collideExt(MobileEntity hitter, Collision col) {
 		if (hitter.canFly()) {
@@ -15,7 +15,7 @@ public class PitTile extends Tile {
 			hitter.kill();
 			return Collision.NOMOVE;
 		} 
-	}
+	}*/
 	
 	public String getSprite() {
 		return "O";

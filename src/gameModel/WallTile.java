@@ -9,9 +9,10 @@ public class WallTile extends Tile {
 	public String getSprite() {
 		return "W";
 	}
-		
+	
 	@Override
-	protected void updateWinCondition() {
-			
+	public boolean canMoveTo() {
+		return false;
 	}
+		
 }

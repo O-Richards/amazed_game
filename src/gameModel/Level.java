@@ -227,4 +227,34 @@ public class Level implements EntityMover {
 		this.winSystem.enableWinCondition(winType);
 	}
 
+	@Override
+	public Collision moveEntity(MobileEntity e, Direction dir) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeEntity(Entity entity, Coord c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void placeEntity(Entity entity, Coord c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean canMoveTo(Coord c) {
+		Tile movementTile = this.getTile(c);
+		return movementTile.canMoveTo();
+	}
+
 }

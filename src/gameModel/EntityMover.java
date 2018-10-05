@@ -27,5 +27,11 @@ public interface EntityMover {
 	 * @param c The coord to place the entity
 	 */
 	public void placeEntity(Entity entity, Coord c);
+	
+	/**
+	 * @param c The coord to check
+	 * @return	true if a mobile entity can move onto this tile without dying, false else.
+	 */
+	public boolean canMoveTo(Coord c);
 
 }
