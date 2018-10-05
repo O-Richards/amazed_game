@@ -115,7 +115,7 @@ public abstract class Tile {
 		}
 	}
 
-	public boolean canMoveTo() {
+	public boolean traversable() {
 		return this.enemy == null;
 	}
 }

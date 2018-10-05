@@ -20,8 +20,8 @@ public class DoorTile extends Tile {
 	}
 	
 	@Override
-	public boolean canMoveTo() {
-		return this.open == true && super.canMoveTo();
+	public boolean traversable() {
+		return this.open == true && super.traversable();
 	}
 /*
 	@Override

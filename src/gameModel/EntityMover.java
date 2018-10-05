@@ -32,7 +32,7 @@ public interface EntityMover {
 	 * @param c The coord to check
 	 * @return	true if a mobile entity can move onto this tile without dying, false else.
 	 */
-	public boolean isTraversable(Coord c);
+	public boolean traversable(Coord c);
 
 	/**
 	 * @param c the coord to kill all (killable) entities on
