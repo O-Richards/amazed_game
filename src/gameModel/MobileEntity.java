@@ -5,6 +5,7 @@ public abstract class MobileEntity extends Entity implements Movement {
 	private Movement movement;
 	private Integer lastTick = -1;
 	private int lastMoveTickNum = -1;
+	private boolean alive = true;
 	
 	
 	MobileEntity(Coord coord) {
@@ -23,6 +24,20 @@ public abstract class MobileEntity extends Entity implements Movement {
 		if (this.lastTick != tickNum) {
 			this.lastTick = tickNum;
 		}
+	}
+	
+	public boolean kill() {
+		if (this.canDie()) {
+			//this.entityMover.removeEntity(this, this.getCoord());
+			this.alive = false;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isAlive() {
+		return alive;
 	}
 	
 	public Direction getDirection() {

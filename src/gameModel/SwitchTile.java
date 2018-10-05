@@ -4,12 +4,11 @@ public class SwitchTile extends Tile {
 	
 	private WinCondition switchCondition;
 	
-	public SwitchTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition, EntityMover entityMover) {
-		super(coord, enemyCondition, entityMover);
+	public SwitchTile(Coord coord, WinCondition winCondition, EntityMover entityMover) {
+		super(coord, entityMover);
 		this.switchCondition = winCondition;
 	}
 
-	@Override
 	protected void updateWinCondition() {
 		if (this.getItem().equals((new BoulderMobileEntity(this.getCoord())))) {
 			this.switchCondition.setType(WinType.WIN);
@@ -17,7 +16,7 @@ public class SwitchTile extends Tile {
 			this.switchCondition.setType(WinType.SWITCH);
 		}
 	}
-	
+
 	@Override
 	public String getSprite() {
 		return "@";

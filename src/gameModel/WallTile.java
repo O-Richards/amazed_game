@@ -2,8 +2,8 @@ package gameModel;
 
 public class WallTile extends Tile {
 
-	public WallTile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
-		super(coord, enemyCondition, entityMover);
+	public WallTile(Coord coord, EntityMover entityMover) {
+		super(coord, entityMover);
 	}
 
 	public String getSprite() {

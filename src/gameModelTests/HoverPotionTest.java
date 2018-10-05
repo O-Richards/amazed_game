@@ -12,7 +12,7 @@ public class HoverPotionTest {
 	PlayerMobileEntity p;
 	HoverPotion h; 
  	UsableEntity u;
- 	EmptyTile tile; 
+ 	Tile tile; 
  	Direction d; 
 	@Test
 	public void setUp() {

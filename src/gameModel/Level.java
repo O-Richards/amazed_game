@@ -32,17 +32,17 @@ public class Level implements EntityMover {
 		this.map = new Tile[nRows + 2][nCols + 2];
 		for (int row = 1; row < nRows + 1; row++) {
 			for (int col = 1; col < nCols + 1; col++) {
-				this.map[row][col] = new EmptyTile(new Coord(row, col), this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.WIN), this);
+				this.map[row][col] = new Tile(new Coord(row, col), this);
 			}
 		}
 		//Add bordering walls
 		for (int row = 0; row < nRows + 2; row++) {
-			this.map[row][0] = new WallTile(new Coord(row, 0), this.winSystem.newWinCondition(WinType.WIN), this);
-			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1), this.winSystem.newWinCondition(WinType.WIN), this);
+			this.map[row][0] = new WallTile(new Coord(row, 0), this);
+			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1), this);
 		}
 		for (int col = 0; col < nCols + 2; col++) {
-			this.map[0][col] = new WallTile(new Coord(0, col), this.winSystem.newWinCondition(WinType.WIN), this);
-			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col), this.winSystem.newWinCondition(WinType.WIN), this);
+			this.map[0][col] = new WallTile(new Coord(0, col), this);
+			this.map[nRows + 1][col] = new WallTile(new Coord(nRows + 1, col), this);
 		}
 		
 	}
@@ -65,6 +65,7 @@ public class Level implements EntityMover {
 	public void addItem(UsableEntity item, Coord c) throws EntityPlacementException {
 		Tile placementTile = getTile(c);
 		item.setEntityMover(this);
+		item.setWinCondition(this.winSystem.newWinCondition(WinType.TREASURE));
 		placementTile.addItem(item);
 	}
 	
@@ -74,9 +75,10 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
-	public void addEnemy(MobileEntity enemy, Coord c) throws EntityPlacementException {
+	public void addEnemy(EnemyMobileEntity enemy, Coord c) throws EntityPlacementException {
 		Tile placementTile = getTile(c);
 		enemy.setEntityMover(this);
+		enemy.setWinCondition(this.winSystem.newWinCondition(WinType.ENEMY));
 		placementTile.addEnemy(enemy);
 	}
 	
@@ -166,7 +168,6 @@ public class Level implements EntityMover {
 	}
 
 	public boolean hasWon() {
-		if (DEBUG) System.out.println(this.winSystem.getType());
 		return this.winSystem.getType() == WinType.WIN;
 	}
 
@@ -182,7 +183,7 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.SWITCH), this);
+		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.SWITCH), this);
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
@@ -197,22 +198,22 @@ public class Level implements EntityMover {
 	 * @param coord
 	 */
 	public void placeWall(Coord coord) {
-		WallTile newWall = new WallTile(coord, this.winSystem.newWinCondition(WinType.WIN), this);
+		WallTile newWall = new WallTile(coord, this);
 		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 
 	public void placePit(Coord coord) {
-		PitTile newPit = new PitTile(coord, this.winSystem.newWinCondition(WinType.WIN), this);
+		PitTile newPit = new PitTile(coord, this);
 		this.map[coord.getX()][coord.getY()] = newPit;
 	}
 
 	public void placeExit(Coord coord) {
-		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.EXIT), this);
+		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.EXIT), this);
 		this.map[coord.getX()][coord.getY()] = newExit;
 	}
 	
 	public void placeDoor(Coord coord) {
-		DoorTile newDoor = new DoorTile(coord, this.winSystem.newWinCondition(WinType.WIN), this);
+		DoorTile newDoor = new DoorTile(coord, this);
 		this.map[coord.getX()][coord.getY()] = newDoor;
 	}
 	
@@ -247,9 +248,9 @@ public class Level implements EntityMover {
 	}
 
 	@Override
-	public void kill(Coord c) {
-		// TODO Auto-generated method stub
-		
+	public boolean kill(Coord c) {
+		Tile tile = this.getTile(c);
+		return tile.kill();
 	}
 
 	@Override

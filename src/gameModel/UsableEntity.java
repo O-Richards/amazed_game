@@ -1,7 +1,8 @@
 package gameModel;
 
 public abstract class UsableEntity extends Entity {
-
+	protected WinCondition winCondition;
+	
 	UsableEntity(Coord coord) {
 		super(coord);
 	}
@@ -21,5 +22,9 @@ public abstract class UsableEntity extends Entity {
 	 */
 	public void applyToPlayer(PlayerMobileEntity player) {
 		//By default does nothing
+	}
+	
+	public void setWinCondition(WinCondition winCondition) {
+		this.winCondition = winCondition;
 	}
 }

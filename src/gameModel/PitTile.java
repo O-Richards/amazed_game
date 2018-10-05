@@ -2,8 +2,8 @@ package gameModel;
 
 public class PitTile extends Tile {
 
-	public PitTile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
-		super(coord, enemyCondition, entityMover);
+	public PitTile(Coord coord, EntityMover entityMover) {
+		super(coord, entityMover);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -21,11 +21,6 @@ public class PitTile extends Tile {
 	
 	public String getSprite() {
 		return "O";
-	}
-
-	@Override
-	protected void updateWinCondition() {
-		
 	}
 
 }

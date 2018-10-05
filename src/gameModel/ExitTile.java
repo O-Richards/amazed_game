@@ -4,8 +4,8 @@ public class ExitTile extends Tile {
 	
 	private WinCondition winCondition;
 
-	public ExitTile(Coord coord, WinCondition enemyCondition, WinCondition winCondition, EntityMover entityMover) {
-		super(coord, enemyCondition, entityMover);
+	public ExitTile(Coord coord, WinCondition winCondition, EntityMover entityMover) {
+		super(coord, entityMover);
 		this.winCondition = winCondition;
 	}
 

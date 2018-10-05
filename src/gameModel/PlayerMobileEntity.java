@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
 	private ArrayList<UsableEntity> inventory;
-	private boolean alive = true;
 	private int keyCode = -1;
 	// private PlayerState playerState;
 	
@@ -13,7 +12,6 @@ public class PlayerMobileEntity extends MobileEntity {
 		Movement movement = new PlayerMovement(this);
 		this.setMovement(movement);
 		this.inventory = new ArrayList<UsableEntity>();
-		// TODO Auto-generated constructor stub
 	}
 	
 	/* (non-Javadoc)
@@ -86,19 +84,6 @@ public class PlayerMobileEntity extends MobileEntity {
 		return out;
 	}
 
-	public boolean kill() {
-		if (this.canDie()) {
-			//this.entityMover.removeEntity(this, this.getCoord());
-			this.alive = false;
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public boolean isAlive() {
-		return alive;
-	}
 	
 	public int getKeyCode() {
 		return keyCode;

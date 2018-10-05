@@ -1,16 +1,14 @@
 package gameModel;
 
-public abstract class Tile {
+public class Tile {
 	private Coord coord;
-	private WinCondition enemyCondition;
 	private UsableEntity item = null;
 	private MobileEntity enemy = null;
 	private PlayerMobileEntity player = null;
 	private EntityMover entityMover;	
 	
-	public Tile(Coord coord, WinCondition enemyCondition, EntityMover entityMover) {
+	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
-		this.enemyCondition = enemyCondition;
 		this.entityMover = entityMover;
 	}
 		
@@ -82,19 +80,9 @@ public abstract class Tile {
 		return this.item;
 	}
 
-
-	/**
-	 * Check if there are any enemies on the tile to update the enemies win condition
-	 */
-	public void updateEnemyCondition() {
-		if (this.enemy == null) {
-			this.enemyCondition.setType(WinType.WIN);
-		} else {
-			this.enemyCondition.setType(WinType.ENEMY);
-		}
+	protected void updateWinCondition() {
+		
 	}
-
-	protected abstract void updateWinCondition();
 		
 	public Coord getCoord() {
 		return this.coord;
@@ -117,6 +105,17 @@ public abstract class Tile {
 
 	public boolean traversable() {
 		return this.enemy == null;
+	}
+	
+	public boolean kill() {
+		boolean retVal = false;
+		if (this.enemy != null) {
+			retVal |= enemy.kill();
+		}
+		if (this.player != null) {
+			retVal |= player.kill();
+		}
+		return retVal;
 	}
 }
 

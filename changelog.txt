@@ -4,3 +4,8 @@
     * Changed enemies so the tile asks them where they want to move, then the
     tile asks the level to move them
     * 
+
+5/10/18
+    * TODO: Fix boulders, need a field on tiles for "passive mobile entities"
+    * TODO: Fix win conditions. In Level.addItem() need to stop hard coding WinType.TREASURE. At the moment it wont win untill all items are picked up
+    * TODO: Swith tile -> need to fix boulder win condition and remove SwitchTile.updateWinCondition and from Tile.updateWinCondition()

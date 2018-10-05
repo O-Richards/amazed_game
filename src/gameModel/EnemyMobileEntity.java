@@ -1,15 +1,14 @@
 package gameModel;
 
 public class EnemyMobileEntity extends MobileEntity {
-
-	private Level level;
+	private WinCondition winCondition;
+	
 	public EnemyMobileEntity(Coord coord) {
 		super(coord);
 	}
-	EnemyMobileEntity(Coord coord, Level level) {
-		super(coord);
-		this.level = level;
-
+	
+	public void setWinCondition(WinCondition winCondition) {
+		this.winCondition = winCondition;
 	}
 
 	@Override
@@ -22,6 +21,16 @@ public class EnemyMobileEntity extends MobileEntity {
 	public String getSprite() {
 		return "E";
 	}
+	
+	@Override 
+	public boolean kill() {
+		if (super.kill()) {
+			if (winCondition != null) this.winCondition.setType(WinType.WIN);
+			return true;
+		} 
+		return false;
+	}
+	
 	
 	/* Left here for reference, should be replaced by this.nextCoord()
 	@Override
