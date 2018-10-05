@@ -62,7 +62,7 @@ public class GameController {
 		}
 	}
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, EntityPlacementException {
 		GameController gc = new GameController();
 		Level l = new Level();
 		//Setup template maze
@@ -76,22 +76,21 @@ public class GameController {
 		l.enableWinCondition(WinType.ENEMY);
 		l.enableWinCondition(WinType.SWITCH);
 		l.enableWinCondition(WinType.TREASURE);
-
-		l.placeEntity(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
-		l.placeEntity(new BombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
-		l.placeEntity(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
+		l.addItem(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
+		l.addItem(new BombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
+		l.addEnemy(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
 		l.placeSwitch(new Coord(3, 3));
-		l.placeEntity(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
-		l.placeEntity(new TreasureEntity(new Coord(10, 2)), new Coord(10, 2));
+		l.addItem(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
+		l.addItem(new TreasureEntity(new Coord(10, 2)), new Coord(10, 2));
 		l.placeWall(new Coord(4, 5));
 		l.placeExit(new Coord(6, 1));
-		l.placeEntity(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
-		l.placeEntity(new InvincibilityEntity(new Coord(1,5)), new Coord(1,5));
+		l.addItem(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
+		l.addItem(new InvincibilityEntity(new Coord(1,7)), new Coord(1,7));
 		l.placePit(new Coord(9,9));
-		l.placeEntity(new EnemyMobileEntity(new Coord(15, 15),l), new Coord(15, 15));
-		l.placeEntity(new KeyUsableEntity(null), new Coord(2,5));
-		l.placeEntity(new KeyUsableEntity(null), new Coord(7,8));
-		l.placeEntity(new ArrowUsableEntity(null), new Coord(5,8));
+		l.addEnemy(new EnemyMobileEntity(new Coord(15, 15),l), new Coord(15, 15));
+		l.addItem(new KeyUsableEntity(null), new Coord(2,5));
+		l.addItem(new KeyUsableEntity(null), new Coord(7,8));
+		l.addItem(new ArrowUsableEntity(null), new Coord(5,8));
 
 		l.placeDoor(new Coord(4,1));
 		

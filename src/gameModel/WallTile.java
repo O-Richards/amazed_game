@@ -11,8 +11,14 @@ public class WallTile extends Tile {
 	}
 	
 	@Override
-	public boolean canMoveTo() {
+	public boolean traversable() {
 		return false;
+	}
+
+	@Override
+	protected void updateWinCondition() {
+		// TODO Auto-generated method stub
+		
 	}
 		
 }

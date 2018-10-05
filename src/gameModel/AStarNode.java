@@ -85,7 +85,7 @@ public class AStarNode
 		//make new nodes for tiles where MOVE is possible
 		for (Direction dir : Direction.values()) {
 			Coord curCoord = this.getCoord(dir);
-			if (this.entityMover.canMoveTo(curCoord)) {
+			if (this.entityMover.traversable(curCoord)) {
 				AStarNode newNeighbour = new AStarNode(curCoord, this.entityMover);
 				newNeighbour.setgCost(this.gCost+1);
 				neighbours.add(newNeighbour);

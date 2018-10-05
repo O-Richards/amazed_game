@@ -234,27 +234,28 @@ public class Level implements EntityMover {
 	}
 
 	@Override
-	public void removeEntity(Entity entity, Coord c) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public boolean traversable(Coord c) {
+		Tile movementTile = this.getTile(c);
+		return movementTile.traversable();
+	}
+
+	@Override
+	public void kill(Coord c) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void placeEntity(Entity entity, Coord c) {
 		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public boolean traversable(Coord c) {
-		Tile movementTile = this.getTile(c);
-		return movementTile.traversable();
 	}
 
 }

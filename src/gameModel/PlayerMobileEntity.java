@@ -88,7 +88,7 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	public boolean kill() {
 		if (this.canDie()) {
-			this.entityMover.removeEntity(this, this.getCoord());
+			//this.entityMover.removeEntity(this, this.getCoord());
 			this.alive = false;
 			return true;
 		} else {

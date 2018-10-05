@@ -29,10 +29,6 @@ public abstract class Entity {
 	
 	}
 
-	public void removeFromTile() {
-		this.entityMover.removeEntity(this, this.getCoord());
-	}
-
 	public abstract String getSprite();
 
 	public void setCoord(Coord coord) {

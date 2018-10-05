@@ -17,7 +17,7 @@ public class ExitTileTest {
 		c = new Coord(2, 2);
 		p = new PlayerMobileEntity(c);
 		winSystem = new WinSystem();
-		E = new ExitTile(c, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.EXIT));
+		//E = new ExitTile(c, this.winSystem.newWinCondition(WinType.WIN), this.winSystem.newWinCondition(WinType.EXIT));
 	}
 	//Checks that the player wins upon exit: 
 	@Test

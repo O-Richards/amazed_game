@@ -19,7 +19,7 @@ public class BombUsableEntity extends UsableEntity {
 				timerStarted = true;
 			}
 			System.out.println(startTick + duration - tickNum);
-			if (startTick + duration <= tickNum) {
+			if (startTick + duration == tickNum) {
 				this.explodeBomb();
 			}
 		}
@@ -37,7 +37,7 @@ public class BombUsableEntity extends UsableEntity {
 		this.entityMover.kill(this.getCoord(Direction.DOWN));
 		this.entityMover.kill(this.getCoord(Direction.LEFT));
 		this.entityMover.kill(this.getCoord(Direction.RIGHT));
-		this.entityMover.removeEntity(this, this.getCoord());
+		//this.entityMover.removeEntity(this, this.getCoord());
 	}
 	
 	@Override
