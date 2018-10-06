@@ -22,7 +22,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff3a" height="200.0" layoutX="204.0" layoutY="147.0" stroke="TRANSPARENT" strokeType="INSIDE" width="196.0" />
       <Button contentDisplay="CENTER" layoutX="256.0" layoutY="168.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="87.0" text="Quit">
          <font>
-            <Font name="American Typewriter" size="16.0" />
+            <Font name="Baskerville" size="17.0" />
          </font>
          <effect>
             <DropShadow height="106.0" radius="51.739999999999995" width="102.96" />
@@ -30,7 +30,7 @@
       </Button>
       <Button layoutX="256.0" layoutY="231.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="87.0" text="Resume ">
          <font>
-            <Font size="16.0" />
+            <Font name="Baskerville" size="17.0" />
          </font>
          <effect>
             <DropShadow height="81.71" radius="41.875" width="87.79" />
@@ -38,15 +38,15 @@
       </Button>
       <Button layoutX="256.0" layoutY="292.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="87.0" text="Restart ">
          <font>
-            <Font size="16.0" />
+            <Font name="Baskerville" size="17.0" />
          </font>
          <effect>
             <DropShadow height="78.68" radius="38.08" width="75.64" />
          </effect>
       </Button>
-      <Label layoutX="227.0" layoutY="67.0" text="PAUSED" textFill="WHITE">
+      <Label layoutX="216.0" layoutY="69.0" text="PAUSED" textFill="WHITE">
          <font>
-            <Font name="American Typewriter Condensed Bold" size="44.0" />
+            <Font name="Baskerville Bold" size="42.0" />
          </font>
       </Label>
       <Label blendMode="SRC_ATOP" layoutX="484.0" layoutY="29.0" opacity="0.8" text="ESCAPE" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
@@ -59,7 +59,7 @@
       </Label>
       <Label blendMode="SRC_ATOP" layoutX="458.0" layoutY="20.0" prefHeight="22.0" prefWidth="145.0" text="The  a MAZE ing" textAlignment="CENTER" textFill="RED">
          <font>
-            <Font name="American Typewriter Semibold" size="16.0" />
+            <Font name="Baskerville Bold" size="16.0" />
          </font>
          <effect>
             <Glow level="1.0" />
