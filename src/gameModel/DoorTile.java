@@ -25,21 +25,12 @@ public class DoorTile extends Tile {
 	}
 	
 	@Override
-	public void addPlayer(PlayerMobileEntity player) throws EntityPlacementException {
-		this.open |= (player.getKeyCode() == this.doorCode);
-		if (!this.open) {
-			throw new EntityPlacementException("Door is closed");
-		}
-		super.addPlayer(player);
-	}
-	
-	@Override
-	public void addEnemy(MobileEntity e) throws EntityPlacementException {
+	public void addMobileEntity(MobileEntity e) throws EntityPlacementException {
 		this.open |= (e.getKeyCode() == this.doorCode);
 		if (!this.open) {
 			throw new EntityPlacementException("Door is closed");
 		}
-		super.addEnemy(e);
+		super.addMobileEntity(e);
 	}
 	
 /*

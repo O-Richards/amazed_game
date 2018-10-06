@@ -7,18 +7,16 @@ public class PitTile extends Tile {
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
 	@Override
-	public Collision collideExt(MobileEntity hitter, Collision col) {
-		if (hitter.canFly()) {
-			return col;
+	public void addMobileEntity(MobileEntity entity) throws EntityPlacementException {
+		if (entity.canFly()) {
+			super.addMobileEntity(entity);
 		} else {
-			hitter.kill();
-			return Collision.NOMOVE;
-		} 
-	}*/
-
-	
+			//TODO: This may fail when using the invincibility potion
+			entity.kill();
+		}
+		
+	}
 	public String getSprite() {
 		return "O";
 	}

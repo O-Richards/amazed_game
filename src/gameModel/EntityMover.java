@@ -13,10 +13,8 @@ public interface EntityMover {
 	 * @precondition e != null
 	 * @precondition nextCoord is in the map 
 	 */
-	boolean moveEnemy(MobileEntity e, Coord nextCoord);
-	boolean moveEnemy(MobileEntity e, Direction dir);
-	boolean movePlayer(PlayerMobileEntity e, Coord nextCoord);
-	boolean movePlayer(PlayerMobileEntity e, Direction dir);
+	boolean moveMobileEntity(MobileEntity e, Coord nextCoord);
+	boolean moveMobileEntity(MobileEntity e, Direction dir);
 	
 	/**
 	 * @param entity The entity to be placed on the map

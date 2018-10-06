@@ -22,12 +22,7 @@ public class WallTile extends Tile {
 	}
 	
 	@Override
-	public void addPlayer(PlayerMobileEntity e) throws EntityPlacementException {
-		throw new EntityPlacementException("Player cannot travverse walls");
-	}
-		
-	@Override
-	public void addEnemy(MobileEntity e) throws EntityPlacementException {
-		throw new EntityPlacementException("Enemies cannot travverse walls");
+	public void addMobileEntity(MobileEntity e) throws EntityPlacementException {
+		throw new EntityPlacementException("Entites cannot travverse walls");
 	}
 }
