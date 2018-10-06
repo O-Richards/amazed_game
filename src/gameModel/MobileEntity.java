@@ -1,7 +1,7 @@
 package gameModel;
 
 public abstract class MobileEntity extends Entity implements Movement {
-	public static final boolean DEBUG = false;
+	private static final boolean DEBUG = false;
 	private Movement movement;
 	private Integer lastTick = -1;
 	private int lastMoveTickNum = -1;

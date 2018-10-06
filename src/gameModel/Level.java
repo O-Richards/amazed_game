@@ -228,18 +228,84 @@ public class Level implements EntityMover {
 		this.winSystem.enableWinCondition(winType);
 	}
 
+	/* (non-Javadoc)
+	 * @see gameModel.EntityMover#moveEntity(gameModel.MobileEntity, gameModel.Direction)
+	 */
 	@Override
-	public Collision moveEntity(MobileEntity e, Direction dir) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean moveEnemy(MobileEntity e, Direction dir) {
+		Tile newTile = this.getTile(e.getCoord(), dir);
+		if (newTile == null) {
+			System.out.println("Level.moveEntity: warning moving Entity " + e.toString() + "To an invalid coord");
+			return false;
+		}
+		return this.moveEnemy(e, newTile.getCoord());
 	}
 
+	/**
+	 * @param e the enemy to be moved
+	 * @param nextCoord the coord to move the enemy to
+	 * @return true if the entity is moved to the new tile. false else
+	 * @precondition e != null
+	 * @precondition nextCoord is in the map 
+	 */
 	@Override
-	public Collision moveEntity(MobileEntity e, Coord nextCoord) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean moveEnemy(MobileEntity e, Coord nextCoord) {
+		Tile placementTile = this.getTile(nextCoord);
+		Tile originalTile = this.getTile(e.getCoord());
+		try {
+			placementTile.addEnemy(e);
+			originalTile.removeEnemy(e);
+			
+		} catch (EntityPlacementException exp){
+			//The entity cannot be placed here for some reason
+			if (DEBUG) {
+				System.out.println("Level.moveEnemy: Placing enemy received exception: " + exp.toString());
+			}
+			return false;
+		}
+		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see gameModel.EntityMover#moveEntity(gameModel.MobileEntity, gameModel.Direction)
+	 */
+	@Override
+	public boolean movePlayer(PlayerMobileEntity e, Direction dir) {
+		Tile newTile = this.getTile(e.getCoord(), dir);
+		if (newTile == null) {
+			System.out.println("Level.moveEntity: warning moving Entity " + e.toString() + "To an invalid coord");
+			return false;
+		}
+		return this.movePlayer(e, newTile.getCoord());
+	}
+
+	/**
+	 * @param e the enemy to be moved
+	 * @param nextCoord the coord to move the enemy to
+	 * @return true if the entity is moved to the new tile. false else
+	 * @precondition e != null
+	 * @precondition nextCoord is in the map 
+	 */
+	@Override
+	public boolean movePlayer(PlayerMobileEntity e, Coord nextCoord) {
+		if (DEBUG) {
+			System.out.println("Moving player from " + e.getCoord() + " To " + nextCoord);
+		}
+		Tile placementTile = this.getTile(nextCoord);
+		Tile originalTile = this.getTile(e.getCoord());
+		try {
+			placementTile.addPlayer(e);
+			originalTile.removePlayer(e);
+			
+		} catch (EntityPlacementException exp){
+			//The entity cannot be placed here for some reason
+			if (DEBUG) {
+				System.out.println("Level.moveEnemy: Placing enemy received exception: " + exp.toString());
+			}
+			return false;
+		}
+		return true;
+	}
 
 	@Override
 	public boolean traversable(Coord c) {
@@ -258,5 +324,4 @@ public class Level implements EntityMover {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

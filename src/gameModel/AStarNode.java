@@ -82,6 +82,10 @@ public class AStarNode
 		//TODO: There is a possible bug here -> dir includes CENTRE
 		for (Direction dir : Direction.values()) {
 			Coord curCoord = this.getCoord(dir);
+			if (this.getCoord().equals(curCoord)) {
+				//Avoid self-loops
+				continue;
+			}
 			if (this.entityMover.traversable(curCoord)) {
 				AStarNode newNeighbour = new AStarNode(curCoord, this.entityMover);
 				newNeighbour.setgCost(this.gCost+1);

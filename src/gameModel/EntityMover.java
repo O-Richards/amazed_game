@@ -7,13 +7,16 @@ package gameModel;
 public interface EntityMover {
 	
 	/**
-	 * @param e The entity to move
-	 * @param dir The direction to move the entity in
-	 * @return TODO
+	 * @param e the enemy to be moved
+	 * @param nextCoord the coord to move the enemy to
+	 * @return true if the entity is moved to the new tile. false else
+	 * @precondition e != null
+	 * @precondition nextCoord is in the map 
 	 */
-	public Collision moveEntity(MobileEntity e, Direction dir);
-
-	public Collision moveEntity(MobileEntity e, Coord nextCoord);
+	boolean moveEnemy(MobileEntity e, Coord nextCoord);
+	boolean moveEnemy(MobileEntity e, Direction dir);
+	boolean movePlayer(PlayerMobileEntity e, Coord nextCoord);
+	boolean movePlayer(PlayerMobileEntity e, Direction dir);
 	
 	/**
 	 * @param entity The entity to be placed on the map
@@ -32,6 +35,4 @@ public interface EntityMover {
 	 * @param c the coord to kill all (killable) entities on
 	 */
 	public boolean kill(Coord c);
-
-
 }

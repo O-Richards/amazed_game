@@ -3,6 +3,7 @@ package gameModel;
 import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
+	private static final boolean DEBUG = true;
 	private ArrayList<UsableEntity> inventory;
 	private int keyCode = -1;
 	// private PlayerState playerState;
@@ -60,7 +61,11 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	@Override
 	public Coord nextCoord() {
-		return this.getCoord(this.getDirection());
+		Coord retVal = this.getCoord(this.getDirection());
+		if (DEBUG) {
+			System.out.println("Player.nextCoord: Returning " + retVal.toString());
+		}
+		return retVal;
 	}
 
 	@Override
@@ -84,7 +89,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		return out;
 	}
 
-	
+	@Override
 	public int getKeyCode() {
 		return keyCode;
 	}
