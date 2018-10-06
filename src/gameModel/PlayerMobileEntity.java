@@ -98,5 +98,10 @@ public class PlayerMobileEntity extends MobileEntity {
 		this.keyCode = keyCode;
 		System.out.println("keyCode = " + keyCode);
 	}
+
+	@Override
+	public boolean isPlayer() {
+		return true;
+	}
 	
 }

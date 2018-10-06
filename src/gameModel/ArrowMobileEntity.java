@@ -19,4 +19,10 @@ public class ArrowMobileEntity extends MobileEntity {
 		return ">";
 	}
 
+	@Override
+	public boolean isPlayer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

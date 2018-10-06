@@ -29,4 +29,10 @@ public class BoulderMobileEntity extends MobileEntity {
 		return false;
 	}
 
+	@Override
+	public boolean isPlayer() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

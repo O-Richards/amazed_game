@@ -26,8 +26,12 @@ public abstract class MobileEntity extends Entity implements Movement {
 		}
 	}
 	
+	/**
+	 * @return true if the entity is killed, false else.
+	 */
 	public boolean kill() {
 		if (this.canDie()) {
+			//The tile now does this for us
 			//this.entityMover.removeEntity(this, this.getCoord());
 			this.alive = false;
 			return true;
@@ -90,4 +94,10 @@ public abstract class MobileEntity extends Entity implements Movement {
 	public void setLastMoveTickNum(int tickNum) {
 		this.lastMoveTickNum  = tickNum;
 	}
+	
+	/**
+	 * @return true if the MobileEntity is a Player. false else
+	 * Why isPlayer not isNPC? We have boulders, arrows as well as enemies that we want to group togeher
+	 */
+	public abstract boolean isPlayer();
 }

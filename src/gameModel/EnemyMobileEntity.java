@@ -30,6 +30,11 @@ public class EnemyMobileEntity extends MobileEntity {
 		} 
 		return false;
 	}
+
+	@Override
+	public boolean isPlayer() {
+		return false;
+	}
 	
 	
 	/* Left here for reference, should be replaced by this.nextCoord()

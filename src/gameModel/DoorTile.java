@@ -23,6 +23,25 @@ public class DoorTile extends Tile {
 	public boolean traversable() {
 		return this.open == true && super.traversable();
 	}
+	
+	@Override
+	public void addPlayer(PlayerMobileEntity player) throws EntityPlacementException {
+		this.open |= (player.getKeyCode() == this.doorCode);
+		if (!this.open) {
+			throw new EntityPlacementException("Door is closed");
+		}
+		super.addPlayer(player);
+	}
+	
+	@Override
+	public void addEnemy(MobileEntity e) throws EntityPlacementException {
+		this.open |= (e.getKeyCode() == this.doorCode);
+		if (!this.open) {
+			throw new EntityPlacementException("Door is closed");
+		}
+		super.addEnemy(e);
+	}
+	
 /*
 	@Override
 	public Collision collideExt(MobileEntity hitter, Collision col) {
