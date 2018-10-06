@@ -4,7 +4,7 @@ package gameModel;
 public class SwordUsableEntity extends UsableEntity {
 	private int noOfUses = 5; 
 
-	SwordUsableEntity(Coord coord) {
+	public SwordUsableEntity(Coord coord) {
 		super(coord);
 	}
 

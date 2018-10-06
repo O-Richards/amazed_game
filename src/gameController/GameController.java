@@ -1,7 +1,10 @@
-package gameModel;
+package gameController;
 
 import java.io.IOException;
+
 import java.util.Scanner;
+
+import gameModel.*;
 
 public class GameController {
 	

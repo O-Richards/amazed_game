@@ -75,14 +75,11 @@ public class AStarNode
 	making AStarSearch.
 	*/
 	public List<AStarNode> getNeighbors() {
-		int curX = this.getCoord().getX();
-		int curY = this.getCoord().getY();
 		List<AStarNode> neighbours = new ArrayList<AStarNode>();
 		
-		// I RECOGNISE THIS IS DISGUSTING AND SHOULD PROBABLY BE A FOREACH LOOP
-		// SHOULD WORK THOUGH
 		// Calls getCoord on the map position indicated and creates node with that coord
 		//make new nodes for tiles where MOVE is possible
+		//TODO: There is a possible bug here -> dir includes CENTRE
 		for (Direction dir : Direction.values()) {
 			Coord curCoord = this.getCoord(dir);
 			if (this.entityMover.traversable(curCoord)) {
