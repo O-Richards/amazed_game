@@ -1,6 +1,6 @@
 package gameModel;
 
 public enum KillAction {
-	WEAPON, ALL, ENEMY, NO_KILL 
+	WEAPON, SUPER_KILL, ENEMY, NO_KILL 
 
 }

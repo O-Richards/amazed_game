@@ -1,8 +1,12 @@
 package gameModel;
 
 public class EntityMaker {
-	public BasicEntity makeBasicEntity(EntityType type) {
-		
+	private WinSystem winSystem;
+	private EntityMover entityMover;
+	
+	public EntityMaker (WinSystem winSystem, EntityMover entityMover) {
+		this.winSystem = winSystem;
+		this.entityMover = entityMover;
 	}
 	
 	public BasicEntity makeKey(Coord c, EntityMover entityMover) {
@@ -12,4 +16,12 @@ public class EntityMaker {
 				.withUsage(new KeyUsable())
 				.build();
 	}
+	
+	public BasicEntity makeArrow(Coord c) {
+		return new BasicEntity.BasicEntityBuilder("<")
+			.withCoord(c)
+			.withUsage(new ArrowUsable(entityMover))
+			.build();
+	}
+	
 }
