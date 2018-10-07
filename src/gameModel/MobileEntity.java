@@ -12,6 +12,7 @@ public class MobileEntity implements Movement, Entity {
 	private final boolean isPlayer;
 	private final KillAction killAction;
 	private final List<KillAction> killedBy;
+	private boolean pushable = false;
 	private boolean killedByAnything = false;
 	
 	
@@ -62,6 +63,10 @@ public class MobileEntity implements Movement, Entity {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean pushable() {
+		return this.pushable;
 	}
 	
 	public KillAction getKillAction() {
