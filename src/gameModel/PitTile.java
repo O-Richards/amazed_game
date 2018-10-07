@@ -13,7 +13,7 @@ public class PitTile extends Tile {
 			super.addMobileEntity(entity);
 		} else {
 			//TODO: This may fail when using the invincibility potion
-			entity.kill();
+			entity.kill(KillAction.SUPER_KILL);
 		}
 		
 	}
