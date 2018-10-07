@@ -1,6 +1,6 @@
 package gameModel;
 
-public class BombUsableEntity extends UsableEntity {
+public class BombUsableEntity extends UsableEntity implement  {
 	
 	private Integer startTick;
 	private Integer duration = 3;
@@ -29,6 +29,7 @@ public class BombUsableEntity extends UsableEntity {
 	public Boolean use(Direction playerDirection) {
 		this.entityMover.placeEntity(this, this.getCoord());
 		this.explode = true;
+		this.entityMover.callAfterTick(this, )
 		return false;
 	}
 

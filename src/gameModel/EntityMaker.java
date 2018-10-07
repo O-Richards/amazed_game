@@ -9,7 +9,7 @@ public class EntityMaker {
 		this.entityMover = entityMover;
 	}
 	
-	public BasicEntity makeKey(Coord c, EntityMover entityMover) {
+	public Entity makeKey(Coord c, EntityMover entityMover) {
 		return new BasicEntity.BasicEntityBuilder("K")
 				.withEntityMover(entityMover)
 				.withCoord(c)
@@ -17,11 +17,18 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public BasicEntity makeArrow(Coord c) {
+	public Entity makeArrow(Coord c) {
 		return new BasicEntity.BasicEntityBuilder("<")
 			.withCoord(c)
 			.withUsage(new ArrowUsable(entityMover))
 			.build();
+	}
+	
+	public Entity makeBomb(Coord c) {
+		return new BasicEntity.BasicEntityBuilder("B")
+				.withCoord(c)
+				.withUsage(new BombUsable(entityMover))
+				.build();
 	}
 	
 	public Entity makeTreasure(Coord c, EntityMover entityMover) {
@@ -46,7 +53,7 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public Entity makeInvincibilityEntity(Coord c) {
+	public Entity makeInvincibilityPotion(Coord c) {
 		Usable invincibilityUse = new Usable() {
 			@Override
 			public void applyToPlayer(PlayerMobileEntity player) {

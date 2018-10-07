@@ -3,7 +3,7 @@ package gameModel;
 public class ArrowUsable implements Usable {
 
 	private EntityMover entityMover;
-	private MobileEntity player;
+	private PlayerMobileEntity player;
 	
 	ArrowUsable(EntityMover entityMover) {
 		this.entityMover = entityMover;
@@ -18,6 +18,7 @@ public class ArrowUsable implements Usable {
 			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
 					.withKillAction(KillAction.WEAPON)
 					.withKilledByAnything(true)
+					.withMovement(new EntityTrackingMovement(baseEntity))
 					.build();
 			this.entityMover.placeEntity(killingArrow, killingArrow.getCoord());
 			return true;
