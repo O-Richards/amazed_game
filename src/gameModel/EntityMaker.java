@@ -75,7 +75,6 @@ public class EntityMaker {
 	}
 	
 	public Entity makeHoverPotion(Coord c) {
-		
 		Usable hoverPotionUse = new Usable() {
 			@Override
 			public boolean use(Action action) {
@@ -102,10 +101,9 @@ public class EntityMaker {
 				.withCoord(c)
 				.withEntityMover(entityMover)
 				.build();
-		
-		
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withMovement(new BoulderMovement(basicEntity))
+				.withPushable(true)
 				.build();
 	}
 }

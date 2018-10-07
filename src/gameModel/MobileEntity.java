@@ -157,6 +157,7 @@ public class MobileEntity implements Movement, Entity {
 		private Entity baseEntity;
 		private KillAction killAction = KillAction.NO_KILL;
 		private List<KillAction> killedBy = new ArrayList<KillAction>();
+		private boolean pushable = false;
 		
 		public MobileEntityBuilder(Entity baseEntity) {
 			this.baseEntity = baseEntity;
@@ -186,6 +187,11 @@ public class MobileEntity implements Movement, Entity {
 		
 		public MobileEntityBuilder withKilledByAnything(boolean killedByAnything) {
 			this.killedByAnything = killedByAnything;
+			return this;
+		}
+		
+		public MobileEntityBuilder withPushable(boolean pushable) {
+			this.pushable = pushable;
 			return this;
 		}
 		
