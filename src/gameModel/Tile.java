@@ -53,10 +53,20 @@ public class Tile {
 			if (newEntity.kill(oldEntity.getKillAction())) {
 				placeNewEntity = false;
 			}
+			if (oldEntity.pushable()) {
+				if (this.entityMover.moveMobileEntity(oldEntity, newEntity.getDirection())) {
+					placeNewEntity = true;
+				} else {
+					placeNewEntity = false;
+				}
+			} else {
+				placeNewEntity = false;
+			}
 		}
 		
 		if (placeNewEntity) {
 			newEntity.setCoord(this.getCoord());
+			this.mobile = newEntity;
 			if (this.item != null) {
 				if (newEntity.pickup(this.item)) {
 					this.item = null;

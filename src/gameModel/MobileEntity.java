@@ -12,7 +12,9 @@ public class MobileEntity implements Movement, Entity {
 	private final boolean isPlayer;
 	private final KillAction killAction;
 	private final List<KillAction> killedBy;
+	private boolean pushable = false;
 	private boolean killedByAnything = false;
+	private boolean canTriggerSwitches = false;
 	
 	
 	MobileEntity(MobileEntityBuilder builder) {
@@ -22,6 +24,8 @@ public class MobileEntity implements Movement, Entity {
 		this.killAction = builder.killAction;
 		this.killedBy = builder.killedBy;
 		this.killedByAnything = builder.killedByAnything;
+		this.pushable = builder.pushable;
+		this.canTriggerSwitches = builder.canTriggerSwitches;
 	}
 	
 	@Override
@@ -64,6 +68,10 @@ public class MobileEntity implements Movement, Entity {
 		}
 	}
 	
+	public boolean pushable() {
+		return this.pushable;
+	}
+	
 	public KillAction getKillAction() {
 		return this.killAction;
 	}
@@ -71,6 +79,10 @@ public class MobileEntity implements Movement, Entity {
 	public boolean canFly() {
 		return this.movement.canFly();
 	}	
+
+	public boolean canTriggerSwitches() {
+		return this.canTriggerSwitches;
+	}
 	
 	/**
 	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
@@ -152,6 +164,8 @@ public class MobileEntity implements Movement, Entity {
 		private Entity baseEntity;
 		private KillAction killAction = KillAction.NO_KILL;
 		private List<KillAction> killedBy = new ArrayList<KillAction>();
+		private boolean pushable = false;
+		private boolean canTriggerSwitches = false;
 		
 		public MobileEntityBuilder(Entity baseEntity) {
 			this.baseEntity = baseEntity;
@@ -184,9 +198,18 @@ public class MobileEntity implements Movement, Entity {
 			return this;
 		}
 		
+		public MobileEntityBuilder withPushable(boolean pushable) {
+			this.pushable = pushable;
+			return this;
+		}
+		
+		public MobileEntityBuilder withCanTriggerSwitches(boolean canTriggerSwitches) {
+			this.canTriggerSwitches = canTriggerSwitches;
+			return this;
+		}
+		
 		public MobileEntity build() {
 			return new MobileEntity(this);
 		}
 	}
-
 }
