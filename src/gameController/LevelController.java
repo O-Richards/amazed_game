@@ -2,6 +2,7 @@ package gameController;
 
 import gameModel.Action;
 import gameModel.Direction;
+import gameModel.EntityType;
 
 public interface LevelController {
 	EntityType[][] getMap();

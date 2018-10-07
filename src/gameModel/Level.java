@@ -18,7 +18,6 @@ public class Level implements EntityMover {
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
 
-	private PlayerMobileEntity player = null;
 	private Integer tickNum = 0;
 	private WinSystem winSystem;
 
@@ -48,9 +47,6 @@ public class Level implements EntityMover {
 	}
 
 	public PlayerMobileEntity addPlayer(Coord c) throws EntityPlacementException {
-		if (this.player != null) {
-			throw new EntityPlacementException("Player already exists");
-		}
 		Tile placementTile = this.getTile(c);
 		this.player = PlayerMobileEntity.build();
 		this.player.setCoord(c);

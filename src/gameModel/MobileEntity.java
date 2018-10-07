@@ -1,5 +1,8 @@
 package gameModel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MobileEntity implements Movement, Entity {
 	private static final boolean DEBUG = false;
 	private Movement movement;
@@ -7,12 +10,16 @@ public class MobileEntity implements Movement, Entity {
 	private Integer lastTick = -1;
 	private int lastMoveTickNum = -1;
 	private final boolean isPlayer;
+	private final KillAction killAction;
+	private final List<KillAction> killedBy;
 	
 	
 	MobileEntity(MobileEntityBuilder builder) {
 		this.baseEntity = builder.getBaseEntity();
 		this.movement = builder.getMovement();
 		this.isPlayer = builder.getIsPlayer();
+		this.killAction = builder.getKillAction();
+		this.killedBy = builder.getKilledBy();
 	}
 	
 	@Override
@@ -47,8 +54,12 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	@Override
-	public boolean kill() {
-		return this.movement.kill();
+	public boolean kill(KillAction action) {
+		if (this.killedBy.contains(action)) {
+			return this.movement.kill(action);
+		} else {
+			return false;
+		}
 	}
 	
 	public boolean canFly() {
@@ -132,10 +143,13 @@ public class MobileEntity implements Movement, Entity {
 		private Movement movement;
 		private boolean isPlayer = false;
 		private Entity baseEntity;
+		private KillAction killAction = KillAction.NO_KILL;
+		private List<KillAction> killedBy = new ArrayList<KillAction>();
 		
 		public MobileEntityBuilder(Entity baseEntity) {
 			this.baseEntity = baseEntity;
 			this.movement = new EntityTrackingMovement(baseEntity);
+			this.killedBy.add(KillAction.ALL);
 		}
 		
 		private Movement getMovement() {
@@ -149,9 +163,27 @@ public class MobileEntity implements Movement, Entity {
 		private Entity getBaseEntity() {
 			return this.baseEntity;
 		}
+		
+		private KillAction getKillAction() {
+			return this.killAction;
+		}
+		
+		private List<KillAction> getKilledBy() {
+			return this.killedBy;
+		}
 
 		public MobileEntityBuilder withMovement(Movement movement) {
 			this.movement = movement;
+			return this;
+		}
+		
+		public MobileEntityBuilder withKilledBy(KillAction action) {
+			this.killedBy.add(action);
+			return this;
+		}
+		
+		public MobileEntityBuilder withKillAction(KillAction action) {
+			this.killAction = action;
 			return this;
 		}
 		
@@ -164,6 +196,5 @@ public class MobileEntity implements Movement, Entity {
 			return new MobileEntity(this);
 		}
 	}
-
 
 }

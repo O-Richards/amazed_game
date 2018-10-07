@@ -100,7 +100,7 @@ public class BasicEntity implements Entity, Usable {
 				}
 			};
 			this.use = noAction;
-		
+			
 			WinCondition noWinCondition = new WinCondition() {
 
 				@Override

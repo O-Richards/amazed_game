@@ -1,4 +1,4 @@
-package gameController;
+package gameModel;
 
 public enum EntityType {
 

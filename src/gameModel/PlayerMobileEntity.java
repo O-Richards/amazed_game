@@ -99,6 +99,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		
 		MobileEntityBuilder builder = new MobileEntityBuilder(baseEntity)
 				.withIsPlayer(true)
+				.withKilledBy(KillAction.ENEMY)
 				.withMovement(new PlayerMovement(baseEntity));
 		
 		return new PlayerMobileEntity(builder);

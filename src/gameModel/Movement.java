@@ -20,7 +20,7 @@ public interface Movement {
 	 * Attempt to kill the moveable
 	 * @return true if killed, false else
 	 */
-	public boolean kill();
+	public boolean kill(KillAction action);
 	
 	/**
 	 * Attempt to pickup an item
