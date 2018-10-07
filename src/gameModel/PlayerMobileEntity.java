@@ -6,6 +6,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	private static final boolean DEBUG = true;
 	private ArrayList<Entity> inventory;
 	private int keyCode = -1;
+	private int noTreasure = 0;
 	// private PlayerState playerState;
 	
 	public PlayerMobileEntity(MobileEntityBuilder builder) {
@@ -36,15 +37,8 @@ public class PlayerMobileEntity extends MobileEntity {
 		return false;
 	}
 	
-	public int noTreasure() {
-		int treasure = 0;
-		for (Entity u: inventory) {
-			//TODO: MUST BE FIXED
-			if (u instanceof TreasureEntity) {
-				treasure++;
-			}
-		}
-		return treasure;
+	public int getNoTreasure() {
+		return this.noTreasure;
 	}
 
 	@Override
@@ -103,6 +97,10 @@ public class PlayerMobileEntity extends MobileEntity {
 				.withMovement(new PlayerMovement(baseEntity));
 		
 		return new PlayerMobileEntity(builder);
+	}
+
+	public void incrementTreasureNo() {
+		this.noTreasure++;
 	}
 	
 }

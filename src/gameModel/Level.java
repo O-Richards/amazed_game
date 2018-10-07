@@ -48,8 +48,8 @@ public class Level implements EntityMover {
 
 	public PlayerMobileEntity addPlayer(Coord c) throws EntityPlacementException {
 		Tile placementTile = this.getTile(c);
-		this.player = PlayerMobileEntity.build();
-		this.player.setCoord(c);
+		PlayerMobileEntity player = PlayerMobileEntity.build();
+		player.setCoord(c);
 		placementTile.addMobileEntity(player);
 		return player;
 	}
@@ -178,10 +178,6 @@ public class Level implements EntityMover {
 		return true;
 	}
 
-	public String inventoryString() {
-		return this.player.inventoryString();
-	}
-
 	/**
 	 * @precondition The coord has an empty tile
 	 * @precondition The coord is valid
@@ -263,9 +259,9 @@ public class Level implements EntityMover {
 	}
 
 	@Override
-	public boolean kill(Coord c) {
+	public boolean kill(Coord c, KillAction action) {
 		Tile tile = this.getTile(c);
-		return tile.kill();
+		return tile.kill(action);
 	}
 
 	@Override

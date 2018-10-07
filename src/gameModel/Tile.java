@@ -40,30 +40,30 @@ public class Tile {
 	 * @param enemy
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
-	public void addMobileEntity(MobileEntity entity) throws EntityPlacementException {
+	public void addMobileEntity(MobileEntity newEntity) throws EntityPlacementException {
 		MobileEntity oldEntity = this.mobile;
-		if(oldEntity != null) {
-			throw new EntityPlacementException("Tile is occupied");
-		}
-		entity.setCoord(this.getCoord());
-		if (this.mobile != null) {
-			if (!oldEntity.isPlayer() && !entity.isPlayer()) {
-				throw new EntityPlacementException("Cannot have two mobile entites on the same tile!");
-			}
-
-			if (!this.mobile.kill()) {
-				if (!entity.kill()) {
-					throw new EntityPlacementException("Could not kill either entity");
-				}
-			} else {
-				this.mobile = entity;
-				if (this.item != null) {
-					if (this.mobile.pickup(this.item)) {
-						this.removeItem();
-					}
-				}
+		boolean placeNewEntity = false;
+		if (oldEntity == null) {
+			placeNewEntity = true;
+		} else {
+			if (oldEntity.kill(newEntity.getKillAction())) {
+				placeNewEntity = true;
+				this.mobile = null;
+			} 
+			if (newEntity.kill(oldEntity.getKillAction())) {
+				placeNewEntity = false;
 			}
 		}
+		
+		if (placeNewEntity) {
+			newEntity.setCoord(this.getCoord());
+			if (this.item != null) {
+				if (newEntity.pickup(this.item)) {
+					this.item = null;
+				}
+			}
+		}
+		
 	}
 
 	public void removeItem() {
@@ -103,10 +103,10 @@ public class Tile {
 		return this.mobile == null;
 	}
 
-	public boolean kill() {
+	public boolean kill(KillAction action) {
 		boolean retVal = false;
 		if (this.mobile != null) {
-			boolean enemyKilled = mobile.kill();
+			boolean enemyKilled = mobile.kill(action);
 			if (enemyKilled) this.mobile = null;
 			retVal |= enemyKilled;
 		}

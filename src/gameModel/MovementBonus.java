@@ -51,5 +51,16 @@ public abstract class MovementBonus implements Movement {
 		return this.baseMovement.getCoord(dir);
 	}
 	
+	@Override
+	public boolean kill(KillAction action) {
+		return this.baseMovement.kill(action);
+	}
+	
+	@Override
+	public boolean pickup(Entity e) {
+		return this.baseMovement.pickup(e);
+	}
+	
+	
 	
 }
