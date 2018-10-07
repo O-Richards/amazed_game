@@ -12,14 +12,16 @@ public class MobileEntity implements Movement, Entity {
 	private final boolean isPlayer;
 	private final KillAction killAction;
 	private final List<KillAction> killedBy;
+	private boolean killedByAnything = false;
 	
 	
 	MobileEntity(MobileEntityBuilder builder) {
-		this.baseEntity = builder.getBaseEntity();
-		this.movement = builder.getMovement();
-		this.isPlayer = builder.getIsPlayer();
-		this.killAction = builder.getKillAction();
-		this.killedBy = builder.getKilledBy();
+		this.baseEntity = builder.baseEntity;
+		this.movement = builder.movement;
+		this.isPlayer = builder.isPlayer;
+		this.killAction = builder.killAction;
+		this.killedBy = builder.killedBy;
+		this.killedByAnything = builder.killedByAnything;
 	}
 	
 	@Override
@@ -55,7 +57,7 @@ public class MobileEntity implements Movement, Entity {
 	
 	@Override
 	public boolean kill(KillAction action) {
-		if (this.killedBy.contains(action)) {
+		if (this.killedByAnything || this.killedBy.contains(action)) {
 			return this.movement.kill(action);
 		} else {
 			return false;
@@ -144,6 +146,7 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	public static class MobileEntityBuilder {
+		public boolean killedByAnything;
 		private Movement movement;
 		private boolean isPlayer = false;
 		private Entity baseEntity;
@@ -153,27 +156,7 @@ public class MobileEntity implements Movement, Entity {
 		public MobileEntityBuilder(Entity baseEntity) {
 			this.baseEntity = baseEntity;
 			this.movement = new EntityTrackingMovement(baseEntity);
-			this.killedBy.add(KillAction.ALL);
-		}
-		
-		private Movement getMovement() {
-			return this.movement;
-		}
-		
-		private boolean getIsPlayer() {
-			return this.isPlayer;
-		}
-		
-		private Entity getBaseEntity() {
-			return this.baseEntity;
-		}
-		
-		private KillAction getKillAction() {
-			return this.killAction;
-		}
-		
-		private List<KillAction> getKilledBy() {
-			return this.killedBy;
+			this.killedBy.add(KillAction.SUPER_KILL);
 		}
 
 		public MobileEntityBuilder withMovement(Movement movement) {
@@ -193,6 +176,11 @@ public class MobileEntity implements Movement, Entity {
 		
 		public MobileEntityBuilder withIsPlayer(boolean isPlayer) {
 			this.isPlayer = isPlayer;
+			return this;
+		}
+		
+		public MobileEntityBuilder withKilledByAnything(boolean killedByAnything) {
+			this.killedByAnything = killedByAnything;
 			return this;
 		}
 		

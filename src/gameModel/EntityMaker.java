@@ -17,6 +17,13 @@ public class EntityMaker {
 				.build();
 	}
 	
+	public BasicEntity makeArrow(Coord c) {
+		return new BasicEntity.BasicEntityBuilder("<")
+			.withCoord(c)
+			.withUsage(new ArrowUsable(entityMover))
+			.build();
+	}
+	
 	public Entity makeTreasure(Coord c, EntityMover entityMover) {
 		Usable treasureUsage = new Usable() {
 
