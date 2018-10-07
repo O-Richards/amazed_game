@@ -1,9 +1,10 @@
 package gameModel;
 
-public class BombUsable implements Usable {
+public class BombUsable implements Usable, DelayedAction {
+	private final Integer NUM_TICKS_TO_EXPLODE = 5;
 
 	private EntityMover entityMover;
-	private PlayerMobileEntity player;
+	private Coord useLocation;
 	
 	BombUsable(EntityMover entityMover) {
 		this.entityMover = entityMover;
@@ -12,23 +13,21 @@ public class BombUsable implements Usable {
 	@Override
 	public boolean use(Action action) {
 		if (action == Action.BOMB) {
-			Entity baseEntity = new BasicEntity.BasicEntityBuilder("B")
-					.withCoord(player.getCoord())
-					.build();
-			MobileEntity killingBomb = new MobileEntity.MobileEntityBuilder(baseEntity)
-					.withKillAction(KillAction.SUPER_KILL)
-					.withKilledByAnything(true)
-					// .withCallback thingo
-					.build();
-			this.entityMover.placeEntity(killingBomb, killingBomb.getCoord());
-			return true;
+			this.entityMover.addDelayedAction(this, this.NUM_TICKS_TO_EXPLODE);
 		}
 		return false;
 	}
 
 	@Override
 	public void applyToPlayer(PlayerMobileEntity player) {
-		this.player = player;
+		this.useLocation = player.getCoord();
 	}
 
+	@Override
+	public void performDelayedAction() {
+		this.entityMover.kill(useLocation.add(Direction.UP), KillAction.SUPER_KILL);
+		this.entityMover.kill(useLocation.add(Direction.DOWN), KillAction.SUPER_KILL);
+		this.entityMover.kill(useLocation.add(Direction.LEFT), KillAction.SUPER_KILL);
+		this.entityMover.kill(useLocation.add(Direction.RIGHT), KillAction.SUPER_KILL);
+	}
 }

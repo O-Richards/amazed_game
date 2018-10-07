@@ -24,13 +24,6 @@ public class EntityMaker {
 			.build();
 	}
 	
-	public Entity makeBomb(Coord c) {
-		return new BasicEntity.BasicEntityBuilder("B")
-				.withCoord(c)
-				.withUsage(new BombUsable(entityMover))
-				.build();
-	}
-	
 	public Entity makeTreasure(Coord c, EntityMover entityMover) {
 		Usable treasureUsage = new Usable() {
 
@@ -106,6 +99,14 @@ public class EntityMaker {
 		
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withMovement(new BoulderMovement(basicEntity))
+				.build();
+	}
+	
+	public Entity makeBomb(Coord c) {
+		return new BasicEntity.BasicEntityBuilder("B")
+				.withCoord(c)
+				.withEntityMover(entityMover)
+				.withUsage(new BombUsable(entityMover))
 				.build();
 	}
 }
