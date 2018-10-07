@@ -40,6 +40,23 @@ public class EntityMaker {
 	}
 	
 	public Entity makeInvincibilityEntity(Coord c) {
+		Usable invincibilityUse = new Usable() {
+			@Override
+			public void applyToPlayer(PlayerMobileEntity player) {
+				player.setMovement(new InvincibilityBonusAction(player.getMovement()));
+			}
+
+			@Override
+			public boolean use(Action action) {
+				return false;
+			}
+			
+		};
 		
+		return new BasicEntity.BasicEntityBuilder("I")
+				.withCoord(c)
+				.withUsage(invincibilityUse)
+				.withEntityMover(entityMover)
+				.build();
 	}
 }
