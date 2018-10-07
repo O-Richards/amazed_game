@@ -73,7 +73,6 @@ public class Tile {
 				}
 			}
 		}
-		
 	}
 
 	public void removeItem() {

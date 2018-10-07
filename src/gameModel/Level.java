@@ -1,5 +1,9 @@
 package gameModel;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 /**
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column
@@ -20,6 +24,7 @@ public class Level implements EntityMover {
 
 	private Integer tickNum = 0;
 	private WinSystem winSystem;
+	private Map<DelayedAction, Integer> delayedActions = new HashMap<>();
 
 	public Level() {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
@@ -80,6 +85,13 @@ public class Level implements EntityMover {
 	}
 	
 	public void tick() {
+		//update callbacks
+		for (Map.Entry<DelayedAction, Integer> entry : this.delayedActions.entrySet()) {
+			if (entry.getValue() == tickNum) {
+				entry.getKey().performDelayedAction();
+			}
+		}
+		
 		for (int row = 0; row < this.map.length; row++) {
 			for (int col = 0; col < this.map[0].length; col++) {
 				this.map[row][col].tick(tickNum);
@@ -268,5 +280,10 @@ public class Level implements EntityMover {
 	public void placeEntity(Entity entity, Coord c) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void addDelayedAction(DelayedAction action, Integer numTicksUntil) {
+		this.delayedActions.put(action, this.tickNum + numTicksUntil);
 	}
 }

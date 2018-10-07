@@ -96,4 +96,16 @@ public class EntityMaker {
 				.withUsage(hoverPotionUse)
 				.build();
 	}
+	
+	public Entity makeBoulder(Coord c) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder("b")
+				.withCoord(c)
+				.withEntityMover(entityMover)
+				.build();
+		
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withMovement(new BoulderMovement(basicEntity))
+				.build();
+	}
 }

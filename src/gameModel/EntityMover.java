@@ -34,4 +34,10 @@ public interface EntityMover {
 	 * @param weapon 
 	 */
 	public boolean kill(Coord c, KillAction action);
+	
+	/**
+	 * @param action the action to be called
+	 * @param numTicksUntil the number of ticks from now to call at
+	 */
+	public void addDelayedAction(DelayedAction action, Integer numTicksUntil);
 }

@@ -1,7 +1,7 @@
 package gameModel;
 
 public class BoulderMovement extends EntityTrackingMovement {
-	public BoulderMovement(MobileEntity entity) {
+	public BoulderMovement(Entity entity) {
 		super(entity);
 	}
 

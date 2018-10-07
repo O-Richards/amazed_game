@@ -32,7 +32,7 @@ public class EntityTrackingMovement implements Movement {
 			return true;
 		} else {
 			return false;
-		}
+		
 	}
 
 	@Override
