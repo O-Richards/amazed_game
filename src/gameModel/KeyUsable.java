@@ -1,18 +1,17 @@
 package gameModel;
 
-public class KeyUsableEntity extends UsableEntity {
+public class KeyUsable implements Usable {
 
 private static int keyCodeGenerator = 1;
+	private int keyCode;
 	
 	private static synchronized int generateKeyCode() {
 		return keyCodeGenerator++;
 	}
 	
-	private int keyCode;
 
-	public KeyUsableEntity(Coord coord) {
-		super(coord);
-		this.keyCode = KeyUsableEntity.generateKeyCode();
+	public KeyUsable() {
+		this.keyCode = KeyUsable.generateKeyCode();
 	}
 	
 	@Override
@@ -21,7 +20,7 @@ private static int keyCodeGenerator = 1;
 	}
 
 	@Override
-	public String getSprite() {
-		return "K";
+	public boolean use(Action action) {
+		return false;
 	}
 }

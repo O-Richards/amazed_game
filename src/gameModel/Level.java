@@ -47,13 +47,15 @@ public class Level implements EntityMover {
 		
 	}
 
-	public void addPlayer(Coord c) throws EntityPlacementException {
+	public PlayerMobileEntity addPlayer(Coord c) throws EntityPlacementException {
 		if (this.player != null) {
 			throw new EntityPlacementException("Player already exists");
 		}
 		Tile placementTile = this.getTile(c);
-		this.player = new PlayerMobileEntity(new Coord(1, 1));
+		this.player = PlayerMobileEntity.build();
+		this.player.setCoord(c);
 		placementTile.addMobileEntity(player);
+		return player;
 	}
 	
 	/**
@@ -62,10 +64,11 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException thrown if the placement is not allowed
 	 */
-	public void addItem(UsableEntity item, Coord c) throws EntityPlacementException {
+	public void addItem(EntityBuilder itemBuilder, Coord c) throws EntityPlacementException {
+		Entity item = itemBuilder.withCoord(c)
+			.withEntityMover(this)
+			.build();
 		Tile placementTile = getTile(c);
-		item.setEntityMover(this);
-		item.setWinCondition(this.winSystem.newWinCondition(WinType.TREASURE));
 		placementTile.addItem(item);
 	}
 	
@@ -75,10 +78,8 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
-	public void addEnemy(EnemyMobileEntity enemy, Coord c) throws EntityPlacementException {
+	public void addEnemy(MobileEntity enemy, Coord c) throws EntityPlacementException {
 		Tile placementTile = getTile(c);
-		enemy.setEntityMover(this);
-		enemy.setWinCondition(this.winSystem.newWinCondition(WinType.ENEMY));
 		placementTile.addMobileEntity(enemy);
 	}
 	
@@ -90,12 +91,13 @@ public class Level implements EntityMover {
 		}
 		this.tickNum++;
 	}
-
-	public Tile[][] getMap() {
-		return this.map;
+	
+	public WinCondition newWinCondition(WinType type) {
+		return this.winSystem.newWinCondition(type);
 	}
-	public PlayerMobileEntity getPlayer() {
-		return player;
+	
+	public EntityMover getEntityMover() {
+		return this;
 	}
 
 	/**
@@ -137,17 +139,13 @@ public class Level implements EntityMover {
 		return ret;
 	}
 
-	public void movePlayer(Direction dir) {
-		//TODO: Add error checking
-		if (DEBUG) System.out.println("System setting player dir: " + dir);
-		this.player.setDirection(dir);
-		if (DEBUG) System.out.println("System set player dir: " + this.player.getDirection());
-
-	}
 
 	/**
 	 * @return True if the player has won the game, false else
 	 */
+	/*
+	 * 
+	//TODO: Remove this
 	public void playerDo(Action act,Direction dir) {
 		//TODO: Add error checking
 		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
@@ -165,14 +163,10 @@ public class Level implements EntityMover {
 			//Function to consume item?
 		}
 		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
-	}
-
+	}*/
+	
 	public boolean hasWon() {
 		return this.winSystem.getType() == WinType.WIN;
-	}
-
-	public boolean hasLost() {
-		return !this.player.isAlive();
 	}
 
 	/**

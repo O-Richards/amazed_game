@@ -1,21 +1,18 @@
 package gameModel;
 
-public abstract class MobileEntity extends Entity implements Movement {
+public class MobileEntity implements Movement, Entity {
 	private static final boolean DEBUG = false;
 	private Movement movement;
+	private Entity baseEntity;
 	private Integer lastTick = -1;
 	private int lastMoveTickNum = -1;
-	private boolean alive = true;
+	private final boolean isPlayer;
 	
 	
-	MobileEntity(Coord coord) {
-		super(coord);
-		this.movement = new EntityTrackingMovement(this);
-	}
-
-	MobileEntity(Coord coord, Movement movement) {
-		super(coord);
-		this.movement = movement;
+	MobileEntity(MobileEntityBuilder builder) {
+		this.baseEntity = builder.getBaseEntity();
+		this.movement = builder.getMovement();
+		this.isPlayer = builder.getIsPlayer();
 	}
 	
 	@Override
@@ -26,22 +23,12 @@ public abstract class MobileEntity extends Entity implements Movement {
 		}
 	}
 	
-	/**
-	 * @return true if the entity is killed, false else.
-	 */
-	public boolean kill() {
-		if (this.canDie()) {
-			//The tile now does this for us
-			//this.entityMover.removeEntity(this, this.getCoord());
-			this.alive = false;
-			return true;
-		} else {
-			return false;
-		}
+	public void setAlive(boolean alive) {
+		this.baseEntity.setAlive(alive);
 	}
 	
 	public boolean isAlive() {
-		return alive;
+		return this.baseEntity.isAlive();
 	}
 	
 	public Direction getDirection() {
@@ -54,8 +41,16 @@ public abstract class MobileEntity extends Entity implements Movement {
 	}
 	
 	//TODO: Pull this into movement interface
-	public abstract boolean pickup(UsableEntity item);
-
+	@Override
+	public boolean pickup(Entity item) {
+		return this.movement.pickup(item);
+	}
+	
+	@Override
+	public boolean kill() {
+		return this.movement.kill();
+	}
+	
 	public boolean canFly() {
 		return this.movement.canFly();
 	}	
@@ -99,5 +94,76 @@ public abstract class MobileEntity extends Entity implements Movement {
 	 * @return true if the MobileEntity is a Player. false else
 	 * Why isPlayer not isNPC? We have boulders, arrows as well as enemies that we want to group togeher
 	 */
-	public abstract boolean isPlayer();
+	public boolean isPlayer() {
+		return this.isPlayer;
+	}
+	
+	@Override
+	public String getSprite() {
+		return baseEntity.getSprite();
+	}
+
+	@Override
+	public void setCoord(Coord coord) {
+		baseEntity.setCoord(coord);
+	}
+
+	@Override
+	public void applyToPlayer(PlayerMobileEntity player) {
+		this.baseEntity.applyToPlayer(player);
+	}
+	
+	@Override
+	public Coord getCoord() {
+		return baseEntity.getCoord();
+	}
+
+	@Override
+	public Coord getCoord(Direction dir) {
+		return baseEntity.getCoord(dir);
+	}
+	
+	@Override
+	public boolean use(Action action) {
+		return this.baseEntity.use(action);
+	}
+	
+	public static class MobileEntityBuilder {
+		private Movement movement;
+		private boolean isPlayer = false;
+		private Entity baseEntity;
+		
+		public MobileEntityBuilder(Entity baseEntity) {
+			this.baseEntity = baseEntity;
+			this.movement = new EntityTrackingMovement(baseEntity);
+		}
+		
+		private Movement getMovement() {
+			return this.movement;
+		}
+		
+		private boolean getIsPlayer() {
+			return this.isPlayer;
+		}
+		
+		private Entity getBaseEntity() {
+			return this.baseEntity;
+		}
+
+		public MobileEntityBuilder withMovement(Movement movement) {
+			this.movement = movement;
+			return this;
+		}
+		
+		public MobileEntityBuilder withIsPlayer(boolean isPlayer) {
+			this.isPlayer = isPlayer;
+			return this;
+		}
+		
+		public MobileEntity build() {
+			return new MobileEntity(this);
+		}
+	}
+
+
 }

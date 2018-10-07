@@ -3,11 +3,10 @@ package gameModel;
 public class EntityTrackingMovement implements Movement {
 	private static final boolean DEBUG = false;
 	private Direction direction = Direction.CENTRE;
-	private MobileEntity entity;
+	private Entity entity;
 
-	public EntityTrackingMovement(MobileEntity entity) {
-		super();
-		this.entity = entity;
+	public EntityTrackingMovement(Entity e) {
+		this.entity = e;
 	}
 	
 	public Coord nextCoord() {
@@ -22,6 +21,19 @@ public class EntityTrackingMovement implements Movement {
 		if (DEBUG) System.out.println("Setting direction to " + dir);
 		this.direction = dir;
 	}
+	
+	/**
+	 * @return true if the entity is killed, false else.
+	 */
+	@Override
+	public boolean kill() {
+		if (this.canDie()) {
+			this.entity.setAlive(false);
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	@Override
 	public Coord getCoord() {
@@ -31,6 +43,11 @@ public class EntityTrackingMovement implements Movement {
 	@Override
 	public Coord getCoord(Direction dir) {
 		return this.entity.getCoord(dir);
+	}
+
+	@Override
+	public boolean pickup(Entity e) {
+		return false;
 	}
 
 }

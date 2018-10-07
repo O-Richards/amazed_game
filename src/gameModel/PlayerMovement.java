@@ -2,8 +2,8 @@ package gameModel;
 
 public class PlayerMovement extends EntityTrackingMovement {
 
-	public PlayerMovement(MobileEntity entity) {
-		super(entity);
+	public PlayerMovement(Entity baseEntity) {
+		super(baseEntity);
 	}
 	
 	/**
@@ -19,7 +19,4 @@ public class PlayerMovement extends EntityTrackingMovement {
 		this.setDirection(Direction.CENTRE);
 		return ret;
 	}
-
-	
-
 }

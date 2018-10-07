@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 public class PlayerMobileEntity extends MobileEntity {
 	private static final boolean DEBUG = true;
-	private ArrayList<UsableEntity> inventory;
+	private ArrayList<Entity> inventory;
 	private int keyCode = -1;
 	// private PlayerState playerState;
 	
-	public PlayerMobileEntity(Coord coord) {
-		super(coord);
-		Movement movement = new PlayerMovement(this);
-		this.setMovement(movement);
-		this.inventory = new ArrayList<UsableEntity>();
+	public PlayerMobileEntity(MobileEntityBuilder builder) {
+		super(builder);
+		this.inventory = new ArrayList<Entity>();
 	}
 	
 	/* (non-Javadoc)
@@ -22,36 +20,26 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public void setCoord(Coord coord) {
 		super.setCoord(coord);
-		for (UsableEntity item : this.inventory) {
+		for (Entity item : this.inventory) {
 			item.setCoord(this.getCoord());
 		}
 	}
 	
 	//Given an item finds the item in the inventory an uses it: 
-	public boolean useItem(UsableEntity item) {
-		 System.out.println("Player using " + item.getSprite());
+	@Override
+	public boolean use(Action a) {
+		 System.out.println("Player using " + a);
 		//Looks through all elements of the arrayList to find if there is an item of that type:
-		for (UsableEntity inventoryItem : inventory) {
-			if(item.equals(inventoryItem)) {
-				Boolean hasUsesLeft = inventoryItem.use(getDirection());
-				if (!hasUsesLeft) {
-					inventory.remove(inventoryItem);
-				}
-				break;
-			}
-			
+		for (Entity inventoryItem : inventory) {
+			if (inventoryItem.use(a)) return true;
 		}
 		return false;
 	}
 	
-
-	PlayerMobileEntity(Coord coord, Movement movement) {
-		super(coord, movement);
-	}
-	
 	public int noTreasure() {
 		int treasure = 0;
-		for (UsableEntity u: inventory) {
+		for (Entity u: inventory) {
+			//TODO: MUST BE FIXED
 			if (u instanceof TreasureEntity) {
 				treasure++;
 			}
@@ -74,7 +62,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 
 	@Override
-	public boolean pickup(UsableEntity item) {
+	public boolean pickup(Entity item) {
 		inventory.add(item);
 		item.applyToPlayer(this);
 		return true;
@@ -83,7 +71,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	public String inventoryString() {
 		String out = "";
-		for (UsableEntity e : inventory) {
+		for (Entity e : inventory) {
 			out += e.getSprite();
 		}
 		return out;
@@ -102,6 +90,18 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public boolean isPlayer() {
 		return true;
+	}
+	
+	public static PlayerMobileEntity build() {
+		Entity baseEntity = new BasicEntity.BasicEntityBuilder("P")
+				.withAlive(true)
+				.build();
+		
+		MobileEntityBuilder builder = new MobileEntityBuilder(baseEntity)
+				.withIsPlayer(true)
+				.withMovement(new PlayerMovement(baseEntity));
+		
+		return new PlayerMobileEntity(builder);
 	}
 	
 }

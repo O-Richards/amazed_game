@@ -4,7 +4,7 @@ public class Tile {
 	private final boolean DEBUG = true;
 	
 	private Coord coord;
-	private UsableEntity item = null;
+	private Entity item = null;
 	private MobileEntity enemy = null;
 	private MobileEntity player = null;
 	private EntityMover entityMover;	
@@ -35,7 +35,7 @@ public class Tile {
 	 * @param item
 	 * @throws EntityPlacementException
 	 */
-	public void addItem(UsableEntity item) throws EntityPlacementException {
+	public void addItem(Entity item) throws EntityPlacementException {
 		if (this.item != null) {
 			throw new EntityPlacementException("Item on tile");
 		}

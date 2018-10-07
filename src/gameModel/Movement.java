@@ -11,9 +11,22 @@ public interface Movement {
 	
 	//In the constructor, consider passing in the target(s) entitie(s)
 	public Coord nextCoord();
+	
 	default public boolean canFly() {
 		return false;
 	}	
+	
+	/**
+	 * Attempt to kill the moveable
+	 * @return true if killed, false else
+	 */
+	public boolean kill();
+	
+	/**
+	 * Attempt to pickup an item
+	 * @return true if picked up, false else
+	 */
+	public boolean pickup(Entity e);
 	
 	/**
 	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
@@ -33,4 +46,8 @@ public interface Movement {
 	public Coord getCoord();
 	
 	public Coord getCoord(Direction dir);
+
+	default public void setEntity(MobileEntity e) {
+		
+	}
 }
