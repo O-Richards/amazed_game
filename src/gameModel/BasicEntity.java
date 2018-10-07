@@ -45,6 +45,11 @@ public class BasicEntity implements Entity, Usable {
 	public boolean use(Action action) {
 		return this.usage.use(action);
 	}
+	
+	@Override
+	public void applyToPlayer(PlayerMobileEntity player) {
+		this.usage.applyToPlayer(player);
+	}
 
 	@Override
 	public String getSprite() {
@@ -181,6 +186,7 @@ public class BasicEntity implements Entity, Usable {
 			return this.aliveEntity;
 		}
 	}
+
 
 
 

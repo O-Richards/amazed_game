@@ -73,4 +73,27 @@ public class EntityMaker {
 				.withEntityMover(entityMover)
 				.build();
 	}
+	
+	public Entity makeHoverPotion(Coord c) {
+		
+		Usable hoverPotionUse = new Usable() {
+			@Override
+			public boolean use(Action action) {
+				return false;
+			}
+
+			@Override
+			public void applyToPlayer(PlayerMobileEntity player) {
+				//Applying decorator pattern to the player's movements
+				//i.e. we wrap the player's movement with a hover bonus
+				player.setMovement(new HoverBonusMovement(player.getMovement()));
+			}
+		};
+		
+		return new BasicEntity.BasicEntityBuilder("H")
+				.withCoord(c)
+				.withEntityMover(entityMover)
+				.withUsage(hoverPotionUse)
+				.build();
+	}
 }

@@ -26,7 +26,7 @@ public class EntityTrackingMovement implements Movement {
 	 * @return true if the entity is killed, false else.
 	 */
 	@Override
-	public boolean kill() {
+	public boolean kill(KillAction action) {
 		if (this.canDie()) {
 			this.entity.setAlive(false);
 			return true;
