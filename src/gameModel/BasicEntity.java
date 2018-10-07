@@ -16,6 +16,7 @@ public class BasicEntity implements Entity, Usable {
 		this.entityMover = builder.getEntityMover();
 		this.winCondition = builder.getWinCondition();
 		this.alive = builder.getAliveEntity();
+		this.usage = builder.getUse();
 	}
 	
 	@Override
@@ -92,6 +93,11 @@ public class BasicEntity implements Entity, Usable {
 				public boolean use(Action action) {
 					return false;
 				}
+
+				@Override
+				public void applyToPlayer(PlayerMobileEntity player) {
+					
+				}
 			};
 			this.use = noAction;
 		
@@ -131,6 +137,12 @@ public class BasicEntity implements Entity, Usable {
 		@Override
 		public BasicEntityBuilder withWinCondition(WinCondition winCondition) {
 			this.winCondition = winCondition;
+			return this;
+		}
+		
+		@Override
+		public BasicEntityBuilder withUsage(Usable use) {
+			this.use = use;
 			return this;
 		}
 		

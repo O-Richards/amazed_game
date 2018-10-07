@@ -25,4 +25,6 @@ public interface EntityBuilder {
 
 		public BasicEntityBuilder withAlive(boolean isAlive);
 
+		public BasicEntityBuilder withUsage(Usable use);
+
 }
