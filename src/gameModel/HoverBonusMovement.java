@@ -11,6 +11,4 @@ public class HoverBonusMovement extends MovementBonus {
 		return true;
 	}
 
-
-
 }

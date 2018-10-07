@@ -50,4 +50,8 @@ public interface Movement {
 	default public void setEntity(MobileEntity e) {
 		
 	}
+
+	default public void setMobileEntity(MobileEntity mobileEntity) {
+		
+	}
 }

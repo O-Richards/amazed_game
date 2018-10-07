@@ -1,11 +1,6 @@
 package gameModel;
 
 public class PlayerMovement extends EntityTrackingMovement {
-
-	public PlayerMovement(Entity baseEntity) {
-		super(baseEntity);
-	}
-	
 	/**
 	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
 	 */

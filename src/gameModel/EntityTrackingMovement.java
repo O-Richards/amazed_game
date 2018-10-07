@@ -3,10 +3,9 @@ package gameModel;
 public class EntityTrackingMovement implements Movement {
 	private static final boolean DEBUG = false;
 	private Direction direction = Direction.CENTRE;
-	private Entity entity;
+	private MobileEntity entity;
 
-	public EntityTrackingMovement(Entity e) {
-		this.entity = e;
+	public EntityTrackingMovement() {
 	}
 	
 	public Coord nextCoord() {
@@ -28,10 +27,9 @@ public class EntityTrackingMovement implements Movement {
 	@Override
 	public boolean kill(KillAction action) {
 		if (this.canDie()) {
-			this.entity.setAlive(false);
-			return true;
-		} else {
-			return false;
+			return entity.kill(action);
+		}
+		return false;
 	}
 
 	@Override
@@ -47,6 +45,11 @@ public class EntityTrackingMovement implements Movement {
 	@Override
 	public boolean pickup(Entity e) {
 		return false;
+	}
+
+	@Override
+	public void setMobileEntity(MobileEntity mobileEntity) {
+		this.entity = mobileEntity;
 	}
 
 }

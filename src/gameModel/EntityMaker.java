@@ -95,7 +95,7 @@ public class EntityMaker {
 				.withEntityMover(entityMover)
 				.build();
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
-				.withMovement(new BoulderMovement(basicEntity))
+				.withMovement(new BoulderMovement())
 				.withPushable(true)
 				.withCanTriggerSwitches(true)
 				.build();

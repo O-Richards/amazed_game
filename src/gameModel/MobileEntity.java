@@ -26,6 +26,8 @@ public class MobileEntity implements Movement, Entity {
 		this.killedByAnything = builder.killedByAnything;
 		this.pushable = builder.pushable;
 		this.canTriggerSwitches = builder.canTriggerSwitches;
+		
+		this.movement.setMobileEntity(this);
 	}
 	
 	@Override
@@ -169,7 +171,7 @@ public class MobileEntity implements Movement, Entity {
 		
 		public MobileEntityBuilder(Entity baseEntity) {
 			this.baseEntity = baseEntity;
-			this.movement = new EntityTrackingMovement(baseEntity);
+			this.movement = new EntityTrackingMovement();
 			this.killedBy.add(KillAction.SUPER_KILL);
 		}
 
@@ -211,5 +213,10 @@ public class MobileEntity implements Movement, Entity {
 		public MobileEntity build() {
 			return new MobileEntity(this);
 		}
+	}
+
+	@Override
+	public void setMobileEntity(MobileEntity mobileEntity) {
+		//TODO: Refactor so we dont need this...
 	}
 }

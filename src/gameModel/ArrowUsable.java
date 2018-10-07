@@ -18,7 +18,7 @@ public class ArrowUsable implements Usable {
 			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
 					.withKillAction(KillAction.WEAPON)
 					.withKilledByAnything(true)
-					.withMovement(new EntityTrackingMovement(baseEntity))
+					.withMovement(new EntityTrackingMovement())
 					.build();
 			this.entityMover.placeEntity(killingArrow, killingArrow.getCoord());
 			return true;
