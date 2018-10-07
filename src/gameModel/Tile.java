@@ -2,32 +2,25 @@ package gameModel;
 
 public class Tile {
 	private final boolean DEBUG = true;
-	
+
 	private Coord coord;
 	private Entity item = null;
-	private MobileEntity enemy = null;
-	private MobileEntity player = null;
+	private MobileEntity mobile = null;
 	private EntityMover entityMover;	
-	
+
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
 	}
-		
+
 	public void tick(int tickNum) {
 		if (item != null) item.tick(tickNum);
-		if (enemy != null) enemy.tick(tickNum);
-		if (player != null) player.tick(tickNum);
+		if (mobile != null) mobile.tick(tickNum);
 		//move the enemy
-		if (enemy != null && enemy.lastMoveTickNum() != tickNum) {
-			Coord nextCoord = enemy.nextCoord();
-			enemy.setLastMoveTickNum(tickNum);
-			entityMover.moveMobileEntity(enemy, nextCoord);
-		}
-		if (player != null && player.lastMoveTickNum() != tickNum) {
-			Coord nextCoord = player.nextCoord();
-			player.setLastMoveTickNum(tickNum);
-			entityMover.moveMobileEntity(player, nextCoord);
+		if (mobile != null && mobile.lastMoveTickNum() != tickNum) {
+			Coord nextCoord = mobile.nextCoord();
+			mobile.setLastMoveTickNum(tickNum);
+			entityMover.moveMobileEntity(mobile, nextCoord);
 		}
 	}
 	/**
@@ -41,67 +34,64 @@ public class Tile {
 		}
 		this.item = item; 
 	}
-	
-	public MobileEntity getPlayer() {
-		return this.player;
-	}
-	
+
 	/**
 	 * Add an enemy to a tile
 	 * @param enemy
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
 	public void addMobileEntity(MobileEntity entity) throws EntityPlacementException {
-		MobileEntity oldEntity = entity.isPlayer() ? this.player : this.getEnemy();
+		MobileEntity oldEntity = this.mobile;
 		if(oldEntity != null) {
 			throw new EntityPlacementException("Tile is occupied");
 		}
 		entity.setCoord(this.getCoord());
-		if (entity.isPlayer()) {
-			if (DEBUG) System.out.println("Adding player to tile " + this.getCoord());
-			this.player = entity;
-		} else {
-			this.enemy = entity;
-			if (player != null) 
-				if (player.kill()) {
-					this.player = null;
+		if (this.mobile != null) {
+			if (!oldEntity.isPlayer() && !entity.isPlayer()) {
+				throw new EntityPlacementException("Cannot have two mobile entites on the same tile!");
 			}
-		}
-		if (this.item != null) {
-			if (entity.pickup(this.item)) {
-				this.removeItem();
+
+			if (!this.mobile.kill()) {
+				if (!entity.kill()) {
+					throw new EntityPlacementException("Could not kill either entity");
+				}
+			} else {
+				this.mobile = entity;
+				if (this.item != null) {
+					if (this.mobile.pickup(this.item)) {
+						this.removeItem();
+					}
+				}
 			}
 		}
 	}
-	
+
 	public void removeItem() {
 		this.item = null;
 	}
 
 	public MobileEntity getEnemy() {
-		return this.enemy;
-		
+		return this.mobile;
+
 	}
 	public Entity getItem() {
 		return this.item;
 	}
 
 	protected void updateWinCondition() {
-		
+
 	}
-		
+
 	public Coord getCoord() {
 		return this.coord;
 	}
-	
+
 	/**
 	 * @return A simple char to represent the tile (for debugging)
 	 */
 	public String getSprite() {
-		if (this.player != null) {
-			return this.player.getSprite();
-		} else if (this.enemy != null) {
-			return this.enemy.getSprite();
+		if (this.mobile != null) {
+			return this.mobile.getSprite();
 		} else if (this.item != null) {
 			return this.item.getSprite();
 		} else {
@@ -110,20 +100,15 @@ public class Tile {
 	}
 
 	public boolean traversable() {
-		return this.enemy == null;
+		return this.mobile == null;
 	}
-	
+
 	public boolean kill() {
 		boolean retVal = false;
-		if (this.enemy != null) {
-			boolean enemyKilled = enemy.kill();
-			if (enemyKilled) this.enemy = null;
+		if (this.mobile != null) {
+			boolean enemyKilled = mobile.kill();
+			if (enemyKilled) this.mobile = null;
 			retVal |= enemyKilled;
-		}
-		if (this.player != null) {
-			boolean playerKilled = player.kill();
-			if (playerKilled) this.player = null;
-			retVal |= playerKilled;
 		}
 		return retVal;
 	}
@@ -132,17 +117,12 @@ public class Tile {
 	 * @param e The entity to be removed from this tile
 	 */
 	public void removeMobileEntity(MobileEntity e) {
-		MobileEntity oldEntity = e.isPlayer() ? this.player : this.getEnemy();
-		if (e != oldEntity) {
+		if (e != this.mobile) {
 			if (DEBUG) {
 				System.out.println("Tile.removeEnemy: Warning: trying to remove entity not on this tile");
 			}
 		} else {
-			if (e.isPlayer()) {
-				this.player = null;
-			} else {
-				this.enemy = null;
-			}
+			this.mobile = null;
 		}
 	}
 }
