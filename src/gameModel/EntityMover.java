@@ -31,6 +31,7 @@ public interface EntityMover {
 
 	/**
 	 * @param c the coord to kill all (killable) entities on
+	 * @param weapon 
 	 */
-	public boolean kill(Coord c);
+	public boolean kill(Coord c, KillAction action);
 }

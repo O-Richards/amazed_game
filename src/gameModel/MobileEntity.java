@@ -64,6 +64,10 @@ public class MobileEntity implements Movement, Entity {
 		}
 	}
 	
+	public KillAction getKillAction() {
+		return this.killAction;
+	}
+	
 	public boolean canFly() {
 		return this.movement.canFly();
 	}	
