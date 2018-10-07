@@ -69,7 +69,7 @@ public class Tile {
 		this.item = null;
 	}
 
-	public MobileEntity getEnemy() {
+	public MobileEntity getMobile() {
 		return this.mobile;
 
 	}

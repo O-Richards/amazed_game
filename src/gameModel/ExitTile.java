@@ -12,7 +12,8 @@ public class ExitTile extends Tile {
 	@Override
 	protected void updateWinCondition() {
 		// TODO Auto-generated method stub
-		if (this.getPlayer() != null) {
+		// LAW OF DEMETER VIOLATION
+		if (this.getMobile().isPlayer()) {
 			this.winCondition.setType(WinType.WIN);
 		} else {
 			this.winCondition.setType(WinType.EXIT);
