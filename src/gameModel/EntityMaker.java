@@ -104,6 +104,7 @@ public class EntityMaker {
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withMovement(new BoulderMovement(basicEntity))
 				.withPushable(true)
+				.withCanTriggerSwitches(true)
 				.build();
 	}
 }
