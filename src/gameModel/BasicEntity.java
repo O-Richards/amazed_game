@@ -90,8 +90,9 @@ public class BasicEntity implements Entity, Usable {
 		private WinCondition winCondition;
 		private boolean aliveEntity = false;
 		
-		public BasicEntityBuilder(String sprite) {
+		public BasicEntityBuilder(String sprite, Coord c) {
 			this.sprite = sprite;
+			this.coord = c;
 			
 			Usable noAction = new Usable() {
 				@Override
@@ -119,12 +120,6 @@ public class BasicEntity implements Entity, Usable {
 				
 			};
 			this.winCondition = noWinCondition;
-		}
-		
-		@Override
-		public BasicEntityBuilder withCoord(Coord c) {
-			this.coord = c;
-			return this;
 		}
 		
 		@Override

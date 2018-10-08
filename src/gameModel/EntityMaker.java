@@ -9,22 +9,20 @@ public class EntityMaker {
 		this.entityMover = entityMover;
 	}
 	
-	public Entity makeKey(Coord c, EntityMover entityMover) {
-		return new BasicEntity.BasicEntityBuilder("K")
+	public Entity makeKey(Coord c) {
+		return new BasicEntity.BasicEntityBuilder("K", c)
 				.withEntityMover(entityMover)
-				.withCoord(c)
 				.withUsage(new KeyUsable())
 				.build();
 	}
 	
 	public Entity makeArrow(Coord c) {
-		return new BasicEntity.BasicEntityBuilder("<")
-			.withCoord(c)
+		return new BasicEntity.BasicEntityBuilder("<", c)
 			.withUsage(new ArrowUsable(entityMover))
 			.build();
 	}
 	
-	public Entity makeTreasure(Coord c, EntityMover entityMover) {
+	public Entity makeTreasure(Coord c) {
 		Usable treasureUsage = new Usable() {
 
 			@Override
@@ -38,9 +36,8 @@ public class EntityMaker {
 			}
 		};
 		
-		return new BasicEntity.BasicEntityBuilder("$")
+		return new BasicEntity.BasicEntityBuilder("$", c)
 				.withEntityMover(entityMover)
-				.withCoord(c)
 				.withWinCondition(this.winSystem.newWinCondition(WinType.TREASURE))
 				.withUsage(treasureUsage)
 				.build();
@@ -60,8 +57,7 @@ public class EntityMaker {
 			
 		};
 		
-		return new BasicEntity.BasicEntityBuilder("I")
-				.withCoord(c)
+		return new BasicEntity.BasicEntityBuilder("I", c)
 				.withUsage(invincibilityUse)
 				.withEntityMover(entityMover)
 				.build();
@@ -82,16 +78,14 @@ public class EntityMaker {
 			}
 		};
 		
-		return new BasicEntity.BasicEntityBuilder("H")
-				.withCoord(c)
+		return new BasicEntity.BasicEntityBuilder("H", c)
 				.withEntityMover(entityMover)
 				.withUsage(hoverPotionUse)
 				.build();
 	}
 	
 	public Entity makeBoulder(Coord c) {
-		Entity basicEntity = new BasicEntity.BasicEntityBuilder("b")
-				.withCoord(c)
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder("b", c)
 				.withEntityMover(entityMover)
 				.build();
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
@@ -102,8 +96,7 @@ public class EntityMaker {
 	}
 	
 	public Entity makeBomb(Coord c) {
-		return new BasicEntity.BasicEntityBuilder("B")
-				.withCoord(c)
+		return new BasicEntity.BasicEntityBuilder("B", c)
 				.withEntityMover(entityMover)
 				.withUsage(new BombUsable(entityMover))
 				.build();

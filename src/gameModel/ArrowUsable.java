@@ -12,8 +12,7 @@ public class ArrowUsable implements Usable {
 	@Override
 	public boolean use(Action action) {
 		if (action == Action.ARROW) {
-			Entity baseEntity = new BasicEntity.BasicEntityBuilder(">")
-					.withCoord(player.getCoord(player.getDirection()))
+			Entity baseEntity = new BasicEntity.BasicEntityBuilder(">", player.getCoord(player.getDirection()))
 					.build();
 			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
 					.withKillAction(KillAction.WEAPON)

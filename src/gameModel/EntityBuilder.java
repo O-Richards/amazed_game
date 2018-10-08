@@ -3,7 +3,6 @@ package gameModel;
 import gameModel.BasicEntity.BasicEntityBuilder;
 
 public interface EntityBuilder {
-		public EntityBuilder withCoord(Coord c);
 		
 		public EntityBuilder withEntityMover(EntityMover e);
 		

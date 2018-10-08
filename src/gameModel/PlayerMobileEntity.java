@@ -86,8 +86,8 @@ public class PlayerMobileEntity extends MobileEntity {
 		return true;
 	}
 	
-	public static PlayerMobileEntity build() {
-		Entity baseEntity = new BasicEntity.BasicEntityBuilder("P")
+	public static PlayerMobileEntity build(Coord c) {
+		Entity baseEntity = new BasicEntity.BasicEntityBuilder("P", c)
 				.withAlive(true)
 				.build();
 		

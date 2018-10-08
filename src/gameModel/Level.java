@@ -29,6 +29,14 @@ public class Level implements EntityMover {
 		this(DEFAULT_NROWS, DEFAULT_NCOLS);
 	}
 
+	public WinSystem getWinSystem() {
+		return winSystem;
+	}
+	
+	public EntityMover getEntityMover() {
+		return this;
+	}
+
 	public Level(int nRows, int nCols) {
 		this.winSystem = new WinSystem();
 		//Adds a border of wall tiles to the map.
@@ -52,8 +60,7 @@ public class Level implements EntityMover {
 
 	public PlayerMobileEntity addPlayer(Coord c) throws EntityPlacementException {
 		Tile placementTile = this.getTile(c);
-		PlayerMobileEntity player = PlayerMobileEntity.build();
-		player.setCoord(c);
+		PlayerMobileEntity player = PlayerMobileEntity.build(c);
 		placementTile.addMobileEntity(player);
 		return player;
 	}
@@ -64,10 +71,8 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException thrown if the placement is not allowed
 	 */
-	public void addItem(EntityBuilder itemBuilder, Coord c) throws EntityPlacementException {
-		Entity item = itemBuilder.withCoord(c)
-			.withEntityMover(this)
-			.build();
+	public void addItem(Entity item) throws EntityPlacementException {
+		Coord c = item.getCoord();
 		Tile placementTile = getTile(c);
 		placementTile.addItem(item);
 	}
@@ -101,10 +106,6 @@ public class Level implements EntityMover {
 	
 	public WinCondition newWinCondition(WinType type) {
 		return this.winSystem.newWinCondition(type);
-	}
-	
-	public EntityMover getEntityMover() {
-		return this;
 	}
 
 	/**

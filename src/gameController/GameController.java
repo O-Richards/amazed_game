@@ -75,26 +75,22 @@ public class GameController {
 			e.printStackTrace();
 		}
 
-		// REFACTOR so that entity contains win condition
-		// l.enableWinCondition(WinType.EXIT);
-		// l.enableWinCondition(WinType.ENEMY);
-		// l.enableWinCondition(WinType.SWITCH);
-		// l.enableWinCondition(WinType.TREASURE);
-		l.addItem(new SwordUsableEntity(new Coord(4, 4)), new Coord(4, 4));
-		l.addItem(new BombUsableEntity(new Coord(1, 5)), new Coord(1, 5));
-		//l.addEnemy(new BoulderMobileEntity(new Coord(2, 3)), new Coord(2, 3));
-		l.placeSwitch(new Coord(3, 3));
-		l.addItem(new TreasureEntity( new Coord(5,6)), new Coord(5,6));
-		l.addItem(new TreasureEntity(new Coord(10, 2)), new Coord(10, 2));
+		EntityMaker make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
+		l.addItem(make.makeArrow(new Coord(1, 1)));
+		l.addItem(make.makeBomb(new Coord(2, 2)));
+		l.placeSwitch(new Coord(3, 6));
+		l.addItem(make.makeTreasure(new Coord(3, 3)));
+		l.addItem(make.makeTreasure(new Coord(4, 4)));
 		l.placeWall(new Coord(4, 5));
 		l.placeExit(new Coord(6, 1));
-		l.addItem(new HoverPotion(new Coord(3, 4)), new Coord(3, 4));
-		l.addItem(new InvincibilityEntity(new Coord(1,7)), new Coord(1,7));
+		l.addItem(make.makeHoverPotion(new Coord(2, 4)));
+		l.addItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		l.placePit(new Coord(9,9));
-		l.addEnemy(new EnemyMobileEntity(new Coord(15, 15)), new Coord(15, 15));
-		l.addItem(new KeyUsableEntity(null), new Coord(2,5));
-		l.addItem(new KeyUsableEntity(null), new Coord(7,8));
-		l.addItem(new ArrowUsableEntity(null), new Coord(5,8));
+		// l.addEnemy(make.makeEnemy(new Coord(15, 15)));
+		l.addItem(make.makeKey(new Coord(5, 5)));
+		l.addItem(make.makeKey(new Coord(7, 7)));
+		// l.addItem(make.makeSword(new Coord(2, 4)));
+		l.addItem(make.makeBoulder(new Coord(3, 1)));
 
 		l.placeDoor(new Coord(4,1));
 		
@@ -108,7 +104,7 @@ public class GameController {
 			String input = s.nextLine();
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
-			l.movePlayer(playerDir);
+			l.moveMobileEntity(player, playerDir)
 
 			//System.out.println("Input Dir: " + playerDir);
 			//performs an action: 
