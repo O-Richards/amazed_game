@@ -160,6 +160,13 @@ public class Level implements EntityMover {
 	 */
 	
 	public boolean hasWon() {
+		//We must update each win condition
+		for (int row = this.map.length - 1; row >= 0; row--) {
+			for (int col = 0; col < this.map[0].length; col++) {
+				this.map[row][col].updateWinCondition();
+			}
+		}
+		
 		return this.winSystem.getType() == WinType.WIN;
 	}
 

@@ -20,7 +20,7 @@ public class WallTile extends Tile {
 	}
 
 	@Override
-	protected void updateWinCondition() {
+	public void updateWinCondition() {
 		// TODO Auto-generated method stub
 		
 	}

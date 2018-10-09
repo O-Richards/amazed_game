@@ -20,7 +20,7 @@ public class DoorTile extends Tile {
 	}
 	
 	@Override
-	protected void updateWinCondition() {
+	public void updateWinCondition() {
 	}
 	
 	@Override

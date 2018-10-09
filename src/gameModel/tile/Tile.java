@@ -30,7 +30,6 @@ public class Tile {
 				entityMover.moveMobileEntity(mobile, nextCoord);
 			}
 		}
-		this.updateWinCondition();
 	}
 	/**
 	 * Adds a usable item to the tile: 
@@ -100,7 +99,7 @@ public class Tile {
 	}
 
 	//Some template method shit happening right here
-	protected void updateWinCondition() {
+	public void updateWinCondition() {
 	}
 
 	public Coord getCoord() {

@@ -14,7 +14,7 @@ public class SwitchTile extends Tile {
 		this.switchCondition = winCondition;
 	}
 
-	protected void updateWinCondition() {
+	public void updateWinCondition() {
 		if (this.getMobile() != null && this.getMobile().canTriggerSwitches()) {
 			this.switchCondition.setType(WinType.WIN);
 		} else {
