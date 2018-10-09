@@ -57,10 +57,7 @@ public abstract class MovementBonus implements Movement {
 	}
 	
 	@Override
-	public boolean pickup(Entity e) {
-		return this.baseMovement.pickup(e);
+	public boolean pickup(Usable item) {
+		return this.baseMovement.pickup(item);
 	}
-	
-	
-	
 }

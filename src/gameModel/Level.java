@@ -20,7 +20,6 @@ public class Level implements EntityMover {
 	//The map for the game, composed of Tiles.
 	//NOTE: Tile[0][0] is the bottom left tile
 	private Tile[][] map;
-
 	private Integer tickNum = 0;
 	private WinSystem winSystem;
 	private Map<DelayedAction, Integer> delayedActions = new HashMap<>();
@@ -76,7 +75,8 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
-	public void placeMobileEntity(MobileEntity enemy, Coord c) throws EntityPlacementException {
+	public void placeMobileEntity(MobileEntity enemy) throws EntityPlacementException {
+		Coord c = enemy.getCoord();
 		Tile placementTile = getTile(c);
 		placementTile.addMobileEntity(enemy);
 	}
@@ -220,12 +220,14 @@ public class Level implements EntityMover {
 	 */
 	@Override
 	public boolean moveMobileEntity(MobileEntity e, Coord nextCoord) {
+		if (e.getCoord().equals(nextCoord)) {
+			return true;
+		}
 		Tile placementTile = this.getTile(nextCoord);
 		Tile originalTile = this.getTile(e.getCoord());
 		try {
 			placementTile.addMobileEntity(e);
 			originalTile.removeMobileEntity(e);
-			
 		} catch (EntityPlacementException exp){
 			//The entity cannot be placed here for some reason
 			if (DEBUG) {

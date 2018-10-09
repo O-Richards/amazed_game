@@ -57,17 +57,19 @@ public class MobileEntity implements Movement, Entity {
 	
 	//TODO: Pull this into movement interface
 	@Override
-	public boolean pickup(Entity item) {
+	public boolean pickup(Usable item) {
 		return this.movement.pickup(item);
 	}
 	
 	@Override
 	public boolean kill(KillAction action) {
 		if (this.killedByAnything || this.killedBy.contains(action)) {
-			return this.movement.kill(action);
-		} else {
-			return false;
+			if (this.movement.kill(action)) {
+				this.setAlive(false);
+				return true;
+			}
 		}
+		return false;
 	}
 	
 	public boolean pushable() {
@@ -133,17 +135,17 @@ public class MobileEntity implements Movement, Entity {
 	public String getSprite() {
 		return baseEntity.getSprite();
 	}
+	
+	@Override
+	public Usable getUsable() {
+		return this.baseEntity.getUsable();
+	}
 
 	@Override
 	public void setCoord(Coord coord) {
 		baseEntity.setCoord(coord);
 	}
 
-	@Override
-	public void applyToPlayer(PlayerMobileEntity player) {
-		this.baseEntity.applyToPlayer(player);
-	}
-	
 	@Override
 	public Coord getCoord() {
 		return baseEntity.getCoord();
@@ -152,11 +154,6 @@ public class MobileEntity implements Movement, Entity {
 	@Override
 	public Coord getCoord(Direction dir) {
 		return baseEntity.getCoord(dir);
-	}
-	
-	@Override
-	public boolean use(Action action) {
-		return this.baseEntity.use(action);
 	}
 	
 	public static class MobileEntityBuilder {
@@ -219,4 +216,6 @@ public class MobileEntity implements Movement, Entity {
 	public void setMobileEntity(MobileEntity mobileEntity) {
 		//TODO: Refactor so we dont need this...
 	}
+
+
 }

@@ -1,6 +1,6 @@
 package gameModel;
 
-public interface Entity extends Usable {
+public interface Entity {
 	public Coord getCoord();
 	
 	/**
@@ -22,4 +22,12 @@ public interface Entity extends Usable {
 	public void setAlive(boolean b);
 
 	public boolean isAlive();
+	
+	/**
+	 * @param item the item to pickup
+	 * @return true if picked up
+	 */
+	public boolean pickup(Usable item);
+
+	public Usable getUsable();
 }	

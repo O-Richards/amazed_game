@@ -27,7 +27,7 @@ public class EntityTrackingMovement implements Movement {
 	@Override
 	public boolean kill(KillAction action) {
 		if (this.canDie()) {
-			return entity.kill(action);
+			return true;
 		}
 		return false;
 	}
@@ -43,7 +43,7 @@ public class EntityTrackingMovement implements Movement {
 	}
 
 	@Override
-	public boolean pickup(Entity e) {
+	public boolean pickup(Usable e) {
 		return false;
 	}
 

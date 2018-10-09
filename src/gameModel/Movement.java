@@ -26,7 +26,7 @@ public interface Movement {
 	 * Attempt to pickup an item
 	 * @return true if picked up, false else
 	 */
-	public boolean pickup(Entity e);
+	public boolean pickup(Usable item);
 	
 	/**
 	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders

@@ -10,19 +10,24 @@ public class SwordUsable implements Usable {
 	}
 
 	@Override
-	public boolean use(Action action) {
-		if (action == Action.SWORD && this.noOfUses > 0 && this.player != null) {
+	public boolean use(UseAction action) {
+		if (action == UseAction.SWORD && this.noOfUses > 0 && this.player != null) {
 			Coord currentCoord = player.getCoord(player.getDirection());
 			this.entityMover.kill(currentCoord, KillAction.WEAPON);
 			this.noOfUses--;
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	@Override
 	public void applyToPlayer(PlayerMobileEntity player) {
 		this.player = player;
+	}
+
+	@Override
+	public UseAction getUseAction() {
+		return UseAction.SWORD;
 	}
 
 }

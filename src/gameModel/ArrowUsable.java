@@ -10,8 +10,8 @@ public class ArrowUsable implements Usable {
 	}
 	
 	@Override
-	public boolean use(Action action) {
-		if (action == Action.ARROW) {
+	public boolean use(UseAction action) {
+		if (action == UseAction.ARROW) {
 			Entity baseEntity = new BasicEntity.BasicEntityBuilder(">", player.getCoord(player.getDirection()))
 					.build();
 			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
@@ -28,6 +28,11 @@ public class ArrowUsable implements Usable {
 	@Override
 	public void applyToPlayer(PlayerMobileEntity player) {	
 		this.player = player;
+	}
+
+	@Override
+	public UseAction getUseAction() {
+		return UseAction.ARROW;
 	}
 	
 }

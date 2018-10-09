@@ -20,7 +20,13 @@ private static int keyCodeGenerator = 1;
 	}
 
 	@Override
-	public boolean use(Action action) {
+	public boolean use(UseAction action) {
 		return false;
+	}
+
+
+	@Override
+	public UseAction getUseAction() {
+		return UseAction.KEY;
 	}
 }

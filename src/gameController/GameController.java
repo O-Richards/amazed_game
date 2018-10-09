@@ -20,58 +20,41 @@ public class GameController {
 		}
 	}
 
-	//Get action: 
-	private void performAction(Level l, String input) {
-		//Check if the player has made an actual movement: 
-		System.out.println("GameSystem.performAction perfoming " + input);
-		Direction playerDir = this.isAction(input);
-		if(playerDir != null) {
-			//Get the action the player has made: 
-			Action playerAction = this.action(input);		
-			l.playerDo(playerAction, playerDir);
-		}
-	}
-	
 	//Gets the action: i.e. represented by the last char: 
-	private Action action(String s) {
+	private UseAction action(String s) {
 		s = s.toLowerCase();
 		char temp = s.charAt(s.length()-1);
 		switch(temp) {
 			//Cases for shooting an arrow
-			case 'j': return Action.ARROW;
-			case 'k': return Action.SWORD;
-			case 'l': return Action.BOMB;
+			case 'j': return UseAction.ARROW;
+			case 'k': return UseAction.SWORD;
+			case 'l': return UseAction.BOMB;
 			default: return null;
 		}
 	}
 	
-	//Checks if it is an action input: 
-	private Direction isAction(String s) {
+	
+	private UseAction getUse(String s) {
 		s = s.toLowerCase();
-		switch(s) {
-			//Cases for shooting an arrow
-			case "wj": return Direction.UP;
-			case "sj": return Direction.DOWN;
-			case "aj": return Direction.LEFT;
-			case "dj": return Direction.RIGHT;
-			//Swinging a sword
-			case "wk": return Direction.UP;
-			case "sk": return Direction.DOWN;
-			case "ak": return Direction.LEFT;
-			case "dk": return Direction.RIGHT;
-			//placing a bomb
-			case "l": return Direction.CENTRE;
-			default: return null;
+		if (s.contains("j")) {
+			return UseAction.ARROW;
 		}
+		if (s.contains("k")) return UseAction.SWORD;
+		
+		if (s.contains("l")) return UseAction.BOMB;
+		return null;
 	}
 	
 	public static void main(String[] args) throws IOException, EntityPlacementException {
 		GameController gc = new GameController();
 		Level l = new Level();
+		EntityMaker make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
+		
+		PlayerMobileEntity player = make.makePlayer(new Coord(1,1));
+		l.placeMobileEntity(player);
 		
 		//Setup template maze
-		EntityMaker make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
-		l.placeItem(make.makeArrow(new Coord(1, 1)));
+		l.placeItem(make.makeArrow(new Coord(1, 2)));
 		l.placeItem(make.makeBomb(new Coord(2, 2)));
 		l.placeSwitch(new Coord(3, 6));
 		l.placeItem(make.makeTreasure(new Coord(3, 3)));
@@ -85,7 +68,7 @@ public class GameController {
 		l.placeItem(make.makeKey(new Coord(5, 5)));
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
-		l.placeItem(make.makeBoulder(new Coord(3, 1)));
+		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
 
 		l.placeDoor(new Coord(4,1));
 		
@@ -99,21 +82,26 @@ public class GameController {
 			String input = s.nextLine();
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
-			l.moveMobileEntity(player, playerDir);
+			//l.moveMobileEntity(player, playerDir);
+			player.setDirection(playerDir);
+			UseAction use = gc.getUse(input);
+			if (use != null) {
+				player.use(use);
+			}
 
 			//System.out.println("Input Dir: " + playerDir);
 			//performs an action: 
-			gc.performAction(l, input); 
+			//gc.performAction(l, input); 
 		
 			l.tick();
 			System.out.println(l.toString());
-			System.out.println(l.inventoryString());
+			System.out.println(player.inventoryString());
 			//l.checkInventory(); 
 			if (l.hasWon()) {
 				System.out.println("WON THE GAME!!!");
 				break;
 			}
-			if (l.hasLost()) {
+			if (!player.isAlive()) {
 				System.out.println("LOST THE GAME!!!");
 				break;
 			}

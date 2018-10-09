@@ -8,7 +8,10 @@ public class EntityMaker {
 		this.winSystem = winSystem;
 		this.entityMover = entityMover;
 	}
-	
+	public PlayerMobileEntity makePlayer(Coord c) {
+		return new PlayerMobileEntity.PlayerMobileEntityBuilder("P", c, entityMover)
+				.build();
+	}
 	public Entity makeKey(Coord c) {
 		return new BasicEntity.BasicEntityBuilder("K", c)
 				.withEntityMover(entityMover)
@@ -26,13 +29,18 @@ public class EntityMaker {
 		Usable treasureUsage = new Usable() {
 
 			@Override
-			public boolean use(Action action) {
+			public boolean use(UseAction action) {
 				return false;
 			}
 
 			@Override
 			public void applyToPlayer(PlayerMobileEntity player) {
 				player.incrementTreasureNo();
+			}
+
+			@Override
+			public UseAction getUseAction() {
+				return UseAction.TREASURE;
 			}
 		};
 		
@@ -51,8 +59,13 @@ public class EntityMaker {
 			}
 
 			@Override
-			public boolean use(Action action) {
+			public boolean use(UseAction action) {
 				return false;
+			}
+
+			@Override
+			public UseAction getUseAction() {
+				return UseAction.INVINCIBILITY;
 			}
 			
 		};
@@ -66,7 +79,7 @@ public class EntityMaker {
 	public Entity makeHoverPotion(Coord c) {
 		Usable hoverPotionUse = new Usable() {
 			@Override
-			public boolean use(Action action) {
+			public boolean use(UseAction action) {
 				return false;
 			}
 
@@ -76,6 +89,11 @@ public class EntityMaker {
 				//i.e. we wrap the player's movement with a hover bonus
 				player.setMovement(new HoverBonusMovement(player.getMovement()));
 			}
+
+			@Override
+			public UseAction getUseAction() {
+				return UseAction.HOVER;
+			}
 		};
 		
 		return new BasicEntity.BasicEntityBuilder("H", c)
@@ -84,7 +102,7 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public Entity makeBoulder(Coord c) {
+	public MobileEntity makeBoulder(Coord c) {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder("b", c)
 				.withEntityMover(entityMover)
 				.build();

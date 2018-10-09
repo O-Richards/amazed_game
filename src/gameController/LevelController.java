@@ -1,6 +1,6 @@
 package gameController;
 
-import gameModel.Action;
+import gameModel.UseAction;
 import gameModel.Direction;
 import gameModel.EntityType;
 
@@ -16,5 +16,5 @@ public interface LevelController {
 	boolean hasWon();
 	void setPlayerDirection(Direction direction);
 	void setPlayerSpeed(int speed);
-	boolean useItem(Action item);
+	boolean useItem(UseAction item);
 }

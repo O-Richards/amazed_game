@@ -1,17 +1,18 @@
 package gameModel;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class PlayerMobileEntity extends MobileEntity {
 	private static final boolean DEBUG = true;
-	private ArrayList<Entity> inventory;
+	private ArrayList<Usable> inventory;
 	private int keyCode = -1;
 	private int noTreasure = 0;
 	// private PlayerState playerState;
 	
 	public PlayerMobileEntity(MobileEntityBuilder builder) {
 		super(builder);
-		this.inventory = new ArrayList<Entity>();
+		this.inventory = new ArrayList<Usable>();
 	}
 	
 	/* (non-Javadoc)
@@ -21,18 +22,18 @@ public class PlayerMobileEntity extends MobileEntity {
 	@Override
 	public void setCoord(Coord coord) {
 		super.setCoord(coord);
-		for (Entity item : this.inventory) {
-			item.setCoord(this.getCoord());
-		}
 	}
 	
 	//Given an item finds the item in the inventory an uses it: 
-	@Override
-	public boolean use(Action a) {
+	public boolean use(UseAction a) {
 		 System.out.println("Player using " + a);
 		//Looks through all elements of the arrayList to find if there is an item of that type:
-		for (Entity inventoryItem : inventory) {
-			if (inventoryItem.use(a)) return true;
+		for (Iterator<Usable> it = inventory.iterator(); it.hasNext();) {
+			Usable inventoryItem = it.next();
+			if (inventoryItem.use(a)) {
+				it.remove();
+				return true;
+			}
 		}
 		return false;
 	}
@@ -56,7 +57,7 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 
 	@Override
-	public boolean pickup(Entity item) {
+	public boolean pickup(Usable item) {
 		inventory.add(item);
 		item.applyToPlayer(this);
 		return true;
@@ -65,8 +66,8 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	public String inventoryString() {
 		String out = "";
-		for (Entity e : inventory) {
-			out += e.getSprite();
+		for (Usable e : inventory) {
+			out += UseAction.toString(e.getUseAction()) + ", ";
 		}
 		return out;
 	}
@@ -102,5 +103,29 @@ public class PlayerMobileEntity extends MobileEntity {
 	public void incrementTreasureNo() {
 		this.noTreasure++;
 	}
-	
+	public static class PlayerMobileEntityBuilder {
+		Coord c;
+		String sprite;
+		EntityMover entityMover;
+		
+		PlayerMobileEntityBuilder(String sprite, Coord c, EntityMover entityMover) {
+			this.c = c;
+			this.sprite = sprite;
+			this.entityMover = entityMover;
+		}
+		
+		public PlayerMobileEntity build() {
+			Entity baseEntity = new BasicEntity.BasicEntityBuilder(sprite, c)
+					.withAlive(true)
+					.withEntityMover(entityMover)
+					.build();
+			
+			MobileEntityBuilder builder = new MobileEntityBuilder(baseEntity)
+					.withIsPlayer(true)
+					.withKilledBy(KillAction.ENEMY)
+					.withMovement(new PlayerMovement());
+			
+			return new PlayerMobileEntity(builder);
+		}
+	}
 }

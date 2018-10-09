@@ -1,6 +1,6 @@
 package gameModel;
 
-public class BasicEntity implements Entity, Usable {
+public class BasicEntity implements Entity {
 
 	//Coord the entity is on. Note if in inventory, this will be null
 	private Coord coord;
@@ -42,16 +42,6 @@ public class BasicEntity implements Entity, Usable {
 	}
 	
 	@Override
-	public boolean use(Action action) {
-		return this.usage.use(action);
-	}
-	
-	@Override
-	public void applyToPlayer(PlayerMobileEntity player) {
-		this.usage.applyToPlayer(player);
-	}
-
-	@Override
 	public String getSprite() {
 		return this.sprite;
 	}
@@ -81,6 +71,16 @@ public class BasicEntity implements Entity, Usable {
 	public boolean isAlive() {
 		return this.alive;
 	}
+	
+	@Override
+	public boolean pickup(Usable item) {
+		return false;
+	}
+
+	@Override
+	public Usable getUsable() {
+		return this.usage;
+	}
 
 	public static class BasicEntityBuilder implements EntityBuilder {
 		private Coord coord;
@@ -96,13 +96,18 @@ public class BasicEntity implements Entity, Usable {
 			
 			Usable noAction = new Usable() {
 				@Override
-				public boolean use(Action action) {
+				public boolean use(UseAction action) {
 					return false;
 				}
 
 				@Override
 				public void applyToPlayer(PlayerMobileEntity player) {
 					
+				}
+
+				@Override
+				public UseAction getUseAction() {
+					return UseAction.NONE;
 				}
 			};
 			this.use = noAction;
@@ -181,6 +186,7 @@ public class BasicEntity implements Entity, Usable {
 			return this.aliveEntity;
 		}
 	}
+
 
 
 

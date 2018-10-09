@@ -19,8 +19,10 @@ public class Tile {
 		//move the enemy
 		if (mobile != null && mobile.lastMoveTickNum() != tickNum) {
 			Coord nextCoord = mobile.nextCoord();
-			mobile.setLastMoveTickNum(tickNum);
-			entityMover.moveMobileEntity(mobile, nextCoord);
+			if (!nextCoord.equals(this.getCoord())) {
+				mobile.setLastMoveTickNum(tickNum);
+				entityMover.moveMobileEntity(mobile, nextCoord);
+			}
 		}
 	}
 	/**
@@ -43,24 +45,25 @@ public class Tile {
 	public void addMobileEntity(MobileEntity newEntity) throws EntityPlacementException {
 		MobileEntity oldEntity = this.mobile;
 		boolean placeNewEntity = false;
+		boolean killedNew = false;
 		if (oldEntity == null) {
 			placeNewEntity = true;
 		} else {
+			if (oldEntity.pushable()) {
+				//if pushable, push it
+				if (this.entityMover.moveMobileEntity(oldEntity, newEntity.getDirection())) {
+					placeNewEntity = true;
+				}
+			}
 			if (oldEntity.kill(newEntity.getKillAction())) {
+				//New entity tries to kill old entity
 				placeNewEntity = true;
 				this.mobile = null;
 			} 
 			if (newEntity.kill(oldEntity.getKillAction())) {
+				//try to kill the new entity (by old)
 				placeNewEntity = false;
-			}
-			if (oldEntity.pushable()) {
-				if (this.entityMover.moveMobileEntity(oldEntity, newEntity.getDirection())) {
-					placeNewEntity = true;
-				} else {
-					placeNewEntity = false;
-				}
-			} else {
-				placeNewEntity = false;
+				killedNew = true;
 			}
 		}
 		
@@ -68,10 +71,12 @@ public class Tile {
 			newEntity.setCoord(this.getCoord());
 			this.mobile = newEntity;
 			if (this.item != null) {
-				if (newEntity.pickup(this.item)) {
+				if (newEntity.pickup(this.item.getUsable())) {
 					this.item = null;
 				}
 			}
+		} else if (!killedNew) {
+			throw new EntityPlacementException("Tile is occupied");
 		}
 	}
 
