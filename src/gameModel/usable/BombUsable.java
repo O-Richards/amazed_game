@@ -12,7 +12,6 @@ public class BombUsable implements Usable, DelayedAction {
 
 	private EntityMover entityMover;
 	private Coord useLocation;
-	private PlayerMobileEntity player;
 	
 	public BombUsable(EntityMover entityMover) {
 		this.entityMover = entityMover;
@@ -29,7 +28,6 @@ public class BombUsable implements Usable, DelayedAction {
 	@Override
 	public void applyToPlayer(PlayerMobileEntity player) {
 		this.useLocation = player.getCoord();
-		this.player = player;
 	}
 
 	@Override

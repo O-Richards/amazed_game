@@ -4,11 +4,9 @@ import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
-import gameModel.entity.BasicEntity.BasicEntityBuilder;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
-import gameModel.mobileEntity.MobileEntity.MobileEntityBuilder;
 
 public class ArrowUsable implements Usable {
 

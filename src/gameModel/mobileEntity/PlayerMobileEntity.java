@@ -8,7 +8,6 @@ import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
-import gameModel.entity.BasicEntity.BasicEntityBuilder;
 import gameModel.usable.Usable;
 import gameModel.usable.UseAction;
 

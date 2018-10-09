@@ -23,21 +23,7 @@ public class GameController {
 			case "d": return Direction.RIGHT;
 			default: return Direction.CENTRE;
 		}
-	}
-
-	//Gets the action: i.e. represented by the last char: 
-	private UseAction action(String s) {
-		s = s.toLowerCase();
-		char temp = s.charAt(s.length()-1);
-		switch(temp) {
-			//Cases for shooting an arrow
-			case 'j': return UseAction.ARROW;
-			case 'k': return UseAction.SWORD;
-			case 'l': return UseAction.BOMB;
-			default: return null;
-		}
-	}
-	
+	}	
 	
 	private UseAction getUse(String s) {
 		s = s.toLowerCase();
@@ -79,7 +65,7 @@ public class GameController {
 		l.enableWinCondition(WinType.TREASURE);
 		
 		System.out.println("Use W A S D keys to move me around");
-		System.out.println("Use WASD followed by keys J to fire arrows OR K to swing with sword");
+		System.out.println("Use WASD followed by keys J to fire arrows, K to swing with sword, l to drop bombs");
 		System.out.println("Use keys L to place bomb");
 		System.out.println("Sprite Key: E = enemy P = player B = boulder $ = Treasure b = bomb H = hover potion S = sword @ = switch");
 		System.out.println(l.toString());
