@@ -3,6 +3,7 @@ package gameModel;
 import gameModel.entity.Entity;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.MobileEntity;
+import gameModel.tile.EntityPlacementException;
 
 /**
  * @author Oli
@@ -21,13 +22,6 @@ public interface EntityMover {
 	boolean moveMobileEntity(MobileEntity e, Direction dir);
 	
 	/**
-	 * @param entity The entity to be placed on the map
-	 * @param c The coord to place the entity
-	 * THIS MUST BE REMOVED!!!!!!!!!!!!!
-	 */
-	public void placeEntity(Entity entity, Coord c);
-	
-	/**
 	 * @param c The coord to check
 	 * @return	true if a mobile entity can move onto this tile without dying, false else.
 	 */
@@ -44,4 +38,11 @@ public interface EntityMover {
 	 * @param numTicksUntil the number of ticks from now to call at
 	 */
 	public void addDelayedAction(DelayedAction action, Integer numTicksUntil);
+	
+	/**
+	 * Place a mobile entity at a coord
+	 * @param entity the entity to be placed
+	 * @precondition the entity must have a valid coord
+	 */
+	void placeMobileEntity(MobileEntity entity) throws EntityPlacementException;
 }

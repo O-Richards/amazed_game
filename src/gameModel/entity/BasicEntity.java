@@ -90,6 +90,13 @@ public class BasicEntity implements Entity {
 	public Usable getUsable() {
 		return this.usage;
 	}
+	
+	/**
+	 * @param satisfied sets the win condition as satisfied by winType
+	 */
+	public void setWinConditionType(WinType winType) {
+		this.winCondition.setType(winType);
+	}
 
 	public static class BasicEntityBuilder implements EntityBuilder {
 		private Coord coord;

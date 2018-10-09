@@ -265,12 +265,6 @@ public class Level implements EntityMover {
 	}
 
 	@Override
-	public void placeEntity(Entity entity, Coord c) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void addDelayedAction(DelayedAction action, Integer numTicksUntil) {
 		this.delayedActions.put(action, this.tickNum + numTicksUntil);
 	}

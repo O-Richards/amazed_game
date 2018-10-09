@@ -7,6 +7,7 @@ import gameModel.entity.Entity;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.tile.EntityPlacementException;
 
 public class ArrowUsable implements Usable {
 
@@ -27,7 +28,11 @@ public class ArrowUsable implements Usable {
 					.withKilledByAnything(true)
 					.withMovement(new EntityTrackingMovement())
 					.build();
-			this.entityMover.placeEntity(killingArrow, killingArrow.getCoord());
+			try {
+				this.entityMover.placeMobileEntity(killingArrow);
+			} catch (EntityPlacementException e) {
+				System.out.println("ArrowUsable.use: ERROR: exception thrown when placing moving arrow" + e);
+			}
 			return true;
 		}
 		return false;
