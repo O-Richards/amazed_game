@@ -13,12 +13,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="434.0" fitWidth="613.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/Maze_Deck_1400x.jpg" />
+            <Image url="@../../images/Maze_Deck_1400x.jpg" />
          </image>
          <effect>
             <SepiaTone />
@@ -28,7 +27,7 @@
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/home%20button%20.png" />
+                  <Image url="@../../images/home%20button%20.png" />
                </image>
             </ImageView>
          </graphic>
@@ -69,7 +68,7 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="200.0" layoutX="187.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/buttonStock1d.png" />
+            <Image url="@../../images/buttonStock1d.png" />
          </image>
       </ImageView>
       <Label layoutX="220.0" layoutY="40.0" text="Create New" textFill="#ddc9b3">

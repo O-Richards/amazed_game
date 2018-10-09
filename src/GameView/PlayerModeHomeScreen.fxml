@@ -10,12 +10,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="593.0" fitWidth="879.0" layoutX="-139.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/wall%20.jpg" />
+            <Image url="@../../images/wall%20.jpg" />
          </image>
          <effect>
             <SepiaTone level="0.44" />
@@ -49,7 +48,7 @@
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../images/home%20button%20.png" />
+                  <Image url="@../../images/home%20button%20.png" />
                </image>
             </ImageView>
          </graphic>
