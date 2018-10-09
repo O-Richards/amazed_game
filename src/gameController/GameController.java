@@ -71,6 +71,7 @@ public class GameController {
 		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
 
 		l.placeDoor(new Coord(4,1));
+		l.enableWinCondition(WinType.TREASURE);
 		
 		System.out.println("Use W A S D keys to move me around");
 		System.out.println("Use WASD followed by keys J to fire arrows OR K to swing with sword");
