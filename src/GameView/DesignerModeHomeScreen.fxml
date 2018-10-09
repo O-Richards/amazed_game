@@ -23,7 +23,7 @@
             <SepiaTone />
          </effect>
       </ImageView>
-      <Button layoutX="544.0" layoutY="356.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="33.0">
+      <Button fx:id="homeButton" layoutX="544.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>

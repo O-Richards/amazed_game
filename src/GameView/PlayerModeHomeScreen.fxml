@@ -20,7 +20,7 @@
             <SepiaTone level="0.44" />
          </effect>
       </ImageView>
-      <Button layoutX="199.0" layoutY="302.0" mnemonicParsing="false" text="Hard ">
+      <Button fx:id="hardLevelButton" layoutX="199.0" layoutY="302.0" mnemonicParsing="false" onAction="#handleHardLevelButton" text="Hard ">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
@@ -28,7 +28,7 @@
             <Font name="Baskerville Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="199.0" layoutY="139.0" mnemonicParsing="false" text="Easy ">
+      <Button fx:id="easyLevelButton" layoutX="199.0" layoutY="139.0" mnemonicParsing="false" onAction="#handleEasyLevelButton" text="Easy ">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
@@ -36,7 +36,7 @@
             <Font name="Baskerville Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="199.0" layoutY="221.0" mnemonicParsing="false" text="Intermediate">
+      <Button fx:id="intermediateLevelButton" layoutX="199.0" layoutY="221.0" mnemonicParsing="false" onAction="#handleIntermediateLevelButton" text="Intermediate">
          <graphic>
             <ImageView fitHeight="51.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true" />
          </graphic>
@@ -44,7 +44,7 @@
             <Font name="Baskerville Bold" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="534.0" layoutY="346.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="33.0">
+      <Button fx:id="homeButton" layoutX="534.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0">
          <graphic>
             <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
