@@ -63,6 +63,8 @@ public class GameController {
 
 		l.placeDoor(new Coord(4,1));
 		l.enableWinCondition(WinType.TREASURE);
+		l.enableWinCondition(WinType.SWITCH);
+		l.enableWinCondition(WinType.EXIT);
 		
 		System.out.println("Use W A S D keys to move me around");
 		System.out.println("Use WASD followed by keys J to fire arrows, K to swing with sword, l to drop bombs");
