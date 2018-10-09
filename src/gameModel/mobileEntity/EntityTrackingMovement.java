@@ -5,15 +5,26 @@ import gameModel.KillAction;
 import gameModel.usable.Usable;
 
 public class EntityTrackingMovement implements Movement {
-	private static final boolean DEBUG = false;
-	private Direction direction = Direction.CENTRE;
+	private static final boolean DEBUG = true;
+	private Direction direction = Direction.UP;
 	private MobileEntity entity;
 
 	public EntityTrackingMovement() {
 	}
 	
+	public EntityTrackingMovement(Direction direction) {
+		this.direction = direction;
+	}
+
+	@Override
 	public Coord nextCoord() {
-		return this.getCoord(this.getDirection());
+		Coord currCoord = this.entity.getCoord();
+		Coord nextCoord = currCoord;
+		if (entity.isMoving()) {
+			nextCoord = currCoord.add(entity.getDirection());
+		}
+		if (DEBUG) System.out.println("EntityTrackingMovement.nextCoord: returning at " + currCoord + " Returning " + nextCoord);
+		return nextCoord;
 	}
 
 	public Direction getDirection() {
@@ -37,16 +48,6 @@ public class EntityTrackingMovement implements Movement {
 	}
 
 	@Override
-	public Coord getCoord() {
-		return this.entity.getCoord();
-	}
-
-	@Override
-	public Coord getCoord(Direction dir) {
-		return this.entity.getCoord(dir);
-	}
-
-	@Override
 	public boolean pickup(Usable e) {
 		return false;
 	}
@@ -55,5 +56,4 @@ public class EntityTrackingMovement implements Movement {
 	public void setMobileEntity(MobileEntity mobileEntity) {
 		this.entity = mobileEntity;
 	}
-
 }

@@ -32,13 +32,6 @@ public interface Movement {
 	 */
 	public boolean pickup(Usable item);
 	
-	/**
-	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
-	 */
-	default public boolean pushEntity() {
-		return false;
-	}
-	
 	default public boolean canDie() {
 		return true;
 	}
@@ -47,10 +40,6 @@ public interface Movement {
 	
 	public void setDirection(Direction dir);
 	
-	public Coord getCoord();
-	
-	public Coord getCoord(Direction dir);
-
 	default public void setEntity(MobileEntity e) {
 		
 	}

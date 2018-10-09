@@ -1,6 +1,5 @@
 package gameModel;
 
-import gameModel.entity.Entity;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.tile.EntityPlacementException;

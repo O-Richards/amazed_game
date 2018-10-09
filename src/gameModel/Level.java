@@ -89,6 +89,7 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
+	@Override
 	public void placeMobileEntity(MobileEntity enemy) throws EntityPlacementException {
 		Coord c = enemy.getCoord();
 		Tile placementTile = getTile(c);

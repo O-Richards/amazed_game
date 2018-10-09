@@ -20,6 +20,8 @@ public class MobileEntity implements Movement, Entity {
 	private boolean pushable = false;
 	private boolean killedByAnything = false;
 	private boolean canTriggerSwitches = false;
+	private boolean canPushEntities;
+	private boolean moving;
 	
 	
 	MobileEntity(MobileEntityBuilder builder) {
@@ -31,6 +33,8 @@ public class MobileEntity implements Movement, Entity {
 		this.killedByAnything = builder.killedByAnything;
 		this.pushable = builder.pushable;
 		this.canTriggerSwitches = builder.canTriggerSwitches;
+		this.canPushEntities = builder.canPush;
+		this.moving = builder.isMoving;
 		
 		this.movement.setMobileEntity(this);
 	}
@@ -93,13 +97,6 @@ public class MobileEntity implements Movement, Entity {
 		return this.canTriggerSwitches;
 	}
 	
-	/**
-	 * @return true if the MobileEntity is able to push another entity e.g. player pushing boulders
-	 */
-	public boolean pushEntity() {
-		return this.movement.pushEntity();
-	}
-	
 	public void setKeyCode(int keyCode) {
 		keyCode = -1;
 	}
@@ -136,6 +133,18 @@ public class MobileEntity implements Movement, Entity {
 		return this.isPlayer;
 	}
 	
+	public boolean canPush() {
+		return this.canPushEntities;
+	}
+	
+	public boolean isMoving() {
+		return this.moving;
+	}
+	
+	public void setMoving(boolean isMoving) {
+		this.moving = isMoving;
+	}
+	
 	@Override
 	public String getSprite() {
 		return baseEntity.getSprite();
@@ -162,6 +171,8 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	public static class MobileEntityBuilder {
+		public boolean isMoving = true;
+		public boolean canPush = false;
 		public boolean killedByAnything;
 		private Movement movement;
 		private boolean isPlayer = false;
@@ -184,6 +195,16 @@ public class MobileEntity implements Movement, Entity {
 		
 		public MobileEntityBuilder withKilledBy(KillAction action) {
 			this.killedBy.add(action);
+			return this;
+		}
+		
+		public MobileEntityBuilder withIsMoving(boolean isMoving) {
+			this.isMoving = isMoving;
+			return this;
+		}
+		
+		public MobileEntityBuilder withCanPush(boolean pushes) {
+			this.canPush = pushes;
 			return this;
 		}
 		
@@ -215,11 +236,6 @@ public class MobileEntity implements Movement, Entity {
 		public MobileEntity build() {
 			return new MobileEntity(this);
 		}
-	}
-
-	@Override
-	public void setMobileEntity(MobileEntity mobileEntity) {
-		//TODO: Refactor so we dont need this...
 	}
 
 

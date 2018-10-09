@@ -4,7 +4,7 @@ import gameModel.bonusMovement.HoverBonusMovement;
 import gameModel.bonusMovement.InvincibilityBonusAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
-import gameModel.mobileEntity.BoulderMovement;
+import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.ArrowUsable;
@@ -107,7 +107,8 @@ public class EntityMaker {
 				.withEntityMover(entityMover)
 				.build();
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
-				.withMovement(new BoulderMovement())
+				.withMovement(new EntityTrackingMovement())
+				.withIsMoving(false)
 				.withPushable(true)
 				.withCanTriggerSwitches(true)
 				.build();

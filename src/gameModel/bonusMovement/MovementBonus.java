@@ -22,12 +22,6 @@ public abstract class MovementBonus implements Movement {
 	}
 	
 	@Override
-	public boolean pushEntity() {
-		return this.baseMovement.pushEntity();
-	}
-	
-
-	@Override
 	public boolean canDie() {
 		return this.baseMovement.canDie();
 	}
@@ -47,16 +41,6 @@ public abstract class MovementBonus implements Movement {
 		this.baseMovement.setDirection(dir);
 	}
 
-	@Override
-	public Coord getCoord() {
-		return this.baseMovement.getCoord();
-	}
-	
-	@Override
-	public Coord getCoord(Direction dir) {
-		return this.baseMovement.getCoord(dir);
-	}
-	
 	@Override
 	public boolean kill(KillAction action) {
 		return this.baseMovement.kill(action);

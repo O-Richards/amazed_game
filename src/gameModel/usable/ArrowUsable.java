@@ -10,7 +10,8 @@ import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
 
 public class ArrowUsable implements Usable {
-
+	private static final boolean DEBUG = true;
+	
 	private EntityMover entityMover;
 	private PlayerMobileEntity player;
 	
@@ -26,8 +27,14 @@ public class ArrowUsable implements Usable {
 			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
 					.withKillAction(KillAction.WEAPON)
 					.withKilledByAnything(true)
-					.withMovement(new EntityTrackingMovement())
+					.withMovement(new EntityTrackingMovement(player.getDirection()))
 					.build();
+			if (DEBUG) {
+				System.out.println("ArrowUsable.use(): placing arrowMobile at " 
+					+ killingArrow.getCoord() + " Player at "  + player.getCoord() 
+					+ " player dir " + player.getDirection()
+					); 
+			}
 			try {
 				this.entityMover.placeMobileEntity(killingArrow);
 			} catch (EntityPlacementException e) {

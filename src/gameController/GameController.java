@@ -21,7 +21,7 @@ public class GameController {
 			case "s": return Direction.DOWN;
 			case "a": return Direction.LEFT;
 			case "d": return Direction.RIGHT;
-			default: return Direction.CENTRE;
+			default: return null;
 		}
 	}	
 	
@@ -77,7 +77,13 @@ public class GameController {
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
 			//l.moveMobileEntity(player, playerDir);
-			player.setDirection(playerDir);
+			System.out.println("Read player dir " + playerDir);
+			if (playerDir != null) {
+				player.setDirection(playerDir);
+				player.setMoving(true);
+			} else {
+				player.setMoving(false);
+			}
 			UseAction use = gc.getUse(input);
 			if (use != null) {
 				player.use(use);

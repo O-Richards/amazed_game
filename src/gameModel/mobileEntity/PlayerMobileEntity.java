@@ -51,15 +51,6 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 
 	@Override
-	public Coord nextCoord() {
-		Coord retVal = this.getCoord(this.getDirection());
-		if (DEBUG) {
-			System.out.println("Player.nextCoord: Returning " + retVal.toString());
-		}
-		return retVal;
-	}
-
-	@Override
 	public String getSprite() {
 		return "P";
 	}
@@ -95,19 +86,6 @@ public class PlayerMobileEntity extends MobileEntity {
 		return true;
 	}
 	
-	public static PlayerMobileEntity build(Coord c) {
-		Entity baseEntity = new BasicEntity.BasicEntityBuilder("P", c)
-				.withAlive(true)
-				.build();
-		
-		MobileEntityBuilder builder = new MobileEntityBuilder(baseEntity)
-				.withIsPlayer(true)
-				.withKilledBy(KillAction.ENEMY)
-				.withMovement(new PlayerMovement());
-		
-		return new PlayerMobileEntity(builder);
-	}
-
 	public void incrementTreasureNo() {
 		this.noTreasure++;
 	}
@@ -131,7 +109,8 @@ public class PlayerMobileEntity extends MobileEntity {
 			MobileEntityBuilder builder = new MobileEntityBuilder(baseEntity)
 					.withIsPlayer(true)
 					.withKilledBy(KillAction.ENEMY)
-					.withMovement(new PlayerMovement());
+					.withMovement(new EntityTrackingMovement())
+					.withCanPush(true);
 			
 			return new PlayerMobileEntity(builder);
 		}

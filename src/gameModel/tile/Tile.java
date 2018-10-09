@@ -55,7 +55,7 @@ public class Tile {
 		if (oldEntity == null) {
 			placeNewEntity = true;
 		} else {
-			if (oldEntity.pushable()) {
+			if (oldEntity.pushable() && newEntity.canPush()) {
 				//if pushable, push it
 				if (this.entityMover.moveMobileEntity(oldEntity, newEntity.getDirection())) {
 					placeNewEntity = true;
