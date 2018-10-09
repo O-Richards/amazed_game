@@ -21,6 +21,7 @@ public class BombUsable implements Usable, DelayedAction {
 	public boolean use(UseAction action) {
 		if (action == UseAction.BOMB) {
 			this.entityMover.addDelayedAction(this, this.NUM_TICKS_TO_EXPLODE);
+			return true;
 		}
 		return false;
 	}

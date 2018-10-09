@@ -1,25 +1,28 @@
 package gameModel.bonusMovement;
 
-import java.time.LocalTime;
-
+import gameModel.DelayedAction;
+import gameModel.EntityMover;
 import gameModel.mobileEntity.Movement;
 
-public class InvincibilityBonusAction extends MovementBonus {
-	
-	private LocalTime time;
-
-	public InvincibilityBonusAction(Movement baseMovement) {
+public class InvincibilityBonusAction extends MovementBonus implements DelayedAction {
+	private static final int numTicksInvincible = 30;
+	private boolean active = true;
+	public InvincibilityBonusAction(Movement baseMovement, EntityMover entityMover) {
 		super(baseMovement);
-		this.time = LocalTime.now();
+		entityMover.addDelayedAction(this, numTicksInvincible);
 	}
 	
 	@Override
 	public boolean canDie() {
-		LocalTime timeCounter = time.plusSeconds(30);
-		if (LocalTime.now().compareTo(timeCounter) > 0) {
-			return super.canDie();
-		} else {
+		if (this.active) {
 			return false;
+		} else {
+			return super.canDie();
 		}
+	}
+
+	@Override
+	public void performDelayedAction() {
+		this.active = false;
 	}
 }

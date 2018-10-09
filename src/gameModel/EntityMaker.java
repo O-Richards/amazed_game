@@ -55,7 +55,7 @@ public class EntityMaker {
 		Usable invincibilityUse = new Usable() {
 			@Override
 			public void applyToPlayer(PlayerMobileEntity player) {
-				player.setMovement(new InvincibilityBonusAction(player.getMovement()));
+				player.setMovement(new InvincibilityBonusAction(player.getMovement(), entityMover));
 			}
 
 			@Override
