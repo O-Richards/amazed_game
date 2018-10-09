@@ -3,6 +3,20 @@ package gameModel;
 import java.util.HashMap;
 import java.util.Map;
 
+import gameModel.entity.Entity;
+import gameModel.mobileEntity.Direction;
+import gameModel.mobileEntity.MobileEntity;
+import gameModel.tile.DoorTile;
+import gameModel.tile.EntityPlacementException;
+import gameModel.tile.ExitTile;
+import gameModel.tile.PitTile;
+import gameModel.tile.SwitchTile;
+import gameModel.tile.Tile;
+import gameModel.tile.WallTile;
+import gameModel.winCondition.WinCondition;
+import gameModel.winCondition.WinSystem;
+import gameModel.winCondition.WinType;
+
 /**
  * @author Oli
  * @invariant map[][] always has at least 1 row and 1 column

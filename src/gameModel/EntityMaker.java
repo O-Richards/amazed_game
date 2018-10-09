@@ -1,5 +1,20 @@
 package gameModel;
 
+import gameModel.bonusMovement.HoverBonusMovement;
+import gameModel.bonusMovement.InvincibilityBonusAction;
+import gameModel.entity.BasicEntity;
+import gameModel.entity.Entity;
+import gameModel.mobileEntity.BoulderMovement;
+import gameModel.mobileEntity.MobileEntity;
+import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.usable.ArrowUsable;
+import gameModel.usable.BombUsable;
+import gameModel.usable.KeyUsable;
+import gameModel.usable.Usable;
+import gameModel.usable.UseAction;
+import gameModel.winCondition.WinSystem;
+import gameModel.winCondition.WinType;
+
 public class EntityMaker {
 	private WinSystem winSystem;
 	private EntityMover entityMover;

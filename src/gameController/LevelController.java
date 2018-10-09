@@ -1,8 +1,8 @@
 package gameController;
 
-import gameModel.UseAction;
-import gameModel.Direction;
-import gameModel.EntityType;
+import gameModel.entity.EntityType;
+import gameModel.mobileEntity.Direction;
+import gameModel.usable.UseAction;
 
 public interface LevelController {
 	EntityType[][] getMap();

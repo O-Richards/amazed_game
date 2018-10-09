@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import gameModel.*;
+import gameModel.mobileEntity.Direction;
+import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.tile.EntityPlacementException;
+import gameModel.usable.UseAction;
+import gameModel.winCondition.WinType;
 
 public class GameController {
 	

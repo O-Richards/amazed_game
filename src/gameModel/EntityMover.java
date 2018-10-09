@@ -1,5 +1,9 @@
 package gameModel;
 
+import gameModel.entity.Entity;
+import gameModel.mobileEntity.Direction;
+import gameModel.mobileEntity.MobileEntity;
+
 /**
  * @author Oli
  * Interface to allow tiles to be fetched from the map
