@@ -10,8 +10,10 @@ import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.ArrowUsable;
 import gameModel.usable.BombUsable;
 import gameModel.usable.KeyUsable;
+import gameModel.usable.TreasureUsage;
 import gameModel.usable.Usable;
 import gameModel.usable.UseAction;
+import gameModel.winCondition.WinCondition;
 import gameModel.winCondition.WinSystem;
 import gameModel.winCondition.WinType;
 
@@ -41,28 +43,11 @@ public class EntityMaker {
 	}
 	
 	public Entity makeTreasure(Coord c) {
-		Usable treasureUsage = new Usable() {
-
-			@Override
-			public boolean use(UseAction action) {
-				return false;
-			}
-
-			@Override
-			public void applyToPlayer(PlayerMobileEntity player) {
-				player.incrementTreasureNo();
-			}
-
-			@Override
-			public UseAction getUseAction() {
-				return UseAction.TREASURE;
-			}
-		};
-		
+		WinCondition treasureWin = this.winSystem.newWinCondition(WinType.TREASURE);
 		return new BasicEntity.BasicEntityBuilder("$", c)
 				.withEntityMover(entityMover)
-				.withWinCondition(this.winSystem.newWinCondition(WinType.TREASURE))
-				.withUsage(treasureUsage)
+				.withWinCondition(treasureWin)
+				.withUsage(new TreasureUsage(treasureWin))
 				.build();
 	}
 	

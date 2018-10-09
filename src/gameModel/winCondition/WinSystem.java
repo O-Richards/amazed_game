@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class WinSystem implements WinCondition {
+	private static boolean DEBUG = false;
+	
 	private List<WinCondition> winConditions;
 	// enable win condition
 	private Set<WinType> winEnabled;
@@ -23,6 +25,7 @@ public class WinSystem implements WinCondition {
 			win = true;
 			// check to see if it does not exist (not in win state) amongst conditions
 			for (WinCondition cond : this.winConditions) {
+				if (DEBUG) System.out.println("WinSystem.getType() sub cond returned: " + cond.getType());
 				// if it exists then no win
 				if (type == cond.getType()) {
 					// System.out.println(type);
