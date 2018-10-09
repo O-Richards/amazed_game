@@ -68,29 +68,24 @@ public class GameController {
 	public static void main(String[] args) throws IOException, EntityPlacementException {
 		GameController gc = new GameController();
 		Level l = new Level();
+		
 		//Setup template maze
-		try {
-			l.addPlayer(new Coord(1, 1));
-		} catch (EntityPlacementException e) {
-			e.printStackTrace();
-		}
-
 		EntityMaker make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
-		l.addItem(make.makeArrow(new Coord(1, 1)));
-		l.addItem(make.makeBomb(new Coord(2, 2)));
+		l.placeItem(make.makeArrow(new Coord(1, 1)));
+		l.placeItem(make.makeBomb(new Coord(2, 2)));
 		l.placeSwitch(new Coord(3, 6));
-		l.addItem(make.makeTreasure(new Coord(3, 3)));
-		l.addItem(make.makeTreasure(new Coord(4, 4)));
+		l.placeItem(make.makeTreasure(new Coord(3, 3)));
+		l.placeItem(make.makeTreasure(new Coord(4, 4)));
 		l.placeWall(new Coord(4, 5));
 		l.placeExit(new Coord(6, 1));
-		l.addItem(make.makeHoverPotion(new Coord(2, 4)));
-		l.addItem(make.makeInvincibilityPotion(new Coord(4, 2)));
+		l.placeItem(make.makeHoverPotion(new Coord(2, 4)));
+		l.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		l.placePit(new Coord(9,9));
 		// l.addEnemy(make.makeEnemy(new Coord(15, 15)));
-		l.addItem(make.makeKey(new Coord(5, 5)));
-		l.addItem(make.makeKey(new Coord(7, 7)));
+		l.placeItem(make.makeKey(new Coord(5, 5)));
+		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
-		l.addItem(make.makeBoulder(new Coord(3, 1)));
+		l.placeItem(make.makeBoulder(new Coord(3, 1)));
 
 		l.placeDoor(new Coord(4,1));
 		
@@ -104,7 +99,7 @@ public class GameController {
 			String input = s.nextLine();
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
-			l.moveMobileEntity(player, playerDir)
+			l.moveMobileEntity(player, playerDir);
 
 			//System.out.println("Input Dir: " + playerDir);
 			//performs an action: 

@@ -57,13 +57,6 @@ public class Level implements EntityMover {
 		}
 		
 	}
-
-	public PlayerMobileEntity addPlayer(Coord c) throws EntityPlacementException {
-		Tile placementTile = this.getTile(c);
-		PlayerMobileEntity player = PlayerMobileEntity.build(c);
-		placementTile.addMobileEntity(player);
-		return player;
-	}
 	
 	/**
 	 * Adds a usable item to the tile: 
@@ -71,7 +64,7 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException thrown if the placement is not allowed
 	 */
-	public void addItem(Entity item) throws EntityPlacementException {
+	public void placeItem(Entity item) throws EntityPlacementException {
 		Coord c = item.getCoord();
 		Tile placementTile = getTile(c);
 		placementTile.addItem(item);
@@ -83,7 +76,7 @@ public class Level implements EntityMover {
 	 * @param coord the coord to place the item at
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
 	 */
-	public void addEnemy(MobileEntity enemy, Coord c) throws EntityPlacementException {
+	public void placeMobileEntity(MobileEntity enemy, Coord c) throws EntityPlacementException {
 		Tile placementTile = getTile(c);
 		placementTile.addMobileEntity(enemy);
 	}
@@ -151,27 +144,6 @@ public class Level implements EntityMover {
 	/**
 	 * @return True if the player has won the game, false else
 	 */
-	/*
-	 * 
-	//TODO: Remove this
-	public void playerDo(Action act,Direction dir) {
-		//TODO: Add error checking
-		if (DEBUG) System.out.println("Setting up action in  " + dir + "direction using a " + act);
-		//this.player.useItem(act, dir);
-		//Sets the direction:
-		this.player.setDirection(dir);
-		//Calls the appropriate action:
-		if(act == Action.SWORD) {
-			this.player.useItem(new SwordUsableEntity(this.player.getCoord()));
-		}else if(act == Action.ARROW){
-			this.player.useItem(new ArrowUsableEntity(this.player.getCoord()));
-		}else if(act == Action.BOMB) {
-			this.player.useItem(new BombUsableEntity(this.player.getCoord()));
-		}else {
-			//Function to consume item?
-		}
-		if (DEBUG) System.out.println("System set player action: " + this.player.getDirection());
-	}*/
 	
 	public boolean hasWon() {
 		return this.winSystem.getType() == WinType.WIN;
