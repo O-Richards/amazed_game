@@ -28,6 +28,7 @@ public class ArrowUsable implements Usable {
 					.withKillAction(KillAction.WEAPON)
 					.withKilledByAnything(true)
 					.withMovement(new EntityTrackingMovement(player.getDirection()))
+					.withIsMoving(true)
 					.build();
 			if (DEBUG) {
 				System.out.println("ArrowUsable.use(): placing arrowMobile at " 

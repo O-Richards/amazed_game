@@ -171,7 +171,7 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	public static class MobileEntityBuilder {
-		public boolean isMoving = true;
+		public boolean isMoving = false;
 		public boolean canPush = false;
 		public boolean killedByAnything;
 		private Movement movement;
