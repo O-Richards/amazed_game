@@ -1,5 +1,9 @@
 package gameModel;
 
+import gameModel.mobileEntity.Direction;
+import gameModel.mobileEntity.MobileEntity;
+import gameModel.tile.EntityPlacementException;
+
 /**
  * @author Oli
  * Interface to allow tiles to be fetched from the map
@@ -7,30 +11,37 @@ package gameModel;
 public interface EntityMover {
 	
 	/**
-	 * @param e The entity to move
-	 * @param dir The direction to move the entity in
-	 * @return TODO
+	 * @param e the enemy to be moved
+	 * @param nextCoord the coord to move the enemy to
+	 * @return true if the entity is moved to the new tile. false else
+	 * @precondition e != null
+	 * @precondition nextCoord is in the map 
 	 */
-	public Collision moveEntity(MobileEntity e, Direction dir);
-		
+	boolean moveMobileEntity(MobileEntity e, Coord nextCoord);
+	boolean moveMobileEntity(MobileEntity e, Direction dir);
+	
 	/**
- 	 * @precondition c is valid i.e. on the map
-	 * @param entity The entity to move
-	 * @param c The Coord to place remove entity from
+	 * @param c The coord to check
+	 * @return	true if a mobile entity can move onto this tile without dying, false else.
 	 */
-	public void removeEntity(Entity entity, Coord c);
+	public boolean traversable(Coord c);
 
-	public Collision moveEntity(MobileEntity e, Coord nextCoord);
+	/**
+	 * @param c the coord to kill all (killable) entities on
+	 * @param weapon 
+	 */
+	public boolean kill(Coord c, KillAction action);
 	
 	/**
-	 * @param entity The entity to be placed on the map
-	 * @param c The coord to place the entity
+	 * @param action the action to be called
+	 * @param numTicksUntil the number of ticks from now to call at
 	 */
-	public void placeEntity(Entity entity, Coord c);
+	public void addDelayedAction(DelayedAction action, Integer numTicksUntil);
 	
 	/**
-	 * @param c The coord to kill all enemies on
-	 * @return true if an enemy is killed , false otherwise
+	 * Place a mobile entity at a coord
+	 * @param entity the entity to be placed
+	 * @precondition the entity must have a valid coord
 	 */
-	public boolean killEnemyEntities(Coord c);
+	void placeMobileEntity(MobileEntity entity) throws EntityPlacementException;
 }

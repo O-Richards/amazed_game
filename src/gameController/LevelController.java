@@ -1,7 +1,8 @@
 package gameController;
 
-import gameModel.Action;
-import gameModel.Direction;
+import gameModel.entity.EntityType;
+import gameModel.mobileEntity.Direction;
+import gameModel.usable.UseAction;
 
 public interface LevelController {
 	EntityType[][] getMap();
@@ -15,5 +16,5 @@ public interface LevelController {
 	boolean hasWon();
 	void setPlayerDirection(Direction direction);
 	void setPlayerSpeed(int speed);
-	boolean useItem(Action item);
+	boolean useItem(UseAction item);
 }
