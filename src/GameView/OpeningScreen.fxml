@@ -20,7 +20,7 @@
             <Image url="@../../images/medieval-dungeon-modular-3d-model-low-poly-obj-3ds-fbx-blend-X-mtl.jpg" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SOFT_LIGHT" height="435.0" layoutX="-17.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="634.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" blendMode="SOFT_LIGHT" height="435.0" layoutX="-34.0" layoutY="-17.0" stroke="BLACK" strokeType="INSIDE" width="634.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#807a74" height="185.0" layoutX="227.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="147.0">
          <effect>
             <Lighting diffuseConstant="0.36" specularConstant="1.94" specularExponent="11.9">
@@ -33,8 +33,11 @@
             </Lighting>
          </effect>
       </Rectangle>
-      <Button layoutX="243.0" layoutY="201.0" mnemonicParsing="false" opacity="0.55" prefHeight="33.0" prefWidth="115.0" text="Player Mode " />
-      <Button layoutX="243.0" layoutY="273.0" mnemonicParsing="false" opacity="0.61" prefHeight="33.0" prefWidth="114.0" text="Designer Mode ">
+      <Button fx:id="playerMode" layoutX="243.0" layoutY="201.0" mnemonicParsing="false" onAction="#handlePlayerModeButton" opacity="0.55" prefHeight="33.0" prefWidth="115.0" text="Player Mode ">
+         <font>
+            <Font name="Baskerville" size="15.0" />
+         </font></Button>
+      <Button fx:id="designerMode" layoutX="243.0" layoutY="273.0" mnemonicParsing="false" onAction="#handleDesignerModeButton" opacity="0.61" prefHeight="33.0" prefWidth="114.0" text="Designer Mode ">
          <font>
             <Font name="Baskerville" size="14.0" />
          </font>
