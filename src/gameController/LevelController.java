@@ -25,4 +25,5 @@ public interface LevelController {
 	void setPlayerDirection(Direction direction);
 	void setPlayerSpeed(int speed);
 	boolean useItem(Action item);
+	
 }

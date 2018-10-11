@@ -25,7 +25,6 @@ public class gameApplicationMain extends Application {
 			
 	}
 
-	
 	public static void main(String[] args) {
 	    launch(args);
 	}
