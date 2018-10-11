@@ -1,10 +1,8 @@
 package gameController;
 
-import java.util.Observer;
-
-import gameModel.Action;
-import gameModel.Coord;
-import gameModel.Direction;
+import gameModel.entity.EntityType;
+import gameModel.mobileEntity.Direction;
+import gameModel.usable.UseAction;
 
 public interface LevelController {
 	int getNumRows();
@@ -17,13 +15,12 @@ public interface LevelController {
 	 * @param y the column to place the new entity on
 	 * @return
 	 */
-	boolean placeEntity(Observer entityGraphic, EntityType entityType, int x, int y);
+	boolean placeEntity(EntityType entityType, int x, int y);
 	boolean removeEntity(EntityType entityType, int x, int y);
 	boolean clearTile(int x, int y);
 	boolean hasLost();
 	boolean hasWon();
 	void setPlayerDirection(Direction direction);
 	void setPlayerSpeed(int speed);
-	boolean useItem(Action item);
-	
+	boolean useItem(UseAction item);
 }

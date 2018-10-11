@@ -1,5 +1,6 @@
 package gameApplication;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,8 +26,10 @@ public class DesignScreen  extends Application{
 			e.printStackTrace();
 		}
 	}
+	//Remove this on commit: 
 	/*public static void main(String[] args) {
 		launch(args);
 	}*/
+
 
 }

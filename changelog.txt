@@ -1,0 +1,20 @@
+30/09/18 Oliver Richards
+    * Added a applyToPlayer method to useable items that is called when an
+    item is picked up by a player. This is used for potions 
+    * Changed enemies so the tile asks them where they want to move, then the
+    tile asks the level to move them
+    * 
+
+5/10/18
+    * TODO: Fix boulders, need a field on tiles for "passive mobile entities"
+    * TODO: Fix win conditions. In Level.addItem() need to stop hard coding WinType.TREASURE. At the moment it wont win untill all items are picked up
+    * TODO: Swith tile -> need to fix boulder win condition and remove SwitchTile.updateWinCondition and from Tile.updateWinCondition()
+
+06/10/2018 Oliver Richards
+    * The pits may fail when using the invincibility potion. This needs to be
+    tested (as it calls kill, but it will block it from 'killing' them)
+    * Refactored Tiles so all it holds is mobile entities. This created a bit
+    of complicated logic, but at least there is no code duplication
+    * Got player moving again, picking up objects, being killed by enemies,
+    doors working, pits (mostly) working
+    * TODO: Enemies are not moving properly for some reason right now

@@ -1,5 +1,7 @@
 package gameModel;
 
+import gameModel.mobileEntity.Direction;
+
 public class Coord {	
 	private Integer x;
 	private Integer y;

@@ -2,11 +2,9 @@ package gameApplication;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import jdk.internal.dynalink.beans.StaticClass;
 
 import com.sun.glass.ui.Window.Level;
 
-import gameController.EntityType;
 import javafx.fxml.FXML;
 
 public class DesignerScreenController {
@@ -54,12 +52,16 @@ public class DesignerScreenController {
     public void initialize() {
 		//by creates a map of size 15x15
 		//Note this uses the no args constructor.. 
-		//Level aLevel = new Level(); 
-		/*for(int i = 0; i < DEFAULT_NROWS; i++) {
-			for(int i = 0; i < DEFAULT_NCOLS; i++) {
-				
-			}
-		}*/
+		Level aLevel = new Level(); 
+		aLevel.notifyAll();
+		for(int i = 0; i < DEFAULT_NROWS; i++) {
+	        //map.addRow(0,images);
+			
+		}
+		for(int j = 0; j < DEFAULT_NCOLS; j++) {
+			//map.getColumnConstraints().add(new ColumnConstraints());
+			//map.add
+		}
 	}
 	
 	
