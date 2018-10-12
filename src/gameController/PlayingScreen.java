@@ -7,22 +7,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class IntermediateLevelScreen {
+public class PlayingScreen {
 	
 	private Stage s;
     private String title;
     private FXMLLoader fxmlLoader;
 
-    public IntermediateLevelScreen(Stage s) {
+    public PlayingScreen(Stage s) {
         this.s = s;
-        this.title = "Intermediate";
-        this.fxmlLoader = new FXMLLoader(getClass().getResource("/GameView/IntermediateLevel.fxml"));
+        this.title = "The a MAZE ing Escape";
+        this.fxmlLoader = new FXMLLoader(getClass().getResource("/GameView/PlayingScreen.fxml"));
     }
 
     public void start()  {
         s.setTitle(title);
         // set controller for start.fxml
-        fxmlLoader.setController(new EasyLevelController(s));
+        fxmlLoader.setController(new PlayingController(s));
         try {
             // load into a Parent node called root
             Parent root = fxmlLoader.load();

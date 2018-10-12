@@ -7,16 +7,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class DesignerModeHomeScreen {
+public class DesigningScreen {
 	
 	private Stage s;
 	private String title;
 	private FXMLLoader fxmlLoader;
 	
-	public DesignerModeHomeScreen(Stage s) {
+	public DesigningScreen(Stage s) {
 		this.s = s;
-		this.title = "Choose a maze to design";
-		this.fxmlLoader = new FXMLLoader(getClass().getResource("/GameView/DesignerModeHomeScreen.fxml"));
+		this.title = "Design your maze";
+		this.fxmlLoader = new FXMLLoader(getClass().getResource("/GameView/DesigningScreen.fxml"));
 	}
 	
 	public void start() {
