@@ -19,7 +19,7 @@ public class DesignScreen  extends Application{
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
-			primaryStage.setResizable(false);
+			//primaryStage.setResizable(false);
 			primaryStage.show();
 			
 		} catch(Exception e) {
@@ -27,9 +27,9 @@ public class DesignScreen  extends Application{
 		}
 	}
 	//Remove this on commit: 
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		launch(args);
-	}*/
+	}
 
 
 }
