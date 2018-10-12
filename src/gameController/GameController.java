@@ -23,7 +23,7 @@ public class GameController {
 			case "d": return Direction.RIGHT;
 			default: return null;
 		}
-	}	
+	}
 	
 	private UseAction getUse(String s) {
 		s = s.toLowerCase();
