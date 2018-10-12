@@ -4,6 +4,7 @@ import gameModel.bonusMovement.HoverBonusMovement;
 import gameModel.bonusMovement.InvincibilityBonusAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
+import gameModel.mobileEntity.EnemyMovement;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
@@ -118,6 +119,21 @@ public class EntityMaker {
 		return new BasicEntity.BasicEntityBuilder("B", c)
 				.withEntityMover(entityMover)
 				.withUsage(new BombUsable(entityMover))
+				.build();
+	}
+	
+	public MobileEntity makeEnemy(Coord c, Entity target) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder("E", c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKillAction(KillAction.ENEMY)
+				.withKilledBy(KillAction.WEAPON)
+				.withMovement(new EnemyMovement(basicEntity, target, entityMover))
 				.build();
 	}
 }

@@ -25,6 +25,7 @@ public class AStarSearch
 	private Coord goal;
 	
 	public AStarSearch(Coord start, Coord goal, EntityMover entityMover) {
+		this.start = start;
 		this.goal = goal;
 		this.entityMover = entityMover;
 	}
