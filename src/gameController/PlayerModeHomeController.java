@@ -3,6 +3,7 @@ package gameController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -38,19 +39,19 @@ public class PlayerModeHomeController {
 	
 	@FXML
 	public void handleEasyLevelButton(ActionEvent event) {
-		EasyLevelScreen easyLevel = new EasyLevelScreen(currStage);
+		PlayingScreen easyLevel = new PlayingScreen(currStage);
 		easyLevel.start();
 	}
 	
 	@FXML
 	public void handleIntermediateLevelButton(ActionEvent event) {
-		IntermediateLevelScreen intermediateLevel = new IntermediateLevelScreen(currStage);
+		PlayingScreen intermediateLevel = new PlayingScreen(currStage);
 		intermediateLevel.start();
 	}
 	
 	@FXML
-	public void handleHardLevelButton(ActionEvent event) {
-		HardLevelScreen hardLevel = new HardLevelScreen(currStage);
+	public void handleHardLevelButton(MouseEvent event) {
+		PlayingScreen hardLevel = new PlayingScreen(currStage);
 		hardLevel.start();
 	}
 

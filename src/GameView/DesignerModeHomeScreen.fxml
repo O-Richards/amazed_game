@@ -48,15 +48,22 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button layoutX="223.0" layoutY="37.0" mnemonicParsing="false" text="Create New " textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="createNewButton" layoutX="158.0" layoutY="-6.0" mnemonicParsing="false" onAction="#handleCreateNewButton" prefHeight="134.0" prefWidth="258.0" style="-fx-background-color: transparent;" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="American Typewriter" size="18.0" />
          </font>
          <effect>
             <DropShadow color="#800505" height="191.0" radius="95.0" width="191.0" />
          </effect>
+         <graphic>
+            <ImageView accessibleRole="BUTTON" fitHeight="136.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/buttonStock1d.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
-      <Label graphicTextGap="7.0" layoutX="214.0" layoutY="89.0" prefHeight="57.0" prefWidth="145.0" text="- OR -" textAlignment="CENTER" textFill="WHITE">
+      <Label graphicTextGap="7.0" layoutX="214.0" layoutY="104.0" prefHeight="57.0" prefWidth="145.0" text="- OR -" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Baskerville Bold" size="47.0" />
          </font>
@@ -64,14 +71,9 @@
             <MotionBlur angle="259.02" radius="1.55" />
          </effect>
       </Label>
-      <ListView layoutX="186.0" layoutY="156.0" opacity="0.84" prefHeight="200.0" prefWidth="200.0" />
+      <ListView layoutX="186.0" layoutY="173.0" opacity="0.84" prefHeight="200.0" prefWidth="200.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView accessibleRole="BUTTON" fitHeight="150.0" fitWidth="200.0" layoutX="187.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../images/buttonStock1d.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="220.0" layoutY="40.0" text="Create New" textFill="#ddc9b3">
+      <Label layoutX="220.0" layoutY="54.0" text="Create New" textFill="#ddc9b3">
          <font>
             <Font name="Baskerville Bold" size="24.0" />
          </font>

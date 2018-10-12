@@ -2,11 +2,11 @@ package gameController;
 
 import javafx.stage.Stage;
 
-public class IntermediateLevelController {
+public class PlayingController {
 	
 	private Stage currStage;
 	
-	public IntermediateLevelController(Stage s) {
+	public PlayingController(Stage s) {
 		currStage = s;
 	}
 
