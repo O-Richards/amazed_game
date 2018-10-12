@@ -5,10 +5,15 @@ import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.Entity;
 import gameModel.mobileEntity.MobileEntity;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.ArrayList;
 
-public class Tile {
+
+public class Tile implements Observable{
 	private final boolean DEBUG = true;
-
+	
+	private ArrayList<Observer> jfxPanes;
 	private Coord coord;
 	private Entity item = null;
 	private MobileEntity mobile = null;
@@ -17,6 +22,7 @@ public class Tile {
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
+		this.jfxPanes = new ArrayList<Observer>(); // for now
 	}
 
 	public void tick(int tickNum) {
@@ -30,6 +36,8 @@ public class Tile {
 				entityMover.moveMobileEntity(mobile, nextCoord);
 			}
 		}
+	// do we notify observers here?
+		notifyObservers();
 	}
 	/**
 	 * Adds a usable item to the tile: 
@@ -85,6 +93,30 @@ public class Tile {
 			throw new EntityPlacementException("Tile is occupied");
 		}
 	}
+	
+	/**
+	 * Observer method stuff
+	 * addObserver adds observer to the list of objects observing the invoking object
+	 */
+	@Override
+	public void addObserver(Observer o) {
+		jfxPanes.add(o);
+	}
+	
+	/**
+	 * removeObserver method will remove an observer from a Tiles ArrayList of observers
+	 * @param o = observer to remove
+	 */
+	@Override
+	public void removeObserver(Observer o) {
+		jfxPanes.remove(o);
+	}
+	
+	@Override
+	public void notifyObservers() {
+		//To-do
+	}
+
 
 	public void removeItem() {
 		this.item = null;
