@@ -122,7 +122,7 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeEnemy(Coord c, Entity target) {
+	public MobileEntity makeEnemy(Coord c, Entity target, double randMoveRate) {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder("E", c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -133,7 +133,7 @@ public class EntityMaker {
 				.withIsMoving(true)
 				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
-				.withMovement(new EnemyMovement(basicEntity, target, entityMover))
+				.withMovement(new EnemyMovement(randMoveRate, basicEntity, target, entityMover))
 				.build();
 	}
 }
