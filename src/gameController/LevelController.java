@@ -1,6 +1,6 @@
 package gameController;
 
-import gameModel.entity.EntityType;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
 import gameModel.usable.UseAction;
 
@@ -15,8 +15,8 @@ public interface LevelController {
 	 * @param y the column to place the new entity on
 	 * @return
 	 */
-	boolean placeEntity(EntityType entityType, int x, int y);
-	boolean removeEntity(EntityType entityType, int x, int y);
+	boolean placeEntity(VisType entityType, int x, int y);
+	boolean removeEntity(VisType entityType, int x, int y);
 	boolean clearTile(int x, int y);
 	boolean hasLost();
 	boolean hasWon();
