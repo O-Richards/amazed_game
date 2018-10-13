@@ -21,7 +21,7 @@ public class DesigningScreen {
 	
 	public void start() {
 		s.setTitle(title);
-		fxmlLoader.setController(new DesignerScreenController(s));
+		fxmlLoader.setController(new DesigningController(s));
         try {
             // load into a Parent node called root
             Parent root = fxmlLoader.load();

@@ -28,7 +28,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-public class DesignerScreenController {
+public class DesigningController {
 	private VisType currentlySelected; 
 	@FXML
 	private Button arrow; 
@@ -76,6 +76,10 @@ public class DesignerScreenController {
 	private CheckBox treasureCondition;
 	@FXML
 	private Button clear; 
+	@FXML
+	private Button save;
+	@FXML
+	private Button exitScreen;
 
 	@FXML
 	private GridPane map;
@@ -93,7 +97,7 @@ public class DesignerScreenController {
 	//updates if there's changes to clicked boolean in JFXPanes 
 	private ObservableList<JFXPane> gridOfPanes = FXCollections.observableArrayList(item -> new Observable[] {item.clickedProperty()}); 
 
-	public DesignerScreenController(Stage s) {
+	public DesigningController(Stage s) {
 		currStage = s;
 	}
 
@@ -254,11 +258,28 @@ public class DesignerScreenController {
 		selectedItem.setText("Inviniciblity Potion");
 		currentlySelected = VisType.INVINCIBILITY_POTION; 
 	}
+	
+	
+	
 	@FXML 
 	public void clearSelected() {
 		selectedItem.setText("-");
 		currentlySelected = null; 
 	}
+	
+	@FXML
+	public void saveMap() {
+		
+	}
+	
+	@FXML
+	public void exitScreen() {
+		DesignerModeHomeScreen designerModeHome = new DesignerModeHomeScreen(currStage);
+		designerModeHome.start();
+	}
+	
+	
+	
 	public void setItem(int row, int col){
 		try {
 			//attemps to set items down 
