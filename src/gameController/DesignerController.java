@@ -1,4 +1,4 @@
-package gameApplication;
+package gameController;
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -18,7 +18,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-public class DesignerScreenController {
+public class DesignerController {
 	@FXML
 	private Button arrow; 
 	@FXML

@@ -1,6 +1,7 @@
 package gameApplication;
 
 
+import gameController.DesignerController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,7 +15,7 @@ public class DesignScreen  extends Application{
 		try {
 			primaryStage.setTitle("The a MAZE ing Escape");			
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/GameView/DesigningScreen.fxml"));
-			DesignerScreenController designerScreenController = new DesignerScreenController(); 
+			DesignerController designerScreenController = new DesignerController(); 
 			loader.setController(designerScreenController);
 			Parent root = loader.load();
 			Scene scene = new Scene(root);
