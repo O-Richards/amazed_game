@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author Oli
  *
  */
-public class Tile /*implements Observable*/{
+public class Tile extends Observable{
 	private final boolean DEBUG = true;
 	
 	private ArrayList<Observer> jfxPanes;
@@ -124,7 +124,6 @@ public class Tile /*implements Observable*/{
 	 * removeObserver method will remove an observer from a Tiles ArrayList of observers
 	 * @param o = observer to remove
 	 */
-	@Override
 	public void removeObserver(Observer o) {
 		jfxPanes.remove(o);
 	}
