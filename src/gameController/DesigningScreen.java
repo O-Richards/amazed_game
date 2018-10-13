@@ -27,7 +27,7 @@ public class DesigningScreen {
             Parent root = fxmlLoader.load();
             Scene sc = new Scene(root);
             s.setScene(sc);
-            s.setResizable(false);
+            s.setResizable(true);
             s.show();
         } catch(IOException e) {
         	e.printStackTrace();
