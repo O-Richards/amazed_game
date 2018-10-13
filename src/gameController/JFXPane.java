@@ -1,4 +1,4 @@
-package gameApplication;
+package gameController;
 import java.util.Observable;
 import java.util.Observer;
 
