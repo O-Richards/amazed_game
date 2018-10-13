@@ -2,6 +2,8 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
@@ -12,9 +14,9 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.34448160535117056" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.34448160535117056" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-   <AnchorPane maxWidth="200.0" minHeight="-Infinity" minWidth="200.0" style="-fx-background-color: #402b07;">
+   <AnchorPane maxWidth="200.0" minHeight="-Infinity" minWidth="200.0" prefWidth="215.0" style="-fx-background-color: #402b07;">
          <children>
             <Button fx:id="switches" layoutX="106.0" layoutY="102.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="74.0" text="Switch">
                <graphic>
@@ -100,7 +102,7 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button fx:id="player" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" text="Player">
+            <Button fx:id="player" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#setPlayer" prefHeight="32.0" prefWidth="66.0" text="Player">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -220,21 +222,33 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button layoutX="122.0" layoutY="343.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="64.0" text="Save&#10;Map" />
+            <Button layoutX="116.0" layoutY="348.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="Delete&#10;&#10;" />
+            <Button layoutX="14.0" layoutY="455.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="82.0" text="Save Map&#10;" />
+            <Label layoutX="13.0" layoutY="392.0" text="Win Conditions:" textFill="#32d95a" />
+            <CheckBox fx:id="exitCondition" layoutX="13.0" layoutY="408.0" mnemonicParsing="false" text="Exit" textFill="#15e8bd" />
+            <CheckBox fx:id="enemyCondition" layoutX="88.0" layoutY="408.0" mnemonicParsing="false" text="Enemy" textFill="#15e8bd" />
+            <CheckBox fx:id="switchCondition" layoutX="13.0" layoutY="430.0" mnemonicParsing="false" text="Switch" textFill="#15e8bd" />
+            <CheckBox fx:id="treasureCondition" layoutX="88.0" layoutY="430.0" mnemonicParsing="false" text="Treasure" textFill="#15e8bd" />
          </children>
       </AnchorPane>
     <AnchorPane prefHeight="398.0" prefWidth="390.0" AnchorPane.rightAnchor="0.0" SplitPane.resizableWithParent="true">
          <children>
             <ScrollPane prefHeight="398.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane prefHeight="398.0" prefWidth="390.0" scaleShape="false">
+                <AnchorPane prefHeight="500.0" prefWidth="444.0" scaleShape="false">
                      <children>
-                    <GridPane fx:id="map" gridLinesVisible="true" pickOnBounds="true" prefHeight="398.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <GridPane fx:id="map" gridLinesVisible="true" onMouseClicked="#setItem" pickOnBounds="true" prefHeight="462.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints />
+                              <ColumnConstraints />
                               <ColumnConstraints />
                               <ColumnConstraints />
                            </columnConstraints>
                            <rowConstraints>
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
                               <RowConstraints />
                               <RowConstraints />
                            </rowConstraints>
@@ -246,6 +260,8 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
+            <Label mouseTransparent="true" pickOnBounds="false" text="Item Selected: " textFill="#14fab3" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="selectedItem" layoutX="104.0" text="-" textAlignment="JUSTIFY" textFill="#14fab3" />
          </children></AnchorPane>
   </items>
 </SplitPane>
