@@ -66,7 +66,7 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Label layoutX="190.0" layoutY="183.0" opacity="0.78" text="P l a y e r  M o d e " textFill="#e1dede">
+      <Label layoutX="190.0" layoutY="183.0" mouseTransparent="true" opacity="0.78" pickOnBounds="false" text="P l a y e r  M o d e " textFill="#e1dede">
          <font>
             <Font name="Baskerville Bold" size="22.0" />
          </font>
@@ -93,7 +93,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="190.0" layoutY="274.0" opacity="0.78" text="D e s i g n e r  M o d e" textFill="#e1dede">
+      <Label layoutX="190.0" layoutY="274.0" mouseTransparent="true" opacity="0.78" text="D e s i g n e r  M o d e" textFill="#e1dede">
          <font>
             <Font name="Baskerville Bold" size="20.0" />
          </font>
