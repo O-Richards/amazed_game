@@ -42,7 +42,7 @@ public class JFXPane implements Observer {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observer o, VisType arg) {
 		//changes the images: 
 		//not sure what observable o does and object arg does?? 
 			

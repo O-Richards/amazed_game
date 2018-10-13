@@ -31,7 +31,7 @@ public class Tile extends Observable{
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
-		this.jfxPanes = new ArrayList<Observer>(); // for now
+		this.jfxPanes = new ArrayList<Observer>();
 	}
 
 	public void tick(int tickNum) {
@@ -45,7 +45,7 @@ public class Tile extends Observable{
 				entityMover.moveMobileEntity(mobile, nextCoord);
 			}
 		}
-	// do we notify observers here?
+	// do we notify observers here? <<== TODO
 		notifyObservers();
 	}
 	/**
@@ -57,7 +57,9 @@ public class Tile extends Observable{
 		if (this.item != null) {
 			throw new EntityPlacementException("Item on tile");
 		}
-		this.item = item; 
+		this.item = item;
+		// Notify observer JFXPanel to update image <<== TODO
+		notifyObservers();
 	}
 	
 	/**
@@ -109,6 +111,8 @@ public class Tile extends Observable{
 		} else if (!killedNew) {
 			throw new EntityPlacementException("Tile is occupied");
 		}
+		// UPDATE OBSERVERS NOW PLOX <<== TODO
+		notifyObservers();
 	}
 	
 	/**
@@ -130,10 +134,16 @@ public class Tile extends Observable{
 	
 	@Override
 	public void notifyObservers() {
-		//To-do
+		for (Observer observer : jfxPanes) {
+			observer.update(this.getVisType());
+		}
 	}
-
-
+/*
+	private Image getImage() {
+		// TODO Auto-generated method stub
+		return img;
+	}
+*/
 	public void removeItem() {
 		this.item = null;
 	}
