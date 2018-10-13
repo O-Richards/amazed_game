@@ -76,6 +76,8 @@ public class DesignerScreenController {
 	@FXML
 	private GridPane map;
 	
+	private Stage currStage;
+	
 	private Level l; 
 	private EntityMaker make; 
 	
@@ -91,7 +93,7 @@ public class DesignerScreenController {
 	private ObservableList<JFXPane> gridOfPanes = FXCollections.observableArrayList(item -> new Observable[] {item.clickedProperty()}); 
 
 	public DesignerScreenController(Stage s) {
-		// TODO Auto-generated constructor stub
+		currStage = s;
 	}
 
 	@FXML
