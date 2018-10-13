@@ -16,7 +16,7 @@ public interface Entity {
 	// only used by mobileEntities to get movement rate
 	public void tick(Integer tickNum);
 
-	public String getSprite();
+	public VisType getVisType();
 
 	public void setCoord(Coord coord);
 

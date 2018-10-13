@@ -4,6 +4,7 @@ import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
@@ -22,7 +23,7 @@ public class ArrowUsable implements Usable {
 	@Override
 	public boolean use(UseAction action) {
 		if (action == UseAction.ARROW) {
-			Entity baseEntity = new BasicEntity.BasicEntityBuilder(">", player.getCoord(player.getDirection()))
+			Entity baseEntity = new BasicEntity.BasicEntityBuilder(VisType.ARROW, player.getCoord(player.getDirection()))
 					.build();
 			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
 					.withKillAction(KillAction.WEAPON)

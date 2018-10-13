@@ -2,6 +2,7 @@ package gameModel.tile;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
+import gameModel.entity.VisType;
 import gameModel.winCondition.WinCondition;
 import gameModel.winCondition.WinType;
 
@@ -23,8 +24,8 @@ public class SwitchTile extends Tile {
 	}
 
 	@Override
-	public String getSprite() {
-		return "@";
+	public VisType getVisType() {
+		return VisType.SWITCH;
 	}
 
 }

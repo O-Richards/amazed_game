@@ -1,17 +1,19 @@
 package gameController;
 
 import java.io.IOException;
-
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import gameModel.*;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
 import gameModel.usable.UseAction;
 import gameModel.winCondition.WinType;
 
-public class GameController {
+public class ASCIIGameController {
 	
     //Direction inputs:
 	private Direction strToDirection(String s) {
@@ -36,8 +38,39 @@ public class GameController {
 		return null;
 	}
 	
+	public String visualiseLevel(Level l) {
+		String retStr = "";
+		Integer nRows = l.getNumRows();
+		Integer nCols = l.getNumCols();
+		for (int i = 0; i < nRows; i++) {
+			for (int j = 0; j < nCols; j++) {
+				retStr += visTypeToSprite(l.getVisType(new Coord(i, j)));
+			}
+			retStr += "\n";
+		}
+		return retStr;
+	}
+	
+	private String visTypeToSprite(VisType visType) {
+		Map<VisType, String> spriteMap = new HashMap<>();
+			spriteMap.put(VisType.ARROW, ">");
+			spriteMap.put(VisType.BOULDER, "B");
+			spriteMap.put(VisType.BOMB, "b");
+			spriteMap.put(VisType.HOVER_POTION, "h");
+			spriteMap.put(VisType.INVINCIBILITY_POTION, "I");
+			spriteMap.put(VisType.TREASURE, "$");
+			spriteMap.put(VisType.HUNTER, "h");
+			spriteMap.put(VisType.SWORD, "S");
+			spriteMap.put(VisType.EXIT, "E");
+			spriteMap.put(VisType.PIT, "o");
+			spriteMap.put(VisType.EMPTY_TILE, " ");
+			spriteMap.put(VisType.KEY, "K");
+			spriteMap.put(VisType.DOOR, "D");
+		return spriteMap.get(visType);
+	}
+
 	public static void main(String[] args) throws IOException, EntityPlacementException {
-		GameController gc = new GameController();
+		ASCIIGameController gc = new ASCIIGameController();
 		Level l = new Level();
 		EntityMaker make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
 		
@@ -94,7 +127,7 @@ public class GameController {
 			//gc.performAction(l, input); 
 		
 			l.tick();
-			System.out.println(l.toString());
+			System.out.println(gc.visualiseLevel(l));
 			System.out.println(player.inventoryString());
 			//l.checkInventory(); 
 			if (l.hasWon()) {

@@ -4,12 +4,21 @@ import gameModel.Coord;
 import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
 
 
+/**
+ * @author Oli
+ *
+ */
+/**
+ * @author Oli
+ *
+ */
 public class Tile /*implements Observable*/{
 	private final boolean DEBUG = true;
 	
@@ -49,6 +58,14 @@ public class Tile /*implements Observable*/{
 			throw new EntityPlacementException("Item on tile");
 		}
 		this.item = item; 
+	}
+	
+	/**
+	 * Clear the tile
+	 */
+	public void clear() {
+		this.item = null;
+		this.mobile = null;
 	}
 
 	/**
@@ -141,13 +158,13 @@ public class Tile /*implements Observable*/{
 	/**
 	 * @return A simple char to represent the tile (for debugging)
 	 */
-	public String getSprite() {
+	public VisType getVisType() {
 		if (this.mobile != null) {
-			return this.mobile.getSprite();
+			return this.mobile.getVisType();
 		} else if (this.item != null) {
-			return this.item.getSprite();
+			return this.item.getVisType();
 		} else {
-			return " ";
+			return VisType.EMPTY_TILE;
 		}
 	}
 
