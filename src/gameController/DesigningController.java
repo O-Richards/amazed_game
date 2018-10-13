@@ -8,13 +8,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import gameModel.Level;
 import javafx.fxml.FXML;
 
-public class DesignerController {
+public class DesigningController {
 	@FXML
 	private Button arrow; 
 	@FXML
@@ -68,6 +69,8 @@ public class DesignerController {
 	
 	private Level aLevel; 
 	
+	private Stage currStage;
+	
 	private boolean playerPlaced = false; 
 
 	private static final int DEFAULT_NROWS = 50;
@@ -79,6 +82,10 @@ public class DesignerController {
 	//Clicked rows and columns: 
 	private int clickedRow = 0; 
 	private int clickedColumn = 0; 
+	
+	public DesigningController(Stage s) {
+		currStage = s;
+	}
 	
 	//by creates a map of size 50x50
 	@FXML
