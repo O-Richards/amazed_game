@@ -28,7 +28,7 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
-public class DesignerScreenController {
+public class DesigningController {
 	private VisType currentlySelected; 
 	@FXML
 	private Button arrow; 
@@ -76,6 +76,10 @@ public class DesignerScreenController {
 	private CheckBox treasureCondition;
 	@FXML
 	private Button clear; 
+	@FXML
+	private Button save;
+	@FXML
+	private Button exitScreen;
 
 	@FXML
 	private GridPane map;
@@ -93,7 +97,7 @@ public class DesignerScreenController {
 	//updates if there's changes to clicked boolean in JFXPanes 
 	private ObservableList<JFXPane> gridOfPanes = FXCollections.observableArrayList(item -> new Observable[] {item.clickedProperty()}); 
 
-	public DesignerScreenController(Stage s) {
+	public DesigningController(Stage s) {
 		currStage = s;
 	}
 
@@ -254,62 +258,69 @@ public class DesignerScreenController {
 		selectedItem.setText("Inviniciblity Potion");
 		currentlySelected = VisType.INVINCIBILITY_POTION; 
 	}
+	
+	
+	
 	@FXML 
 	public void clearSelected() {
 		selectedItem.setText("-");
 		currentlySelected = null; 
 	}
+	
+	@FXML
+	public void saveMap() {
+		
+	}
+	
+	@FXML
+	public void exitScreen() {
+		DesignerModeHomeScreen designerModeHome = new DesignerModeHomeScreen(currStage);
+		designerModeHome.start();
+	}
+	
+	
+	
 	public void setItem(int row, int col){
 		try {
-			//attemps to set items down 
+			//attempts to set items down 
 			switch (currentlySelected) {
 			case ARROW:
 				l.placeItem(make.makeArrow(new Coord(row, col)));
-				break;
 			case BOMB:
 				l.placeItem(make.makeBomb(new Coord(row, col)));
-				break;
 			case BOULDER:
 				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));
-				break;
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
-				break;
 			case EMPTY_TILE:
-				break;
 			case EXIT:
 				l.placeExit(new Coord(row, col));
-				break;
 			case HOVER_POTION:
 				l.placeItem(make.makeHoverPotion(new Coord(row, col)));
-				break;
 			case HUNTER:
-				break;
 			case INVINCIBILITY_POTION:
 				l.placeItem(make.makeInvincibilityPotion(new Coord(row, col)));
-				break;
 			case KEY:
 				l.placeItem(make.makeKey(new Coord(row, col)));
-				break;
 			case PIT:
 				l.placePit(new Coord(row, col));
-				break;
 			case PLAYER:
 					newPlayer = make.makePlayer(new Coord(row,col));
 					l.placeMobileEntity(newPlayer);
-				break;
 			case SWITCH:
 				l.placeSwitch(new Coord(row, col));
-				break;
 			case SWORD:
 				//l.placeItem(make.make(new Coord(row, col)));
-				break;
 			case TREASURE:
 				l.placeItem(make.makeTreasure(new Coord(row, col)));
-				break;
 			case WALL:
 				l.placeWall(new Coord(row, col));
-				break;			
+			default: 
+				//Always sets it back to norm
+				currentlySelected = null; 
+				selectedItem.setText("-");
+				break;
+				
 			}
 		} catch (Exception e) {
 			if(this.currentlySelected != null) {
