@@ -20,9 +20,9 @@
 
 <SplitPane dividerPositions="0.37155963302752293" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <items>
-   <AnchorPane maxWidth="239.0" minHeight="-Infinity" minWidth="200.0" prefHeight="507.0" prefWidth="239.0" style="-fx-background-color: #402b07;">
+   <AnchorPane maxWidth="239.0" minHeight="-Infinity" minWidth="239.0" prefHeight="507.0" prefWidth="239.0" style="-fx-background-color: #402b07;">
          <children>
-            <ImageView fitHeight="545.0" fitWidth="369.0" layoutX="-47.0" layoutY="-5.0" pickOnBounds="true">
+            <ImageView fitHeight="545.0" fitWidth="369.0" layoutX="-47.0" layoutY="-5.0" opacity="0.76" pickOnBounds="true">
                <image>
                   <Image url="@../../images/bookshelf%20.jpg" />
                </image>
@@ -37,7 +37,7 @@
                   </Lighting>
                </effect>
             </ImageView>
-            <Button fx:id="switches" layoutX="108.0" layoutY="61.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Switch" textFill="#c3ad8c">
+            <Button fx:id="switches" layoutX="108.0" layoutY="65.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Switch" textFill="#c3ad8c">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -49,7 +49,7 @@
                   <Font name="Baskerville" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="pit" layoutX="138.0" layoutY="29.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" style="-fx-background-color: transparent;" text="Pit" textFill="#c3ad8c">
+            <Button fx:id="pit" layoutX="146.0" layoutY="34.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="89.0" style="-fx-background-color: transparent;" text="Pit" textFill="#c3ad8c">
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -109,7 +109,7 @@
                   <Font name="Baskerville" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="wall" layoutX="81.0" layoutY="31.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: transparent;" text="Wall" textFill="#c3ad8c">
+            <Button fx:id="wall" layoutX="81.0" layoutY="36.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="80.0" style="-fx-background-color: transparent;" text="Wall" textFill="#c3ad8c">
                <graphic>
                   <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -121,7 +121,7 @@
                   <Font name="Baskerville" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="player" layoutX="-3.0" layoutY="26.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="98.0" style="-fx-background-color: transparent;" text="Player" textFill="#c3ad8c">
+            <Button fx:id="player" layoutX="-3.0" layoutY="31.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="98.0" style="-fx-background-color: transparent;" text="Player" textFill="#c3ad8c">
                <graphic>
                   <ImageView fitHeight="34.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -133,7 +133,7 @@
                   <Font name="Baskerville" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="boulder" layoutX="-2.0" layoutY="57.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Boulder" textFill="#c3ad8c">
+            <Button fx:id="boulder" layoutX="7.0" layoutY="61.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: transparent;" text="Boulder" textFill="#c3ad8c">
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -241,20 +241,9 @@
                   <Font name="Baskerville" size="13.0" />
                </font>
             </Button>
-            <Button layoutX="51.0" layoutY="446.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="&#10;&#10;">
+            <Button fx:id="saveMap" layoutX="11.0" layoutY="438.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="30.0" style="-fx-background-color: transparent;" text="&#10;&#10;">
                <graphic>
-                  <ImageView fitHeight="38.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/bin.png" />
-                     </image>
-                     <effect>
-                        <ColorAdjust brightness="0.93" contrast="0.02" hue="0.29" saturation="-0.02" />
-                     </effect>
-                  </ImageView>
-               </graphic></Button>
-            <Button layoutX="18.0" layoutY="444.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="&#10;">
-               <graphic>
-                  <ImageView fitHeight="45.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/save.png" />
                      </image>
@@ -263,17 +252,36 @@
                      </effect>
                   </ImageView>
                </graphic></Button>
-            <CheckBox fx:id="exitCondition" layoutX="13.0" layoutY="408.0" mnemonicParsing="false" text="Exit" textFill="#15e8bd" />
-            <CheckBox fx:id="enemyCondition" layoutX="88.0" layoutY="408.0" mnemonicParsing="false" text="Enemy" textFill="#15e8bd" />
-            <CheckBox fx:id="switchCondition" layoutX="13.0" layoutY="430.0" mnemonicParsing="false" text="Switch" textFill="#15e8bd" />
-            <CheckBox fx:id="treasureCondition" layoutX="88.0" layoutY="430.0" mnemonicParsing="false" text="Treasure" textFill="#15e8bd" />
-            <Button layoutX="116.0" layoutY="453.0" mnemonicParsing="false" onAction="#clearSelected" text="Clear&#10;Selection">
+            <Button fx:id="deleteItem" layoutX="171.0" layoutY="444.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="34.0" style="-fx-background-color: transparent;" text="&#10;">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/bin.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="0.93" contrast="0.02" hue="0.29" saturation="-0.02" />
+                     </effect>
+                  </ImageView>
+               </graphic></Button>
+            <CheckBox fx:id="exitCondition" layoutX="20.0" layoutY="353.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="60.0" text="Exit" textFill="#69f5ba">
                <font>
-                  <Font size="10.0" />
-               </font></Button>
-            <Label layoutX="9.0" layoutY="-6.0" prefHeight="41.0" prefWidth="275.0" text="Choose an item..." textFill="#c3ad8c">
+                  <Font name="Baskerville" size="15.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="enemyCondition" layoutX="103.0" layoutY="353.0" mnemonicParsing="false" text="Enemy" textFill="#69f5ba">
                <font>
-                  <Font name="Baskerville Bold" size="22.0" />
+                  <Font name="Baskerville" size="15.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="switchCondition" layoutX="46.0" layoutY="383.0" mnemonicParsing="false" text="Switch" textFill="#69f5ba">
+               <font>
+                  <Font name="Baskerville" size="15.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="treasureCondition" layoutX="126.0" layoutY="383.0" mnemonicParsing="false" text="Treasure" textFill="#69f5ba">
+               <font>
+                  <Font name="Baskerville" size="15.0" />
+               </font></CheckBox>
+            <Label layoutX="18.0" prefHeight="41.0" prefWidth="275.0" text="Choose an item..." textFill="#c3ad8c">
+               <font>
+                  <Font name="Baskerville Bold" size="20.0" />
                </font>
             </Label>
             <Label layoutX="8.0" layoutY="311.0" prefHeight="41.0" prefWidth="275.0" text="Choose your win conditions:" textFill="#c3ad8c">
@@ -281,16 +289,30 @@
                   <Font name="Baskerville Bold" size="16.0" />
                </font>
             </Label>
+            <Button fx:id="exitScreen" layoutX="45.0" layoutY="443.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="exitScreen" fitHeight="31.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/exitPage.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
     <AnchorPane prefHeight="398.0" prefWidth="390.0" AnchorPane.rightAnchor="0.0" SplitPane.resizableWithParent="true">
          <children>
             <ScrollPane prefHeight="398.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane prefHeight="500.0" prefWidth="444.0" scaleShape="false">
+                <AnchorPane prefHeight="500.0" prefWidth="444.0" scaleShape="false" style="-fx-background-image: url(' ../../images/anotherBrickWall.jpg');">
                      <children>
                     <GridPane fx:id="map" gridLinesVisible="true" layoutX="13.0" onMouseClicked="#setItem" pickOnBounds="true" prefHeight="500.0" prefWidth="431.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>
+                              <ColumnConstraints />
+                              <ColumnConstraints />
                               <ColumnConstraints />
                               <ColumnConstraints />
                               <ColumnConstraints />
@@ -303,16 +325,20 @@
                               <RowConstraints />
                               <RowConstraints />
                               <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
                            </rowConstraints>
                            <cursor>
                               <Cursor fx:constant="CROSSHAIR" />
                            </cursor>
+                           <children>
+                              <Label mouseTransparent="true" pickOnBounds="false" text="Item Selected: " textFill="#14fab3" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+                           </children>
                         </GridPane>
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Label mouseTransparent="true" pickOnBounds="false" text="Item Selected: " textFill="#14fab3" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0" />
             <Label fx:id="selectedItem" layoutX="104.0" text="-" textAlignment="JUSTIFY" textFill="#14fab3" />
          </children></AnchorPane>
   </items>
