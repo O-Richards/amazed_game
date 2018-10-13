@@ -241,7 +241,7 @@
               <content>
                 <AnchorPane prefHeight="500.0" prefWidth="444.0" scaleShape="false">
                      <children>
-                    <GridPane fx:id="map" gridLinesVisible="true" onMouseClicked="#setItem" pickOnBounds="true" prefHeight="462.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <GridPane fx:id="map" gridLinesVisible="true" pickOnBounds="true" prefHeight="462.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columnConstraints>
                               <ColumnConstraints />
                               <ColumnConstraints />

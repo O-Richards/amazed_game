@@ -7,18 +7,22 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sun.java2d.pipe.SpanShapeRenderer.Simple;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+
+import com.sun.org.apache.bcel.internal.generic.NEW;
+
 import gameModel.Coord;
 import gameModel.EntityMaker;
 import gameModel.Level;
 import gameModel.entity.VisType;
+import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
-import gameModel.usable.ArrowUsable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -78,12 +82,9 @@ public class DesignerScreenController {
 	
 	private Level l; 
 	private EntityMaker make; 
+	//Player entity: 
+	private PlayerMobileEntity newPlayer; 
 	
-	private int xCoordClicked; 
-	private int yCoordClicked; 
-
-	private boolean playerPlaced = false; 
-
 	private static final int DEFAULT_NROWS = 50;
 	private static final int DEFAULT_NCOLS = 50;
 	//A list observable list: 
@@ -123,14 +124,14 @@ public class DesignerScreenController {
 		gridOfPanes.addListener((ListChangeListener<JFXPane>) change -> {
 			while(change.next()) {
 				if(change.wasUpdated()) {
+					//TODO: may need improvment??? comparing .equals(new simpleBooleanProperty) doesn't work... 
 					JFXPane elementChanged = gridOfPanes.get(change.getFrom());
-					if(elementChanged.clickedProperty().equals(new SimpleBooleanProperty(true))) {
-						this.xCoordClicked = elementChanged.getRow();
-						this.yCoordClicked = elementChanged.getColumn();
-						System.out.println("Ran");
+					if(elementChanged.clickedProperty().getValue() == true) {
+						//Attemps to set the item down: 
+						this.setItem(elementChanged.getRow(), elementChanged.getColumn());
 						//Sets the boolean the clicked boolean to false
 						elementChanged.resetClicked();
-						//Resets it to the change to inital state: 
+						//Resets it to the change to initial state: 
 						change.reset();
 						change.next();
 					}
@@ -146,11 +147,12 @@ public class DesignerScreenController {
 		selectedItem.setText("Player");
 		//If player has already been placed:
 		//Maybe frontend shouldn't implement this? 
-		if(playerPlaced) {
+		if(newPlayer != null) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.getDialogPane().setContent(new Text("A player has already been placed on the map"));
 			alert.showAndWait();
 			selectedItem.setText("-");
+			currentlySelected = null;
 		}else{
 			currentlySelected = VisType.PLAYER;
 		}
@@ -255,13 +257,75 @@ public class DesignerScreenController {
 		selectedItem.setText("-");
 		currentlySelected = null; 
 	}
-	@FXML
-	public void setItem() throws EntityPlacementException {
-		switch (currentlySelected) {
+	public void setItem(int row, int col){
+		try {
+			//attemps to set items down 
+			switch (currentlySelected) {
 			case ARROW:
-				l.placeItem(make.makeArrow(new Coord(this.xCoordClicked, this.yCoordClicked)));
-				
+				l.placeItem(make.makeArrow(new Coord(row, col)));
+				break;
+			case BOMB:
+				l.placeItem(make.makeBomb(new Coord(row, col)));
+				break;
+			case BOULDER:
+				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));
+				break;
+			case DOOR:
+				l.placeDoor(new Coord(row,col));
+				break;
+			case EMPTY_TILE:
+				break;
+			case EXIT:
+				l.placeExit(new Coord(row, col));
+				break;
+			case HOVER_POTION:
+				l.placeItem(make.makeHoverPotion(new Coord(row, col)));
+				break;
+			case HUNTER:
+				break;
+			case INVINCIBILITY_POTION:
+				l.placeItem(make.makeInvincibilityPotion(new Coord(row, col)));
+				break;
+			case KEY:
+				l.placeItem(make.makeKey(new Coord(row, col)));
+				break;
+			case PIT:
+				l.placePit(new Coord(row, col));
+				break;
+			case PLAYER:
+					newPlayer = make.makePlayer(new Coord(row,col));
+					l.placeMobileEntity(newPlayer);
+				break;
+			case SWITCH:
+				l.placeSwitch(new Coord(row, col));
+				break;
+			case SWORD:
+				//l.placeItem(make.make(new Coord(row, col)));
+				break;
+			case TREASURE:
+				l.placeItem(make.makeTreasure(new Coord(row, col)));
+				break;
+			case WALL:
+				l.placeWall(new Coord(row, col));
+				break;			
+			}
+		} catch (Exception e) {
+			if(this.currentlySelected != null) {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.getDialogPane().setContent(new Text("Unable to place item!!"));
+				alert.showAndWait();
+				selectedItem.setText("-");
+				currentlySelected = null;
+			}else {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.getDialogPane().setContent(new Text("Please select an item"));
+				alert.showAndWait();
+				selectedItem.setText("-");
+				currentlySelected = null;
+			}
+			
 		}
+	
 			
 			
 	}
