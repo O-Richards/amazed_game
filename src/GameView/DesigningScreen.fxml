@@ -310,36 +310,18 @@
                 <AnchorPane prefHeight="500.0" prefWidth="444.0" scaleShape="false" style="-fx-background-image: url(' ../../images/anotherBrickWall.jpg');">
                      <children>
                     <GridPane fx:id="map" gridLinesVisible="true" pickOnBounds="true" prefHeight="462.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columnConstraints>
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                              <ColumnConstraints />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                              <RowConstraints />
-                           </rowConstraints>
                            <cursor>
                               <Cursor fx:constant="CROSSHAIR" />
                            </cursor>
-                           <children>
-                              <Label mouseTransparent="true" pickOnBounds="false" text="Item Selected: " textFill="#14fab3" GridPane.columnIndex="5" GridPane.rowIndex="5" />
-                           </children>
                         </GridPane>
                      </children>
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Label fx:id="selectedItem" layoutX="104.0" text="-" textAlignment="JUSTIFY" textFill="#14fab3" />
+            <Label fx:id="selectedItem" layoutX="104.0" text="-" textAlignment="JUSTIFY" textFill="#14fab3" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <graphic>
+                  <Label mouseTransparent="true" pickOnBounds="false" text="Item Selected: " textFill="#14fab3" />
+               </graphic></Label>
          </children></AnchorPane>
   </items>
 </SplitPane>

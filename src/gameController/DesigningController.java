@@ -282,55 +282,45 @@ public class DesigningController {
 	
 	public void setItem(int row, int col){
 		try {
-			//attemps to set items down 
+			//attempts to set items down 
 			switch (currentlySelected) {
 			case ARROW:
 				l.placeItem(make.makeArrow(new Coord(row, col)));
-				break;
 			case BOMB:
 				l.placeItem(make.makeBomb(new Coord(row, col)));
-				break;
 			case BOULDER:
 				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));
-				break;
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
-				break;
 			case EMPTY_TILE:
-				break;
 			case EXIT:
 				l.placeExit(new Coord(row, col));
-				break;
 			case HOVER_POTION:
 				l.placeItem(make.makeHoverPotion(new Coord(row, col)));
-				break;
 			case HUNTER:
-				break;
 			case INVINCIBILITY_POTION:
 				l.placeItem(make.makeInvincibilityPotion(new Coord(row, col)));
-				break;
 			case KEY:
 				l.placeItem(make.makeKey(new Coord(row, col)));
-				break;
 			case PIT:
 				l.placePit(new Coord(row, col));
-				break;
 			case PLAYER:
 					newPlayer = make.makePlayer(new Coord(row,col));
 					l.placeMobileEntity(newPlayer);
-				break;
 			case SWITCH:
 				l.placeSwitch(new Coord(row, col));
-				break;
 			case SWORD:
 				//l.placeItem(make.make(new Coord(row, col)));
-				break;
 			case TREASURE:
 				l.placeItem(make.makeTreasure(new Coord(row, col)));
-				break;
 			case WALL:
 				l.placeWall(new Coord(row, col));
-				break;			
+			default: 
+				//Always sets it back to norm
+				currentlySelected = null; 
+				selectedItem.setText("-");
+				break;
+				
 			}
 		} catch (Exception e) {
 			if(this.currentlySelected != null) {
