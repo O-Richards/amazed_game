@@ -33,6 +33,7 @@ public class JFXPane implements Observer {
 	public void detectMouseClicks() {
 		pane.setOnMousePressed(e-> {
 			System.out.println("Clicked on "+ row + " "+column);
+			System.out.println("SEt to true");
 			clicked.set(true);
         });
 		
@@ -55,6 +56,7 @@ public class JFXPane implements Observer {
 	}
 	public void resetClicked() {
 		clicked.set(false);
+		System.out.println("Set to false");
 	}
 
 }

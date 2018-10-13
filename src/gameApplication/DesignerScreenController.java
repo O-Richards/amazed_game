@@ -6,13 +6,18 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-
+import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-
-
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import gameModel.Coord;
 import gameModel.EntityMaker;
 import gameModel.Level;
 import gameModel.entity.VisType;
+import gameModel.tile.EntityPlacementException;
+import gameModel.usable.ArrowUsable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -113,10 +118,18 @@ public class DesignerScreenController {
 		gridOfPanes.addListener((ListChangeListener<JFXPane>) change -> {
 			while(change.next()) {
 				if(change.wasUpdated()) {
-					int elementChanged = change.getFrom(); 	
-					System.out.println(gridOfPanes.get(elementChanged).getRow()); 
-					System.out.println(gridOfPanes.get(elementChanged).getColumn()); 
-					gridOfPanes.get(elementChanged).resetClicked();
+					JFXPane elementChanged = gridOfPanes.get(change.getFrom());
+					if(elementChanged.clickedProperty().equals(new SimpleBooleanProperty(true))) {
+						this.xCoordClicked = elementChanged.getRow();
+						this.yCoordClicked = elementChanged.getColumn();
+						System.out.println("Ran");
+						//Sets the boolean the clicked boolean to false
+						elementChanged.resetClicked();
+						//Resets it to the change to inital state: 
+						change.reset();
+						change.next();
+					}
+
 				}
 			}
 		});
@@ -238,8 +251,14 @@ public class DesignerScreenController {
 		currentlySelected = null; 
 	}
 	@FXML
-	public void setItem() {
-		
+	public void setItem() throws EntityPlacementException {
+		switch (currentlySelected) {
+			case ARROW:
+				l.placeItem(make.makeArrow(new Coord(this.xCoordClicked, this.yCoordClicked)));
+				
+		}
+			
+			
 	}
 
 }
