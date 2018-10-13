@@ -10,7 +10,7 @@ import java.util.Observer;
 import java.util.ArrayList;
 
 
-public class Tile implements Observable{
+public class Tile /*implements Observable*/{
 	private final boolean DEBUG = true;
 	
 	private ArrayList<Observer> jfxPanes;
