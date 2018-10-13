@@ -95,10 +95,12 @@ public class DesignerScreenController {
 		for (int row = 0; row < 15; row++) {
 			for (int col = 0; col < 15; col++) {
 				//adds an image view to the map: 
-				ImageView aNewIMage = new ImageView(new Image(getClass().getResourceAsStream("/wall.png"),20,20,true,true));
+				ImageView aNewIMage = new ImageView(new Image(getClass().getResourceAsStream("/tile.png"),20,20,true,true));
 				map.add(aNewIMage, col, row);
 				//Adds a pane which listens for mouse clicks
 				addPane(row, col);
+				map.setGridLinesVisible(true);
+
 			} 	
 		}
 	}
@@ -109,14 +111,14 @@ public class DesignerScreenController {
 	//Adds a pane to every single grid we make so that we can listen for a mouse click event:  
 	private void addPane(int row, int col) {
 		Pane pane = new Pane(); 
+		pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
 		//Listens for a mouse click event: 
 		//Sets the clicked rows and columns: 
 		pane.setOnMouseClicked(e-> {
-            clickedRow = row;
+            clickedRow = row;	
             clickedColumn = col;   
             
         });
-		
 		
         map.add(pane, col, row);		
 	}
