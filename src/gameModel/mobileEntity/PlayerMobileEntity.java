@@ -8,6 +8,7 @@ import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.usable.Usable;
 import gameModel.usable.UseAction;
 
@@ -48,11 +49,6 @@ public class PlayerMobileEntity extends MobileEntity {
 	
 	public int getNoTreasure() {
 		return this.noTreasure;
-	}
-
-	@Override
-	public String getSprite() {
-		return "P";
 	}
 
 	@Override
@@ -101,7 +97,7 @@ public class PlayerMobileEntity extends MobileEntity {
 		}
 		
 		public PlayerMobileEntity build() {
-			Entity baseEntity = new BasicEntity.BasicEntityBuilder(sprite, c)
+			Entity baseEntity = new BasicEntity.BasicEntityBuilder(VisType.PLAYER, c)
 					.withAlive(true)
 					.withEntityMover(entityMover)
 					.build();

@@ -102,7 +102,7 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button fx:id="player" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#setPlayer" prefHeight="32.0" prefWidth="66.0" text="Player">
+            <Button fx:id="player" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="66.0" text="Player">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -198,7 +198,7 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button fx:id="invincibilityPotion" layoutX="13.0" layoutY="343.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="98.0" text="Invincibility &#10;Potion">
+            <Button fx:id="invincibilityPotion" layoutX="13.0" layoutY="343.0" mnemonicParsing="false" onAction="#setInvincibilityPotion" prefHeight="41.0" prefWidth="98.0" text="Invincibility &#10;Potion">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -210,7 +210,7 @@
                   <Font size="9.0" />
                </font>
             </Button>
-            <Button fx:id="hoverPotion" layoutX="106.0" layoutY="294.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="80.0" text="Hover &#10;Potion">
+            <Button fx:id="hoverPotion" layoutX="106.0" layoutY="294.0" mnemonicParsing="false" onAction="#setHoverPotion" prefHeight="41.0" prefWidth="80.0" text="Hover &#10;Potion">
                <graphic>
                   <ImageView fitHeight="26.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -229,6 +229,10 @@
             <CheckBox fx:id="enemyCondition" layoutX="88.0" layoutY="408.0" mnemonicParsing="false" text="Enemy" textFill="#15e8bd" />
             <CheckBox fx:id="switchCondition" layoutX="13.0" layoutY="430.0" mnemonicParsing="false" text="Switch" textFill="#15e8bd" />
             <CheckBox fx:id="treasureCondition" layoutX="88.0" layoutY="430.0" mnemonicParsing="false" text="Treasure" textFill="#15e8bd" />
+            <Button layoutX="116.0" layoutY="453.0" mnemonicParsing="false" onAction="#clearSelected" text="Clear&#10;Selection">
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
          </children>
       </AnchorPane>
     <AnchorPane prefHeight="398.0" prefWidth="390.0" AnchorPane.rightAnchor="0.0" SplitPane.resizableWithParent="true">

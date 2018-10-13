@@ -2,6 +2,7 @@ package gameModel.tile;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
 
 public class DoorTile extends Tile {
@@ -50,7 +51,7 @@ public class DoorTile extends Tile {
 	*/
 
 	@Override
-	public String getSprite() {
-		return "D";
+	public VisType getVisType() {
+		return VisType.DOOR;
 	}
 }

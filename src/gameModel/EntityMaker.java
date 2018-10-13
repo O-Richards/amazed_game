@@ -4,6 +4,7 @@ import gameModel.bonusMovement.HoverBonusMovement;
 import gameModel.bonusMovement.InvincibilityBonusAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
@@ -30,21 +31,21 @@ public class EntityMaker {
 				.build();
 	}
 	public Entity makeKey(Coord c) {
-		return new BasicEntity.BasicEntityBuilder("K", c)
+		return new BasicEntity.BasicEntityBuilder(VisType.KEY, c)
 				.withEntityMover(entityMover)
 				.withUsage(new KeyUsable())
 				.build();
 	}
 	
 	public Entity makeArrow(Coord c) {
-		return new BasicEntity.BasicEntityBuilder("<", c)
+		return new BasicEntity.BasicEntityBuilder(VisType.ARROW, c)
 			.withUsage(new ArrowUsable(entityMover))
 			.build();
 	}
 	
 	public Entity makeTreasure(Coord c) {
 		WinCondition treasureWin = this.winSystem.newWinCondition(WinType.TREASURE);
-		return new BasicEntity.BasicEntityBuilder("$", c)
+		return new BasicEntity.BasicEntityBuilder(VisType.TREASURE, c)
 				.withEntityMover(entityMover)
 				.withWinCondition(treasureWin)
 				.withUsage(new TreasureUsage(treasureWin))
@@ -70,7 +71,7 @@ public class EntityMaker {
 			
 		};
 		
-		return new BasicEntity.BasicEntityBuilder("I", c)
+		return new BasicEntity.BasicEntityBuilder(VisType.INVINCIBILITY_POTION, c)
 				.withUsage(invincibilityUse)
 				.withEntityMover(entityMover)
 				.build();
@@ -96,14 +97,14 @@ public class EntityMaker {
 			}
 		};
 		
-		return new BasicEntity.BasicEntityBuilder("H", c)
+		return new BasicEntity.BasicEntityBuilder(VisType.HOVER_POTION, c)
 				.withEntityMover(entityMover)
 				.withUsage(hoverPotionUse)
 				.build();
 	}
 	
 	public MobileEntity makeBoulder(Coord c) {
-		Entity basicEntity = new BasicEntity.BasicEntityBuilder("b", c)
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.BOULDER, c)
 				.withEntityMover(entityMover)
 				.build();
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
@@ -115,7 +116,7 @@ public class EntityMaker {
 	}
 	
 	public Entity makeBomb(Coord c) {
-		return new BasicEntity.BasicEntityBuilder("B", c)
+		return new BasicEntity.BasicEntityBuilder(VisType.BOMB, c)
 				.withEntityMover(entityMover)
 				.withUsage(new BombUsable(entityMover))
 				.build();

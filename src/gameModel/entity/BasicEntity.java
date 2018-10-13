@@ -13,19 +13,19 @@ public class BasicEntity implements Entity {
 
 	//Coord the entity is on. Note if in inventory, this will be null
 	private Coord coord;
-	private String sprite;
+	private VisType visType;
 	protected EntityMover entityMover;
 	private Usable usage;
 	private WinCondition winCondition;
 	private boolean alive;
 	
-	protected BasicEntity(EntityBuilder builder) {
-		this.coord = builder.getCoord();
-		this.sprite = builder.getSprite();
-		this.entityMover = builder.getEntityMover();
-		this.winCondition = builder.getWinCondition();
-		this.alive = builder.getAliveEntity();
-		this.usage = builder.getUse();
+	protected BasicEntity(BasicEntityBuilder builder) {
+		this.coord = builder.coord;
+		this.visType = builder.visType;
+		this.entityMover = builder.entityMover;
+		this.winCondition = builder.winCondition;
+		this.alive = builder.aliveEntity;
+		this.usage = builder.use;
 	}
 	
 	@Override
@@ -51,8 +51,8 @@ public class BasicEntity implements Entity {
 	}
 	
 	@Override
-	public String getSprite() {
-		return this.sprite;
+	public VisType getVisType() {
+		return this.visType;
 	}
 
 	@Override
@@ -100,14 +100,14 @@ public class BasicEntity implements Entity {
 
 	public static class BasicEntityBuilder implements EntityBuilder {
 		private Coord coord;
-		private String sprite;
+		private VisType visType;
 		private EntityMover entityMover;
 		private Usable use;
 		private WinCondition winCondition;
 		private boolean aliveEntity = false;
 		
-		public BasicEntityBuilder(String sprite, Coord c) {
-			this.sprite = sprite;
+		public BasicEntityBuilder(VisType visType, Coord c) {
+			this.visType = visType;
 			this.coord = c;
 			
 			Usable noAction = new Usable() {
@@ -168,38 +168,8 @@ public class BasicEntity implements Entity {
 		}
 		
 		@Override
-		public Coord getCoord() {
-			return coord;
-		}
-
-		@Override
-		public String getSprite() {
-			return sprite;
-		}
-		
-		@Override
-		public Usable getUse() {
-			return this.use;
-		}
-
-		@Override
-		public EntityMover getEntityMover() {
-			return entityMover;
-		}
-		
-		@Override
-		public WinCondition getWinCondition() {
-			return this.winCondition;
-		}
-		
-		@Override
 		public BasicEntity build() {
 			return new BasicEntity(this);
-		}
-
-		@Override
-		public boolean getAliveEntity() {
-			return this.aliveEntity;
 		}
 	}
 
