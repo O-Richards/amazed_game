@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="434.0" fitWidth="773.0" layoutX="-86.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../images/Level_test.jpg" />
+         </image>
+         <effect>
+            <Bloom />
+         </effect>
+      </ImageView>
+      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="212.0" layoutX="243.0" layoutY="18.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="187.0" />
+      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="150.0" layoutX="12.0" layoutY="246.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="225.0" />
+      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="218.0" layoutX="16.0" layoutY="12.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="213.0" />
+      <Label blendMode="SRC_ATOP" layoutX="481.0" layoutY="23.0" opacity="0.8" text="ESCAPE" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
+         <font>
+            <Font name="American Typewriter Condensed Bold" size="22.0" />
+         </font>
+         <effect>
+            <Shadow blurType="ONE_PASS_BOX" color="#c9b1b1" height="0.0" radius="2.535" width="12.14" />
+         </effect>
+      </Label>
+      <Label blendMode="SRC_ATOP" layoutX="457.0" layoutY="14.0" prefHeight="22.0" prefWidth="145.0" text="The  a MAZE ing" textAlignment="CENTER" textFill="RED">
+         <font>
+            <Font name="Baskerville Bold" size="16.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <ImageView fitHeight="67.0" fitWidth="145.0" layoutX="114.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/W.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="73.0" fitWidth="107.0" layoutX="101.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/S.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="78.0" fitWidth="107.0" layoutX="133.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/A.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="67.0" fitWidth="127.0" layoutX="68.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/D.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="82.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/player.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="26.0" layoutY="37.0" text="To move" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="54.0" layoutY="66.0" text="up, press " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="108.0" text="down, press " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="156.0" text="left, press " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="200.0" text="right, press " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="36.0" fitWidth="126.0" layoutX="171.0" layoutY="256.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/J.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="114.0" layoutX="137.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/K.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="100.0" layoutX="108.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/L.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="32.0" layoutY="265.0" text="To use " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="45.0" fitWidth="60.0" layoutX="78.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="64.0" layoutX="79.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/sword.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="34.0" layoutX="84.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/unlit.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="32.0" layoutY="304.0" text="To use " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="352.0" text="To use " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="265.0" text="press" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="344.0" text="press" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="304.0" text="press" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="35.0" fitWidth="64.0" layoutX="340.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/exit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="64.0" layoutX="340.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/treasure.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="44.0" layoutX="304.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/boulder.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="27.0" fitWidth="60.0" layoutX="381.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/switch.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="389.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/strategist.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="49.0" layoutX="344.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/hound.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="36.0" layoutX="307.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/coward.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="255.0" layoutY="23.0" text="To win" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="262.0" layoutY="60.0" text="enter " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="269.0" layoutY="84.0" textFill="#d7cbb8" />
+      <Label layoutX="262.0" layoutY="100.0" text="collect all " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="263.0" layoutY="148.0" text="move" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="344.0" layoutY="148.0" text="onto" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="261.0" layoutY="192.0" text="kill all" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="274.0" layoutY="243.0" text="You will die if you " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="22.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="27.0" fitWidth="46.0" layoutX="390.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/pit.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="34.0" layoutX="430.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/exploision.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="36.0" layoutX="372.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/coward.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="36.0" fitWidth="49.0" layoutX="411.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/hound.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="457.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/strategist.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="295.0" layoutY="274.0" text="fall into a" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="297.0" layoutY="304.0" text="is on or adjacent to " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="293.0" layoutY="338.0" text="collide with " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="147.0" layoutX="438.0" layoutY="58.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="158.0" />
+      <ImageView fitHeight="45.0" fitWidth="49.0" layoutX="449.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/invincibility.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="456.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/hover.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="449.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/key.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="28.0" layoutX="543.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/closed%20door.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="492.0" layoutY="93.0" text="to open " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="447.0" layoutY="69.0" text="Use" textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="498.0" layoutY="136.0" text="to fly " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="492.0" layoutY="175.0" text="to be invincible " textFill="#d7cbb8">
+         <font>
+            <Font name="American Typewriter" size="13.0" />
+         </font>
+      </Label>
+      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="154.0" layoutX="258.0" layoutY="242.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="255.0" />
+   </children>
+</Pane>
