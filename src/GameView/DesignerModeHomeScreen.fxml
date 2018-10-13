@@ -73,7 +73,7 @@
       </Label>
       <ListView layoutX="186.0" layoutY="173.0" opacity="0.84" prefHeight="200.0" prefWidth="200.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="-14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="220.0" layoutY="54.0" text="Create New" textFill="#ddc9b3">
+      <Label layoutX="220.0" layoutY="54.0" mouseTransparent="true" pickOnBounds="false" text="Create New" textFill="#ddc9b3">
          <font>
             <Font name="Baskerville Bold" size="24.0" />
          </font>
