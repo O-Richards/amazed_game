@@ -4,13 +4,22 @@ import gameModel.Coord;
 import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
 
 
-public class Tile implements Observable{
+/**
+ * @author Oli
+ *
+ */
+/**
+ * @author Oli
+ *
+ */
+public class Tile extends Observable{
 	private final boolean DEBUG = true;
 	
 	private ArrayList<Observer> jfxPanes;
@@ -22,7 +31,7 @@ public class Tile implements Observable{
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
-		this.jfxPanes = new ArrayList<Observer>(); // for now
+		this.jfxPanes = new ArrayList<Observer>();
 	}
 
 	public void tick(int tickNum) {
@@ -36,7 +45,7 @@ public class Tile implements Observable{
 				entityMover.moveMobileEntity(mobile, nextCoord);
 			}
 		}
-	// do we notify observers here?
+	// do we notify observers here? <<== TODO
 		notifyObservers();
 	}
 	/**
@@ -48,7 +57,17 @@ public class Tile implements Observable{
 		if (this.item != null) {
 			throw new EntityPlacementException("Item on tile");
 		}
-		this.item = item; 
+		this.item = item;
+		// Notify observer JFXPanel to update image <<== TODO
+		notifyObservers();
+	}
+	
+	/**
+	 * Clear the tile
+	 */
+	public void clear() {
+		this.item = null;
+		this.mobile = null;
 	}
 
 	/**
@@ -92,6 +111,8 @@ public class Tile implements Observable{
 		} else if (!killedNew) {
 			throw new EntityPlacementException("Tile is occupied");
 		}
+		// UPDATE OBSERVERS NOW PLOX <<== TODO
+		notifyObservers();
 	}
 	
 	/**
@@ -107,17 +128,22 @@ public class Tile implements Observable{
 	 * removeObserver method will remove an observer from a Tiles ArrayList of observers
 	 * @param o = observer to remove
 	 */
-	@Override
 	public void removeObserver(Observer o) {
 		jfxPanes.remove(o);
 	}
 	
 	@Override
 	public void notifyObservers() {
-		//To-do
+		for (Observer observer : jfxPanes) {
+			observer.update(this.getVisType());
+		}
 	}
-
-
+/*
+	private Image getImage() {
+		// TODO Auto-generated method stub
+		return img;
+	}
+*/
 	public void removeItem() {
 		this.item = null;
 	}
@@ -141,13 +167,13 @@ public class Tile implements Observable{
 	/**
 	 * @return A simple char to represent the tile (for debugging)
 	 */
-	public String getSprite() {
+	public VisType getVisType() {
 		if (this.mobile != null) {
-			return this.mobile.getSprite();
+			return this.mobile.getVisType();
 		} else if (this.item != null) {
-			return this.item.getSprite();
+			return this.item.getVisType();
 		} else {
-			return " ";
+			return VisType.EMPTY_TILE;
 		}
 	}
 

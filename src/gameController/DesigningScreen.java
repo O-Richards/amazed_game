@@ -21,13 +21,13 @@ public class DesigningScreen {
 	
 	public void start() {
 		s.setTitle(title);
-		fxmlLoader.setController(new DesignerModeHomeController(s));
+		fxmlLoader.setController(new DesigningController(s));
         try {
             // load into a Parent node called root
             Parent root = fxmlLoader.load();
             Scene sc = new Scene(root);
             s.setScene(sc);
-            s.setResizable(false);
+            s.setResizable(true);
             s.show();
         } catch(IOException e) {
         	e.printStackTrace();

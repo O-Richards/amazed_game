@@ -6,6 +6,7 @@ import java.util.List;
 import gameModel.Coord;
 import gameModel.KillAction;
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.usable.Usable;
 
 public class MobileEntity implements Movement, Entity {
@@ -61,7 +62,7 @@ public class MobileEntity implements Movement, Entity {
 	
 	public void setDirection(Direction dir) {
 		this.movement.setDirection(dir);
-		if (DEBUG) System.out.println("Setting MobileEntity " + this.getSprite() + "Direction to " + this.getDirection());
+		if (DEBUG) System.out.println("Setting MobileEntity " + this.getVisType() + "Direction to " + this.getDirection());
 	}
 	
 	//TODO: Pull this into movement interface
@@ -146,8 +147,8 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	@Override
-	public String getSprite() {
-		return baseEntity.getSprite();
+	public VisType getVisType() {
+		return baseEntity.getVisType();
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import gameModel.entity.Entity;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.tile.DoorTile;
@@ -84,6 +85,15 @@ public class Level implements EntityMover {
 	}
 	
 	/**
+	 * Remove everything from a tile
+	 * @param c The coord of the tile to be cleared
+	 */
+	public void clearTile(Coord c) {
+		Tile t = this.getTile(c);
+		t.clear();
+	}
+	
+	/**
 	 * Add an enemy to a tile
 	 * @param enemy
 	 * @param coord the coord to place the item at
@@ -141,20 +151,18 @@ public class Level implements EntityMover {
 		}
 	}
 
-	@Override
-	public String toString() {
-		//Could change this to be a string builder to avoid O(n^2)
-		//The map should be quite small so it wont make a big difference
-		String ret = new String("");
-		for (int row = this.map.length - 1; row >= 0; row--) {
-			for (int col = 0; col < this.map[0].length; col++) {
-				ret += this.map[row][col].getSprite();
-			}
-			ret += "\n";
-		}
-		return ret;
+	public VisType getVisType(Coord c) {
+		Tile t = this.getTile(c);
+		return t.getVisType();
 	}
 
+	public Integer getNumRows() {
+		return this.map.length;
+	}
+	
+	public Integer getNumCols() {
+		return this.map[0].length;
+	}
 
 	/**
 	 * @return True if the player has won the game, false else
