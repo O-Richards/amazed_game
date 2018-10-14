@@ -3,6 +3,7 @@ package gameModel.entity;
 import gameModel.Coord;
 import gameModel.mobileEntity.Direction;
 import gameModel.usable.Usable;
+import gameModel.entity.VisType;
 
 public interface Entity {
 	public Coord getCoord();
