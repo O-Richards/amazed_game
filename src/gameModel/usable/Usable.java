@@ -13,4 +13,10 @@ public interface Usable {
 	public void applyToPlayer(PlayerMobileEntity player);
 
 	public UseAction getUseAction();
+	
+	/**
+	 * @param u the item already in the inventory
+	 * @return true if this item can also be picked up, false else
+	 */
+	public boolean canBePickedUpWith(Usable u);
 }

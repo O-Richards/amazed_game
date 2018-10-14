@@ -43,4 +43,12 @@ public class BombUsable implements Usable, DelayedAction {
 	public UseAction getUseAction() {
 		return UseAction.BOMB;
 	}
+
+	@Override
+	public boolean canBePickedUpWith(Usable u) {
+		if (u.getUseAction() == this.getUseAction()) {
+			return false;
+		}
+		return true;
+	}
 }

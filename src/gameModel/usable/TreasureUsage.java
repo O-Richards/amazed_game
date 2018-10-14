@@ -24,5 +24,10 @@ public class TreasureUsage implements Usable {
 	public UseAction getUseAction() {
 		return UseAction.TREASURE;
 	}
+	
+	@Override
+	public boolean canBePickedUpWith(Usable u) {
+		return true;
+	}
 
 }
