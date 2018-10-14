@@ -15,6 +15,7 @@ import gameModel.EntityMaker;
 import gameModel.Level;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.tile.EntityPlacementException;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -382,7 +383,7 @@ public class DesigningController {
 			currentlySelected = null; 
 			selectedItem.setText("-");
 			
-		} catch (Exception s) {
+		} catch (EntityPlacementException s) {
 			System.out.println("Error Caught !!");
 			if(this.currentlySelected != null) {
 				Alert alert = new Alert(Alert.AlertType.WARNING);
