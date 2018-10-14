@@ -186,7 +186,7 @@ public class DesigningController {
 	}
 	@FXML
 	public void setTreasure() {
-		selectedItem.setText("treasure");
+		selectedItem.setText("Treasure");
 		//Enables treasure win condition:
 		treasureCondition.setDisable(false);
 		currentlySelected = VisType.TREASURE; 
@@ -198,7 +198,7 @@ public class DesigningController {
 	}
 	@FXML
 	public void setDoor() {
-		selectedItem.setText("door");
+		selectedItem.setText("Door");
 		currentlySelected = VisType.DOOR; 
 	}
 
@@ -308,48 +308,80 @@ public class DesigningController {
 	
 	public void setItem(int row, int col){
 		try {
-			//attempts to set items down 
+			//attempts to set items down
+			System.out.println(currentlySelected);
 			switch (currentlySelected) {
 			case ARROW:
 				l.placeItem(make.makeArrow(new Coord(row, col)));
+				System.out.println("placed an arrow");
+				break;
 			case BOMB:
 				l.placeItem(make.makeBomb(new Coord(row, col)));
+				System.out.println("placed a bomb");
+				break;
 			case BOULDER:
-				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));				
+				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));		
+				System.out.println("placed Boulder");
+				break;
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
+				System.out.println("placed Door");
+				break;
 			case EMPTY_TILE:
+				break;
 			case EXIT:
 				l.placeExit(new Coord(row, col));
+				System.out.println("placed exit");
+				break;
 			case HOVER_POTION:
 				l.placeItem(make.makeHoverPotion(new Coord(row, col)));
+				System.out.println("hover_potion");
+				break;
 			case HUNTER:
+				System.out.println("lol what hunter");
+				break;
 			case INVINCIBILITY_POTION:
 				l.placeItem(make.makeInvincibilityPotion(new Coord(row, col)));
+				System.out.println("invincibility potion");
+				break;
 			case KEY:
 				l.placeItem(make.makeKey(new Coord(row, col)));
+				System.out.println("key");
+				break;
 			case PIT:
 				l.placePit(new Coord(row, col));
-				System.out.println("PLACE PIT");
+				System.out.println("pit");
 				l.getTile(new Coord(row,col)).notifyObservers();
+				break;
 			case PLAYER:
-					newPlayer = make.makePlayer(new Coord(row,col));
-					l.placeMobileEntity(newPlayer);
+				newPlayer = make.makePlayer(new Coord(row,col));
+				l.placeMobileEntity(newPlayer);
+				System.out.println("player placed");
+				break;
 			case SWITCH:
 				l.placeSwitch(new Coord(row, col));
+				System.out.println("placed switch");
+				break;
 			case SWORD:
 				//l.placeItem(make.make(new Coord(row, col)));
+				System.out.println("i can't place sword yet NOt implemented in backend");
+				break;
 			case TREASURE:
 				l.placeItem(make.makeTreasure(new Coord(row, col)));
+				System.out.println("treasure placed");
+				break;
 			case WALL:
 				l.placeWall(new Coord(row, col));
+				System.out.println("wall placed");
+				break;
 			default: 
-				//Always sets it back to norm
-				currentlySelected = null; 
-				selectedItem.setText("-");
 				break;
 				
 			}
+			//Always sets it back to norm
+			currentlySelected = null; 
+			selectedItem.setText("-");
+			
 		} catch (Exception e) {
 			if(this.currentlySelected != null) {
 				Alert alert = new Alert(Alert.AlertType.WARNING);

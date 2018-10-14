@@ -22,7 +22,7 @@ public class JFXPane implements Observer {
 		clicked = new SimpleBooleanProperty(false); 
 		//Defaults to a set of tiles: 
 		this.image = new ImageView(new Image(getClass().getResourceAsStream("/tile.png"),20,20,true,true));			
-		pane = new Pane(image);
+		pane = new Pane(this.image);
 		pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
 
 	}
@@ -34,7 +34,6 @@ public class JFXPane implements Observer {
 	public void detectMouseClicks() {
 		pane.setOnMousePressed(e-> {
 			System.out.println("Clicked on "+ row + " "+column);
-			System.out.println("SEt to true");
 			clicked.set(true);
         });
 		
@@ -51,13 +50,17 @@ public class JFXPane implements Observer {
 	}
 	public void resetClicked() {
 		clicked.set(false);
-		System.out.println("Set to false");
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		String img = ((String) arg); //cast object argument as what we need
-        this.image = new ImageView(new Image(getClass().getResourceAsStream(img),20,20,true,true)); // DOES THIS WORK?		
+		//removes the current image in the pane:
+        pane.getChildren().remove(this.image);
+        this.image = new ImageView(new Image(getClass().getResourceAsStream(img),20,20,true,true));
+        //Replaces the image with a new image: 
+        pane.getChildren().add(this.image);
+        System.out.println("we placed an image with directly " + img);
 	}
 
 }
