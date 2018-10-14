@@ -9,6 +9,8 @@ import gameModel.mobileEntity.MobileEntity;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -113,6 +115,25 @@ public class Tile extends Observable{
 		}
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
 		notifyObservers();
+	}
+	public String visTypeToPath(VisType visType) {
+		Map<VisType, String> spriteMap = new HashMap<>();
+			spriteMap.put(VisType.PLAYER, "/player.png");
+			spriteMap.put(VisType.SWITCH,"/switch.png");
+			spriteMap.put(VisType.ARROW, "/arrow.png");
+			spriteMap.put(VisType.BOULDER, "/boulder.png");
+			spriteMap.put(VisType.BOMB, "/unlit.png");
+			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
+			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
+			spriteMap.put(VisType.TREASURE, "/tresure.png");
+			spriteMap.put(VisType.HUNTER, "/hound,png");// TODO
+			spriteMap.put(VisType.SWORD, "/sword.png");
+			spriteMap.put(VisType.EXIT, "/exit.png");
+			spriteMap.put(VisType.PIT, "/pit.png");
+			spriteMap.put(VisType.EMPTY_TILE, "/wall.png");
+			spriteMap.put(VisType.KEY, "/key.png");
+			spriteMap.put(VisType.DOOR, "/door.png");
+		return spriteMap.get(visType);
 	}
 	
 	/**
