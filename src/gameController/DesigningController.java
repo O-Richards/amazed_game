@@ -26,6 +26,7 @@ import gameModel.tile.EntityPlacementException;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class DesigningController {
@@ -283,12 +284,14 @@ public class DesigningController {
 	}
 	
 	@FXML
-	public void saveMap() {
+	public void saveMap(ActionEvent event) {
 		designerModeHome.addMap(l);
 	}
 	
 	@FXML
-	public void playMap() {
+	public void playMap(ActionEvent event) {
+		PlayingScreen playing = new PlayingScreen(currStage);
+		playing.start();
 		
 	}
 	
