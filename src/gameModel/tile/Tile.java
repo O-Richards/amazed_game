@@ -126,7 +126,7 @@ public class Tile extends Observable{
 			spriteMap.put(VisType.BOMB, "/unlit.png");
 			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
 			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
-			spriteMap.put(VisType.TREASURE, "/tresure.png");
+			spriteMap.put(VisType.TREASURE, "/treasure.png");
 			spriteMap.put(VisType.HUNTER, "/hound,png");// TODO
 			spriteMap.put(VisType.SWORD, "/sword.png");
 			spriteMap.put(VisType.EXIT, "/exit.png");
@@ -158,7 +158,6 @@ public class Tile extends Observable{
 	@Override
 	public void notifyObservers() {
 		for (Observer observer : jfxPanes) {
-			System.out.println("WORKING?");
 			observer.update(this, this.visTypeToPath());
 		}
 	}
