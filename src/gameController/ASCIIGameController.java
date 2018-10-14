@@ -42,9 +42,9 @@ public class ASCIIGameController {
 		String retStr = "";
 		Integer nRows = l.getNumRows();
 		Integer nCols = l.getNumCols();
-		for (int i = 0; i < nRows; i++) {
-			for (int j = 0; j < nCols; j++) {
-				retStr += visTypeToSprite(l.getVisType(new Coord(i, j)));
+		for (int row = nRows-1; row >= 0; row--) {
+			for (int col = 0; col < nCols; col++) {
+				retStr += visTypeToSprite(l.getVisType(new Coord(row, col)));
 			}
 			retStr += "\n";
 		}
@@ -53,19 +53,22 @@ public class ASCIIGameController {
 	
 	private String visTypeToSprite(VisType visType) {
 		Map<VisType, String> spriteMap = new HashMap<>();
+			spriteMap.put(VisType.PLAYER, "P");
+			spriteMap.put(VisType.SWITCH,"@");
 			spriteMap.put(VisType.ARROW, ">");
 			spriteMap.put(VisType.BOULDER, "B");
 			spriteMap.put(VisType.BOMB, "b");
-			spriteMap.put(VisType.HOVER_POTION, "h");
+			spriteMap.put(VisType.HOVER_POTION, "H");
 			spriteMap.put(VisType.INVINCIBILITY_POTION, "I");
 			spriteMap.put(VisType.TREASURE, "$");
 			spriteMap.put(VisType.HUNTER, "h");
 			spriteMap.put(VisType.SWORD, "S");
-			spriteMap.put(VisType.EXIT, "E");
+			spriteMap.put(VisType.EXIT, "e");
 			spriteMap.put(VisType.PIT, "o");
 			spriteMap.put(VisType.EMPTY_TILE, " ");
 			spriteMap.put(VisType.KEY, "K");
 			spriteMap.put(VisType.DOOR, "D");
+			spriteMap.put(VisType.HUNTER, "E");
 		return spriteMap.get(visType);
 	}
 
@@ -88,7 +91,7 @@ public class ASCIIGameController {
 		l.placeItem(make.makeHoverPotion(new Coord(2, 4)));
 		l.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		l.placePit(new Coord(9,9));
-		// l.addEnemy(make.makeEnemy(new Coord(15, 15)));
+		l.placeMobileEntity(make.makeEnemy(new Coord(8, 7)));
 		l.placeItem(make.makeKey(new Coord(5, 5)));
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));

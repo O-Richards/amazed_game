@@ -9,6 +9,8 @@ import gameModel.mobileEntity.MobileEntity;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -46,7 +48,7 @@ public class Tile extends Observable{
 			}
 		}
 	// do we notify observers here? <<== TODO
-		notifyObservers();
+//		notifyObservers();
 	}
 	/**
 	 * Adds a usable item to the tile: 
@@ -58,7 +60,7 @@ public class Tile extends Observable{
 			throw new EntityPlacementException("Item on tile");
 		}
 		this.item = item;
-		// Notify observer JFXPanel to update image <<== TODO
+		// Notify observer JFXPanel to update image upon creation<<== TODO
 		notifyObservers();
 	}
 	
@@ -114,6 +116,25 @@ public class Tile extends Observable{
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
 		notifyObservers();
 	}
+	public String visTypeToPath(VisType visType) {
+		Map<VisType, String> spriteMap = new HashMap<>();
+			spriteMap.put(VisType.PLAYER, "/player.png");
+			spriteMap.put(VisType.SWITCH,"/switch.png");
+			spriteMap.put(VisType.ARROW, "/arrow.png");
+			spriteMap.put(VisType.BOULDER, "/boulder.png");
+			spriteMap.put(VisType.BOMB, "/unlit.png");
+			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
+			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
+			spriteMap.put(VisType.TREASURE, "/tresure.png");
+			spriteMap.put(VisType.HUNTER, "/hound,png");// TODO
+			spriteMap.put(VisType.SWORD, "/sword.png");
+			spriteMap.put(VisType.EXIT, "/exit.png");
+			spriteMap.put(VisType.PIT, "/pit.png");
+			spriteMap.put(VisType.EMPTY_TILE, "/wall.png");
+			spriteMap.put(VisType.KEY, "/key.png");
+			spriteMap.put(VisType.DOOR, "/door.png");
+		return spriteMap.get(visType);
+	}
 	
 	/**
 	 * Observer method stuff
@@ -134,18 +155,18 @@ public class Tile extends Observable{
 	
 	@Override
 	public void notifyObservers() {
+		/*
 		for (Observer observer : jfxPanes) {
-			observer.update(this.getVisType());
+			observer.update(null, this.getVisType());
 		}
+		*/
+		System.out.print("VisType of coord".concat(coord.toString()));
+		System.out.println(this.getVisType().toString());
 	}
-/*
-	private Image getImage() {
-		// TODO Auto-generated method stub
-		return img;
-	}
-*/
+
 	public void removeItem() {
 		this.item = null;
+		notifyObservers();
 	}
 
 	public MobileEntity getMobile() {
