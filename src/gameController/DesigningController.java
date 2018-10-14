@@ -364,7 +364,7 @@ public class DesigningController {
 				break;
 			case SWORD:
 				//l.placeItem(make.make(new Coord(row, col)));
-				System.out.println("i can't place sword yet NOt implemented in backend");
+				System.out.println("i can't place sword yet Not implemented in backend");
 				break;
 			case TREASURE:
 				l.placeItem(make.makeTreasure(new Coord(row, col)));
