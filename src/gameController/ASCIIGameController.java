@@ -91,7 +91,7 @@ public class ASCIIGameController {
 		l.placeItem(make.makeHoverPotion(new Coord(2, 4)));
 		l.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		l.placePit(new Coord(9,9));
-		// l.addEnemy(make.makeEnemy(new Coord(15, 15)));
+		l.placeMobileEntity(make.makeEnemy(new Coord(8, 7)));
 		l.placeItem(make.makeKey(new Coord(5, 5)));
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));

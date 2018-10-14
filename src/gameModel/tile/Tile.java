@@ -58,8 +58,8 @@ public class Tile extends Observable{
 			throw new EntityPlacementException("Item on tile");
 		}
 		this.item = item;
-		// Notify observer JFXPanel to update image <<== TODO
-//		notifyObservers();
+		// Notify observer JFXPanel to update image upon creation<<== TODO
+		notifyObservers();
 	}
 	
 	/**
@@ -145,6 +145,7 @@ public class Tile extends Observable{
 
 	public void removeItem() {
 		this.item = null;
+		notifyObservers();
 	}
 
 	public MobileEntity getMobile() {

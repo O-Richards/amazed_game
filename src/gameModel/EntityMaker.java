@@ -7,6 +7,7 @@ import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
+import gameModel.mobileEntity.Movement;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.ArrowUsable;
 import gameModel.usable.BombUsable;
@@ -119,6 +120,20 @@ public class EntityMaker {
 		return new BasicEntity.BasicEntityBuilder(VisType.BOMB, c)
 				.withEntityMover(entityMover)
 				.withUsage(new BombUsable(entityMover))
+				.build();
+	}
+	public MobileEntity makeEnemy(Coord c) {//, Entity target, double randMoveRate) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HUNTER, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKillAction(KillAction.ENEMY)
+				.withKilledBy(KillAction.WEAPON)
+				//.withMovement(new Movement(randMoveRate, basicEntity, target, entityMover))
 				.build();
 	}
 }
