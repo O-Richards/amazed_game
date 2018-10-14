@@ -42,3 +42,8 @@
 /WinSystem.class
 /WinType.class
 /EntityPlacementException.class
+/DelayedAction.class
+/EntityMaker$1.class
+/EntityMaker$2.class
+/EntityMaker.class
+/KillAction.class

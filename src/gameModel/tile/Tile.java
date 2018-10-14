@@ -40,7 +40,7 @@ public class Tile extends Observable{
 		if (item != null) item.tick(tickNum);
 		if (mobile != null) mobile.tick(tickNum);
 		//move the enemy
-		if (mobile != null && mobile.lastMoveTickNum() != tickNum) {
+		if (mobile != null && mobile.lastMoveTickNum() != tickNum && mobile.isMoving()) {
 			Coord nextCoord = mobile.nextCoord();
 			if (!nextCoord.equals(this.getCoord())) {
 				mobile.setLastMoveTickNum(tickNum);
@@ -116,25 +116,6 @@ public class Tile extends Observable{
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
 		notifyObservers();
 	}
-	public String visTypeToPath(VisType visType) {
-		Map<VisType, String> spriteMap = new HashMap<>();
-			spriteMap.put(VisType.PLAYER, "/player.png");
-			spriteMap.put(VisType.SWITCH,"/switch.png");
-			spriteMap.put(VisType.ARROW, "/arrow.png");
-			spriteMap.put(VisType.BOULDER, "/boulder.png");
-			spriteMap.put(VisType.BOMB, "/unlit.png");
-			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
-			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
-			spriteMap.put(VisType.TREASURE, "/tresure.png");
-			spriteMap.put(VisType.HUNTER, "/hound,png");// TODO
-			spriteMap.put(VisType.SWORD, "/sword.png");
-			spriteMap.put(VisType.EXIT, "/exit.png");
-			spriteMap.put(VisType.PIT, "/pit.png");
-			spriteMap.put(VisType.EMPTY_TILE, "/wall.png");
-			spriteMap.put(VisType.KEY, "/key.png");
-			spriteMap.put(VisType.DOOR, "/door.png");
-		return spriteMap.get(visType);
-	}
 	
 	/**
 	 * Observer method stuff
@@ -143,6 +124,7 @@ public class Tile extends Observable{
 	@Override
 	public void addObserver(Observer o) {
 		jfxPanes.add(o);
+		//System.out.println("add Observer called for: ".concat(this.toString()));
 	}
 	
 	/**
@@ -155,13 +137,9 @@ public class Tile extends Observable{
 	
 	@Override
 	public void notifyObservers() {
-		/*
 		for (Observer observer : jfxPanes) {
-			observer.update(null, this.getVisType());
+			observer.update(this, this.getVisType());
 		}
-		*/
-		System.out.print("VisType of coord".concat(coord.toString()));
-		System.out.println(this.getVisType().toString());
 	}
 
 	public void removeItem() {
@@ -199,7 +177,7 @@ public class Tile extends Observable{
 	}
 
 	public boolean traversable() {
-		return this.mobile == null;
+		return (this.mobile == null || this.mobile.isPlayer());
 	}
 
 	public boolean kill(KillAction action) {
@@ -212,7 +190,7 @@ public class Tile extends Observable{
 		return retVal;
 	}
 
-	/**
+	/**public up
 	 * @param e The entity to be removed from this tile
 	 */
 	public void removeMobileEntity(MobileEntity e) {

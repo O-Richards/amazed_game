@@ -69,6 +69,7 @@ public class ASCIIGameController {
 			spriteMap.put(VisType.KEY, "K");
 			spriteMap.put(VisType.DOOR, "D");
 			spriteMap.put(VisType.HUNTER, "E");
+			spriteMap.put(VisType.WALL, "W");
 		return spriteMap.get(visType);
 	}
 
@@ -91,11 +92,14 @@ public class ASCIIGameController {
 		l.placeItem(make.makeHoverPotion(new Coord(2, 4)));
 		l.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		l.placePit(new Coord(9,9));
-		l.placeMobileEntity(make.makeEnemy(new Coord(8, 7)));
+		l.placeMobileEntity(make.makeEnemy(new Coord(8, 7), player, 0.4));
 		l.placeItem(make.makeKey(new Coord(5, 5)));
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
 		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
+		l.placeMobileEntity(make.makeEnemy(new Coord(10, 10), player, 0.4));
+		
+		l.placeItem(make.makeSword(new Coord(2, 3)));
 
 		l.placeDoor(new Coord(4,1));
 		l.enableWinCondition(WinType.TREASURE);

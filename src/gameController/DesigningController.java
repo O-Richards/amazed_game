@@ -4,18 +4,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sun.java2d.pipe.SpanShapeRenderer.Simple;
-import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import gameModel.Coord;
 import gameModel.EntityMaker;
@@ -23,6 +18,7 @@ import gameModel.Level;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
+import gameModel.winCondition.WinType;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -30,7 +26,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class DesigningController {
-	private VisType currentlySelected; 
+	private VisType currentlySelected;
+	private String name; 
 	@FXML
 	private Button arrow; 
 	@FXML
@@ -85,63 +82,82 @@ public class DesigningController {
 	private Button exitScreen;
 	@FXML
 	private Button play;
+	@FXML
+	private Button setMaze; 
+	@FXML
+	private TextField setAreaCol; 
+	@FXML
+	private TextField setAreaRow; 
 
 	@FXML
 	private GridPane map;
 	
+	private Stage parentStage;
 	private Stage currStage;
-	
-	private DesignerModeHomeController designerModeHome;
-	
+	//Keeps track of if we need to save: 
+	private SimpleBooleanProperty saveState; 
 	private Level l; 
 	private EntityMaker make; 
 	//Player entity: 
 	private PlayerMobileEntity newPlayer; 
+	
+	private int setRow;
+	private int setCol; 
 	
 	private static final int DEFAULT_NROWS = 50;
 	private static final int DEFAULT_NCOLS = 50;
 	//A list observable list: 
 	//updates if there's changes to clicked boolean in JFXPanes 
 	private ObservableList<JFXPane> gridOfPanes = FXCollections.observableArrayList(item -> new Observable[] {item.clickedProperty()}); 
-
-	public DesigningController(Stage s) {
-		currStage = s;
+	
+	public DesigningController(Stage parentStage, Stage currStage) {
+		//hides the parent stage
+		this.parentStage = parentStage;
+		this.parentStage.hide();
+		this.currStage = currStage;
 	}
 
 	@FXML
     public void initialize() {
+		saveState = new SimpleBooleanProperty(false); 
+		name = "aNAME";
+		this.setRow = 60; 
+		this.setCol = 60; 
 		//we need to pass a value to the level constructor for the proper size: 
-		l = new Level();
+		l = new Level(setRow,setCol);
 		make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
 		//Prevents the user from setting checkboxes unless corresponding items are placed down:
-		exitCondition.setDisable(true);
+		//Would prbly remove this: 
+		/*exitCondition.setDisable(true);
 		enemyCondition.setDisable(true);
 		switchCondition.setDisable(true);
-		treasureCondition.setDisable(true);
+		treasureCondition.setDisable(true);*/
 		
 		//creates a map which has a size of default row and col (we will change this) 
 		//will be moving this into an update function: 
-		for (int row = 0; row < 15; row++) {
-			for (int col = 0; col < 15; col++) {
+		for (int row = 0; row < setRow + 2; row++) {
+			for (int col = 0; col < setCol + 2; col++) {
 				//Creates a JFXPane: 
 				JFXPane aPane = new JFXPane(row,col);
 				//Tell the JFXPane to detect Mouse clicks: 
 				aPane.detectMouseClicks();
 				//Adds the pane to our gridView: 
-				map.add(aPane.getPane(), col, row);
+				map.add(aPane.getPane(), row, col);
 				//Attach it to our observable list: 
 				gridOfPanes.add(aPane);
+				l.getTile(new Coord(row, col)).addObserver(aPane);
 			} 	
 		}
 		//Listens for changes in our observableList: 
 		gridOfPanes.addListener((ListChangeListener<JFXPane>) change -> {
 			while(change.next()) {
 				if(change.wasUpdated()) {
-					//TODO: may need improvment??? comparing .equals(new simpleBooleanProperty) doesn't work... 
 					JFXPane elementChanged = gridOfPanes.get(change.getFrom());
 					if(elementChanged.clickedProperty().getValue() == true) {
-						//Attemps to set the item down: 
-						this.setItem(elementChanged.getRow(), elementChanged.getColumn());
+						//Attempts to set the item down if there are items selected: 
+						if(currentlySelected != null) {
+							this.setItem(elementChanged.getRow(), elementChanged.getColumn());
+						}
 						//Sets the boolean the clicked boolean to false
 						elementChanged.resetClicked();
 						//Resets it to the change to initial state: 
@@ -175,21 +191,21 @@ public class DesigningController {
 	public void setExit() {
 		selectedItem.setText("exit");
 		//Enables the exit checkbox: 
-		exitCondition.setDisable(false);
+		//exitCondition.setDisable(false);
 		currentlySelected = VisType.EXIT;
 	}
 	@FXML
 	public void setSwitch() {
 		selectedItem.setText("switch");
 		//Enables switch win condition:
-		switchCondition.setDisable(false);
+		//switchCondition.setDisable(false);
 		currentlySelected = VisType.SWITCH; 
 	}
 	@FXML
 	public void setTreasure() {
-		selectedItem.setText("treasure");
+		selectedItem.setText("Treasure");
 		//Enables treasure win condition:
-		treasureCondition.setDisable(false);
+		//treasureCondition.setDisable(false);
 		currentlySelected = VisType.TREASURE; 
 	}
 	@FXML
@@ -199,7 +215,7 @@ public class DesigningController {
 	}
 	@FXML
 	public void setDoor() {
-		selectedItem.setText("door");
+		selectedItem.setText("Door");
 		currentlySelected = VisType.DOOR; 
 	}
 
@@ -274,17 +290,53 @@ public class DesigningController {
 		currentlySelected = VisType.INVINCIBILITY_POTION; 
 	}
 	
+	@FXML
+	public void setExitWinCondition() {
+		if(exitCondition.isSelected()) {
+			l.enableWinCondition(WinType.EXIT);
+		}else {
+			l.enableWinCondition(WinType.EXIT);
+		}
+	}
+	@FXML
+	public void setSwitchWinCondition() {
+		if(switchCondition.isSelected()) {
+			l.enableWinCondition(WinType.SWITCH);
+		}else {
+			l.disableWinCondition(WinType.SWITCH);
+		}
+	}
 	
-	
+	@FXML
+	public void setTreasureWinCondition() {
+		if(switchCondition.isSelected()) {
+			l.enableWinCondition(WinType.TREASURE);
+		}else {
+			l.disableWinCondition(WinType.TREASURE);
+		}
+	}
+
+	@FXML
+	public void setEnemyWinCondition() {
+		if(switchCondition.isSelected()) {
+			l.enableWinCondition(WinType.ENEMY);
+		}else {
+			l.disableWinCondition(WinType.ENEMY);
+		}
+	}
 	@FXML 
 	public void clearSelected() {
 		selectedItem.setText("-");
 		currentlySelected = null; 
+		//Allows us to delete items: 
+		currentlySelected = VisType.EMPTY_TILE;
 	}
 	
 	@FXML
-	public void saveMap(ActionEvent event) {
-		designerModeHome.addMap(l);
+	public void saveMap() {
+		this.saveState.set(true);
+		currStage.close();
+		parentStage.show();
 	}
 	
 	@FXML
@@ -296,62 +348,101 @@ public class DesigningController {
 	
 	@FXML
 	public void exitScreen() {
-		DesignerModeHomeScreen designerModeHome = new DesignerModeHomeScreen(currStage);
-		designerModeHome.start();
+		//Closes the current stage
+		currStage.close();
+		//Shows the parent stage
+		parentStage.show();
 	}
 	
 	
 	
-	public void setItem(int row, int col){
+	private void setItem(int row, int col){
 		try {
-			//attempts to set items down 
+			//attempts to set items down
+			System.out.println(currentlySelected);
 			switch (currentlySelected) {
 			case ARROW:
 				l.placeItem(make.makeArrow(new Coord(row, col)));
+				System.out.println("placed an arrow");
+				break;
 			case BOMB:
 				l.placeItem(make.makeBomb(new Coord(row, col)));
+				System.out.println("placed a bomb");
+				break;
 			case BOULDER:
-				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));
+				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));		
+				System.out.println("placed Boulder");
+				break;
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
+				System.out.println("placed Door");
+				break;
 			case EMPTY_TILE:
+				l.clearTile(new Coord(row, col));	
+				System.out.println("Cleared tile");
+				break;
 			case EXIT:
 				l.placeExit(new Coord(row, col));
+				System.out.println("placed exit");
+				break;
 			case HOVER_POTION:
 				l.placeItem(make.makeHoverPotion(new Coord(row, col)));
+				System.out.println("hover_potion");
+				break;
 			case HUNTER:
+				System.out.println("lol what hunter");
+				break;
 			case INVINCIBILITY_POTION:
 				l.placeItem(make.makeInvincibilityPotion(new Coord(row, col)));
+				System.out.println("invincibility potion");
+				break;
 			case KEY:
 				l.placeItem(make.makeKey(new Coord(row, col)));
+				System.out.println("key");
+				break;
 			case PIT:
 				l.placePit(new Coord(row, col));
+				System.out.println("pit");
+				l.getTile(new Coord(row,col)).notifyObservers();
+				break;
 			case PLAYER:
-					newPlayer = make.makePlayer(new Coord(row,col));
-					l.placeMobileEntity(newPlayer);
+				newPlayer = make.makePlayer(new Coord(row,col));
+				l.placeMobileEntity(newPlayer);
+				System.out.println("player placed");
+				break;
 			case SWITCH:
 				l.placeSwitch(new Coord(row, col));
+				System.out.println("placed switch");
+				break;
 			case SWORD:
 				//l.placeItem(make.make(new Coord(row, col)));
+				System.out.println("i can't place sword yet Not implemented in backend");
+				break;
 			case TREASURE:
 				l.placeItem(make.makeTreasure(new Coord(row, col)));
+				System.out.println("treasure placed");
+				break;
 			case WALL:
 				l.placeWall(new Coord(row, col));
+				System.out.println("wall placed");
+				break;
 			default: 
-				//Always sets it back to norm
-				currentlySelected = null; 
-				selectedItem.setText("-");
 				break;
 				
 			}
-		} catch (Exception e) {
+			//Always sets it back to norm
+			currentlySelected = null; 
+			selectedItem.setText("-");
+			
+		} catch (EntityPlacementException s) {
+			System.out.println("Error Caught !!");
 			if(this.currentlySelected != null) {
 				Alert alert = new Alert(Alert.AlertType.WARNING);
 				alert.getDialogPane().setContent(new Text("Unable to place item!!"));
 				alert.showAndWait();
 				selectedItem.setText("-");
 				currentlySelected = null;
-			}else {
+			}else{
 				Alert alert = new Alert(Alert.AlertType.WARNING);
 				alert.getDialogPane().setContent(new Text("Please select an item"));
 				alert.showAndWait();
@@ -360,9 +451,19 @@ public class DesigningController {
 			}
 			
 		}
+	}
 	
-			
-			
+	public SimpleBooleanProperty getSaveProperty() {
+		return this.saveState;
+	}
+	public Level getLevel() {
+		return this.l;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void setArea() {
+		//if()
 	}
 
 }
