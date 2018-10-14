@@ -47,6 +47,8 @@ public class DesigningController {
 	@FXML
 	private Button hoverPotion;
 	@FXML
+	private Button hunter;
+	@FXML
 	private Button invincibilityPotion; 
 	@FXML
 	private Button key; 	
@@ -80,11 +82,15 @@ public class DesigningController {
 	private Button save;
 	@FXML
 	private Button exitScreen;
+	@FXML
+	private Button play;
 
 	@FXML
 	private GridPane map;
 	
 	private Stage currStage;
+	
+	private DesignerModeHomeController designerModeHome;
 	
 	private Level l; 
 	private EntityMaker make; 
@@ -236,6 +242,14 @@ public class DesigningController {
 		currentlySelected = VisType.HUNTER;
 
 	}
+	
+	@FXML 
+	public void setHunter() {
+		selectedItem.setText("Hunter");
+		//TODO: NEED TO CHANGE THIS!!!
+		currentlySelected = VisType.HUNTER;
+	}
+	
 	@FXML
 	public void setStrat() {
 		selectedItem.setText("Strategiest");
@@ -269,6 +283,11 @@ public class DesigningController {
 	
 	@FXML
 	public void saveMap() {
+		designerModeHome.addMap(l);
+	}
+	
+	@FXML
+	public void playMap() {
 		
 	}
 	

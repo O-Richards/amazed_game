@@ -23,6 +23,7 @@
       <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="212.0" layoutX="243.0" layoutY="18.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="187.0" />
       <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="150.0" layoutX="12.0" layoutY="246.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="225.0" />
       <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="218.0" layoutX="16.0" layoutY="12.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="213.0" />
+      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="154.0" layoutX="258.0" layoutY="242.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="255.0" />
       <Label blendMode="SRC_ATOP" layoutX="481.0" layoutY="23.0" opacity="0.8" text="ESCAPE" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="American Typewriter Condensed Bold" size="22.0" />
@@ -169,17 +170,17 @@
             <Image url="@../../images/switch.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="389.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="34.0" layoutX="371.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/strategist.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="49.0" layoutX="344.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="339.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/hound.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="36.0" layoutX="307.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="25.0" layoutX="312.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/coward.png" />
          </image>
@@ -225,22 +226,22 @@
             <Image url="@../../images/pit.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="34.0" layoutX="430.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="34.0" layoutX="428.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/exploision.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="36.0" layoutX="372.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="40.0" fitWidth="30.0" layoutX="371.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/coward.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="36.0" fitWidth="49.0" layoutX="411.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="34.0" layoutX="404.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/hound.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="457.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="35.0" fitWidth="39.0" layoutX="445.0" layoutY="343.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../images/strategist.png" />
          </image>
@@ -250,12 +251,12 @@
             <Font name="American Typewriter" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="297.0" layoutY="304.0" text="is on or adjacent to " textFill="#d7cbb8">
+      <Label layoutX="292.0" layoutY="314.0" text="is on or adjacent to " textFill="#d7cbb8">
          <font>
             <Font name="American Typewriter" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="293.0" layoutY="338.0" text="collide with " textFill="#d7cbb8">
+      <Label layoutX="293.0" layoutY="353.0" text="collide with " textFill="#d7cbb8">
          <font>
             <Font name="American Typewriter" size="13.0" />
          </font>
@@ -301,6 +302,15 @@
             <Font name="American Typewriter" size="13.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="3.0" arcWidth="3.0" fill="#1f93ff00" height="154.0" layoutX="258.0" layoutY="242.0" stroke="#d7cbb8" strokeLineCap="ROUND" strokeType="OUTSIDE" strokeWidth="2.0" width="255.0" />
+      <ImageView fitHeight="45.0" fitWidth="34.0" layoutX="394.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/hunter.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="38.0" layoutX="476.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/hunter.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
