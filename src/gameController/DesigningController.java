@@ -4,8 +4,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.beans.Observable;
@@ -28,6 +30,7 @@ import javafx.fxml.FXML;
 public class DesigningController {
 	private VisType currentlySelected;
 	private String name; 
+
 	@FXML
 	private Button arrow; 
 	@FXML
@@ -83,12 +86,17 @@ public class DesigningController {
 	@FXML
 	private Button play;
 	@FXML
-	private Button setMaze; 
+	private TextField mazeName; 
+	@FXML
+	private Button setMazeArea; 
 	@FXML
 	private TextField setAreaCol; 
 	@FXML
 	private TextField setAreaRow; 
-
+	@FXML
+	private Pane mazeSetPane; 
+	@FXML
+	private Slider difficultySlider; 
 	@FXML
 	private GridPane map;
 	
@@ -113,62 +121,24 @@ public class DesigningController {
 	public DesigningController(Stage parentStage, Stage currStage) {
 		//hides the parent stage
 		this.parentStage = parentStage;
-		this.parentStage.hide();
+		//this.parentStage.hide();
 		this.currStage = currStage;
 	}
 
 	@FXML
     public void initialize() {
-		saveState = new SimpleBooleanProperty(false); 
-		name = "aNAME";
-		this.setRow = 60; 
-		this.setCol = 60; 
-		//we need to pass a value to the level constructor for the proper size: 
-		l = new Level(setRow,setCol);
-		make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
+		this.saveState = new SimpleBooleanProperty(false); 
+		if(l == null) {
+			//If the level hasn't been set: 
+			System.out.println("set to false");
+			mazeSetPane.setVisible(true);
+		}
 		//Prevents the user from setting checkboxes unless corresponding items are placed down:
 		//Would prbly remove this: 
 		/*exitCondition.setDisable(true);
 		enemyCondition.setDisable(true);
 		switchCondition.setDisable(true);
-		treasureCondition.setDisable(true);*/
-		
-		//creates a map which has a size of default row and col (we will change this) 
-		//will be moving this into an update function: 
-		for (int row = 0; row < setRow + 2; row++) {
-			for (int col = 0; col < setCol + 2; col++) {
-				//Creates a JFXPane: 
-				JFXPane aPane = new JFXPane(row,col);
-				//Tell the JFXPane to detect Mouse clicks: 
-				aPane.detectMouseClicks();
-				//Adds the pane to our gridView: 
-				map.add(aPane.getPane(), row, col);
-				//Attach it to our observable list: 
-				gridOfPanes.add(aPane);
-				l.getTile(new Coord(row, col)).addObserver(aPane);
-			} 	
-		}
-		//Listens for changes in our observableList: 
-		gridOfPanes.addListener((ListChangeListener<JFXPane>) change -> {
-			while(change.next()) {
-				if(change.wasUpdated()) {
-					JFXPane elementChanged = gridOfPanes.get(change.getFrom());
-					if(elementChanged.clickedProperty().getValue() == true) {
-						//Attempts to set the item down if there are items selected: 
-						if(currentlySelected != null) {
-							this.setItem(elementChanged.getRow(), elementChanged.getColumn());
-						}
-						//Sets the boolean the clicked boolean to false
-						elementChanged.resetClicked();
-						//Resets it to the change to initial state: 
-						change.reset();
-						change.next();
-					}
-
-				}
-			}
-		});
-		
+		treasureCondition.setDisable(true);*/		
 	}
 
 	@FXML	
@@ -335,8 +305,8 @@ public class DesigningController {
 	@FXML
 	public void saveMap() {
 		this.saveState.set(true);
-		currStage.close();
 		parentStage.show();
+		currStage.close();
 	}
 	
 	@FXML
@@ -462,8 +432,66 @@ public class DesigningController {
 	public String getName() {
 		return this.name;
 	}
-	public void setArea() {
-		//if()
+	public void setMapValues() {
+		int rowInt = 0;
+		int colInt = 0;
+		try {
+			 rowInt = Integer.parseInt(setAreaRow.getText());
+			 colInt = Integer.parseInt(setAreaCol.getText());
+		 } catch (NumberFormatException e) {
+				Alert alert = new Alert(Alert.AlertType.WARNING);
+				alert.getDialogPane().setContent(new Text("Please enter a numerical Value"));
+				alert.showAndWait();
+		}
+		this.name = mazeName.getText();
+		System.out.println(this.name);
+		if(rowInt <= 60 && colInt <=60) {
+			if(rowInt > 0 && colInt > 0) {
+				this.setRow = rowInt; 
+				this.setCol = colInt; 
+				//we need to pass a value to the level constructor for the proper size: 
+				l = new Level(setRow,setCol);
+				make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
+				generateMap();
+				mazeSetPane.setVisible(false);
+			}
+		}
 	}
+	private void generateMap() {	
+		//creates a map which has a size of default row and col (we will change this) 
+		//will be moving this into an update function: 
+		for (int row = 0; row < setRow + 2; row++) {
+			for (int col = 0; col < setCol + 2; col++) {
+				//Creates a JFXPane: 
+				JFXPane aPane = new JFXPane(row,col);
+				//Tell the JFXPane to detect Mouse clicks: 
+				aPane.detectMouseClicks();
+				//Adds the pane to our gridView: 
+				map.add(aPane.getPane(), row, col);
+				//Attach it to our observable list: 
+				gridOfPanes.add(aPane);
+				l.getTile(new Coord(row, col)).addObserver(aPane);
+			} 	
+		}
+		//Listens for changes in our observableList: 
+		gridOfPanes.addListener((ListChangeListener<JFXPane>) change -> {
+			while(change.next()) {
+				if(change.wasUpdated()) {
+					JFXPane elementChanged = gridOfPanes.get(change.getFrom());
+					if(elementChanged.clickedProperty().getValue() == true) {
+						//Attempts to set the item down if there are items selected: 
+						if(currentlySelected != null) {
+							this.setItem(elementChanged.getRow(), elementChanged.getColumn());
+						}
+						//Sets the boolean the clicked boolean to false
+						elementChanged.resetClicked();
+						//Resets it to the change to initial state: 
+						change.reset();
+						change.next();
+					}
 
+				}
+			}
+		});
+	}
 }

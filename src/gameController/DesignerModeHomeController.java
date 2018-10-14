@@ -26,7 +26,6 @@ public class DesignerModeHomeController {
 	@FXML
 	private Button delete;
 	
-	
     @FXML
     //Contains a list of Game names: 
     private ListView<DesigningController> listOfGames;
@@ -59,9 +58,12 @@ public class DesignerModeHomeController {
 			while(change.next()) {
 				if(change.wasUpdated()) {
 					DesigningController elementChanged = listOfDesignControllers.get(change.getFrom());
+					System.out.println(elementChanged);
 					if(elementChanged.getSaveProperty().getValue() == true) {
+						System.out.println("State is saved");
 						//Saves the current Controller if state = true: 
 						savedControllers.add(elementChanged);
+						System.out.println(savedControllers.get(0).getSaveProperty());
 						//Sets items into listview: 
 						listOfGames.setItems(savedControllers);
 						//Get's the appropriate names: 
