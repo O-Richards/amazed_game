@@ -219,6 +219,10 @@ public class Level implements EntityMover {
 	public void enableWinCondition(WinType winType) {
 		this.winSystem.enableWinCondition(winType);
 	}
+	
+	public void disableWinCondition(WinType winType) {
+		this.winSystem.disableWinCondition(winType);
+	}
 
 	/* (non-Javadoc)
 	 * @see gameModel.EntityMover#moveEntity(gameModel.MobileEntity, gameModel.Direction)
