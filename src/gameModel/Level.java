@@ -63,7 +63,7 @@ public class Level implements EntityMover {
 		//Add bordering walls
 		for (int row = 0; row < nRows + 2; row++) {
 			this.map[row][0] = new WallTile(new Coord(row, 0), this);
-			this.map[row][nRows + 1] = new WallTile(new Coord(row, nRows + 1), this);
+			this.map[row][nCols + 1] = new WallTile(new Coord(row, nCols + 1), this);
 		}
 		for (int col = 0; col < nCols + 2; col++) {
 			this.map[0][col] = new WallTile(new Coord(0, col), this);
