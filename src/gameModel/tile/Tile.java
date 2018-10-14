@@ -40,7 +40,7 @@ public class Tile extends Observable{
 		if (item != null) item.tick(tickNum);
 		if (mobile != null) mobile.tick(tickNum);
 		//move the enemy
-		if (mobile != null && mobile.lastMoveTickNum() != tickNum) {
+		if (mobile != null && mobile.lastMoveTickNum() != tickNum && mobile.isMoving()) {
 			Coord nextCoord = mobile.nextCoord();
 			if (!nextCoord.equals(this.getCoord())) {
 				mobile.setLastMoveTickNum(tickNum);

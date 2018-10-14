@@ -12,6 +12,7 @@ import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.ArrowUsable;
 import gameModel.usable.BombUsable;
 import gameModel.usable.KeyUsable;
+import gameModel.usable.SwordUsage;
 import gameModel.usable.TreasureUsage;
 import gameModel.usable.Usable;
 import gameModel.usable.UseAction;
@@ -101,6 +102,14 @@ public class EntityMaker {
 		return new BasicEntity.BasicEntityBuilder(VisType.HOVER_POTION, c)
 				.withEntityMover(entityMover)
 				.withUsage(hoverPotionUse)
+				.build();
+	}
+	
+	public Entity makeSword(Coord c) {
+		final Integer numUses = 5;
+		return new BasicEntity.BasicEntityBuilder(VisType.SWORD, c)
+				.withEntityMover(entityMover)
+				.withUsage(new SwordUsage(entityMover, numUses))
 				.build();
 	}
 	

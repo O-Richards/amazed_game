@@ -57,7 +57,7 @@ public class EnemyMovement implements Movement {
 
 	@Override
 	public boolean kill(KillAction action) {
-		return false;
+		return true;
 	}
 
 	@Override
