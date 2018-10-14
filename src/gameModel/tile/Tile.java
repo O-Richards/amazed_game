@@ -127,13 +127,14 @@ public class Tile extends Observable{
 			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
 			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
 			spriteMap.put(VisType.TREASURE, "/treasure.png");
-			spriteMap.put(VisType.HUNTER, "/hound,png");// TODO
+			spriteMap.put(VisType.HUNTER, "/hound,png");
 			spriteMap.put(VisType.SWORD, "/sword.png");
 			spriteMap.put(VisType.EXIT, "/exit.png");
 			spriteMap.put(VisType.PIT, "/pit.png");
 			spriteMap.put(VisType.WALL, "/wall.png");
 			spriteMap.put(VisType.KEY, "/key.png");
 			spriteMap.put(VisType.DOOR, "/door.png");
+			spriteMap.put(VisType.EMPTY_TILE, "/tile.png");
 		return spriteMap.get(visType);
 	}
 	

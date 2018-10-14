@@ -16,6 +16,7 @@ import gameModel.Level;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
+import gameModel.winCondition.WinType;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -85,7 +86,7 @@ public class DesigningController {
 	
 	private Stage parentStage;
 	private Stage currStage;
-	//Checks if we're meant to save the controller: 
+	//Keeps track of if we need to save: 
 	private SimpleBooleanProperty saveState; 
 	private Level l; 
 	private EntityMaker make; 
@@ -137,10 +138,9 @@ public class DesigningController {
 		gridOfPanes.addListener((ListChangeListener<JFXPane>) change -> {
 			while(change.next()) {
 				if(change.wasUpdated()) {
-					//TODO: may need improvment??? comparing .equals(new simpleBooleanProperty) doesn't work... 
 					JFXPane elementChanged = gridOfPanes.get(change.getFrom());
 					if(elementChanged.clickedProperty().getValue() == true) {
-						//Attemps to set the item down: 
+						//Attempts to set the item down: 
 						this.setItem(elementChanged.getRow(), elementChanged.getColumn());
 						//Sets the boolean the clicked boolean to false
 						elementChanged.resetClicked();
@@ -274,12 +274,38 @@ public class DesigningController {
 		currentlySelected = VisType.INVINCIBILITY_POTION; 
 	}
 	
+	@FXML
+	public void setExitWinCondition() {
+		if(exitCondition.isSelected()) {
+			l.enableWinCondition(WinType.EXIT);
+		}
+	}
+	@FXML
+	public void setSwitchWinCondition() {
+		if(switchCondition.isSelected()) {
+			l.enableWinCondition(WinType.SWITCH);
+		}
+	}
 	
-	
+	@FXML
+	public void setTreasureWinCondition() {
+		if(switchCondition.isSelected()) {
+			l.enableWinCondition(WinType.TREASURE);
+		}
+	}
+
+	@FXML
+	public void setEnemyWinCondition() {
+		if(switchCondition.isSelected()) {
+			l.enableWinCondition(WinType.ENEMY);
+		}
+	}
 	@FXML 
 	public void clearSelected() {
 		selectedItem.setText("-");
 		currentlySelected = null; 
+		//Allows us to delete items: 
+		currentlySelected = VisType.EMPTY_TILE;
 	}
 	
 	@FXML
@@ -329,6 +355,8 @@ public class DesigningController {
 				System.out.println("placed Door");
 				break;
 			case EMPTY_TILE:
+				l.clearTile(new Coord(row, col));	
+				System.out.println("Cleared tile");
 				break;
 			case EXIT:
 				l.placeExit(new Coord(row, col));
