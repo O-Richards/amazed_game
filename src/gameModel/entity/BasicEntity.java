@@ -125,6 +125,11 @@ public class BasicEntity implements Entity {
 				public UseAction getUseAction() {
 					return UseAction.NONE;
 				}
+
+				@Override
+				public boolean canBePickedUpWith(Usable u) {
+					return true;
+				}
 			};
 			this.use = noAction;
 			

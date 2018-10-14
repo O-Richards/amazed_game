@@ -55,11 +55,13 @@ public class MobileEntity implements Movement, Entity {
 	public boolean isAlive() {
 		return this.baseEntity.isAlive();
 	}
-	
+
+	@Override
 	public Direction getDirection() {
 		return this.movement.getDirection();
 	}	
 	
+	@Override
 	public void setDirection(Direction dir) {
 		this.movement.setDirection(dir);
 		if (DEBUG) System.out.println("Setting MobileEntity " + this.getVisType() + "Direction to " + this.getDirection());
@@ -90,6 +92,7 @@ public class MobileEntity implements Movement, Entity {
 		return this.killAction;
 	}
 	
+	@Override
 	public boolean canFly() {
 		return this.movement.canFly();
 	}	
@@ -106,6 +109,7 @@ public class MobileEntity implements Movement, Entity {
 		return -1;
 	}
 
+	@Override
 	public Coord nextCoord() {
 		return this.movement.nextCoord();
 	}
