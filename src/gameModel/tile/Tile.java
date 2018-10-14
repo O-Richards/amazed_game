@@ -41,6 +41,7 @@ public class Tile extends Observable{
 		this.jfxPanes = oldParent.jfxPanes; 
 		this.coord = oldParent.coord; 
 		//Doesn't take in the old parent Entities...
+		notifyObservers();
 	}
 
 	public void tick(int tickNum) {

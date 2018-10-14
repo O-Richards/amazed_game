@@ -13,7 +13,6 @@ public class WallTile extends Tile {
 	public WallTile(Tile parentTile) {
 		super(parentTile);
 		//Notifies all observers this is now a wall tile
-		this.notifyObservers();
 	}
 
 	public String getSprite() {

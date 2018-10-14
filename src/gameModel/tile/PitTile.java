@@ -14,7 +14,6 @@ public class PitTile extends Tile {
 	}
 	public PitTile(Tile oldParent) {
 		super(oldParent);
-		this.notifyObservers();
 	}
 
 	@Override

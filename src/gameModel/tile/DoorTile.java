@@ -17,7 +17,6 @@ public class DoorTile extends Tile {
 	}
 	public DoorTile(Tile oldParent) {
 		super(oldParent);
-		this.notifyObservers();
 		this.doorCode = DoorTile.generateDoorCode();
 	}
 

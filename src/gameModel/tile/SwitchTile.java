@@ -16,7 +16,6 @@ public class SwitchTile extends Tile {
 	}
 	public SwitchTile(Tile oldParent, WinCondition winCondition) {
 		super(oldParent);
-		this.notifyObservers();
 		this.switchCondition = winCondition; 
 	}
 	

@@ -16,7 +16,6 @@ public class ExitTile extends Tile {
 	}
 	public ExitTile(Tile oldParent,WinCondition winCondition) {
 		super(oldParent);
-		this.notifyObservers();
 		this.winCondition = winCondition; 
 	}
 

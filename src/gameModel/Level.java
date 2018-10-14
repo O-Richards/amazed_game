@@ -92,8 +92,12 @@ public class Level implements EntityMover {
 	 * @param c The coord of the tile to be cleared
 	 */
 	public void clearTile(Coord c) {
-		Tile t = this.getTile(c);
-		t.clear();
+		/*Tile t = this.getTile(c);
+		t.clear();*/
+		//Get's the parent of the old tile instead
+		Tile oldParent = this.getTile(c);
+		Tile newTile = new Tile(oldParent); 
+		this.map[c.getX()][c.getY()] = newTile;
 	}
 	
 	/**
