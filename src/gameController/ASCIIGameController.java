@@ -100,6 +100,7 @@ public class ASCIIGameController {
 		l.placeMobileEntity(make.makeEnemy(new Coord(10, 10), player, 0.4));
 		
 		l.placeItem(make.makeSword(new Coord(2, 3)));
+		l.placeItem(make.makeSword(new Coord(1, 3)));
 
 		l.placeDoor(new Coord(4,1));
 		l.enableWinCondition(WinType.TREASURE);

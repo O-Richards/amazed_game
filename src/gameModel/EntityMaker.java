@@ -71,6 +71,14 @@ public class EntityMaker {
 				return UseAction.INVINCIBILITY;
 			}
 			
+			@Override
+			public boolean canBePickedUpWith(Usable u) {
+				if (u.getUseAction() == this.getUseAction()) {
+					return false;
+				}
+				return true;
+			}
+			
 		};
 		
 		return new BasicEntity.BasicEntityBuilder(VisType.INVINCIBILITY_POTION, c)
@@ -96,6 +104,14 @@ public class EntityMaker {
 			@Override
 			public UseAction getUseAction() {
 				return UseAction.HOVER;
+			}
+
+			@Override
+			public boolean canBePickedUpWith(Usable u) {
+				if (u.getUseAction() == this.getUseAction()) {
+					return false;
+				}
+				return true;
 			}
 		};
 		

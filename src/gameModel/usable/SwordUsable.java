@@ -34,5 +34,14 @@ public class SwordUsable implements Usable {
 	public UseAction getUseAction() {
 		return UseAction.SWORD;
 	}
+	
+	@Override
+	public boolean canBePickedUpWith(Usable u) {
+		if (u.getUseAction() == this.getUseAction()) {
+			return false;
+		}
+		return true;
+	}
+	
 
 }

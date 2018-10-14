@@ -56,5 +56,10 @@ public class ArrowUsable implements Usable {
 	public UseAction getUseAction() {
 		return UseAction.ARROW;
 	}
+
+	@Override
+	public boolean canBePickedUpWith(Usable u) {
+		return true;
+	}
 	
 }
