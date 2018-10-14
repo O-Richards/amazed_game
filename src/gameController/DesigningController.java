@@ -127,9 +127,10 @@ public class DesigningController {
 				//Tell the JFXPane to detect Mouse clicks: 
 				aPane.detectMouseClicks();
 				//Adds the pane to our gridView: 
-				map.add(aPane.getPane(), col, row);
+				map.add(aPane.getPane(), row, col);
 				//Attach it to our observable list: 
 				gridOfPanes.add(aPane);
+				l.getTile(new Coord(row, col)).addObserver(aPane);
 			} 	
 		}
 		//Listens for changes in our observableList: 
@@ -308,7 +309,7 @@ public class DesigningController {
 			case BOMB:
 				l.placeItem(make.makeBomb(new Coord(row, col)));
 			case BOULDER:
-				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));
+				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));				
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
 			case EMPTY_TILE:
@@ -323,6 +324,8 @@ public class DesigningController {
 				l.placeItem(make.makeKey(new Coord(row, col)));
 			case PIT:
 				l.placePit(new Coord(row, col));
+				System.out.println("PLACE PIT");
+				l.getTile(new Coord(row,col)).notifyObservers();
 			case PLAYER:
 					newPlayer = make.makePlayer(new Coord(row,col));
 					l.placeMobileEntity(newPlayer);

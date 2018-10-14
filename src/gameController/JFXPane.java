@@ -1,7 +1,7 @@
 package gameController;
 import java.util.Observable;
 import java.util.Observer;
-
+import gameModel.entity.VisType;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.image.Image;
@@ -56,7 +56,6 @@ public class JFXPane implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		String img = ((String) arg); //cast object argument as what we need
         this.image = new ImageView(new Image(getClass().getResourceAsStream(img),20,20,true,true)); // DOES THIS WORK?		
 	}

@@ -116,7 +116,8 @@ public class Tile extends Observable{
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
 		notifyObservers();
 	}
-	public String visTypeToPath(VisType visType) {
+	public String visTypeToPath() {
+		VisType visType = this.getVisType();
 		Map<VisType, String> spriteMap = new HashMap<>();
 			spriteMap.put(VisType.PLAYER, "/player.png");
 			spriteMap.put(VisType.SWITCH,"/switch.png");
@@ -143,6 +144,7 @@ public class Tile extends Observable{
 	@Override
 	public void addObserver(Observer o) {
 		jfxPanes.add(o);
+		//System.out.println("add Observer called for: ".concat(this.toString()));
 	}
 	
 	/**
@@ -155,13 +157,10 @@ public class Tile extends Observable{
 	
 	@Override
 	public void notifyObservers() {
-		
 		for (Observer observer : jfxPanes) {
-			observer.update(this, this.getVisType());
+			System.out.println("WORKING?");
+			observer.update(this, this.visTypeToPath());
 		}
-		
-		//System.out.print("VisType of coord".concat(coord.toString()));
-		//System.out.println(this.getVisType().toString());
 	}
 
 	public void removeItem() {
@@ -212,7 +211,7 @@ public class Tile extends Observable{
 		return retVal;
 	}
 
-	/**
+	/**public up
 	 * @param e The entity to be removed from this tile
 	 */
 	public void removeMobileEntity(MobileEntity e) {
