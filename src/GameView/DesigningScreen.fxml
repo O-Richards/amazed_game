@@ -299,7 +299,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="play" layoutX="38.0" layoutY="435.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+            <Button fx:id="play" layoutX="38.0" layoutY="435.0" mnemonicParsing="false" onAction="#playMap" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>

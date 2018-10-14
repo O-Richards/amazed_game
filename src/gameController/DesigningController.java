@@ -7,25 +7,18 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sun.java2d.pipe.SpanShapeRenderer.Simple;
-import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-
-import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import gameModel.Coord;
 import gameModel.EntityMaker;
 import gameModel.Level;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.PlayerMobileEntity;
-import gameModel.tile.EntityPlacementException;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class DesigningController {
@@ -133,9 +126,10 @@ public class DesigningController {
 				//Tell the JFXPane to detect Mouse clicks: 
 				aPane.detectMouseClicks();
 				//Adds the pane to our gridView: 
-				map.add(aPane.getPane(), col, row);
+				map.add(aPane.getPane(), row, col);
 				//Attach it to our observable list: 
 				gridOfPanes.add(aPane);
+				l.getTile(new Coord(row, col)).addObserver(aPane);
 			} 	
 		}
 		//Listens for changes in our observableList: 
@@ -288,6 +282,7 @@ public class DesigningController {
 	}
 	
 	@FXML
+
 	public void saveMap() {
 		this.saveState.set(true);
 		currStage.close();
@@ -295,7 +290,9 @@ public class DesigningController {
 	}
 	
 	@FXML
-	public void playMap() {
+	public void playMap(ActionEvent event) {
+		PlayingScreen playing = new PlayingScreen(currStage);
+		playing.start();
 		
 	}
 	
@@ -318,7 +315,7 @@ public class DesigningController {
 			case BOMB:
 				l.placeItem(make.makeBomb(new Coord(row, col)));
 			case BOULDER:
-				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));
+				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));				
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
 			case EMPTY_TILE:
@@ -333,6 +330,8 @@ public class DesigningController {
 				l.placeItem(make.makeKey(new Coord(row, col)));
 			case PIT:
 				l.placePit(new Coord(row, col));
+				System.out.println("PLACE PIT");
+				l.getTile(new Coord(row,col)).notifyObservers();
 			case PLAYER:
 					newPlayer = make.makePlayer(new Coord(row,col));
 					l.placeMobileEntity(newPlayer);

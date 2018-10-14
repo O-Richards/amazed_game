@@ -31,18 +31,23 @@ public class PauseMenuController {
 	
 	@FXML
 	public void handleQuitButton(ActionEvent event) {
+		PlayerModeHomeScreen playerModeHome = new PlayerModeHomeScreen(currStage);
+		playerModeHome.start();
 		
 	}
 	
 	@FXML 
 	public void handleRestartButton(ActionEvent event) {
-		
+		PlayingScreen playing = new PlayingScreen(currStage);
+		playing.start();
 	}
 	
 	@FXML 
 	public void handleResumeButton(ActionEvent event) {
-		
+		PlayerModeHomeScreen playerModeHome = new PlayerModeHomeScreen(currStage);
+		playerModeHome.start();
 	}
+	
 	
 
 }

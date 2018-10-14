@@ -82,6 +82,7 @@ public class Level implements EntityMover {
 		Coord c = item.getCoord();
 		Tile placementTile = getTile(c);
 		placementTile.addItem(item);
+		placementTile.notifyObservers();
 	}
 	
 	/**
@@ -131,7 +132,7 @@ public class Level implements EntityMover {
 	 * @param c The coord of the tile to fetch
 	 * @return The tile at Coord c
 	 */
-	private Tile getTile(Coord c) {
+	public Tile getTile(Coord c) {
 		return this.map[c.getX()][c.getY()];
 	}
 
