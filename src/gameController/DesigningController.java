@@ -29,7 +29,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 public class DesigningController {
-	private VisType currentlySelected; 
+	private VisType currentlySelected;
+	private String name; 
 	@FXML
 	private Button arrow; 
 	@FXML
@@ -88,10 +89,10 @@ public class DesigningController {
 	@FXML
 	private GridPane map;
 	
+	private Stage parentStage;
 	private Stage currStage;
-	
-	private DesignerModeHomeController designerModeHome;
-	
+	//Checks if we're meant to save the controller: 
+	private SimpleBooleanProperty saveState; 
 	private Level l; 
 	private EntityMaker make; 
 	//Player entity: 
@@ -102,13 +103,18 @@ public class DesigningController {
 	//A list observable list: 
 	//updates if there's changes to clicked boolean in JFXPanes 
 	private ObservableList<JFXPane> gridOfPanes = FXCollections.observableArrayList(item -> new Observable[] {item.clickedProperty()}); 
-
-	public DesigningController(Stage s) {
-		currStage = s;
+	
+	public DesigningController(Stage parentStage, Stage currStage) {
+		//hides the parent stage
+		this.parentStage = parentStage;
+		this.parentStage.hide();
+		this.currStage = currStage;
 	}
 
 	@FXML
     public void initialize() {
+		saveState = new SimpleBooleanProperty(false); 
+		name = "aNAME";
 		//we need to pass a value to the level constructor for the proper size: 
 		l = new Level();
 		make = new EntityMaker(l.getWinSystem(), l.getEntityMover());
@@ -283,7 +289,9 @@ public class DesigningController {
 	
 	@FXML
 	public void saveMap() {
-		designerModeHome.addMap(l);
+		this.saveState.set(true);
+		currStage.close();
+		parentStage.show();
 	}
 	
 	@FXML
@@ -293,8 +301,10 @@ public class DesigningController {
 	
 	@FXML
 	public void exitScreen() {
-		DesignerModeHomeScreen designerModeHome = new DesignerModeHomeScreen(currStage);
-		designerModeHome.start();
+		//Closes the current stage
+		currStage.close();
+		//Shows the parent stage
+		parentStage.show();
 	}
 	
 	
@@ -357,9 +367,16 @@ public class DesigningController {
 			}
 			
 		}
+	}
 	
-			
-			
+	public SimpleBooleanProperty getSaveProperty() {
+		return this.saveState;
+	}
+	public Level getLevel() {
+		return this.l;
+	}
+	public String getName() {
+		return this.name;
 	}
 
 }

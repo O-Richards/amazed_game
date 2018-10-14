@@ -1,16 +1,19 @@
 package gameController;
 
-import java.util.ArrayList;
 
 import gameModel.Level;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+import javafx.util.Callback;
+
 
 public class DesignerModeHomeController {
 	
@@ -23,16 +26,20 @@ public class DesignerModeHomeController {
 	@FXML
 	private Button delete;
 	
-	private ArrayList<Level> savedMaps;
 	
-	private ListView listOfMaps;
-
-	
+    @FXML
+    //Contains a list of Game names: 
+    private ListView<DesigningController> listOfGames;
+    
 	private Stage currStage;
+	//Used for displaying items: 
+	private ObservableList<DesigningController> savedControllers = FXCollections.observableArrayList(); 
+	//Listens for changes in our Controllers: 
+	private ObservableList<DesigningController> listOfDesignControllers = FXCollections.observableArrayList(item -> new Observable[] {item.getSaveProperty()}); 
+
 	
 	public DesignerModeHomeController(Stage s) {
 		currStage = s;
-		savedMaps = new ArrayList<>();
 	}
 
 	@FXML
@@ -44,7 +51,27 @@ public class DesignerModeHomeController {
 	@FXML
 	private void handleCreateNewButton(ActionEvent event) {
 		DesigningScreen designingScreen = new DesigningScreen(currStage);
-		designingScreen.start();
+		//Adds it to our list of DesignControllers:
+		listOfDesignControllers.add(designingScreen.start());
+		//Listens to the saveState of the Controllers: 
+		//Saves to our list if we saved:  
+		listOfDesignControllers.addListener((ListChangeListener<DesigningController>) change -> {
+			while(change.next()) {
+				if(change.wasUpdated()) {
+					DesigningController elementChanged = listOfDesignControllers.get(change.getFrom());
+					if(elementChanged.getSaveProperty().getValue() == true) {
+						//Saves the current Controller if state = true: 
+						savedControllers.add(elementChanged);
+						//Sets items into listview: 
+						listOfGames.setItems(savedControllers);
+						//Get's the appropriate names: 
+						listViewSet();
+					}
+					change.reset();
+					change.next();
+				}
+			}
+		});
 	}
 	
 	@FXML
@@ -55,14 +82,30 @@ public class DesignerModeHomeController {
 	
 	@FXML
 	public void deleteMap(ActionEvent event) {
-		Object selectedMap = listOfMaps.getSelectionModel().getSelectedItem();
-		listOfMaps.getItems().remove(selectedMap);
-		savedMaps.remove(selectedMap);
+		Object selectedMap = listOfGames.getSelectionModel().getSelectedItem();
+		listOfGames.getItems().remove(selectedMap);
+		savedControllers.remove(selectedMap);
 	}
-	
-	public void addMap(Level map) {
-		savedMaps.add(map);
-		ObservableList<Level> maps = FXCollections.observableArrayList();
-		listOfMaps.setItems(maps);
+	//Sets the names in list view: 
+	private void listViewSet() {
+		//Cell factory is used to populate  a list view: 
+		listOfGames.setCellFactory(new Callback<ListView<DesigningController>, ListCell<DesigningController>>(){
+            @Override
+            public ListCell<DesigningController> call(ListView<DesigningController> p) {
+                 
+                ListCell<DesigningController> cell = new ListCell<DesigningController>(){
+ 
+                    @Override
+                    protected void updateItem(DesigningController controller, boolean empty) {
+                        super.updateItem(controller, empty);
+                        if (controller != null) {
+                            setText(controller.getName());
+                        }
+                    }
+ 
+                };
+                return cell;
+            }
+        });
 	}
 }
