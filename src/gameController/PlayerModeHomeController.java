@@ -50,7 +50,7 @@ public class PlayerModeHomeController {
 	}
 	
 	@FXML
-	public void handleHardLevelButton(MouseEvent event) {
+	public void handleHardLevelButton(ActionEvent event) {
 		PlayingScreen hardLevel = new PlayingScreen(currStage);
 		hardLevel.start();
 	}

@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.effect.Shadow?>
@@ -20,7 +19,7 @@
          </image>
       </ImageView>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="72.0" layoutX="204.0" layoutY="58.0" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="3.0" width="193.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff47" height="200.0" layoutX="204.0" layoutY="147.0" stroke="TRANSPARENT" strokeType="INSIDE" width="196.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff47" height="206.0" layoutX="204.0" layoutY="147.0" stroke="TRANSPARENT" strokeType="INSIDE" width="196.0" />
       <Button fx:id="quit" contentDisplay="CENTER" layoutX="257.0" layoutY="199.0" mnemonicParsing="false" onAction="#handleQuitButton" prefHeight="32.0" prefWidth="87.0" style="-fx-background-color: transparent;" text="Quit" textFill="WHITE">
          <font>
             <Font name="Baskerville" size="25.0" />
@@ -70,18 +69,6 @@
          <font>
             <Font name="Baskerville" size="25.0" />
          </font>
-      </Button>
-      <Button fx:id="exitScreen" layoutX="537.0" layoutY="340.0" mnemonicParsing="false" onAction="#exitScreen" prefHeight="37.0" prefWidth="44.0" style="-fx-background-color: transparent;">
-         <graphic>
-            <ImageView fitHeight="26.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/exitPage.png" />
-               </image>
-               <effect>
-                  <ColorAdjust brightness="1.0" />
-               </effect>
-            </ImageView>
-         </graphic>
       </Button>
    </children>
 </Pane>
