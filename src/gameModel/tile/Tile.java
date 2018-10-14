@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author Oli
  *
  */
-public class Tile {//extends Observable{
+public class Tile extends Observable{
 	private final boolean DEBUG = true;
 	
 	private ArrayList<Observer> jfxPanes;
@@ -112,14 +112,14 @@ public class Tile {//extends Observable{
 			throw new EntityPlacementException("Tile is occupied");
 		}
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
-//		notifyObservers();
+		notifyObservers();
 	}
 	
 	/**
 	 * Observer method stuff
 	 * addObserver adds observer to the list of objects observing the invoking object
 	 */
-//	@Override
+	@Override
 	public void addObserver(Observer o) {
 		jfxPanes.add(o);
 	}
@@ -132,7 +132,7 @@ public class Tile {//extends Observable{
 		jfxPanes.remove(o);
 	}
 	
-//	@Override
+	@Override
 	public void notifyObservers() {
 		/*
 		for (Observer observer : jfxPanes) {
