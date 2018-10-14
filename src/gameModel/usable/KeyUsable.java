@@ -31,4 +31,13 @@ private static int keyCodeGenerator = 1;
 	public UseAction getUseAction() {
 		return UseAction.KEY;
 	}
+	
+	@Override
+	public boolean canBePickedUpWith(Usable u) {
+		if (u.getUseAction() == this.getUseAction()) {
+			return false;
+		}
+		return true;
+	}
+	
 }

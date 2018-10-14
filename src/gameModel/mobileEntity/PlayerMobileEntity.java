@@ -53,6 +53,10 @@ public class PlayerMobileEntity extends MobileEntity {
 
 	@Override
 	public boolean pickup(Usable item) {
+		//Check if we can pickup the item
+		for (Usable existing : this.inventory) {
+			if (!item.canBePickedUpWith(existing)) return false;
+		}
 		inventory.add(item);
 		item.applyToPlayer(this);
 		return true;
