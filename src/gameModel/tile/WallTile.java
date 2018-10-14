@@ -2,6 +2,7 @@ package gameModel.tile;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
 
 public class WallTile extends Tile {
@@ -28,5 +29,10 @@ public class WallTile extends Tile {
 	@Override
 	public void addMobileEntity(MobileEntity e) throws EntityPlacementException {
 		throw new EntityPlacementException("Entites cannot travverse walls");
+	}
+	
+	@Override
+	public VisType getVisType() {
+		return VisType.WALL;
 	}
 }

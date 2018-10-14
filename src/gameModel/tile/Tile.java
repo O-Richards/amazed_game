@@ -197,7 +197,7 @@ public class Tile extends Observable{
 	}
 
 	public boolean traversable() {
-		return this.mobile == null;
+		return (this.mobile == null || this.mobile.isPlayer());
 	}
 
 	public boolean kill(KillAction action) {
