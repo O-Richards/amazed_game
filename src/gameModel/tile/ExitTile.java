@@ -2,6 +2,7 @@ package gameModel.tile;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
+import gameModel.entity.VisType;
 import gameModel.winCondition.WinCondition;
 import gameModel.winCondition.WinType;
 
@@ -12,6 +13,11 @@ public class ExitTile extends Tile {
 	public ExitTile(Coord coord, WinCondition winCondition, EntityMover entityMover) {
 		super(coord, entityMover);
 		this.winCondition = winCondition;
+	}
+	public ExitTile(Tile oldParent,WinCondition winCondition) {
+		super(oldParent);
+		this.notifyObservers();
+		this.winCondition = winCondition; 
 	}
 
 	@Override
@@ -28,4 +34,9 @@ public class ExitTile extends Tile {
 	public String getSprite() {
 		return "!";
 	}
+	@Override
+	public VisType getVisType() {
+		return VisType.EXIT;
+	}
+
 }

@@ -3,6 +3,8 @@ package gameModel;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.swing.border.TitledBorder;
+
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
@@ -188,7 +190,9 @@ public class Level implements EntityMover {
 	 */
 	public boolean placeSwitch(Coord coord) {
 		//TODO: add error checking
-		SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.SWITCH), this);
+		//SwitchTile newSwitch = new SwitchTile(coord, this.winSystem.newWinCondition(WinType.SWITCH), this);
+		Tile oldTile = this.getTile(coord);
+		SwitchTile newSwitch = new SwitchTile(oldTile, this.winSystem.newWinCondition(WinType.SWITCH)); 
 		this.map[coord.getX()][coord.getY()] = newSwitch;
 		return true;
 	}
@@ -199,22 +203,31 @@ public class Level implements EntityMover {
 	 * @param coord
 	 */
 	public void placeWall(Coord coord) {
-		WallTile newWall = new WallTile(coord, this);
+		//Get's the coord of the current tile: 
+		Tile oldTile = this.getTile(coord);
+		WallTile newWall = new WallTile(oldTile); 
+		//WallTile newWall = new WallTile(coord, this);
 		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 
 	public void placePit(Coord coord) {
-		PitTile newPit = new PitTile(coord, this);
+		//PitTile newPit = new PitTile(coord, this);
+		Tile oldTile = this.getTile(coord);
+		PitTile newPit = new PitTile(oldTile); 
 		this.map[coord.getX()][coord.getY()] = newPit;
 	}
 
 	public void placeExit(Coord coord) {
-		ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.EXIT), this);
+		//ExitTile newExit = new ExitTile(coord, this.winSystem.newWinCondition(WinType.EXIT), this);
+		Tile oldTile = this.getTile(coord);
+		ExitTile newExit = new ExitTile(oldTile,this.winSystem.newWinCondition(WinType.EXIT)); 
 		this.map[coord.getX()][coord.getY()] = newExit;
 	}
 	
 	public void placeDoor(Coord coord) {
-		DoorTile newDoor = new DoorTile(coord, this);
+		//DoorTile newDoor = new DoorTile(coord, this);
+		Tile oldTile = this.getTile(coord);
+		DoorTile newDoor = new DoorTile(oldTile); 
 		this.map[coord.getX()][coord.getY()] = newDoor;
 	}
 	

@@ -14,6 +14,12 @@ public class SwitchTile extends Tile {
 		super(coord, entityMover);
 		this.switchCondition = winCondition;
 	}
+	public SwitchTile(Tile oldParent, WinCondition winCondition) {
+		super(oldParent);
+		this.notifyObservers();
+		this.switchCondition = winCondition; 
+	}
+	
 
 	public void updateWinCondition() {
 		if (this.getMobile() != null && this.getMobile().canTriggerSwitches()) {

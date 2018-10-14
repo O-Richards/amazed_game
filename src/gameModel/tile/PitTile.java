@@ -11,7 +11,10 @@ public class PitTile extends Tile {
 	
 	public PitTile(Coord coord, EntityMover entityMover) {
 		super(coord, entityMover);
-		// TODO Auto-generated constructor stub
+	}
+	public PitTile(Tile oldParent) {
+		super(oldParent);
+		this.notifyObservers();
 	}
 
 	@Override
@@ -31,7 +34,6 @@ public class PitTile extends Tile {
 	}
 	@Override
 	public VisType getVisType() {
-		System.out.println("RAN");
 		return VisType.PIT;
 	}
 

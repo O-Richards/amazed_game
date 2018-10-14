@@ -42,5 +42,9 @@ public class DesigningScreen {
         return designingController;
 	}
 	
-	
+	//Given a controller load the screen
+	public void loadController(DesigningController designingController) {
+		fxmlLoader.setController(designingController);
+		s.show();
+	}
 }

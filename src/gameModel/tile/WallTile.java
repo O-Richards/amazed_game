@@ -10,6 +10,11 @@ public class WallTile extends Tile {
 	public WallTile(Coord coord, EntityMover entityMover) {
 		super(coord, entityMover);
 	}
+	public WallTile(Tile parentTile) {
+		super(parentTile);
+		//Notifies all observers this is now a wall tile
+		this.notifyObservers();
+	}
 
 	public String getSprite() {
 		return "W";
@@ -30,7 +35,8 @@ public class WallTile extends Tile {
 	public void addMobileEntity(MobileEntity e) throws EntityPlacementException {
 		throw new EntityPlacementException("Entites cannot travverse walls");
 	}
-	
+
+
 	@Override
 	public VisType getVisType() {
 		return VisType.WALL;

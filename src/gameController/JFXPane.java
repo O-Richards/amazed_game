@@ -54,7 +54,10 @@ public class JFXPane implements Observer {
 	public void resetClicked() {
 		clicked.set(false);
 	}
-
+	
+	public void paneObserve(VisType arg) {
+		
+	}
 	@Override
 	public void update(Observable o, Object arg) {
 		String img = visTypeToPath((VisType) arg); //cast object argument as what we need
@@ -67,24 +70,28 @@ public class JFXPane implements Observer {
         System.out.println("we placed an image with directly " + img);
 	}
 	public String visTypeToPath(VisType visType) {
+		
 		Map<VisType, String> spriteMap = new HashMap<>();
-			spriteMap.put(VisType.PLAYER, "/player.png");
-			spriteMap.put(VisType.SWITCH,"/switch.png");
-			spriteMap.put(VisType.ARROW, "/arrow.png");
-			spriteMap.put(VisType.BOULDER, "/boulder.png");
-			spriteMap.put(VisType.BOMB, "/unlit.png");
-			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
-			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
-			spriteMap.put(VisType.TREASURE, "/treasure.png");
-			spriteMap.put(VisType.HUNTER, "/hound,png");
-			spriteMap.put(VisType.SWORD, "/sword.png");
+			spriteMap.put(VisType.PLAYER, "/player&tile.png");
+			spriteMap.put(VisType.SWITCH,"/switch&tile.png");
+			spriteMap.put(VisType.ARROW, "/arrow&tile.png");
+			spriteMap.put(VisType.BOULDER, "/boulder&tile.png");
+			spriteMap.put(VisType.BOMB, "/unlit&tile.png");
+			spriteMap.put(VisType.HOVER_POTION, "/hover&tile.png");
+			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility&tile.png");
+			spriteMap.put(VisType.TREASURE, "/treasure&tile.png");
+			spriteMap.put(VisType.HUNTER, "/hound.png");
+			spriteMap.put(VisType.SWORD, "/sword&tile.png");
 			spriteMap.put(VisType.EXIT, "/exit.png");
-			spriteMap.put(VisType.PIT, "/pit.png");
+			spriteMap.put(VisType.PIT, "/pit&tile.png");
 			spriteMap.put(VisType.WALL, "/wall.png");
-			spriteMap.put(VisType.KEY, "/key.png");
-			spriteMap.put(VisType.DOOR, "/door.png");
+			spriteMap.put(VisType.KEY, "/key&tile.png");
+			spriteMap.put(VisType.DOOR, "/closed door.png");
 			spriteMap.put(VisType.EMPTY_TILE, "/tile.png");
+			if(spriteMap.get(visType) == null) {
+				System.out.println("unable to place tile!!!");
+			}
 		return spriteMap.get(visType);
-	}
 
+	}
 }

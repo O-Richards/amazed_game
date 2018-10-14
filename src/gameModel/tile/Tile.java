@@ -8,6 +8,9 @@ import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.border.TitledBorder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,11 +32,15 @@ public class Tile extends Observable{
 	private Entity item = null;
 	private MobileEntity mobile = null;
 	private EntityMover entityMover;	
-
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
 		this.jfxPanes = new ArrayList<Observer>();
+	}
+	public Tile(Tile oldParent) {
+		this.jfxPanes = oldParent.jfxPanes; 
+		this.coord = oldParent.coord; 
+		//Doesn't take in the old parent Entities...
 	}
 
 	public void tick(int tickNum) {
@@ -128,8 +135,10 @@ public class Tile extends Observable{
 	}
 	
 	/**
+	 * This function is prbly gonna be useless cause of the nature of the system: !!!!
 	 * removeObserver method will remove an observer from a Tiles ArrayList of observers
 	 * @param o = observer to remove
+	 * 
 	 */
 	public void removeObserver(Observer o) {
 		jfxPanes.remove(o);

@@ -121,7 +121,7 @@ public class DesigningController {
 	public DesigningController(Stage parentStage, Stage currStage) {
 		//hides the parent stage
 		this.parentStage = parentStage;
-		//this.parentStage.hide();
+		this.parentStage.hide();
 		this.currStage = currStage;
 	}
 
@@ -304,9 +304,10 @@ public class DesigningController {
 	
 	@FXML
 	public void saveMap() {
+		currStage.close();
+		System.out.println("save pressed");
 		this.saveState.set(true);
 		parentStage.show();
-		currStage.close();
 	}
 	
 	@FXML
@@ -373,7 +374,6 @@ public class DesigningController {
 			case PIT:
 				l.placePit(new Coord(row, col));
 				System.out.println("pit");
-				l.getTile(new Coord(row,col)).notifyObservers();
 				break;
 			case PLAYER:
 				newPlayer = make.makePlayer(new Coord(row,col));
@@ -426,6 +426,9 @@ public class DesigningController {
 	public SimpleBooleanProperty getSaveProperty() {
 		return this.saveState;
 	}
+	public void resetSaveProperty() {
+		this.saveState.set(false);
+	}
 	public Level getLevel() {
 		return this.l;
 	}
@@ -468,8 +471,8 @@ public class DesigningController {
 				aPane.detectMouseClicks();
 				//Adds the pane to our gridView: 
 				map.add(aPane.getPane(), row, col);
-				//Attach it to our observable list: 
 				gridOfPanes.add(aPane);
+				//Adds a listner to a pane
 				l.getTile(new Coord(row, col)).addObserver(aPane);
 			} 	
 		}

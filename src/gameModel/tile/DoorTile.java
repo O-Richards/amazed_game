@@ -15,6 +15,12 @@ public class DoorTile extends Tile {
 		super(coord, entityMover);
 		this.doorCode = DoorTile.generateDoorCode();
 	}
+	public DoorTile(Tile oldParent) {
+		super(oldParent);
+		this.notifyObservers();
+		this.doorCode = DoorTile.generateDoorCode();
+	}
+
 	
 	private static synchronized int generateDoorCode() {
 		return doorCodeGenerator++;

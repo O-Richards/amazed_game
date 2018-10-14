@@ -1,7 +1,5 @@
 package gameController;
 
-
-import gameModel.Level;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -11,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -24,8 +23,11 @@ public class DesignerModeHomeController {
 	@FXML
 	private Button play;
 	@FXML
+	private Button editMap; 
+	@FXML
 	private Button delete;
-	
+	@FXML
+	private ScrollPane scrollPane;
     @FXML
     //Contains a list of Game names: 
     private ListView<DesigningController> listOfGames;
@@ -35,7 +37,8 @@ public class DesignerModeHomeController {
 	private ObservableList<DesigningController> savedControllers = FXCollections.observableArrayList(); 
 	//Listens for changes in our Controllers: 
 	private ObservableList<DesigningController> listOfDesignControllers = FXCollections.observableArrayList(item -> new Observable[] {item.getSaveProperty()}); 
-
+	//Keeps a record of calling a designScreen: 
+	private DesigningScreen designingScreen;
 	
 	public DesignerModeHomeController(Stage s) {
 		currStage = s;
@@ -46,10 +49,13 @@ public class DesignerModeHomeController {
 		OpeningScreen openingScreen = new OpeningScreen(currStage);
 		openingScreen.start();
 	}
-	
+	@FXML
+    public void initialize() {
+		scrollPane.setFitToWidth(true);
+	}
 	@FXML
 	private void handleCreateNewButton(ActionEvent event) {
-		DesigningScreen designingScreen = new DesigningScreen(currStage);
+		 designingScreen= new DesigningScreen(currStage);
 		//Adds it to our list of DesignControllers:
 		listOfDesignControllers.add(designingScreen.start());
 		//Listens to the saveState of the Controllers: 
@@ -63,11 +69,11 @@ public class DesignerModeHomeController {
 						System.out.println("State is saved");
 						//Saves the current Controller if state = true: 
 						savedControllers.add(elementChanged);
-						System.out.println(savedControllers.get(0).getSaveProperty());
 						//Sets items into listview: 
 						listOfGames.setItems(savedControllers);
 						//Get's the appropriate names: 
 						listViewSet();
+						elementChanged.resetSaveProperty();
 					}
 					change.reset();
 					change.next();
@@ -81,13 +87,17 @@ public class DesignerModeHomeController {
 		
 		
 	}
-	
+	@FXML
+	public void editAMap() {
+		DesigningController designController = listOfGames.getSelectionModel().getSelectedItem();
+		designingScreen.loadController(designController);
+	}
 	@FXML
 	public void deleteMap(ActionEvent event) {
 		Object selectedMap = listOfGames.getSelectionModel().getSelectedItem();
-		listOfGames.getItems().remove(selectedMap);
 		savedControllers.remove(selectedMap);
 	}
+	
 	//Sets the names in list view: 
 	private void listViewSet() {
 		//Cell factory is used to populate  a list view: 
