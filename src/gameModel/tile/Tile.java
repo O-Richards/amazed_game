@@ -155,13 +155,13 @@ public class Tile extends Observable{
 	
 	@Override
 	public void notifyObservers() {
-		/*
+		
 		for (Observer observer : jfxPanes) {
-			observer.update(null, this.getVisType());
+			observer.update(this, this.getVisType());
 		}
-		*/
-		System.out.print("VisType of coord".concat(coord.toString()));
-		System.out.println(this.getVisType().toString());
+		
+		//System.out.print("VisType of coord".concat(coord.toString()));
+		//System.out.println(this.getVisType().toString());
 	}
 
 	public void removeItem() {
