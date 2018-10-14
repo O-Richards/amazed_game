@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @author Oli
  *
  */
-public class Tile extends Observable{
+public class Tile {//extends Observable{
 	private final boolean DEBUG = true;
 	
 	private ArrayList<Observer> jfxPanes;
@@ -46,7 +46,7 @@ public class Tile extends Observable{
 			}
 		}
 	// do we notify observers here? <<== TODO
-		notifyObservers();
+//		notifyObservers();
 	}
 	/**
 	 * Adds a usable item to the tile: 
@@ -59,7 +59,7 @@ public class Tile extends Observable{
 		}
 		this.item = item;
 		// Notify observer JFXPanel to update image <<== TODO
-		notifyObservers();
+//		notifyObservers();
 	}
 	
 	/**
@@ -112,14 +112,14 @@ public class Tile extends Observable{
 			throw new EntityPlacementException("Tile is occupied");
 		}
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
-		notifyObservers();
+//		notifyObservers();
 	}
 	
 	/**
 	 * Observer method stuff
 	 * addObserver adds observer to the list of objects observing the invoking object
 	 */
-	@Override
+//	@Override
 	public void addObserver(Observer o) {
 		jfxPanes.add(o);
 	}
@@ -132,18 +132,17 @@ public class Tile extends Observable{
 		jfxPanes.remove(o);
 	}
 	
-	@Override
+//	@Override
 	public void notifyObservers() {
+		/*
 		for (Observer observer : jfxPanes) {
-			observer.update(this.getVisType());
+			observer.update(null, this.getVisType());
 		}
+		*/
+		System.out.print("VisType of coord".concat(coord.toString()));
+		System.out.println(this.getVisType().toString());
 	}
-/*
-	private Image getImage() {
-		// TODO Auto-generated method stub
-		return img;
-	}
-*/
+
 	public void removeItem() {
 		this.item = null;
 	}

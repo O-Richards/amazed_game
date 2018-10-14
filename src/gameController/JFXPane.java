@@ -3,6 +3,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import gameModel.entity.VisType;
+import gameModel.tile.Tile;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.image.Image;
@@ -41,12 +42,6 @@ public class JFXPane implements Observer {
 		
 	}
 
-	@Override
-	public void update(Observer o, VisType arg) {
-		//changes the images: 
-		//not sure what observable o does and object arg does?? 
-			
-	}
 	public int getRow() {
 		return this.row; 
 	}
@@ -59,6 +54,19 @@ public class JFXPane implements Observer {
 	public void resetClicked() {
 		clicked.set(false);
 		System.out.println("Set to false");
+	}
+	
+	public void updateVisType(VisType img) {
+		System.out.println(img.toString());
+		/*this.image = new ImageView(new Image(getClass().getResourceAsStream(img.toString()),20,20,true,true));
+		this.pane = new Pane(image);
+		this.pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
+		*/
+	}
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
