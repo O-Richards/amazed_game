@@ -116,27 +116,6 @@ public class Tile extends Observable{
 		// UPDATE OBSERVERS NOW PLOX <<== TODO
 		notifyObservers();
 	}
-	public String visTypeToPath() {
-		VisType visType = this.getVisType();
-		Map<VisType, String> spriteMap = new HashMap<>();
-			spriteMap.put(VisType.PLAYER, "/player.png");
-			spriteMap.put(VisType.SWITCH,"/switch.png");
-			spriteMap.put(VisType.ARROW, "/arrow.png");
-			spriteMap.put(VisType.BOULDER, "/boulder.png");
-			spriteMap.put(VisType.BOMB, "/unlit.png");
-			spriteMap.put(VisType.HOVER_POTION, "/hover.png");
-			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility.png");
-			spriteMap.put(VisType.TREASURE, "/treasure.png");
-			spriteMap.put(VisType.HUNTER, "/hound,png");
-			spriteMap.put(VisType.SWORD, "/sword.png");
-			spriteMap.put(VisType.EXIT, "/exit.png");
-			spriteMap.put(VisType.PIT, "/pit.png");
-			spriteMap.put(VisType.WALL, "/wall.png");
-			spriteMap.put(VisType.KEY, "/key.png");
-			spriteMap.put(VisType.DOOR, "/door.png");
-			spriteMap.put(VisType.EMPTY_TILE, "/tile.png");
-		return spriteMap.get(visType);
-	}
 	
 	/**
 	 * Observer method stuff
@@ -159,7 +138,7 @@ public class Tile extends Observable{
 	@Override
 	public void notifyObservers() {
 		for (Observer observer : jfxPanes) {
-			observer.update(this, this.visTypeToPath());
+			observer.update(this, this.getVisType());
 		}
 	}
 
