@@ -50,7 +50,7 @@ public class Level implements EntityMover {
 	public EntityMover getEntityMover() {
 		return this;
 	}
-
+	
 	public Level(int nRows, int nCols) {
 		this.winSystem = new WinSystem();
 		//Adds a border of wall tiles to the map.

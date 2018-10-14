@@ -5,7 +5,9 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -16,11 +18,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.37155963302752293" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3433583959899749" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
   <items>
    <AnchorPane maxHeight="-Infinity" maxWidth="270.0" minHeight="-Infinity" minWidth="270.0" prefHeight="507.0" prefWidth="270.0" style="-fx-background-color: #402b07;">
          <children>
-            <ImageView fitHeight="545.0" fitWidth="369.0" layoutX="-47.0" layoutY="-5.0" opacity="0.76" pickOnBounds="true">
+            <ImageView fitHeight="545.0" fitWidth="369.0" layoutX="-47.0" layoutY="-5.0" opacity="0.76" pickOnBounds="true" AnchorPane.bottomAnchor="-33.0" AnchorPane.topAnchor="-5.0">
                <image>
                   <Image url="@../../images/bookshelf%20.jpg" />
                </image>
@@ -323,21 +325,30 @@
                   <Font name="Baskerville" size="15.0" />
                </font>
             </Button>
+            <TextField fx:id="setAreaRow" layoutX="3.0" layoutY="470.0" prefHeight="26.0" prefWidth="89.0" promptText="No of Rows">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="setAreaCol" layoutX="93.0" layoutY="470.0" prefHeight="26.0" prefWidth="89.0" promptText="No. Of Columns">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </TextField>
+            <Button fx:id="setMaze" layoutX="190.0" layoutY="470.0" mnemonicParsing="false" onAction="#setArea" text="Set" />
+            <Slider fx:id="difficultySlider" layoutX="90.0" layoutY="411.0" prefHeight="16.0" prefWidth="160.0" />
+            <Label fx:id="difficultyDescription" layoutX="16.0" layoutY="411.0" text="Difficulty:" textFill="WHITE" />
          </children>
       </AnchorPane>
     <AnchorPane prefHeight="398.0" prefWidth="390.0" AnchorPane.rightAnchor="0.0" SplitPane.resizableWithParent="true">
          <children>
-            <ScrollPane prefHeight="398.0" prefWidth="390.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <ScrollPane prefHeight="503.0" prefWidth="520.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <content>
-                <AnchorPane prefHeight="500.0" prefWidth="444.0" scaleShape="false" style="-fx-background-image: url(' ../../images/anotherBrickWall.jpg');">
-                     <children>
-                    <GridPane fx:id="map" gridLinesVisible="true" pickOnBounds="true" prefHeight="462.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <cursor>
-                              <Cursor fx:constant="CROSSHAIR" />
-                           </cursor>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
+              <GridPane fx:id="map" gridLinesVisible="true" pickOnBounds="true">
+                     <cursor>
+                        <Cursor fx:constant="CROSSHAIR" />
+                     </cursor>
+                  </GridPane>
               </content>
             </ScrollPane>
             <Label fx:id="selectedItem" layoutX="104.0" text="-" textAlignment="JUSTIFY" textFill="#14fab3" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">

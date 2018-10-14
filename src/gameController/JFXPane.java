@@ -1,4 +1,5 @@
 package gameController;
+import java.awt.Insets;
 import java.util.Observable;
 import java.util.Observer;
 import gameModel.entity.VisType;
@@ -23,8 +24,8 @@ public class JFXPane implements Observer {
 		//Defaults to a set of tiles: 
 		this.image = new ImageView(new Image(getClass().getResourceAsStream("/tile.png"),20,20,true,true));			
 		pane = new Pane(this.image);
+		pane.autosize();
 		pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
-
 	}
 	//Passes back the pane to javafx: 
 	public Pane getPane() {
@@ -60,6 +61,7 @@ public class JFXPane implements Observer {
         this.image = new ImageView(new Image(getClass().getResourceAsStream(img),20,20,true,true));
         //Replaces the image with a new image: 
         pane.getChildren().add(this.image);
+		pane.autosize();
         System.out.println("we placed an image with directly " + img);
 	}
 
