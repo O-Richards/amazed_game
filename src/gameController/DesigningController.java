@@ -382,7 +382,8 @@ public class DesigningController {
 			currentlySelected = null; 
 			selectedItem.setText("-");
 			
-		} catch (Exception e) {
+		} catch (Exception s) {
+			System.out.println("Error Caught !!");
 			if(this.currentlySelected != null) {
 				Alert alert = new Alert(Alert.AlertType.WARNING);
 				alert.getDialogPane().setContent(new Text("Unable to place item!!"));
