@@ -24,6 +24,14 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="exit" layoutX="48.0" layoutY="354.0" mnemonicParsing="false" onAction="#returnHome" text="exit" />
+      <Button fx:id="exit" layoutX="48.0" layoutY="383.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="49.0" prefWidth="30.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/exitPage.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>

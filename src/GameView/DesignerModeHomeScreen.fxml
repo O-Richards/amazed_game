@@ -26,9 +26,9 @@
             <SepiaTone />
          </effect>
       </ImageView>
-      <Button fx:id="homeButton" layoutX="545.0" layoutY="351.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0" style="-fx-background-color: transparent;">
+      <Button fx:id="homeButton" layoutX="553.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0" style="-fx-background-color: transparent;">
          <graphic>
-            <ImageView fitHeight="32.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/home%20button%20.png" />
                </image>
@@ -82,7 +82,7 @@
             <Font name="Baskerville Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="delete" layoutX="96.0" layoutY="353.0" mnemonicParsing="false" onAction="#deleteMap" prefHeight="17.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="&#10;">
+      <Button fx:id="delete" layoutX="88.0" layoutY="352.0" mnemonicParsing="false" onAction="#deleteMap" prefHeight="17.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="&#10;">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -94,7 +94,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="play" layoutX="24.0" layoutY="349.0" mnemonicParsing="false" onAction="#playMap" style="-fx-background-color: transparent;">
+      <Button fx:id="play" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#playMap" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -115,6 +115,16 @@
             </AnchorPane>
         </content>
       </ScrollPane>
-      <Button fx:id="editMap" layoutX="453.0" layoutY="245.0" mnemonicParsing="false" onAction="#editAMap" text="Edit map" />
+      <Button fx:id="editMap" layoutX="54.0" layoutY="352.0" mnemonicParsing="false" onAction="#editAMap" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="33.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/edit.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.95" />
+               </effect>
+            </ImageView>
+         </graphic></Button>
    </children>
 </Pane>
