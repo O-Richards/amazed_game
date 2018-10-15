@@ -55,19 +55,19 @@ public class PlayingController {
 	public void setMap(Level l) {
 		this.l = l; 
 		//Displays map: 
-		int col = l.getNumCols();
-		int row = l.getNumRows(); 
-		for(int i = 0; i < row; i++) {
-			for(int j = 0; j < col; j++) {
+		int nCol = l.getNumCols();
+		int nRow = l.getNumRows(); 
+		for(int row = 0; row < nRow; row++) {
+			for(int col = 0; col < nCol; col++) {
 				//Creates a JFXPane: 
-				JFXPane aPane = new JFXPane(i,j);
+				JFXPane aPane = new JFXPane(row,col);
 				//Adds the pane to our gridView: 
-				map.add(aPane.getPane(), i, j);
+				map.add(aPane.getPane(), row, col);
 				//grab the current type of item on the tile:
 				//Updates the pane with the correct images: 
-				aPane.update(null, l.getVisType(new Coord(i, j)));
+				aPane.update(null, l.getVisType(new Coord(row, col)));
 				//Attaches a listener to each tile: 
-				l.getTile(new Coord(i, j)).addObserver(aPane);
+				l.getTile(new Coord(row, col)).addObserver(aPane);
 			}
 		}
         hunterThread= new Thread(new MultiThreading());
