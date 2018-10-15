@@ -27,7 +27,7 @@ import java.util.Map;
 public class Tile extends Observable{
 	private final boolean DEBUG = true;
 	
-	private ArrayList<Observer> jfxPanes;
+	private ArrayList<Observer> observers;
 	private Coord coord;
 	private Entity item = null;
 	private MobileEntity mobile = null;
@@ -35,10 +35,10 @@ public class Tile extends Observable{
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
-		this.jfxPanes = new ArrayList<Observer>();
+		this.observers = new ArrayList<Observer>();
 	}
 	public Tile(Tile oldParent) {
-		this.jfxPanes = oldParent.jfxPanes; 
+		this.observers = oldParent.observers; 
 		this.coord = oldParent.coord; 
 		//Doesn't take in the old parent Entities...
 		notifyObservers();
@@ -131,7 +131,7 @@ public class Tile extends Observable{
 	 */
 	@Override
 	public void addObserver(Observer o) {
-		jfxPanes.add(o);
+		observers.add(o);
 		//System.out.println("add Observer called for: ".concat(this.toString()));
 	}
 	
@@ -142,12 +142,12 @@ public class Tile extends Observable{
 	 * 
 	 */
 	public void removeObserver(Observer o) {
-		jfxPanes.remove(o);
+		observers.remove(o);
 	}
 	
 	@Override
 	public void notifyObservers() {
-		for (Observer observer : jfxPanes) {
+		for (Observer observer : observers) {
 			observer.update(this, this.getVisType());
 		}
 	}
