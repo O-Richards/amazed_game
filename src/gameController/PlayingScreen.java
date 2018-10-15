@@ -3,11 +3,15 @@ package gameController;
 import java.io.IOException;
 
 import gameModel.Level;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
+import java.util.Timer;
+ 
 public class PlayingScreen {
 	
 	private Stage s;
@@ -15,6 +19,7 @@ public class PlayingScreen {
     private String title;
     private FXMLLoader fxmlLoader;
     private PlayingController playingController; 
+
     public PlayingScreen(Stage parentStage) {
         this.s = new Stage();
         this.parentStage = parentStage; 
@@ -26,24 +31,33 @@ public class PlayingScreen {
         s.setTitle(title);
         // set controller for start.fxml
         if(parentStage != null) {
-            playingController = new PlayingController(parentStage, s);
+            this.playingController = new PlayingController(parentStage, s);
         }else {
-        	playingController = new PlayingController(s);
+        	this.playingController = new PlayingController(s);
         }
         fxmlLoader.setController(playingController);
         try {
             // load into a Parent node called root
             Parent root = fxmlLoader.load();
             Scene sc = new Scene(root);
+            sc.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				@Override
+				public void handle(KeyEvent e) {
+					KeyCode pressedKeyNumber = e.getCode();
+					//Passes the key to the controller: 
+					playingController.keyToAction(pressedKeyNumber);
+				}
+            	
+            });
             s.setScene(sc);
             s.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+	//Passes to the map to controller
     public void setMap(Level l) {
-    	//Passes to the controller the map
     	playingController.setMap(l); 
     }
-   
 }
+

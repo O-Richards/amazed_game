@@ -2,6 +2,7 @@ package gameController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -44,8 +45,7 @@ public class PauseMenuController {
 	
 	@FXML 
 	public void handleResumeButton(ActionEvent event) {
-		PlayerModeHomeScreen playerModeHome = new PlayerModeHomeScreen(currStage);
-		playerModeHome.start();
+		currStage.close(); 
 	}
 	
 	

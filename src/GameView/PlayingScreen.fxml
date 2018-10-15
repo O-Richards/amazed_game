@@ -15,7 +15,7 @@
       </GridPane>
          </children>
       </AnchorPane>
-      <Button layoutX="14.0" layoutY="354.0" mnemonicParsing="false" style="-fx-background-color: transparent;">
+      <Button fx:id="pause" layoutX="14.0" layoutY="354.0" mnemonicParsing="false" onAction="#handlePauseButton" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,6 +24,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="home" layoutX="48.0" layoutY="354.0" mnemonicParsing="false" onAction="#returnHome" text="HOme" />
+      <Button fx:id="exit" layoutX="48.0" layoutY="354.0" mnemonicParsing="false" onAction="#returnHome" text="exit" />
    </children>
 </Pane>

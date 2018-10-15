@@ -19,7 +19,6 @@ public class InstructionsController {
 	public void exitScreen(ActionEvent event) {
 		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
 		pauseMenu.start();
-		
 	}
 
 }

@@ -28,7 +28,7 @@ public class PauseMenuScreen {
             Parent root = fxmlLoader.load();
             Scene sc = new Scene(root);
             s.setScene(sc);
-            s.show();
+            s.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }

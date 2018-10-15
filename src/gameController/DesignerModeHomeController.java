@@ -88,9 +88,7 @@ public class DesignerModeHomeController {
 		if(designController != null) {
 			PlayingScreen aPlayingScreen = new PlayingScreen(currStage);
 			aPlayingScreen.start();
-			System.out.println("Set");
 			aPlayingScreen.setMap(designController.getLevel());
-			System.out.println("fin");
 		}
 	}
 	@FXML
