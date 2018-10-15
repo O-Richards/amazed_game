@@ -84,8 +84,14 @@ public class DesignerModeHomeController {
 	
 	@FXML
 	public void playMap() {
-		
-		
+		DesigningController designController = listOfGames.getSelectionModel().getSelectedItem();
+		if(designController != null) {
+			PlayingScreen aPlayingScreen = new PlayingScreen(currStage);
+			aPlayingScreen.start();
+			System.out.println("Set");
+			aPlayingScreen.setMap(designController.getLevel());
+			System.out.println("fin");
+		}
 	}
 	@FXML
 	public void editAMap() {

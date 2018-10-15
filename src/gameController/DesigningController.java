@@ -472,7 +472,7 @@ public class DesigningController {
 				//Adds the pane to our gridView: 
 				map.add(aPane.getPane(), row, col);
 				gridOfPanes.add(aPane);
-				//Adds a listner to a pane
+				//Adds a listener to a pane
 				l.getTile(new Coord(row, col)).addObserver(aPane);
 			} 	
 		}
