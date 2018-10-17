@@ -78,6 +78,7 @@ public class Tile extends Observable{
 	public void clear() {
 		this.item = null;
 		this.mobile = null;
+		notifyObservers();
 	}
 
 	/**
@@ -211,5 +212,6 @@ public class Tile extends Observable{
 		} else {
 			this.mobile = null;
 		}
+		notifyObservers();
 	}
 }

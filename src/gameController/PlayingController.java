@@ -1,8 +1,13 @@
 package gameController;
 
 
+import java.util.ArrayList;
+
 import gameModel.Coord;
 import gameModel.Level;
+import gameModel.mobileEntity.Direction;
+import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.usable.UseAction;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -16,12 +21,11 @@ public class PlayingController {
 	private Button pause;
 	@FXML
 	private GridPane map;
-	
+	private ArrayList<PlayerMobileEntity> players; 
 	private Stage currStage;
 	private Stage parentStage; 
 	Thread hunterThread; 
 	private Level l; 
-	
 	public PlayingController(Stage s) {
 		currStage = s;
 	}
@@ -73,26 +77,46 @@ public class PlayingController {
         hunterThread= new Thread(new MultiThreading());
         hunterThread.start();
 	}
+    public void setPlayer(ArrayList<PlayerMobileEntity> players) {
+    	this.players = players; 
+    }
     public void keyToAction(KeyCode pressedKeyNumber) {
     	System.out.println("detect key pressed");
     	System.out.println(pressedKeyNumber);
+
 		if(pressedKeyNumber == KeyCode.ESCAPE) {
 			//TODO: Link the pause menu or a key??? 
 		}
+		PlayerMobileEntity player1 = players.get(0);
+		if(player1 != null)player1.setMoving(false);
+
 		//Gets the direction(movement): 
 		if (pressedKeyNumber == KeyCode.W) {
+			if(player1 != null)player1.setMoving(true);
+			player1.setDirection(Direction.UP);
 		}else if(pressedKeyNumber == KeyCode.A) {
+			if(player1 != null)player1.setMoving(true);
+			player1.setDirection(Direction.LEFT);
 		}else if(pressedKeyNumber == KeyCode.S) {
+			if(player1 != null)player1.setMoving(true);
+			player1.setDirection(Direction.DOWN);
 		}else if(pressedKeyNumber == KeyCode.D) {
+			if(player1 != null)player1.setMoving(true);
+			player1.setDirection(Direction.RIGHT);
 		}
 		
 		//direction to shoot/hit: 
-		if (pressedKeyNumber == KeyCode.UP) {
-		}else if(pressedKeyNumber == KeyCode.DOWN) {
-		}else if(pressedKeyNumber == KeyCode.LEFT) {
-		}else if(pressedKeyNumber == KeyCode.RIGHT) {
-		}    	   
+		if (pressedKeyNumber == KeyCode.J) {
+			player1.use(UseAction.ARROW);
+		}else if(pressedKeyNumber == KeyCode.K) {
+			player1.use(UseAction.BOMB);
+		}else if(pressedKeyNumber == KeyCode.L) {
+			player1.use(UseAction.SWORD);
+		}
+	
+		l.tick();
     }
+
     
     //Used for Hunters: 
     class MultiThreading implements Runnable 
@@ -108,16 +132,18 @@ public class PlayingController {
 				System.out.println("LOST THE GAME!!!");
 				break;
 			}*/
-    	try {
-    		while(true) {
-          	  System.out.println("tick");
-          	  Thread.sleep(1000);
-      	  }
-		} catch (InterruptedException e) {
-			System.out.println("thread interrupted");
-			return;
-		}
-    	  
+    	 synchronized (l) {
+			try {
+	    		while(true) {
+	          	  System.out.println("tick");
+	          	  Thread.sleep(1000);
+	          	  //l.tick();
+	      	  	}
+			} catch (InterruptedException e) {
+				System.out.println("thread interrupted");
+				return;
+			}
+    	 }	  
       } 
     } 
 }

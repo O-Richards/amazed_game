@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 
+import java.util.ArrayList;
 
 import gameModel.Coord;
 import gameModel.EntityMaker;
@@ -30,6 +31,7 @@ import javafx.fxml.FXML;
 public class DesigningController {
 	private VisType currentlySelected;
 	private String name; 
+	private ArrayList<PlayerMobileEntity> players; 
 
 	@FXML
 	private Button arrow; 
@@ -127,18 +129,12 @@ public class DesigningController {
 
 	@FXML
     public void initialize() {
-		this.saveState = new SimpleBooleanProperty(false); 
+		this.saveState = new SimpleBooleanProperty(false);
+		players = new ArrayList<PlayerMobileEntity>();
 		if(l == null) {
 			//If the level hasn't been set: 
-			System.out.println("set to false");
 			mazeSetPane.setVisible(true);
 		}
-		//Prevents the user from setting checkboxes unless corresponding items are placed down:
-		//Would prbly remove this: 
-		/*exitCondition.setDisable(true);
-		enemyCondition.setDisable(true);
-		switchCondition.setDisable(true);
-		treasureCondition.setDisable(true);*/		
 	}
 
 	@FXML	
@@ -146,7 +142,7 @@ public class DesigningController {
 		selectedItem.setText("Player");
 		//If player has already been placed:
 		//Maybe frontend shouldn't implement this? 
-		if(newPlayer != null) {
+		/*if(newPlayer != null) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.getDialogPane().setContent(new Text("A player has already been placed on the map"));
 			alert.showAndWait();
@@ -154,7 +150,8 @@ public class DesigningController {
 			currentlySelected = null;
 		}else{
 			currentlySelected = VisType.PLAYER;
-		}
+		}*/
+		currentlySelected = VisType.PLAYER;
 
 	}
 	@FXML
@@ -378,6 +375,7 @@ public class DesigningController {
 			case PLAYER:
 				newPlayer = make.makePlayer(new Coord(row,col));
 				l.placeMobileEntity(newPlayer);
+				players.add(newPlayer); 
 				System.out.println("player placed");
 				break;
 			case SWITCH:
@@ -459,6 +457,9 @@ public class DesigningController {
 				mazeSetPane.setVisible(false);
 			}
 		}
+	}
+	public ArrayList<PlayerMobileEntity> getPlayers(){
+		return this.players; 
 	}
 	private void generateMap() {	
 		//creates a map which has a size of default row and col (we will change this) 

@@ -3,6 +3,7 @@ package gameController;
 import java.io.IOException;
 
 import gameModel.Level;
+import gameModel.mobileEntity.PlayerMobileEntity;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
 import java.util.Timer;
  
 public class PlayingScreen {
@@ -58,6 +61,9 @@ public class PlayingScreen {
 	//Passes to the map to controller
     public void setMap(Level l) {
     	playingController.setMap(l); 
+    }
+    public void setPlayers(ArrayList<PlayerMobileEntity> players) {
+    	playingController.setPlayer(players);
     }
 }
 
