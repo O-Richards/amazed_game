@@ -45,6 +45,12 @@ public class AStarSearch
 		return path;
 	}
 	
+	public Coord getNextCoord() {
+		List<Coord> path = this.findPath();
+		if (path == null) return this.start;
+		return path.get(0);
+	}
+	
 	public List<Coord> findPath() {
 		
 		Comparator<AStarNode> nodeComparator = new Comparator<AStarNode>() {

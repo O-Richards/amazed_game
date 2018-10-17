@@ -25,9 +25,7 @@ public class EnemyMovement implements Movement {
 		this.randMoveRate = randMoveRate;
 	}
 
-	@Override
-	public Coord nextCoord() {
-		//Check if we should do a random move
+	private Coord getRandomCoord() {
 		if (this.randMoveRate < Math.random()) {
 			//Take a random move
 			double randNum = Math.random();
@@ -36,23 +34,36 @@ public class EnemyMovement implements Movement {
 			else if (randNum < 0.5) nextDir = Direction.LEFT;
 			else if (randNum < 0.75) nextDir = Direction.DOWN;
 			else nextDir = Direction.RIGHT;
-			
 			return this.entity.getCoord(nextDir);
-		}
-		
-		AStarSearch search = new AStarSearch(entity.getCoord(), playerTarget.getCoord(), entityMover);
-		List<Coord> path = search.findPath();
-		if (path == null) {
-			this.direction = Direction.CENTRE;
-			System.out.println("EnemyMovement.nextCoord entity coord is: " + this.entity.getCoord());
-			return this.entity.getCoord();
 		} else {
-			this.direction = path.get(0).minusX(this.entity.getCoord());
-			if (this.direction == Direction.CENTRE) {
-				this.direction = path.get(0).minusY(this.entity.getCoord());
-			}
-			return path.get(0);
+			return null;
 		}
+	}
+	
+	private void setDirection(Coord nextCoord) {
+		if (nextCoord == this.entity.getCoord()) {
+			this.direction = Direction.CENTRE;
+		} else {
+			this.direction = nextCoord.minusX(this.entity.getCoord());
+			if (this.direction == Direction.CENTRE) {
+				this.direction = nextCoord.minusY(this.entity.getCoord());
+			}
+		}
+	}
+	
+	protected Coord getTargetCoord() {
+		return playerTarget.getCoord();
+	}
+	
+	@Override
+	public Coord nextCoord() {
+		//Check if we should do a random move
+		Coord randomCoord = this.getRandomCoord();
+		if (randomCoord != null) return randomCoord;
+		AStarSearch search = new AStarSearch(entity.getCoord(), this.getTargetCoord(), entityMover);
+		Coord next = search.getNextCoord();
+		this.setDirection(next);
+		return next;
 	}
 
 	@Override

@@ -7,6 +7,7 @@ import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.EnemyMovement;
 import gameModel.mobileEntity.EntityTrackingMovement;
+import gameModel.mobileEntity.HoundEnemyMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.ArrowUsable;
@@ -148,7 +149,7 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeEnemy(Coord c, Entity target, double randMoveRate) {
+	public MobileEntity makeHunter(Coord c, Entity target, double randMoveRate) {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HUNTER, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -160,6 +161,21 @@ public class EntityMaker {
 				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
 				.withMovement(new EnemyMovement(randMoveRate, basicEntity, target, entityMover))
+				.build();
+	}
+	
+	public MobileEntity makeHound(Coord c, Entity target, MobileEntity hunter, double randMoveRate) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HOUND, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKillAction(KillAction.ENEMY)
+				.withKilledBy(KillAction.WEAPON)
+				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, target, hunter, entityMover))
 				.build();
 	}
 }
