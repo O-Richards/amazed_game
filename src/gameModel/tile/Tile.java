@@ -202,4 +202,11 @@ public class Tile extends Observable{
 			this.mobile = null;
 		}
 	}
+	
+	/**
+	 * @return true if the tile is completely empty, false else
+	 */
+	public boolean isEmpty() {
+		return (this.mobile == null && this.item == null);
+	}
 }

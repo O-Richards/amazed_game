@@ -1,10 +1,12 @@
 package gameModel.usable;
 
+import gameModel.Coord;
 import gameModel.EntityMover;
 import gameModel.KillAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
+import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
@@ -23,25 +25,14 @@ public class ArrowUsable implements Usable {
 	@Override
 	public boolean use(UseAction action) {
 		if (action == UseAction.ARROW) {
-			Entity baseEntity = new BasicEntity.BasicEntityBuilder(VisType.ARROW, player.getCoord(player.getDirection()))
-					.build();
-			MobileEntity killingArrow = new MobileEntity.MobileEntityBuilder(baseEntity)
-					.withKillAction(KillAction.WEAPON)
-					.withKilledByAnything(true)
-					.withMovement(new EntityTrackingMovement(player.getDirection()))
-					.withIsMoving(true)
-					.build();
-			if (DEBUG) {
-				System.out.println("ArrowUsable.use(): placing arrowMobile at " 
-					+ killingArrow.getCoord() + " Player at "  + player.getCoord() 
-					+ " player dir " + player.getDirection()
-					); 
+			Coord curr = player.getCoord(player.getDirection());
+			Direction movDir = player.getDirection();
+			while (entityMover.isEmpty(curr)) {
+				entityMover.kill(curr, KillAction.WEAPON);
+				curr = curr.add(movDir);
 			}
-			try {
-				this.entityMover.placeMobileEntity(killingArrow);
-			} catch (EntityPlacementException e) {
-				System.out.println("ArrowUsable.use: ERROR: exception thrown when placing moving arrow" + e);
-			}
+			entityMover.kill(curr, KillAction.WEAPON);
+			
 			return true;
 		}
 		return false;
