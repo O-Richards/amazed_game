@@ -2,6 +2,7 @@ package gameController;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -72,6 +73,14 @@ public class ASCIIGameController {
 			spriteMap.put(VisType.WALL, "W");
 		return spriteMap.get(visType);
 	}
+	
+	private void printInventory(Iterator<UseAction> inventoryIterator) {
+		String ret = "";
+		while (inventoryIterator.hasNext()) {
+			ret += inventoryIterator.next().toString() + ", ";
+		}
+		System.out.println("Inventory: " + ret);
+	}
 
 	public static void main(String[] args) throws IOException, EntityPlacementException {
 		ASCIIGameController gc = new ASCIIGameController();
@@ -136,7 +145,7 @@ public class ASCIIGameController {
 		
 			l.tick();
 			System.out.println(gc.visualiseLevel(l));
-			System.out.println(player.inventoryString());
+			gc.printInventory(player.inventoryIterator());
 			//l.checkInventory(); 
 			if (l.hasWon()) {
 				System.out.println("WON THE GAME!!!");
@@ -149,5 +158,6 @@ public class ASCIIGameController {
 		}
 		s.close();
 	}
+
 	
 }
