@@ -25,6 +25,7 @@ public class AStarSearch
 	private EntityMover entityMover;
 	private Coord start;
 	private Coord goal;
+	private final int MAX_ITERATION_COUNTER	= 1000;
 	
 	public AStarSearch(Coord start, Coord goal, EntityMover entityMover) {
 		this.start = start;
@@ -72,8 +73,9 @@ public class AStarSearch
 		open.add(origin);
 		
 		AStarNode current = null;
-		
-		while(!open.isEmpty()) {
+		int iterationCounter = 0;
+		while(!open.isEmpty() && iterationCounter < MAX_ITERATION_COUNTER) {
+			iterationCounter++;
 			current = open.remove();
 			
 			//if we have arrived at goal
