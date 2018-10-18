@@ -24,7 +24,7 @@ public class CowardEnemyMovement extends EnemyMovement {
 		Integer totalDist = Math.abs(xDist) + Math.abs(yDist);
 		Integer targetX = player.getX();
 		Integer targetY = player.getY();
-		if (totalDist > FLEE_DISTANCE) fleeTimer = FLEE_DURATION;
+		if (totalDist <= FLEE_DISTANCE) fleeTimer = FLEE_DURATION;
 		if (fleeTimer > 0) {
 			fleeTimer--;
 			//        start x      +   (direction opposing player)     (increase distance by FLEE_DISTANCE) 
