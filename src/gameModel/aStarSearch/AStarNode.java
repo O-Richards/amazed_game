@@ -11,18 +11,24 @@ public class AStarNode
 	
 	private Coord coord;
 	private AStarNode parent;
+	private boolean flee;
 	private EntityMover entityMover;
 	
 	int gCost;  // cost from start to node
 	int hCost; // cost to goal from node by default (heuristic)
 	
-	public AStarNode(Coord coord, EntityMover entityMover) {
+	public AStarNode(Coord coord, boolean flee, EntityMover entityMover) {
 		this.coord = coord;
+		this.flee = flee;
 		this.entityMover = entityMover;
 	}
 	
 	public int getfCost() {
-		return gCost + hCost;
+		if (flee) {
+			return gCost - hCost;
+		} else {
+			return gCost + hCost;
+		}
 	}
 	
 	public void setParent(AStarNode node) {
@@ -91,7 +97,7 @@ public class AStarNode
 				continue;
 			}
 			if (this.entityMover.traversable(curCoord)) {
-				AStarNode newNeighbour = new AStarNode(curCoord, this.entityMover);
+				AStarNode newNeighbour = new AStarNode(curCoord, flee, this.entityMover);
 				newNeighbour.setgCost(this.gCost);
 				// ADJUST GCOST TO MAKE THEM SMARTER OR DUMBER
 				neighbours.add(newNeighbour);

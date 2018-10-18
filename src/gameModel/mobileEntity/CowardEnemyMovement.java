@@ -14,30 +14,24 @@ public class CowardEnemyMovement extends EnemyMovement {
 		super(randMoveRate, baseEntity, player, entityMover);
 	}
 
-	
-	@Override
-	protected Coord getTargetCoord() {
-		Coord player = super.getPlayerCoord();
+	@Override 
+	protected boolean shouldFlee() {
 		Coord start = super.getStartCoord();
+		Coord player = super.getPlayerCoord();
 		Integer xDist = start.getX() - player.getX();
 		Integer yDist = start.getY() - player.getY();
 		Integer totalDist = Math.abs(xDist) + Math.abs(yDist);
-		Integer targetX = player.getX();
-		Integer targetY = player.getY();
 		if (totalDist <= FLEE_DISTANCE) fleeTimer = FLEE_DURATION;
 		if (fleeTimer > 0) {
 			fleeTimer--;
-			if (xDist == 0) {
-				targetX = start.getX() + (Math.abs(xDist) + FLEE_DISTANCE);
-			} else {
-//		       				 start x      +   (direction opposing player)     (increase distance by FLEE_DISTANCE) 
-				targetX = start.getX() + (   (xDist/Math.abs(xDist))    *    (Math.abs(xDist) + FLEE_DISTANCE)  );
-			}
-			if (yDist == 0) {
-//		       				 start y      +   (direction opposing player)     (increase distance by FLEE_DISTANCE) 
-				targetY = start.getY() + (   (yDist/Math.abs(yDist))    *    (Math.abs(yDist) + FLEE_DISTANCE)  );
-			}
+			return true;
+		} else {
+			return super.shouldFlee();
 		}
-		return new Coord(targetX, targetY);
+	}
+	
+	@Override
+	protected Coord getTargetCoord() {
+		return super.getPlayerCoord();
 	}
 }

@@ -23,13 +23,15 @@ import java.util.List;
 public class AStarSearch 
 {
 	private EntityMover entityMover;
+	private boolean flee;
 	private Coord start;
 	private Coord goal;
 	private final int MAX_ITERATION_COUNTER	= 1000;
 	
-	public AStarSearch(Coord start, Coord goal, EntityMover entityMover) {
+	public AStarSearch(Coord start, Coord goal, boolean flee, EntityMover entityMover) {
 		this.start = start;
 		this.goal = goal;
+		this.flee = flee;
 		this.entityMover = entityMover;
 	}
 	
@@ -68,7 +70,7 @@ public class AStarSearch
 		Set<AStarNode> closed = new HashSet<>();
 		
 		// init priority queue with origin node
-		AStarNode origin = new AStarNode(this.start, this.entityMover);
+		AStarNode origin = new AStarNode(this.start, flee, this.entityMover);
 		origin.setgCost(0);
 		open.add(origin);
 		

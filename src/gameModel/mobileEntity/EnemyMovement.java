@@ -64,6 +64,14 @@ public abstract class EnemyMovement implements Movement {
 		return entity.getCoord();
 	}
 	
+	protected boolean shouldFlee() {
+		if (this.player.canDie()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	abstract protected Coord getTargetCoord();
 	
 	@Override
@@ -71,7 +79,7 @@ public abstract class EnemyMovement implements Movement {
 		//Check if we should do a random move
 		Coord randomCoord = this.getRandomCoord();
 		if (randomCoord != null) return randomCoord;
-		AStarSearch search = new AStarSearch(entity.getCoord(), this.getTargetCoord(), entityMover);
+		AStarSearch search = new AStarSearch(entity.getCoord(), this.getTargetCoord(), this.shouldFlee(), entityMover);
 		Coord next = search.getNextCoord();
 		this.setDirection(next);
 		return next;
