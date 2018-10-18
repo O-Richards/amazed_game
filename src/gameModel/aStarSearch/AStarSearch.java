@@ -1,11 +1,13 @@
 package gameModel.aStarSearch;
 
 import java.util.PriorityQueue;
+import java.util.Set;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +64,7 @@ public class AStarSearch
 		
 		// lists used in search loop
 		PriorityQueue<AStarNode> open = new PriorityQueue<AStarNode>(nodeComparator);
-		List<AStarNode> closed = new ArrayList<>();
+		Set<AStarNode> closed = new HashSet<>();
 		
 		// init priority queue with origin node
 		AStarNode origin = new AStarNode(this.start, this.entityMover);
@@ -87,17 +89,17 @@ public class AStarSearch
 				
 				for(AStarNode neighbour: neighbours) {
 					//unvisitied nodes only
-					if(!closed.contains(neighbour)) {
-						int gcost = current.getgCost() + current.compareTo(neighbour); //cost to neighbour from origin
-						
-						// check if shorter path to neighbour is found
-						if ((!open.contains(neighbour) && !closed.contains(neighbour)) || gcost < neighbour.getgCost()) {
-							neighbour.setParent(current);
-							neighbour.setgCost(gcost);
-							neighbour.sethCost(goal);
-						}
-						
+					if (closed.contains(neighbour)) continue;
+					
+					int gcost = current.getgCost() + current.compareTo(neighbour); //cost to neighbour from origin
+					
+					// check if shorter path to neighbour is found
+					if ((!open.contains(neighbour) && !closed.contains(neighbour)) || gcost < neighbour.getgCost()) {
+						neighbour.setParent(current);
+						neighbour.setgCost(gcost);
+						neighbour.sethCost(goal);
 					}
+						
 					if (!open.contains(neighbour)) open.add(neighbour);
 					// put neighbour node into open nodes					
 					
