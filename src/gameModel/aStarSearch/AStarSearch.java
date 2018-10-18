@@ -98,7 +98,7 @@ public class AStarSearch
 						}
 						
 					}
-					open.add(neighbour);
+					if (!open.contains(neighbour)) open.add(neighbour);
 					// put neighbour node into open nodes					
 					
 				}				
