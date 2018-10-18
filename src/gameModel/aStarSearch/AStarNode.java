@@ -24,11 +24,7 @@ public class AStarNode
 	}
 	
 	public int getfCost() {
-		if (flee) {
-			return gCost - hCost;
-		} else {
-			return gCost + hCost;
-		}
+		return gCost + hCost;
 	}
 	
 	public void setParent(AStarNode node) {
@@ -50,8 +46,8 @@ public class AStarNode
 		Coord curCoord = this.getCoord();
 		int diffX = dest.getX() - curCoord.getX();
 		int diffY = dest.getY() - curCoord.getY();
-		
 		this.hCost = (Math.abs(diffX) + Math.abs(diffY));
+		if (flee) this.hCost = -this.hCost;
 	}
 	
 	public int gethCost() {
