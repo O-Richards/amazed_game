@@ -3,6 +3,7 @@ package gameModel.tile;
 import gameModel.Coord;
 import gameModel.EntityMover;
 import gameModel.KillAction;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
 
 public class PitTile extends Tile {
@@ -25,8 +26,15 @@ public class PitTile extends Tile {
 		}
 		
 	}
-	public String getSprite() {
-		return "O";
+	
+	@Override
+	public boolean traversable() {
+		return false;
+	}
+	
+	@Override
+	public VisType getVisType() {
+		return VisType.PIT;
 	}
 
 }

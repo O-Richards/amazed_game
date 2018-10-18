@@ -136,7 +136,6 @@ public class ASCIIGameController {
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
 			//l.moveMobileEntity(player, playerDir);
-			System.out.println("Read player dir " + playerDir);
 			if (playerDir != null) {
 				player.setDirection(playerDir);
 				player.setMoving(true);
