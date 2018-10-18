@@ -1,8 +1,11 @@
 package gameController;
 
+import java.util.ArrayList;
+
 import gameModel.Coord;
 import gameModel.EntityMaker;
 import gameModel.Level;
+import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
 import gameModel.winCondition.WinType;
@@ -16,6 +19,7 @@ import javafx.stage.Stage;
 public class PlayerModeHomeController {
 	
 	private Level easy;
+	private ArrayList<PlayerMobileEntity> players;
 	
 	
 	@FXML
@@ -32,6 +36,8 @@ public class PlayerModeHomeController {
 	public PlayerModeHomeController(Stage s) {
 		currStage = s;
 		this.easy = new Level();
+		
+		this.players = new ArrayList<PlayerMobileEntity>();
 		try {
 			makeEasyMap();
 		} catch (EntityPlacementException e) {
@@ -57,10 +63,21 @@ public class PlayerModeHomeController {
 	public void handleEasyLevelButton(ActionEvent event) {
 		//PlayingController playingController = new PlayingController(currStage);
 		//playingController.setMap(easy);
+	/*	EntityMaker make = new EntityMaker(easy.getWinSystem(), easy.getEntityMover());
+		PlayerMobileEntity newPlayer = make.makePlayer(new Coord(1,1));
+		try {
+			easy.placeMobileEntity(newPlayer);
+		} catch (EntityPlacementException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		players.add(newPlayer); 
+		*/
 		PlayingScreen easyLevel = new PlayingScreen(currStage);
 		easyLevel.start();
 		easyLevel.setMap(this.easy);
-		//easyLevel.setPlayers(players);
+		
+		easyLevel.setPlayers(players);
 		//PlayingController playingController = listOfGames.getSelectionModel().getSelectedItem();
 			
 		
@@ -86,6 +103,10 @@ public class PlayerModeHomeController {
 		
 		PlayerMobileEntity player = make.makePlayer(new Coord(1,1));
 		easy.placeMobileEntity(player);
+		players.add(player);
+		
+		MobileEntity enemy = make.makeEnemy(new Coord(8, 7), player, 0.4);
+		easy.placeMobileEntity(enemy);
 		
 		//Setup template maze
 		easy.placeItem(make.makeArrow(new Coord(1, 2)));
@@ -98,12 +119,11 @@ public class PlayerModeHomeController {
 		easy.placeItem(make.makeHoverPotion(new Coord(2, 4)));
 		easy.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		easy.placePit(new Coord(9,9));
-		easy.placeMobileEntity(make.makeEnemy(new Coord(8, 7), player, 0.4));
 		easy.placeItem(make.makeKey(new Coord(5, 5)));
 		easy.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
 		easy.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
-		easy.placeMobileEntity(make.makeEnemy(new Coord(10, 10), player, 0.4));
+		//easy.placeMobileEntity(make.makeEnemy(new Coord(10, 10), player, 0.4));
 		
 		easy.placeItem(make.makeSword(new Coord(2, 3)));
 		easy.placeItem(make.makeSword(new Coord(1, 3)));
