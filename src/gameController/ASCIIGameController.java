@@ -83,7 +83,6 @@ public class ASCIIGameController {
 		while (inventoryIterator.hasNext()) {
 			ret += inventoryIterator.next().toString() + ", ";
 		}
-		System.out.println("Inventory: " + ret);
 	}
 
 	public static void main(String[] args) throws IOException, EntityPlacementException {
@@ -135,7 +134,6 @@ public class ASCIIGameController {
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
 			//l.moveMobileEntity(player, playerDir);
-			System.out.println("Read player dir " + playerDir);
 			if (playerDir != null) {
 				player.setDirection(playerDir);
 				player.setMoving(true);
