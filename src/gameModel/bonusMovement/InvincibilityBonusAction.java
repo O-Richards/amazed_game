@@ -10,7 +10,7 @@ public class InvincibilityBonusAction extends MovementBonus implements DelayedAc
 	private boolean active = true;
 	public InvincibilityBonusAction(Movement baseMovement, EntityMover entityMover) {
 		super(baseMovement);
-		// entityMover.addDelayedAction(this, numTicksInvincible);
+		entityMover.addDelayedAction(this, numTicksInvincible);
 	}
 	
 	@Override
