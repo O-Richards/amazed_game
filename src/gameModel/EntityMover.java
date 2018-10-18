@@ -1,5 +1,6 @@
 package gameModel;
 
+import gameModel.entity.Entity;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.tile.EntityPlacementException;
@@ -50,4 +51,6 @@ public interface EntityMover {
 	 * @precondition the entity must have a valid coord
 	 */
 	void placeMobileEntity(MobileEntity entity) throws EntityPlacementException;
+	void placeItem(Entity base) throws EntityPlacementException;
+	void clearItem(Coord useLocation);
 }

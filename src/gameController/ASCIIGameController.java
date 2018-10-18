@@ -75,6 +75,7 @@ public class ASCIIGameController {
 			spriteMap.put(VisType.HOUND, "6");
 			spriteMap.put(VisType.COWARD, "C");
 			spriteMap.put(VisType.STRATEGIST, "+");
+			spriteMap.put(VisType.LIT_BOMB, "}");
 		return spriteMap.get(visType);
 	}
 	
@@ -114,10 +115,10 @@ public class ASCIIGameController {
 		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
 		l.placeMobileEntity(make.makeCoward(new Coord(15, 15), player, 0.4));
 		l.placeMobileEntity(make.makeStrategist(new Coord(15, 13), player, 0.4));
-		l.placeItem(make.makeSword(new Coord(2, 3)));
+		//l.placeItem(make.makeSword(new Coord(2, 3)));
 		l.placeItem(make.makeSword(new Coord(1, 3)));
 		l.placeMobileEntity(make.makeBoulder(new Coord(2, 2)));
-		l.placeMobileEntity(make.makeBoulder(new Coord(1, 3)));
+		l.placeItem(make.makeBomb(new Coord(2, 3)));
 
 		l.placeDoor(new Coord(4,1));
 		l.enableWinCondition(WinType.TREASURE);
