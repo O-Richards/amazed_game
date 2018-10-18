@@ -26,6 +26,12 @@ public class PitTile extends Tile {
 		}
 		
 	}
+	
+	@Override
+	public boolean traversable() {
+		return false;
+	}
+	
 	@Override
 	public VisType getVisType() {
 		return VisType.PIT;
