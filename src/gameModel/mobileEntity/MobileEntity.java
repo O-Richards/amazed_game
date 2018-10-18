@@ -16,7 +16,6 @@ public class MobileEntity implements Movement, Entity {
 	private Integer lastTick = -1;
 	private int lastMoveTickNum = -1;
 	private final boolean isPlayer;
-	private final KillAction killAction;
 	private final List<KillAction> killedBy;
 	private boolean pushable = false;
 	private boolean killedByAnything = false;
@@ -29,7 +28,6 @@ public class MobileEntity implements Movement, Entity {
 		this.baseEntity = builder.baseEntity;
 		this.movement = builder.movement;
 		this.isPlayer = builder.isPlayer;
-		this.killAction = builder.killAction;
 		this.killedBy = builder.killedBy;
 		this.killedByAnything = builder.killedByAnything;
 		this.pushable = builder.pushable;
@@ -90,7 +88,7 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	public KillAction getKillAction() {
-		return this.killAction;
+		return this.movement.getKillAction();
 	}
 	
 	@Override
@@ -216,11 +214,6 @@ public class MobileEntity implements Movement, Entity {
 		
 		public MobileEntityBuilder withCanPush(boolean pushes) {
 			this.canPush = pushes;
-			return this;
-		}
-		
-		public MobileEntityBuilder withKillAction(KillAction action) {
-			this.killAction = action;
 			return this;
 		}
 		

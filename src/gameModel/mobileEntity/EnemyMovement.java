@@ -101,5 +101,10 @@ public abstract class EnemyMovement implements Movement {
 	public boolean canDie() {
 		return true;
 	}
+	
+	@Override
+	public KillAction getKillAction() {
+		return KillAction.ENEMY;
+	}
 
 }

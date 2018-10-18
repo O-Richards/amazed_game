@@ -61,4 +61,9 @@ public class EntityTrackingMovement implements Movement {
 	public boolean canDie() {
 		return true;
 	}
+	
+	@Override
+	public KillAction getKillAction() {
+		return KillAction.NO_KILL;
+	}
 }
