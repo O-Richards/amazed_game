@@ -8,6 +8,7 @@ import gameModel.Level;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.UseAction;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,7 +43,8 @@ public class PlayingController {
 		hunterThread.interrupt();
 		pauseMenu.start();
 		currStage.show();
-		hunterThread = new Thread(new MultiThreading());
+		hunterThread = new Thread(new MultiThreading());		
+		hunterThread.setDaemon(true);
 		hunterThread.start();
 	}
 	@FXML
@@ -56,6 +58,7 @@ public class PlayingController {
 		PlayerModeHomeScreen modeHome = new PlayerModeHomeScreen(currStage);
 		modeHome.start();
 	}
+
 	public void setMap(Level l) {
 		this.l = l; 
 		//Displays map: 
@@ -75,7 +78,9 @@ public class PlayingController {
 			}
 		}
         hunterThread= new Thread(new MultiThreading());
+        hunterThread.setDaemon(true);
         hunterThread.start();
+        
 	}
     public void setPlayer(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
@@ -93,16 +98,16 @@ public class PlayingController {
 		//Gets the direction(movement): 
 		if (pressedKeyNumber == KeyCode.W) {
 			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.UP);
+			player1.setDirection(Direction.LEFT);
 		}else if(pressedKeyNumber == KeyCode.A) {
 			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.LEFT);
+			player1.setDirection(Direction.DOWN);
 		}else if(pressedKeyNumber == KeyCode.S) {
 			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.DOWN);
+			player1.setDirection(Direction.RIGHT);
 		}else if(pressedKeyNumber == KeyCode.D) {
 			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.RIGHT);
+			player1.setDirection(Direction.UP);
 		}
 		
 		//direction to shoot/hit: 
