@@ -75,6 +75,7 @@ public class MobileEntity implements Movement, Entity {
 	
 	@Override
 	public boolean kill(KillAction action) {
+		if (!this.canDie()) return false;
 		if (this.killedByAnything || this.killedBy.contains(action)) {
 			if (this.movement.kill(action)) {
 				this.setAlive(false);
@@ -116,6 +117,11 @@ public class MobileEntity implements Movement, Entity {
 	
 	public void setMovement(Movement movement) {
 		this.movement = movement;
+	}
+	
+	@Override
+	public boolean canDie() {
+		return this.movement.canDie();
 	}
 	
 	public Movement getMovement() {

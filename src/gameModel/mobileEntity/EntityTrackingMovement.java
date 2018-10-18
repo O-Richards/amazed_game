@@ -36,6 +36,11 @@ public class EntityTrackingMovement implements Movement {
 		this.direction = dir;
 	}
 	
+	@Override 
+	public void setMobileEntity(MobileEntity mobileEntity) {
+		this.entity = mobileEntity;
+	}
+	
 	/**
 	 * @return true if the entity is killed, false else.
 	 */
@@ -52,8 +57,8 @@ public class EntityTrackingMovement implements Movement {
 		return false;
 	}
 
-	@Override
-	public void setMobileEntity(MobileEntity mobileEntity) {
-		this.entity = mobileEntity;
+	@Override 
+	public boolean canDie() {
+		return true;
 	}
 }

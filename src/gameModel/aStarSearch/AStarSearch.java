@@ -50,7 +50,7 @@ public class AStarSearch
 	
 	public Coord getNextCoord() {
 		List<Coord> path = this.findPath();
-		if (path == null) return this.start;
+		if (path == null || path.size() == 0) return this.start;
 		return path.get(0);
 	}
 	

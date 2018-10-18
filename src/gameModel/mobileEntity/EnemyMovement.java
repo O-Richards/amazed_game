@@ -96,5 +96,10 @@ public abstract class EnemyMovement implements Movement {
 	public void setDirection(Direction dir) {
 		this.direction = dir;
 	}
+	
+	@Override 
+	public boolean canDie() {
+		return true;
+	}
 
 }
