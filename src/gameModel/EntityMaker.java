@@ -5,11 +5,14 @@ import gameModel.bonusMovement.InvincibilityBonusAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
+import gameModel.mobileEntity.CowardEnemyMovement;
 import gameModel.mobileEntity.EnemyMovement;
 import gameModel.mobileEntity.EntityTrackingMovement;
 import gameModel.mobileEntity.HoundEnemyMovement;
+import gameModel.mobileEntity.HunterEnemyMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.mobileEntity.StrategistEnemyMovement;
 import gameModel.usable.ArrowUsable;
 import gameModel.usable.BombUsable;
 import gameModel.usable.KeyUsable;
@@ -149,7 +152,7 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeHunter(Coord c, Entity target, double randMoveRate) {
+	public MobileEntity makeHunter(Coord c, MobileEntity player, double randMoveRate) {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HUNTER, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -160,11 +163,11 @@ public class EntityMaker {
 				.withIsMoving(true)
 				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
-				.withMovement(new EnemyMovement(randMoveRate, basicEntity, target, entityMover))
+				.withMovement(new HunterEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
 	}
 	
-	public MobileEntity makeHound(Coord c, Entity target, MobileEntity hunter, double randMoveRate) {
+	public MobileEntity makeHound(Coord c, MobileEntity player, MobileEntity hunter, double randMoveRate) {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HOUND, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -175,7 +178,37 @@ public class EntityMaker {
 				.withIsMoving(true)
 				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
-				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, target, hunter, entityMover))
+				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, player, hunter, entityMover))
+				.build();
+	}
+	
+	public MobileEntity makeCoward(Coord c, MobileEntity player, double randMoveRate) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.COWARD, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKillAction(KillAction.ENEMY)
+				.withKilledBy(KillAction.WEAPON)
+				.withMovement(new CowardEnemyMovement(randMoveRate, basicEntity, player, entityMover))
+				.build();
+	}
+	
+	public MobileEntity makeStrategist(Coord c, MobileEntity player, double randMoveRate) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.STRATEGIST, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKillAction(KillAction.ENEMY)
+				.withKilledBy(KillAction.WEAPON)
+				.withMovement(new StrategistEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
 	}
 }
