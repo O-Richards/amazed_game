@@ -92,7 +92,8 @@ public class AStarNode
 			}
 			if (this.entityMover.traversable(curCoord)) {
 				AStarNode newNeighbour = new AStarNode(curCoord, this.entityMover);
-				newNeighbour.setgCost(this.gCost+1);
+				newNeighbour.setgCost(this.gCost);
+				// ADJUST GCOST TO MAKE THEM SMARTER OR DUMBER
 				neighbours.add(newNeighbour);
 			}
 		}

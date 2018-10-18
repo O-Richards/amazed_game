@@ -26,18 +26,19 @@ public abstract class EnemyMovement implements Movement {
 	}
 
 	private Coord getRandomCoord() {
-		if (this.randMoveRate < Math.random()) {
-			//Take a random move
-			double randNum = Math.random();
-			Direction nextDir = Direction.CENTRE;
-			if (randNum < 0.25) nextDir = Direction.UP;
-			else if (randNum < 0.5) nextDir = Direction.LEFT;
-			else if (randNum < 0.75) nextDir = Direction.DOWN;
-			else nextDir = Direction.RIGHT;
-			return this.entity.getCoord(nextDir);
-		} else {
-			return null;
-		}
+		return null;
+//		if (this.randMoveRate < Math.random()) {
+//			//Take a random move
+//			double randNum = Math.random();
+//			Direction nextDir = Direction.CENTRE;
+//			if (randNum < 0.25) nextDir = Direction.UP;
+//			else if (randNum < 0.5) nextDir = Direction.LEFT;
+//			else if (randNum < 0.75) nextDir = Direction.DOWN;
+//			else nextDir = Direction.RIGHT;
+//			return this.entity.getCoord(nextDir);
+//		} else {
+//			return null;
+//		}
 	}
 	
 	private void setDirection(Coord nextCoord) {
