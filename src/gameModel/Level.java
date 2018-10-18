@@ -295,4 +295,10 @@ public class Level implements EntityMover {
 		Tile tile = this.getTile(c);
 		return tile.isEmpty();
 	}
+
+	@Override
+	public void clearItem(Coord useLocation) {
+		Tile t = this.getTile(useLocation);
+		t.removeItem();
+	}
 }

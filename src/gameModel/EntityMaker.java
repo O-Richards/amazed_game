@@ -16,7 +16,7 @@ import gameModel.mobileEntity.StrategistEnemyMovement;
 import gameModel.usable.ArrowUsable;
 import gameModel.usable.BombUsable;
 import gameModel.usable.KeyUsable;
-import gameModel.usable.SwordUsage;
+import gameModel.usable.SwordUsable;
 import gameModel.usable.TreasureUsage;
 import gameModel.usable.Usable;
 import gameModel.usable.UseAction;
@@ -126,10 +126,9 @@ public class EntityMaker {
 	}
 	
 	public Entity makeSword(Coord c) {
-		final Integer numUses = 5;
 		return new BasicEntity.BasicEntityBuilder(VisType.SWORD, c)
 				.withEntityMover(entityMover)
-				.withUsage(new SwordUsage(entityMover, numUses))
+				.withUsage(new SwordUsable(entityMover))
 				.build();
 	}
 	
