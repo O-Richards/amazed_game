@@ -160,8 +160,8 @@ public class EntityMaker {
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withCanPush(false)
 				.withIsMoving(true)
-				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
 				.withMovement(new HunterEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
 	}
@@ -175,8 +175,8 @@ public class EntityMaker {
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withCanPush(false)
 				.withIsMoving(true)
-				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
 				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, player, hunter, entityMover))
 				.build();
 	}
@@ -190,8 +190,8 @@ public class EntityMaker {
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withCanPush(false)
 				.withIsMoving(true)
-				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
 				.withMovement(new CowardEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
 	}
@@ -205,8 +205,8 @@ public class EntityMaker {
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withCanPush(false)
 				.withIsMoving(true)
-				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
 				.withMovement(new StrategistEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
 	}

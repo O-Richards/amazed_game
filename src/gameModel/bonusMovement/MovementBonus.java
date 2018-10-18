@@ -50,4 +50,9 @@ public abstract class MovementBonus implements Movement {
 	public boolean pickup(Usable item) {
 		return this.baseMovement.pickup(item);
 	}
+	
+	@Override
+	public KillAction getKillAction() {
+		return baseMovement.getKillAction();
+	}
 }

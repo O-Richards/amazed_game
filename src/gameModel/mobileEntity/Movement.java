@@ -37,6 +37,8 @@ public interface Movement {
 	public Direction getDirection();	
 	
 	public void setDirection(Direction dir);
+	
+	public KillAction getKillAction();
 
 	default public void setMobileEntity(MobileEntity mobileEntity) {
 		
