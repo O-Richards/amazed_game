@@ -15,7 +15,7 @@ public abstract class EnemyMovement implements Movement {
 	private Entity entity;
 	private MobileEntity player;
 	private EntityMover entityMover;
-	private Direction direction;
+	private Direction direction = Direction.CENTRE;
 	private double randMoveRate;
 	
 	public EnemyMovement(double randMoveRate, Entity baseEntity, MobileEntity player, EntityMover entityMover) {
