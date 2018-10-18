@@ -106,9 +106,9 @@ public class ASCIIGameController {
 		l.placeItem(make.makeHoverPotion(new Coord(2, 4)));
 		l.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
 		l.placePit(new Coord(9, 9));
-		MobileEntity hunter = make.makeHunter(new Coord(12, 10), player, 0.4);
-		l.placeMobileEntity(hunter);
-		l.placeMobileEntity(make.makeHound(new Coord(11, 11), player, hunter, 0.4));
+		// MobileEntity hunter = make.makeHunter(new Coord(12, 10), player, 0.4);
+		// l.placeMobileEntity(hunter);
+		// l.placeMobileEntity(make.makeHound(new Coord(11, 11), player, hunter, 0.4));
 		l.placeItem(make.makeKey(new Coord(5, 5)));
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
