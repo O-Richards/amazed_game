@@ -11,16 +11,16 @@ import java.util.List;
 
 import gameModel.*;
 
-public class EnemyMovement implements Movement {
+public abstract class EnemyMovement implements Movement {
 	private Entity entity;
-	private Entity playerTarget;
+	private MobileEntity player;
 	private EntityMover entityMover;
 	private Direction direction;
 	private double randMoveRate;
 	
-	public EnemyMovement(double randMoveRate, Entity baseEntity, Entity playerTarget, EntityMover entityMover) {
+	public EnemyMovement(double randMoveRate, Entity baseEntity, MobileEntity player, EntityMover entityMover) {
 		this.entity = baseEntity;
-		this.playerTarget = playerTarget;
+		this.player = player;
 		this.entityMover = entityMover;
 		this.randMoveRate = randMoveRate;
 	}
@@ -51,9 +51,19 @@ public class EnemyMovement implements Movement {
 		}
 	}
 	
-	protected Coord getTargetCoord() {
-		return playerTarget.getCoord();
+	protected Coord getPlayerCoord() {
+		return player.getCoord();
 	}
+	
+	protected Direction getPlayerDirection() {
+		return player.getDirection();
+	}
+	
+	protected Coord getStartCoord() {
+		return entity.getCoord();
+	}
+	
+	abstract protected Coord getTargetCoord();
 	
 	@Override
 	public Coord nextCoord() {
