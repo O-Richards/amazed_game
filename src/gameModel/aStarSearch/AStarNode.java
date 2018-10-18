@@ -34,6 +34,7 @@ public class AStarNode
 	public AStarNode getParent() {
 		return this.parent;
 	}
+	
 	public void setgCost(int cost) {
 		this.gCost = cost;
 	}
@@ -48,10 +49,6 @@ public class AStarNode
 		int diffY = dest.getY() - curCoord.getY();
 		this.hCost = (Math.abs(diffX) + Math.abs(diffY));
 		if (flee) this.hCost = -this.hCost;
-	}
-	
-	public int gethCost() {
-		return this.hCost;
 	}
 	
 	public Coord getCoord() {
@@ -70,11 +67,7 @@ public class AStarNode
 	public int compareTo(AStarNode next) {
 		    return Math.abs(this.getgCost() - next.getgCost());
 	}
- 
-	@Override
-	public String toString() {
-		return this.coord.toString();
-	}
+
 	/**
 	Gets the neighbours by checking adjacent squares in the map and creating new nodes
 	for tiles that are adjacent and legal to traverse. No need to make directed graph before
@@ -94,7 +87,7 @@ public class AStarNode
 			}
 			if (this.entityMover.traversable(curCoord)) {
 				AStarNode newNeighbour = new AStarNode(curCoord, flee, this.entityMover);
-				newNeighbour.setgCost(this.gCost);
+				newNeighbour.setgCost(this.gCost+1);
 				// ADJUST GCOST TO MAKE THEM SMARTER OR DUMBER
 				neighbours.add(newNeighbour);
 			}

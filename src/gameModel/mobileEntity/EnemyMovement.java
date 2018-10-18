@@ -65,11 +65,7 @@ public abstract class EnemyMovement implements Movement {
 	}
 	
 	protected boolean shouldFlee() {
-		if (this.player.canDie()) {
-			return false;
-		} else {
-			return true;
-		}
+		return !this.player.canDie();
 	}
 	
 	abstract protected Coord getTargetCoord();

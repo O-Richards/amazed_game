@@ -26,7 +26,7 @@ public class AStarSearch
 	private boolean flee;
 	private Coord start;
 	private Coord goal;
-	private final int MAX_ITERATION_COUNTER	= 1000;
+	private final int MAX_DEPTH	= 5;
 	
 	public AStarSearch(Coord start, Coord goal, boolean flee, EntityMover entityMover) {
 		this.start = start;
@@ -52,7 +52,14 @@ public class AStarSearch
 	
 	public Coord getNextCoord() {
 		List<Coord> path = this.findPath();
-		if (path == null || path.size() == 0) return this.start;
+		if (path == null) {
+			System.out.println("null path");
+			return this.start;
+		}
+		if (path.size() == 0) {
+			System.out.println("zero len");
+			return this.start;
+		}
 		return path.get(0);
 	}
 	
@@ -75,14 +82,11 @@ public class AStarSearch
 		open.add(origin);
 		
 		AStarNode current = null;
-		int iterationCounter = 0;
-		while(!open.isEmpty() && iterationCounter < MAX_ITERATION_COUNTER) {
-			iterationCounter++;
+		while(!open.isEmpty()) {
 			current = open.remove();
 			
 			//if we have arrived at goal
-			if (current.getCoord().getX() == this.goal.getX() &&
-					current.getCoord().getY() == this.goal.getY()) {
+			if (current.getCoord() == this.goal || current.getgCost() == MAX_DEPTH) {
 				return makePath(current);
 			}
 			
