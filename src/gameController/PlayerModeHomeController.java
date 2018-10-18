@@ -61,26 +61,10 @@ public class PlayerModeHomeController {
 	
 	@FXML
 	public void handleEasyLevelButton(ActionEvent event) {
-		//PlayingController playingController = new PlayingController(currStage);
-		//playingController.setMap(easy);
-	/*	EntityMaker make = new EntityMaker(easy.getWinSystem(), easy.getEntityMover());
-		PlayerMobileEntity newPlayer = make.makePlayer(new Coord(1,1));
-		try {
-			easy.placeMobileEntity(newPlayer);
-		} catch (EntityPlacementException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		players.add(newPlayer); 
-		*/
 		PlayingScreen easyLevel = new PlayingScreen(currStage);
 		easyLevel.start();
 		easyLevel.setMap(this.easy);
-		
 		easyLevel.setPlayers(players);
-		//PlayingController playingController = listOfGames.getSelectionModel().getSelectedItem();
-			
-		
 	}
 	
 	@FXML
