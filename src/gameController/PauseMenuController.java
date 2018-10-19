@@ -19,8 +19,13 @@ public class PauseMenuController {
 	
 	private Stage currStage;
 	
+	private Stage parentStage; 
 	public PauseMenuController(Stage s) {
 		currStage = s;
+	}
+	public PauseMenuController(Stage parentStage,Stage s) {
+		this.parentStage = parentStage; 
+		this.currStage = s;
 	}
 	
 	@FXML
@@ -32,9 +37,7 @@ public class PauseMenuController {
 	
 	@FXML
 	public void handleQuitButton(ActionEvent event) {
-		PlayerModeHomeScreen playerModeHome = new PlayerModeHomeScreen(currStage);
-		playerModeHome.start();
-		
+		currStage.close(); 
 	}
 	
 	@FXML 
@@ -46,6 +49,7 @@ public class PauseMenuController {
 	@FXML 
 	public void handleResumeButton(ActionEvent event) {
 		currStage.close(); 
+		parentStage.show();
 	}
 	
 	

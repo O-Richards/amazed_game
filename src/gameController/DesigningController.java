@@ -16,6 +16,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import java.util.ArrayList;
 
 import gameModel.Coord;
+import gameModel.EntityCreationException;
 import gameModel.EntityMaker;
 import gameModel.Level;
 import gameModel.entity.VisType;
@@ -113,7 +114,6 @@ public class DesigningController {
 	
 	private int setRow;
 	private int setCol; 
-	
 	private static final int DEFAULT_NROWS = 50;
 	private static final int DEFAULT_NCOLS = 50;
 	//A list observable list: 
@@ -142,7 +142,7 @@ public class DesigningController {
 		selectedItem.setText("Player");
 		//If player has already been placed:
 		//Maybe frontend shouldn't implement this? 
-		/*if(newPlayer != null) {
+		if(players.size() > 2) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.getDialogPane().setContent(new Text("A player has already been placed on the map"));
 			alert.showAndWait();
@@ -150,29 +150,21 @@ public class DesigningController {
 			currentlySelected = null;
 		}else{
 			currentlySelected = VisType.PLAYER;
-		}*/
-		currentlySelected = VisType.PLAYER;
-
+		}
 	}
 	@FXML
 	public void setExit() {
 		selectedItem.setText("exit");
-		//Enables the exit checkbox: 
-		//exitCondition.setDisable(false);
 		currentlySelected = VisType.EXIT;
 	}
 	@FXML
 	public void setSwitch() {
 		selectedItem.setText("switch");
-		//Enables switch win condition:
-		//switchCondition.setDisable(false);
 		currentlySelected = VisType.SWITCH; 
 	}
 	@FXML
 	public void setTreasure() {
 		selectedItem.setText("Treasure");
-		//Enables treasure win condition:
-		//treasureCondition.setDisable(false);
 		currentlySelected = VisType.TREASURE; 
 	}
 	@FXML
@@ -221,30 +213,30 @@ public class DesigningController {
 	}
 	@FXML
 	public void setHound() {
-		selectedItem.setText("Hound");
+		selectedItem.setText("Hound - select a target");
 		//TODO: NEED TO CHANGE THIS!!!
-		currentlySelected = VisType.HUNTER;
+		currentlySelected = VisType.HOUND;
 
 	}
 	
 	@FXML 
 	public void setHunter() {
-		selectedItem.setText("Hunter");
+		selectedItem.setText("Hunter - select a target");
 		//TODO: NEED TO CHANGE THIS!!!
 		currentlySelected = VisType.HUNTER;
 	}
 	
 	@FXML
 	public void setStrat() {
-		selectedItem.setText("Strategiest");
+		selectedItem.setText("Strategiest - select a target");
 		//TODO: CHANGE THIS: 
-		currentlySelected = VisType.HUNTER;
+		currentlySelected = VisType.STRATEGIST;
 	}
 	@FXML
 	public void setCoward() {
-		selectedItem.setText("Coward");
+		selectedItem.setText("Coward - select a target");
 		//TODO: CHANGE THIS: 
-		currentlySelected = VisType.HUNTER;
+		currentlySelected = VisType.COWARD;
 	}
 	@FXML
 	public void setHoverPotion() {
@@ -309,9 +301,10 @@ public class DesigningController {
 	
 	@FXML
 	public void playMap(ActionEvent event) {
-		PlayingScreen playing = new PlayingScreen(currStage);
-		playing.start();
-		
+		PlayingScreen aPlayingScreen = new PlayingScreen(currStage);
+		aPlayingScreen.start();
+		aPlayingScreen.setPlayers(this.getPlayers());
+		aPlayingScreen.setMap(this.getLevel());
 	}
 	
 	@FXML
@@ -322,7 +315,7 @@ public class DesigningController {
 		parentStage.show();
 	}
 	
-	
+	private PlayerMobileEntity playerSelected = null; 
 	
 	private void setItem(int row, int col){
 		try {
@@ -341,6 +334,14 @@ public class DesigningController {
 				l.placeMobileEntity(make.makeBoulder(new Coord(row, col)));		
 				System.out.println("placed Boulder");
 				break;
+			case COWARD:
+				if(playerSelected != null) {
+					l.placeMobileEntity(make.makeCoward(new Coord(row, col), playerSelected, difficultySlider.getValue()));
+					playerSelected = null;
+				}else{
+					playerSelected = playerOnTile(row,col);
+				}
+				break; 
 			case DOOR:
 				l.placeDoor(new Coord(row,col));
 				System.out.println("placed Door");
@@ -358,7 +359,25 @@ public class DesigningController {
 				System.out.println("hover_potion");
 				break;
 			case HUNTER:
-				System.out.println("lol what hunter");
+				//Hunter is selected: 
+				//Checks if we clicked a player to target:
+				if(playerSelected != null) {
+					System.out.println("placing hunter:");
+					System.out.println(playerSelected.getCoord() + " \\" + difficultySlider.getValue());
+					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, difficultySlider.getValue()));
+					playerSelected = null;
+				}else{
+					System.out.println("getting player location");
+					playerSelected = playerOnTile(row,col);
+				}
+				break;
+			case HOUND: 	
+				if(playerSelected != null) {
+					l.placeMobileEntity(make.makeHound(new Coord(row, col), playerSelected,  difficultySlider.getValue()));
+					playerSelected = null;
+				}else{
+					playerSelected = playerOnTile(row,col);
+				}
 				break;
 			case INVINCIBILITY_POTION:
 				l.placeItem(make.makeInvincibilityPotion(new Coord(row, col)));
@@ -378,13 +397,20 @@ public class DesigningController {
 				players.add(newPlayer); 
 				System.out.println("player placed");
 				break;
+			case STRATEGIST:
+				if(playerSelected != null) {
+					l.placeMobileEntity(make.makeStrategist(new Coord(row, col),  playerSelected, difficultySlider.getValue()));
+					playerSelected = null;
+				}else{
+					playerSelected = playerOnTile(row,col);
+				}
+				break; 
 			case SWITCH:
 				l.placeSwitch(new Coord(row, col));
 				System.out.println("placed switch");
 				break;
 			case SWORD:
-				//l.placeItem(make.make(new Coord(row, col)));
-				System.out.println("i can't place sword yet Not implemented in backend");
+				l.placeItem(make.makeSword(new Coord(row, col)));
 				break;
 			case TREASURE:
 				l.placeItem(make.makeTreasure(new Coord(row, col)));
@@ -396,11 +422,25 @@ public class DesigningController {
 				break;
 			default: 
 				break;
-				
 			}
-			//Always sets it back to norm
-			currentlySelected = null; 
-			selectedItem.setText("-");
+
+			//If we have a target selected: 
+			if(playerSelected != null) {
+				if(currentlySelected == VisType.HOUND) {
+					selectedItem.setText("Hound");
+				}else if(currentlySelected == VisType.STRATEGIST){
+					selectedItem.setText("Strategist");
+				}else if(currentlySelected == VisType.HUNTER) {
+					selectedItem.setText("Hunter");					
+				}else if(currentlySelected == VisType.COWARD) {
+					selectedItem.setText("Coward");					
+				}
+			}else {
+				System.out.println("RESETTING VALUES");
+				//Always sets it back to norm
+				currentlySelected = null; 
+				selectedItem.setText("-");
+			}
 			
 		} catch (EntityPlacementException s) {
 			System.out.println("Error Caught !!");
@@ -418,6 +458,15 @@ public class DesigningController {
 				currentlySelected = null;
 			}
 			
+		}catch(EntityCreationException e) {
+			Alert alert = new Alert(Alert.AlertType.WARNING);
+			String houndCreateWarning = ""; 
+			if(currentlySelected == VisType.HOUND) houndCreateWarning  = "A hunter must exist before a hound can be made";
+			alert.getDialogPane().setContent(new Text("Unable to create Entity!! \n" + houndCreateWarning));
+			alert.showAndWait();
+			selectedItem.setText("-");
+			currentlySelected = null;
+			playerSelected = null; 
 		}
 	}
 	
@@ -457,7 +506,19 @@ public class DesigningController {
 				mazeSetPane.setVisible(false);
 			}
 		}
+		
 	}
+	//if a player exists on a tile returns the player
+	private PlayerMobileEntity playerOnTile(int row, int col) {
+		for(PlayerMobileEntity aPlayer:players) {
+			if(aPlayer.getCoord().equals(new Coord(row, col))) {
+				System.out.println(aPlayer);
+				return aPlayer;
+			}
+		}
+		return null; 
+	}
+
 	public ArrayList<PlayerMobileEntity> getPlayers(){
 		return this.players; 
 	}

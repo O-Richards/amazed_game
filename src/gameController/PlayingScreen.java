@@ -40,9 +40,7 @@ public class PlayingScreen {
             this.playingController = new PlayingController(parentStage, s);
         }else {
         	this.playingController = new PlayingController(s);
-        }
-        mapView = playingController.getMap();	
-      
+        }      
         fxmlLoader.setController(playingController);
         try {
             // load into a Parent node called root
@@ -66,9 +64,10 @@ public class PlayingScreen {
     }
 	//Passes to the map to controller
     public void setMap(Level l) {
-    	playingController.setMap(l); 
-        s.setHeight(mapView.getWidth());
-        s.setWidth(mapView.getWidth());
+    	playingController.setMap(l);
+        mapView = playingController.getMap();	
+       // s.setHeight(mapView.getMinHeight());
+       //s.setMinWidth(mapView.getMinWidth());
     }
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	playingController.setPlayers(players);
