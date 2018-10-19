@@ -38,7 +38,7 @@ public class PlayingScreen {
         // set controller for start.fxml
         if(parentStage != null) {
             this.playingController = new PlayingController(parentStage, s);
-        }else {
+        } else {
         	this.playingController = new PlayingController(s);
         }      
         fxmlLoader.setController(playingController);
