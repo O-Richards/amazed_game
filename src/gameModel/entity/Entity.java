@@ -3,6 +3,7 @@ package gameModel.entity;
 import gameModel.Coord;
 import gameModel.mobileEntity.Direction;
 import gameModel.usable.Usable;
+import gameModel.winCondition.WinType;
 import gameModel.entity.VisType;
 
 public interface Entity {
@@ -35,4 +36,6 @@ public interface Entity {
 	public boolean pickup(Usable item);
 
 	public Usable getUsable();
+
+	void setWinConditionType(WinType winType);
 }	

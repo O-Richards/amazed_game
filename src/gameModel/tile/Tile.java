@@ -6,6 +6,8 @@ import gameModel.KillAction;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
+import gameModel.winCondition.WinType;
+
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ArrayList;
@@ -68,8 +70,14 @@ public class Tile extends Observable{
 	 * Clear the tile
 	 */
 	public void clear() {
-		this.item = null;
-		this.mobile = null;
+		if (this.item != null) {
+			this.item.setWinConditionType(WinType.WIN);
+			this.item = null;
+		}
+		if (this.mobile != null) {
+			this.mobile.setWinConditionType(WinType.WIN);
+			this.mobile = null;
+		}
 	}
 
 	/**

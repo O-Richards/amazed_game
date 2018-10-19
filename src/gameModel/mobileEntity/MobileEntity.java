@@ -8,6 +8,7 @@ import gameModel.KillAction;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.usable.Usable;
+import gameModel.winCondition.WinType;
 
 public class MobileEntity implements Movement, Entity {
 	private static final boolean DEBUG = false;
@@ -179,6 +180,11 @@ public class MobileEntity implements Movement, Entity {
 		return baseEntity.getCoord(dir);
 	}
 	
+	@Override
+	public void setWinConditionType(WinType winType) {
+		this.baseEntity.setWinConditionType(winType);
+	}
+	
 	public static class MobileEntityBuilder {
 		public boolean isMoving = false;
 		public boolean canPush = false;
@@ -241,6 +247,7 @@ public class MobileEntity implements Movement, Entity {
 			return new MobileEntity(this);
 		}
 	}
+
 
 
 }

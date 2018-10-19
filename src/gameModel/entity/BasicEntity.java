@@ -94,6 +94,7 @@ public class BasicEntity implements Entity {
 	/**
 	 * @param satisfied sets the win condition as satisfied by winType
 	 */
+	@Override
 	public void setWinConditionType(WinType winType) {
 		this.winCondition.setType(winType);
 	}
