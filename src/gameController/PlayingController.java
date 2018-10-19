@@ -25,8 +25,8 @@ public class PlayingController {
 	@FXML
 	private GridPane map;
 
-	@FXML
-	private GridPane inventory; // TODO
+//	@FXML
+//	private GridPane inventory; // TODO
 	
 	private ArrayList<JFXPane> invetoryDisplayPanes;
 	private ArrayList<PlayerMobileEntity> players; 
@@ -87,7 +87,7 @@ public class PlayingController {
 		//Sets the grid size to match the map: 
 		
 		//Create inventory panes
-		setInventory();
+//		setInventory();
 		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
@@ -95,7 +95,7 @@ public class PlayingController {
         
 	}
 
-	
+/*	
 	private void setInventory() {		
 		for(int col = 0; col < 7; col++) {
 			JFXPane aPane = new JFXPane(1,col);
@@ -104,8 +104,9 @@ public class PlayingController {
 			
 		}
 	}
-	
-	
+*/	
+
+/*	
 	private void updateInventory() {
 		PlayerMobileEntity player = players.get(0); //TODO
 		Iterator<UseAction> playerInventory = player.inventoryIterator();
@@ -116,7 +117,7 @@ public class PlayingController {
 			aPane.update(null, null);
 		}
 	}
-	
+*/	
 	
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
@@ -186,7 +187,7 @@ public class PlayingController {
     				
     				
     				// UPDATE INVENTORY DISPLAY HERE TODO
-    				updateInventory();
+    				//updateInventory();
     	    	}
     	    });
 		} catch (Exception e) {
