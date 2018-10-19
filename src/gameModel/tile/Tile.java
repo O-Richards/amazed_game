@@ -79,11 +79,25 @@ public class Tile extends Observable{
 			this.mobile = null;
 		}
 	}
+	
+	/**
+	 * @param newEntity the new MobileEntity to be placed on the tile
+	 * @throws EntityPlacementException thrown if it is not possible to place here
+	 */
+	public void placeMobileEntity(MobileEntity newEntity) throws EntityPlacementException {
+		if (this.mobile != null) {
+			throw new EntityPlacementException("Cannot place new entity on an occupied tile");
+		} else {
+			this.mobile = newEntity;
+		}
+	}
 
 	/**
 	 * Add an enemy to a tile
 	 * @param enemy
 	 * @throws EntityPlacementException Thrown if there is an error in placing the enemy e.g. walking onto a closed door.
+	 * The diference between this method and placeMobileEntity is that if there is already a mobile entity on the tile
+	 * It will attempt to push/kill them
 	 */
 	public void addMobileEntity(MobileEntity newEntity) throws EntityPlacementException {
 		MobileEntity oldEntity = this.mobile;

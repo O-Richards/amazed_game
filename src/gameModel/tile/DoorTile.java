@@ -29,6 +29,11 @@ public class DoorTile extends Tile {
 		return this.open == true && super.traversable();
 	}
 	
+	@Override 
+	public void placeMobileEntity(MobileEntity e) throws EntityPlacementException {
+		throw new EntityPlacementException("Cannot place entites on doors");
+	}
+	
 	@Override
 	public void addMobileEntity(MobileEntity e) throws EntityPlacementException {
 		this.open |= (e.getKeyCode() == this.doorCode);
@@ -37,18 +42,6 @@ public class DoorTile extends Tile {
 		}
 		super.addMobileEntity(e);
 	}
-	
-/*
-	@Override
-	public Collision collideExt(MobileEntity hitter, Collision col) {
-		if (hitter.getKeyCode() == doorCode || open == true) {
-			open = true;
-			return col;
-		} else {
-			return Collision.NOMOVE;
-		}
-	}
-	*/
 
 	@Override
 	public VisType getVisType() {

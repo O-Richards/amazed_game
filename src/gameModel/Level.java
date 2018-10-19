@@ -104,7 +104,7 @@ public class Level implements EntityMover {
 	public void placeMobileEntity(MobileEntity enemy) throws EntityPlacementException {
 		Coord c = enemy.getCoord();
 		Tile placementTile = getTile(c);
-		placementTile.addMobileEntity(enemy);
+		placementTile.placeMobileEntity(enemy);
 	}
 	
 	public void tick() {
