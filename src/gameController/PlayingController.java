@@ -138,6 +138,14 @@ public class PlayingController {
     	    	@Override
     	    	public void run(){
     	    		l.tick();
+    	    		if (l.hasWon()) {
+    	    			System.out.println("YOU WON");
+    	    			returnHome();
+    				}
+    				if (!players.get(0).isAlive()) {
+    					System.out.println("YOU lost");
+    					returnHome();
+    				}
     	    		PlayerMobileEntity player1 = players.get(0);
     	    		//prevents the player from moving in the next iteration: 
     				if(player1 != null)player1.setMoving(false);
