@@ -26,7 +26,7 @@
             <SepiaTone />
          </effect>
       </ImageView>
-      <Button fx:id="homeButton" layoutX="553.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0" style="-fx-background-color: transparent;">
+      <Button fx:id="homeButton" layoutX="543.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -54,7 +54,7 @@
             <Glow level="1.0" />
          </effect>
       </Label>
-      <Button fx:id="createNewButton" layoutX="158.0" layoutY="-6.0" mnemonicParsing="false" onAction="#handleCreateNewButton" prefHeight="134.0" prefWidth="258.0" style="-fx-background-color: transparent;" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
+      <Button fx:id="createNewButton" layoutX="158.0" layoutY="-6.0" mnemonicParsing="false" onAction="#handleCreateNewButton" prefHeight="147.0" prefWidth="259.0" style="-fx-background-color: transparent;" textAlignment="JUSTIFY" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font name="American Typewriter" size="18.0" />
          </font>
@@ -110,7 +110,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ListView fx:id="listOfGames" layoutX="-46.0" layoutY="24.0" opacity="0.84" prefHeight="252.0" prefWidth="211.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="listOfGames" layoutX="-46.0" layoutY="24.0" opacity="0.66" prefHeight="252.0" prefWidth="211.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </content>
