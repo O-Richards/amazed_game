@@ -199,15 +199,12 @@ public class PlayingController {
 
     	    		//prevents the player from moving in the next iteration: 
     				if(player1 != null)player1.setMoving(false);
-<<<<<<< HEAD
     				
     				
     				// UPDATE INVENTORY DISPLAY HERE TODO
     				//updateInventory();
-=======
     				if(player2 != null)player2.setMoving(false);
 
->>>>>>> 38ce363ce5531f3f22115b369d9dc0ea0858ecc9
     	    	}
     	    });
 		} catch (Exception e) {
