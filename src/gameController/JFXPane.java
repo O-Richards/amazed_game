@@ -75,6 +75,7 @@ public class JFXPane implements Observer {
         image.setFitHeight(pane.getHeight());
 
 	}
+
 	public String visTypeToPath(VisType visType) {
 		
 		Map<VisType, String> spriteMap = new HashMap<>();

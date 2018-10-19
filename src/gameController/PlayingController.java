@@ -2,9 +2,11 @@ package gameController;
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import gameModel.Coord;
 import gameModel.Level;
+import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.UseAction;
@@ -22,6 +24,11 @@ public class PlayingController {
 	private Button pause;
 	@FXML
 	private GridPane map;
+
+	@FXML
+	private GridPane inventory; // TODO
+	
+	private ArrayList<JFXPane> invetoryDisplayPanes;
 	private ArrayList<PlayerMobileEntity> players; 
 	private Stage currStage;
 	private Stage parentStage; 
@@ -79,11 +86,36 @@ public class PlayingController {
 		}
 		//Sets the grid size to match the map: 
 		
+		//Create inventory panes
+		//setInventory();
+		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
         hunterThread.start();
         
 	}
+
+	
+	private void setInventory() {		
+		for(int col = 0; col < 7; col++) {
+			JFXPane aPane = new JFXPane(0,col);
+			invetoryDisplayPanes.add(aPane);
+			inventory.add(aPane.getPane(), 0, col);
+			
+		}
+	}
+	
+	/*
+	private void updateInventory() {
+		PlayerMobileEntity player = players.get(0); //TODO
+		Iterator<UseAction> playerInventory = player.inventoryIterator();
+		
+		for (int i = 0; i < invetoryDisplayPanes.size(); i++) {
+			invetoryDisplayPanes.get(i).update(null, playerInventory.next().toString());
+		}
+	}
+	
+	*/
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
     }
@@ -149,7 +181,10 @@ public class PlayingController {
     	    		PlayerMobileEntity player1 = players.get(0);
     	    		//prevents the player from moving in the next iteration: 
     				if(player1 != null)player1.setMoving(false);
-
+    				
+    				
+    				// UPDATE INVENTORY DISPLAY HERE TODO
+    				//updateInventory();
     	    	}
     	    });
 		} catch (Exception e) {

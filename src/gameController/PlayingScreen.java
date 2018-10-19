@@ -8,14 +8,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
+//import javafx.scene.image.ImageView;  TODO DELETE
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Timer;
+// import java.util.Timer; TODO DELETE
  
 public class PlayingScreen {
 	
