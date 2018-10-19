@@ -30,6 +30,8 @@ public class PlayingController {
 	
 	private ArrayList<JFXPane> invetoryDisplayPanes;
 	private ArrayList<PlayerMobileEntity> players; 
+	PlayerMobileEntity player1;
+	PlayerMobileEntity player2; 
 	private Stage currStage;
 	private Stage parentStage; 
 	Thread hunterThread; 
@@ -45,11 +47,12 @@ public class PlayingController {
 	
 	@FXML
 	public void handlePauseButton(ActionEvent event) {
-		PauseMenuScreen pauseMenu = new PauseMenuScreen(new Stage());
-		currStage.hide();
+		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
+		//interrupts the hunter thread: 
 		hunterThread.interrupt();
+		//hides the game: 
+		currStage.hide();
 		pauseMenu.start();
-		currStage.show();
 		hunterThread = new Thread(new MultiThreading());		
 		hunterThread.setDaemon(true);
 		hunterThread.start();
@@ -129,9 +132,17 @@ public class PlayingController {
 		if(pressedKeyNumber == KeyCode.ESCAPE) {
 			//TODO: Link the pause menu or a key??? 
 		}
-
-		PlayerMobileEntity player1 = players.get(0);
 		
+		//If there's only 1 player
+		if(players.size() == 1) {
+			player1 = players.get(0);
+		//More than one player: 
+		}else if(players.size() > 1) {
+			player1 = players.get(0);
+			player2 = players.get(1);
+		}
+
+
 		if(player1 != null)player1.setMoving(false);
 
 		//Gets the direction(movement): 
@@ -177,17 +188,26 @@ public class PlayingController {
     	    			System.out.println("YOU WON");
     	    			returnHome();
     				}
-    				if (!players.get(0).isAlive()) {
-    					System.out.println("YOU lost");
+    				if (player1 != null && !player1.isAlive()) {
+    					System.out.println("Player1 lost");
     					returnHome();
     				}
-    	    		PlayerMobileEntity player1 = players.get(0);
+    				if (player2 != null &&!player2.isAlive()) {
+    					System.out.println("Player2 lost");
+    					returnHome();
+    				}
+
     	    		//prevents the player from moving in the next iteration: 
     				if(player1 != null)player1.setMoving(false);
+<<<<<<< HEAD
     				
     				
     				// UPDATE INVENTORY DISPLAY HERE TODO
     				//updateInventory();
+=======
+    				if(player2 != null)player2.setMoving(false);
+
+>>>>>>> 38ce363ce5531f3f22115b369d9dc0ea0858ecc9
     	    	}
     	    });
 		} catch (Exception e) {
@@ -209,7 +229,7 @@ public class PlayingController {
 	    		while(true) {
 	          	  System.out.println("tick");
 	          	  runTick();
-	          	  Thread.sleep(100);
+	          	  Thread.sleep(400);
 	    		}
 			} catch (InterruptedException e) {
 				System.out.println("thread interrupted");

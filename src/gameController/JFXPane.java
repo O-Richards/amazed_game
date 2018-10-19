@@ -28,7 +28,6 @@ public class JFXPane implements Observer {
 		pane = new Pane(this.image);
 		pane.setMinHeight(25);
 		pane.setMinWidth(25);
-
 		//pane.setMinWidth(image.getFitWidth());
 		//pane.setMinHeight(image.getFitHeight());
         image.setFitWidth(pane.getWidth());
@@ -87,7 +86,9 @@ public class JFXPane implements Observer {
 			spriteMap.put(VisType.HOVER_POTION, "/hover&tile.png");
 			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility&tile.png");
 			spriteMap.put(VisType.TREASURE, "/treasure&tile.png");
-			//spriteMap.put(VisType.HOUND, "/hound&tile.png");
+			spriteMap.put(VisType.COWARD, "/coward&tile.png");
+			spriteMap.put(VisType.STRATEGIST, "/strategist&tile.png");
+			spriteMap.put(VisType.HOUND, "/hound&tile.png");
 			spriteMap.put(VisType.HUNTER, "/hunter&tile.png");
 			spriteMap.put(VisType.SWORD, "/sword&tile.png");
 			spriteMap.put(VisType.EXIT, "/exit.png");
