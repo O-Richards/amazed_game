@@ -119,6 +119,32 @@ public class ASCIIGameController {
 		l.placeItem(make.makeSword(new Coord(1, 3)));
 		l.placeMobileEntity(make.makeBoulder(new Coord(2, 2)));
 		l.placeItem(make.makeBomb(new Coord(2, 3)));
+		
+		//@Geoffrey
+		//An example of how to make a hound
+		MobileEntity hound = null;
+		try {
+			hound = make.makeHound(new Coord(1, 1), player, 0.3);
+		} 
+		catch (EntityCreationException e) {
+			//Note that since a hunter hasn't been made yet, this catch will happen
+			System.out.println(e.getMessage());
+			//In the frontend you would return here or something...
+		}
+		
+		//Now place a hunter
+		l.placeMobileEntity(make.makeHunter(new Coord(13, 3), player, 0.6));
+		
+		try {
+			hound = make.makeHound(new Coord(10, 3), player, 0.3);
+		} 
+		catch (EntityCreationException e) {
+			//this time it should succeed
+			System.out.println(e.getMessage());
+		}
+		
+		l.placeMobileEntity(hound);
+		
 
 		l.placeDoor(new Coord(4,1));
 		l.enableWinCondition(WinType.TREASURE);

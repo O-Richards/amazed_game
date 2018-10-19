@@ -27,6 +27,7 @@ import gameModel.winCondition.WinType;
 public class EntityMaker {
 	private WinSystem winSystem;
 	private EntityMover entityMover;
+	private MobileEntity hunter = null;
 	
 	public EntityMaker(WinSystem winSystem, EntityMover entityMover) {
 		this.winSystem = winSystem;
@@ -157,16 +158,21 @@ public class EntityMaker {
 				.withAlive(true)
 				.build();
 		
-		return new MobileEntity.MobileEntityBuilder(basicEntity)
+		this.hunter = new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withCanPush(false)
 				.withIsMoving(true)
 				.withKilledBy(KillAction.WEAPON)
 				.withKilledBy(KillAction.INVINCIBLE)
 				.withMovement(new HunterEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
+		
+		return this.hunter;
 	}
 	
-	public MobileEntity makeHound(Coord c, MobileEntity player, MobileEntity hunter, double randMoveRate) {
+	public MobileEntity makeHound(Coord c, MobileEntity player, double randMoveRate) throws EntityCreationException {
+		if (this.hunter == null) {
+			throw new EntityCreationException("A hunter must exist before a hound can be made");
+		}
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HOUND, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -177,7 +183,7 @@ public class EntityMaker {
 				.withIsMoving(true)
 				.withKilledBy(KillAction.WEAPON)
 				.withKilledBy(KillAction.INVINCIBLE)
-				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, player, hunter, entityMover))
+				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, player, this.hunter, entityMover))
 				.build();
 	}
 	
