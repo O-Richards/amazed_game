@@ -32,17 +32,13 @@ public interface Movement {
 	 */
 	public boolean pickup(Usable item);
 	
-	default public boolean canDie() {
-		return true;
-	}
+	public boolean canDie();
 	
 	public Direction getDirection();	
 	
 	public void setDirection(Direction dir);
 	
-	default public void setEntity(MobileEntity e) {
-		
-	}
+	public KillAction getKillAction();
 
 	default public void setMobileEntity(MobileEntity mobileEntity) {
 		

@@ -1,11 +1,13 @@
 package gameModel.aStarSearch;
 
 import java.util.PriorityQueue;
+import java.util.Set;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +23,15 @@ import java.util.List;
 public class AStarSearch 
 {
 	private EntityMover entityMover;
+	private boolean flee;
 	private Coord start;
 	private Coord goal;
+	private final int MAX_DEPTH	= 5;
 	
-	public AStarSearch(Coord start, Coord goal, EntityMover entityMover) {
+	public AStarSearch(Coord start, Coord goal, boolean flee, EntityMover entityMover) {
 		this.start = start;
 		this.goal = goal;
+		this.flee = flee;
 		this.entityMover = entityMover;
 	}
 	
@@ -45,6 +50,19 @@ public class AStarSearch
 		return path;
 	}
 	
+	public Coord getNextCoord() {
+		List<Coord> path = this.findPath();
+		if (path == null) {
+			System.out.println("null path");
+			return this.start;
+		}
+		if (path.size() == 0) {
+			System.out.println("zero len");
+			return this.start;
+		}
+		return path.get(0);
+	}
+	
 	public List<Coord> findPath() {
 		
 		Comparator<AStarNode> nodeComparator = new Comparator<AStarNode>() {
@@ -56,21 +74,19 @@ public class AStarSearch
 		
 		// lists used in search loop
 		PriorityQueue<AStarNode> open = new PriorityQueue<AStarNode>(nodeComparator);
-		List<AStarNode> closed = new ArrayList<>();
+		Set<AStarNode> closed = new HashSet<>();
 		
 		// init priority queue with origin node
-		AStarNode origin = new AStarNode(this.start, this.entityMover);
+		AStarNode origin = new AStarNode(this.start, flee, this.entityMover);
 		origin.setgCost(0);
 		open.add(origin);
 		
 		AStarNode current = null;
-		
 		while(!open.isEmpty()) {
 			current = open.remove();
 			
 			//if we have arrived at goal
-			if (current.getCoord().getX() == this.goal.getX() &&
-					current.getCoord().getY() == this.goal.getY()) {
+			if (current.getCoord() == this.goal || current.getgCost() == MAX_DEPTH) {
 				return makePath(current);
 			}
 			
@@ -81,18 +97,18 @@ public class AStarSearch
 				
 				for(AStarNode neighbour: neighbours) {
 					//unvisitied nodes only
-					if(!closed.contains(neighbour)) {
-						int gcost = current.getgCost() + current.compareTo(neighbour); //cost to neighbour from origin
-						
-						// check if shorter path to neighbour is found
-						if ((!open.contains(neighbour) && !closed.contains(neighbour)) || gcost < neighbour.getgCost()) {
-							neighbour.setParent(current);
-							neighbour.setgCost(gcost);
-							neighbour.sethCost(goal);
-						}
-						
+					if (closed.contains(neighbour)) continue;
+					
+					int gcost = current.getgCost() + current.compareTo(neighbour); //cost to neighbour from origin
+					
+					// check if shorter path to neighbour is found
+					if ((!open.contains(neighbour) && !closed.contains(neighbour)) || gcost < neighbour.getgCost()) {
+						neighbour.setParent(current);
+						neighbour.setgCost(gcost);
+						neighbour.sethCost(goal);
 					}
-					open.add(neighbour);
+						
+					if (!open.contains(neighbour)) open.add(neighbour);
 					// put neighbour node into open nodes					
 					
 				}				

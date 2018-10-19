@@ -1,5 +1,6 @@
 package gameModel;
 
+import gameModel.entity.Entity;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.tile.EntityPlacementException;
@@ -25,6 +26,12 @@ public interface EntityMover {
 	 * @return	true if a mobile entity can move onto this tile without dying, false else.
 	 */
 	public boolean traversable(Coord c);
+	
+	/**
+	 * @param c the coord of interest
+	 * @return true if coord c contains an empty tile with nothing on it, false else
+	 */
+	public boolean isEmpty(Coord c);
 
 	/**
 	 * @param c the coord to kill all (killable) entities on
@@ -44,4 +51,6 @@ public interface EntityMover {
 	 * @precondition the entity must have a valid coord
 	 */
 	void placeMobileEntity(MobileEntity entity) throws EntityPlacementException;
+	void placeItem(Entity base) throws EntityPlacementException;
+	void clearItem(Coord useLocation);
 }

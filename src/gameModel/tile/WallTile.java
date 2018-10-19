@@ -40,4 +40,9 @@ public class WallTile extends Tile {
 	public VisType getVisType() {
 		return VisType.WALL;
 	}
+	
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
 }

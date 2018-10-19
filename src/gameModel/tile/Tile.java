@@ -6,6 +6,8 @@ import gameModel.KillAction;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
+import gameModel.winCondition.WinType;
+
 import java.util.Observable;
 import java.util.Observer;
 
@@ -32,6 +34,7 @@ public class Tile extends Observable{
 	private Entity item = null;
 	private MobileEntity mobile = null;
 	private EntityMover entityMover;	
+
 	public Tile(Coord coord, EntityMover entityMover) {
 		this.coord = coord;
 		this.entityMover = entityMover;
@@ -76,8 +79,14 @@ public class Tile extends Observable{
 	 * Clear the tile
 	 */
 	public void clear() {
-		this.item = null;
-		this.mobile = null;
+		if (this.item != null) {
+			this.item.setWinConditionType(WinType.WIN);
+			this.item = null;
+		}
+		if (this.mobile != null) {
+			this.mobile.setWinConditionType(WinType.WIN);
+			this.mobile = null;
+		}
 		notifyObservers();
 	}
 
@@ -214,4 +223,12 @@ public class Tile extends Observable{
 		}
 		notifyObservers();
 	}
+	
+	/**
+	 * @return true if the tile ie completely empty, false else
+	 */
+	public boolean isEmpty() {
+		return (this.mobile == null && this.item == null);
+	}
+	 
 }

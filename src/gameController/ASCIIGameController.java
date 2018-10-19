@@ -2,12 +2,14 @@ package gameController;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 
 import gameModel.*;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
+import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.tile.EntityPlacementException;
 import gameModel.usable.UseAction;
@@ -70,7 +72,19 @@ public class ASCIIGameController {
 			spriteMap.put(VisType.DOOR, "D");
 			spriteMap.put(VisType.HUNTER, "E");
 			spriteMap.put(VisType.WALL, "W");
+			spriteMap.put(VisType.HOUND, "6");
+			spriteMap.put(VisType.COWARD, "C");
+			spriteMap.put(VisType.STRATEGIST, "+");
+			spriteMap.put(VisType.LIT_BOMB, "}");
 		return spriteMap.get(visType);
+	}
+	
+	private void printInventory(Iterator<UseAction> inventoryIterator) {
+		String ret = "";
+		while (inventoryIterator.hasNext()) {
+			ret += inventoryIterator.next().toString() + ", ";
+		}
+		System.out.println("Inventory: " + ret);
 	}
 
 	public static void main(String[] args) throws IOException, EntityPlacementException {
@@ -91,16 +105,46 @@ public class ASCIIGameController {
 		l.placeExit(new Coord(6, 1));
 		l.placeItem(make.makeHoverPotion(new Coord(2, 4)));
 		l.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
-		l.placePit(new Coord(9,9));
-		l.placeMobileEntity(make.makeEnemy(new Coord(8, 7), player, 0.4));
+		l.placePit(new Coord(9, 9));
+		// MobileEntity hunter = make.makeHunter(new Coord(12, 10), player, 0.4);
+		// l.placeMobileEntity(hunter);
+		// l.placeMobileEntity(make.makeHound(new Coord(11, 11), player, hunter, 0.4));
 		l.placeItem(make.makeKey(new Coord(5, 5)));
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
 		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
-		l.placeMobileEntity(make.makeEnemy(new Coord(10, 10), player, 0.4));
-		
-		l.placeItem(make.makeSword(new Coord(2, 3)));
+		l.placeMobileEntity(make.makeCoward(new Coord(15, 15), player, 0.4));
+		l.placeMobileEntity(make.makeStrategist(new Coord(15, 13), player, 0.4));
+		//l.placeItem(make.makeSword(new Coord(2, 3)));
 		l.placeItem(make.makeSword(new Coord(1, 3)));
+		l.placeMobileEntity(make.makeBoulder(new Coord(2, 2)));
+		l.placeItem(make.makeBomb(new Coord(2, 3)));
+		
+		//@Geoffrey
+		//An example of how to make a hound
+		MobileEntity hound = null;
+		try {
+			hound = make.makeHound(new Coord(1, 1), player, 0.3);
+		} 
+		catch (EntityCreationException e) {
+			//Note that since a hunter hasn't been made yet, this catch will happen
+			System.out.println(e.getMessage());
+			//In the frontend you would return here or something...
+		}
+		
+		//Now place a hunter
+		l.placeMobileEntity(make.makeHunter(new Coord(13, 3), player, 0.6));
+		
+		try {
+			hound = make.makeHound(new Coord(10, 3), player, 0.3);
+		} 
+		catch (EntityCreationException e) {
+			//this time it should succeed
+			System.out.println(e.getMessage());
+		}
+		
+		l.placeMobileEntity(hound);
+		
 
 		l.placeDoor(new Coord(4,1));
 		l.enableWinCondition(WinType.TREASURE);
@@ -118,7 +162,6 @@ public class ASCIIGameController {
 			//Getting the direction: 
 			Direction playerDir = gc.strToDirection(input);
 			//l.moveMobileEntity(player, playerDir);
-			System.out.println("Read player dir " + playerDir);
 			if (playerDir != null) {
 				player.setDirection(playerDir);
 				player.setMoving(true);
@@ -136,7 +179,7 @@ public class ASCIIGameController {
 		
 			l.tick();
 			System.out.println(gc.visualiseLevel(l));
-			System.out.println(player.inventoryString());
+			gc.printInventory(player.inventoryIterator());
 			//l.checkInventory(); 
 			if (l.hasWon()) {
 				System.out.println("WON THE GAME!!!");
@@ -149,5 +192,6 @@ public class ASCIIGameController {
 		}
 		s.close();
 	}
+
 	
 }

@@ -307,4 +307,16 @@ public class Level implements EntityMover {
 	public void addDelayedAction(DelayedAction action, Integer numTicksUntil) {
 		this.delayedActions.put(action, this.tickNum + numTicksUntil);
 	}
+
+	@Override
+	public boolean isEmpty(Coord c) {
+		Tile tile = this.getTile(c);
+		return tile.isEmpty();
+	}
+
+	@Override
+	public void clearItem(Coord useLocation) {
+		Tile t = this.getTile(useLocation);
+		t.removeItem();
+	}
 }

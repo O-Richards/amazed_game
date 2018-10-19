@@ -8,6 +8,7 @@ import gameModel.KillAction;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.usable.Usable;
+import gameModel.winCondition.WinType;
 
 public class MobileEntity implements Movement, Entity {
 	private static final boolean DEBUG = false;
@@ -16,7 +17,6 @@ public class MobileEntity implements Movement, Entity {
 	private Integer lastTick = -1;
 	private int lastMoveTickNum = -1;
 	private final boolean isPlayer;
-	private final KillAction killAction;
 	private final List<KillAction> killedBy;
 	private boolean pushable = false;
 	private boolean killedByAnything = false;
@@ -29,7 +29,6 @@ public class MobileEntity implements Movement, Entity {
 		this.baseEntity = builder.baseEntity;
 		this.movement = builder.movement;
 		this.isPlayer = builder.isPlayer;
-		this.killAction = builder.killAction;
 		this.killedBy = builder.killedBy;
 		this.killedByAnything = builder.killedByAnything;
 		this.pushable = builder.pushable;
@@ -75,6 +74,7 @@ public class MobileEntity implements Movement, Entity {
 	
 	@Override
 	public boolean kill(KillAction action) {
+		if (!this.canDie()) return false;
 		if (this.killedByAnything || this.killedBy.contains(action)) {
 			if (this.movement.kill(action)) {
 				this.setAlive(false);
@@ -89,7 +89,7 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	public KillAction getKillAction() {
-		return this.killAction;
+		return this.movement.getKillAction();
 	}
 	
 	@Override
@@ -116,6 +116,11 @@ public class MobileEntity implements Movement, Entity {
 	
 	public void setMovement(Movement movement) {
 		this.movement = movement;
+	}
+	
+	@Override
+	public boolean canDie() {
+		return this.movement.canDie();
 	}
 	
 	public Movement getMovement() {
@@ -175,6 +180,11 @@ public class MobileEntity implements Movement, Entity {
 		return baseEntity.getCoord(dir);
 	}
 	
+	@Override
+	public void setWinConditionType(WinType winType) {
+		this.baseEntity.setWinConditionType(winType);
+	}
+	
 	public static class MobileEntityBuilder {
 		public boolean isMoving = false;
 		public boolean canPush = false;
@@ -213,11 +223,6 @@ public class MobileEntity implements Movement, Entity {
 			return this;
 		}
 		
-		public MobileEntityBuilder withKillAction(KillAction action) {
-			this.killAction = action;
-			return this;
-		}
-		
 		public MobileEntityBuilder withIsPlayer(boolean isPlayer) {
 			this.isPlayer = isPlayer;
 			return this;
@@ -242,6 +247,7 @@ public class MobileEntity implements Movement, Entity {
 			return new MobileEntity(this);
 		}
 	}
+
 
 
 }

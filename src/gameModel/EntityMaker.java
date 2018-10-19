@@ -5,14 +5,18 @@ import gameModel.bonusMovement.InvincibilityBonusAction;
 import gameModel.entity.BasicEntity;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
+import gameModel.mobileEntity.CowardEnemyMovement;
 import gameModel.mobileEntity.EnemyMovement;
 import gameModel.mobileEntity.EntityTrackingMovement;
+import gameModel.mobileEntity.HoundEnemyMovement;
+import gameModel.mobileEntity.HunterEnemyMovement;
 import gameModel.mobileEntity.MobileEntity;
 import gameModel.mobileEntity.PlayerMobileEntity;
+import gameModel.mobileEntity.StrategistEnemyMovement;
 import gameModel.usable.ArrowUsable;
 import gameModel.usable.BombUsable;
 import gameModel.usable.KeyUsable;
-import gameModel.usable.SwordUsage;
+import gameModel.usable.SwordUsable;
 import gameModel.usable.TreasureUsage;
 import gameModel.usable.Usable;
 import gameModel.usable.UseAction;
@@ -23,6 +27,7 @@ import gameModel.winCondition.WinType;
 public class EntityMaker {
 	private WinSystem winSystem;
 	private EntityMover entityMover;
+	private MobileEntity hunter = null;
 	
 	public EntityMaker(WinSystem winSystem, EntityMover entityMover) {
 		this.winSystem = winSystem;
@@ -122,10 +127,9 @@ public class EntityMaker {
 	}
 	
 	public Entity makeSword(Coord c) {
-		final Integer numUses = 5;
 		return new BasicEntity.BasicEntityBuilder(VisType.SWORD, c)
 				.withEntityMover(entityMover)
-				.withUsage(new SwordUsage(entityMover, numUses))
+				.withUsage(new SwordUsable(entityMover))
 				.build();
 	}
 	
@@ -148,8 +152,28 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeEnemy(Coord c, Entity target, double randMoveRate) {
+	public MobileEntity makeHunter(Coord c, MobileEntity player, double randMoveRate) {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HUNTER, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		this.hunter = new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
+				.withMovement(new HunterEnemyMovement(randMoveRate, basicEntity, player, entityMover))
+				.build();
+		
+		return this.hunter;
+	}
+	
+	public MobileEntity makeHound(Coord c, MobileEntity player, double randMoveRate) throws EntityCreationException {
+		if (this.hunter == null) {
+			throw new EntityCreationException("A hunter must exist before a hound can be made");
+		}
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HOUND, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
 				.build();
@@ -157,9 +181,39 @@ public class EntityMaker {
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
 				.withCanPush(false)
 				.withIsMoving(true)
-				.withKillAction(KillAction.ENEMY)
 				.withKilledBy(KillAction.WEAPON)
-				.withMovement(new EnemyMovement(randMoveRate, basicEntity, target, entityMover))
+				.withKilledBy(KillAction.INVINCIBLE)
+				.withMovement(new HoundEnemyMovement(randMoveRate, basicEntity, player, this.hunter, entityMover))
+				.build();
+	}
+	
+	public MobileEntity makeCoward(Coord c, MobileEntity player, double randMoveRate) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.COWARD, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
+				.withMovement(new CowardEnemyMovement(randMoveRate, basicEntity, player, entityMover))
+				.build();
+	}
+	
+	public MobileEntity makeStrategist(Coord c, MobileEntity player, double randMoveRate) {
+		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.STRATEGIST, c)
+				.withEntityMover(entityMover)
+				.withAlive(true)
+				.build();
+		
+		return new MobileEntity.MobileEntityBuilder(basicEntity)
+				.withCanPush(false)
+				.withIsMoving(true)
+				.withKilledBy(KillAction.WEAPON)
+				.withKilledBy(KillAction.INVINCIBLE)
+				.withMovement(new StrategistEnemyMovement(randMoveRate, basicEntity, player, entityMover))
 				.build();
 	}
 }

@@ -32,5 +32,5 @@ public class SwitchTile extends Tile {
 	public VisType getVisType() {
 		return VisType.SWITCH;
 	}
-
+	
 }

@@ -12,6 +12,7 @@ public class SwordUsable implements Usable {
 	private EntityMover entityMover;
 
 	public SwordUsable(EntityMover entityMover) {
+		this.entityMover = entityMover;
 	}
 
 	@Override
@@ -20,9 +21,9 @@ public class SwordUsable implements Usable {
 			Coord currentCoord = player.getCoord(player.getDirection());
 			this.entityMover.kill(currentCoord, KillAction.WEAPON);
 			this.noOfUses--;
-			return false;
+			return noOfUses == 0 ? true : false;
 		}
-		return true;
+		return false;
 	}
 
 	@Override

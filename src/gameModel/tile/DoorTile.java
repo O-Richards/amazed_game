@@ -59,4 +59,10 @@ public class DoorTile extends Tile {
 	public VisType getVisType() {
 		return VisType.DOOR;
 	}
+
+	@Override
+	public boolean isEmpty() {
+		return false;
+	}
+	
 }

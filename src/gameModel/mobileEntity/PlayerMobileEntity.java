@@ -2,6 +2,7 @@ package gameModel.mobileEntity;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import gameModel.Coord;
 import gameModel.EntityMover;
@@ -63,12 +64,12 @@ public class PlayerMobileEntity extends MobileEntity {
 	}
 	
 	
-	public String inventoryString() {
-		String out = "";
+	public Iterator<UseAction> inventoryIterator() {
+		List<UseAction> actions = new ArrayList<>();
 		for (Usable e : inventory) {
-			out += UseAction.toString(e.getUseAction()) + ", ";
+			actions.add(e.getUseAction());
 		}
-		return out;
+		return actions.iterator();
 	}
 
 	@Override

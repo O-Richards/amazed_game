@@ -30,12 +30,5 @@ public class ExitTile extends Tile {
 		}
 	}
 	
-	public String getSprite() {
-		return "!";
-	}
-	@Override
-	public VisType getVisType() {
-		return VisType.EXIT;
-	}
 
 }

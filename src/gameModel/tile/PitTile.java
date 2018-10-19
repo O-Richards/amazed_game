@@ -28,13 +28,12 @@ public class PitTile extends Tile {
 		}
 		
 	}
-	public String getSprite() {
-		return "O";
-	}
+	
 	@Override
-	public VisType getVisType() {
-		return VisType.PIT;
+	public boolean traversable() {
+		return false;
 	}
+	
 
 
 }
