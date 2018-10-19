@@ -11,27 +11,31 @@
    <children>
       <AnchorPane>
          <children>
-            <GridPane fx:id="map" prefHeight="398.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <GridPane fx:id="map" prefHeight="432.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       </GridPane>
          </children>
       </AnchorPane>
-      <Button fx:id="pause" layoutX="14.0" layoutY="354.0" mnemonicParsing="false" onAction="#handlePauseButton" style="-fx-background-color: transparent;">
-         <graphic>
-            <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/pause.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
-      <Button fx:id="exit" layoutX="48.0" layoutY="383.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="49.0" prefWidth="30.0" style="-fx-background-color: transparent;">
-         <graphic>
-            <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/exitPage.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <AnchorPane layoutX="-2.0" prefHeight="26.0" prefWidth="75.0">
+         <children>
+            <Button fx:id="exit" layoutX="32.0" layoutY="-3.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="32.0" prefWidth="33.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="32.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/exitPage.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="pause" layoutY="-2.0" mnemonicParsing="false" onAction="#handlePauseButton" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/pause.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </Pane>

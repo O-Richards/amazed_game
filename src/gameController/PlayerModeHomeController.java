@@ -12,7 +12,6 @@ import gameModel.winCondition.WinType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -36,7 +35,7 @@ public class PlayerModeHomeController {
 	public PlayerModeHomeController(Stage s) {
 		currStage = s;
 		this.easy = new Level();
-		
+		//creates an Empty array List of players: 
 		this.players = new ArrayList<PlayerMobileEntity>();
 		try {
 			makeEasyMap();
@@ -63,8 +62,8 @@ public class PlayerModeHomeController {
 	public void handleEasyLevelButton(ActionEvent event) {
 		PlayingScreen easyLevel = new PlayingScreen(currStage);
 		easyLevel.start();
-		easyLevel.setMap(this.easy);
 		easyLevel.setPlayers(players);
+		easyLevel.setMap(this.easy);
 	}
 	
 	@FXML

@@ -24,11 +24,16 @@ public class JFXPane implements Observer {
 		this.column = column; 
 		clicked = new SimpleBooleanProperty(false); 
 		//Defaults to a set of tiles: 
-		this.image = new ImageView(new Image(getClass().getResourceAsStream("/tile.png"),35,35,true,true));			
+		this.image = new ImageView(new Image(getClass().getResourceAsStream("/tile.png"),30,30,true,true));	
 		pane = new Pane(this.image);
-		System.out.println(pane);
-		pane.autosize();
-		pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
+		pane.setMinHeight(25);
+		pane.setMinWidth(25);
+
+		//pane.setMinWidth(image.getFitWidth());
+		//pane.setMinHeight(image.getFitHeight());
+        image.setFitWidth(pane.getWidth());
+        image.setFitHeight(pane.getHeight());
+
 	}
 	//Passes back the pane: 
 	public Pane getPane() {
@@ -36,6 +41,8 @@ public class JFXPane implements Observer {
 	}
 	//Listens for mouse clicks: 
 	public void detectMouseClicks() {
+		//make the pane have borders: 
+		pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
 		pane.setOnMousePressed(e-> {
 			System.out.println("Clicked on "+ row + " "+column);
 			clicked.set(true);
@@ -56,19 +63,17 @@ public class JFXPane implements Observer {
 		clicked.set(false);
 	}
 	
-	public void paneObserve(VisType arg) {
-		
-	}
 	@Override
 	public void update(Observable o, Object arg) {
 		String img = visTypeToPath((VisType) arg); //cast object argument as what we need
 		//removes the current image in the pane:
         pane.getChildren().remove(this.image);
-        this.image = new ImageView(new Image(getClass().getResourceAsStream(img),35,35,true,true));
+        this.image = new ImageView(new Image(getClass().getResourceAsStream(img),30,30,true,true));
         //Replaces the image with a new image: 
-        pane.getChildren().add(this.image);
-        System.out.println("we placed an image with directly " + img);
-        
+        pane.getChildren().add(this.image);  
+        image.setFitWidth(pane.getWidth());
+        image.setFitHeight(pane.getHeight());
+
 	}
 	public String visTypeToPath(VisType visType) {
 		
@@ -81,7 +86,8 @@ public class JFXPane implements Observer {
 			spriteMap.put(VisType.HOVER_POTION, "/hover&tile.png");
 			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility&tile.png");
 			spriteMap.put(VisType.TREASURE, "/treasure&tile.png");
-			spriteMap.put(VisType.HUNTER, "/hound.png");
+			//spriteMap.put(VisType.HOUND, "/hound&tile.png");
+			spriteMap.put(VisType.HUNTER, "/hunter&tile.png");
 			spriteMap.put(VisType.SWORD, "/sword&tile.png");
 			spriteMap.put(VisType.EXIT, "/exit.png");
 			spriteMap.put(VisType.PIT, "/pit&tile.png");

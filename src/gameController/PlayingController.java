@@ -77,12 +77,14 @@ public class PlayingController {
 				l.getTile(new Coord(row, col)).addObserver(aPane);
 			}
 		}
+		//Sets the grid size to match the map: 
+		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
         hunterThread.start();
         
 	}
-    public void setPlayer(ArrayList<PlayerMobileEntity> players) {
+    public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
     }
     public void keyToAction(KeyCode pressedKeyNumber) {
@@ -92,22 +94,32 @@ public class PlayingController {
 		if(pressedKeyNumber == KeyCode.ESCAPE) {
 			//TODO: Link the pause menu or a key??? 
 		}
+
 		PlayerMobileEntity player1 = players.get(0);
+		
 		if(player1 != null)player1.setMoving(false);
 
 		//Gets the direction(movement): 
 		if (pressedKeyNumber == KeyCode.W) {
 			if(player1 != null)player1.setMoving(true);
 			player1.setDirection(Direction.LEFT);
+			System.out.println("player diretion set");
+			
 		}else if(pressedKeyNumber == KeyCode.A) {
 			if(player1 != null)player1.setMoving(true);
 			player1.setDirection(Direction.DOWN);
+			System.out.println("player diretion set");
+
 		}else if(pressedKeyNumber == KeyCode.S) {
 			if(player1 != null)player1.setMoving(true);
 			player1.setDirection(Direction.RIGHT);
+			System.out.println("player diretion set");
+
 		}else if(pressedKeyNumber == KeyCode.D) {
 			if(player1 != null)player1.setMoving(true);
 			player1.setDirection(Direction.UP);
+			System.out.println("player diretion set");
+
 		}
 		
 		//direction to shoot/hit: 
@@ -118,32 +130,41 @@ public class PlayingController {
 		}else if(pressedKeyNumber == KeyCode.L) {
 			player1.use(UseAction.SWORD);
 		}
-	
-		l.tick();
+		
+    }
+    public void runTick() {
+    	try {
+    	    Platform.runLater(new Runnable(){
+    	    	@Override
+    	    	public void run(){
+    	    		l.tick();
+    	    		PlayerMobileEntity player1 = players.get(0);
+    	    		//prevents the player from moving in the next iteration: 
+    				if(player1 != null)player1.setMoving(false);
+
+    	    	}
+    	    });
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
-    
+    //returns the map
+    public GridPane getMap() {
+    	return this.map;
+    }
     //Used for Hunters: 
     class MultiThreading implements Runnable 
     { 
 
       public void run() { 
-    	  /*
-    	  if (l.hasWon()) {
-				System.out.println("WON THE GAME!!!");
-				break;
-			}
-			if (!player.isAlive()) {
-				System.out.println("LOST THE GAME!!!");
-				break;
-			}*/
     	 synchronized (l) {
 			try {
 	    		while(true) {
 	          	  System.out.println("tick");
-	          	  Thread.sleep(1000);
-	          	  //l.tick();
-	      	  	}
+	          	  runTick();
+	          	  Thread.sleep(100);
+	    		}
 			} catch (InterruptedException e) {
 				System.out.println("thread interrupted");
 				return;
