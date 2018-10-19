@@ -10,7 +10,8 @@ import gameModel.winCondition.WinType;
 
 import java.util.Observable;
 import java.util.Observer;
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.border.TitledBorder;
 
 import java.util.ArrayList;
@@ -146,7 +147,6 @@ public class Tile extends Observable{
 	}
 	
 	/**
-	 * This function is prbly gonna be useless cause of the nature of the system: !!!!
 	 * removeObserver method will remove an observer from a Tiles ArrayList of observers
 	 * @param o = observer to remove
 	 * 
@@ -223,12 +223,7 @@ public class Tile extends Observable{
 		}
 		notifyObservers();
 	}
-	
-	/**
-	 * @return true if the tile ie completely empty, false else
-	 */
 	public boolean isEmpty() {
-		return (this.mobile == null && this.item == null);
+		return false;
 	}
-	 
 }
