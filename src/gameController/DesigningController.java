@@ -144,7 +144,7 @@ public class DesigningController {
 		//Maybe frontend shouldn't implement this? 
 		if(players.size() >= 2) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
-			alert.getDialogPane().setContent(new Text("A player has already been placed on the map"));
+			alert.getDialogPane().setContent(new Text("Maximum no. player has already been placed on the map"));
 			alert.showAndWait();
 			selectedItem.setText("-");
 			currentlySelected = null;
@@ -536,8 +536,8 @@ public class DesigningController {
 	private void generateMap() {	
 		//creates a map which has a size of default row and col (we will change this) 
 		//will be moving this into an update function: 
-		for (int row = 0; row < setRow + 2; row++) {
-			for (int col = 0; col < setCol + 2; col++) {
+		for (int row = 1; row < setRow + 1; row++) {
+			for (int col = 1; col < setCol + 1; col++) {
 				//Creates a JFXPane: 
 				JFXPane aPane = new JFXPane(row,col);
 				//Tell the JFXPane to detect Mouse clicks: 

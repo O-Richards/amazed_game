@@ -25,7 +25,6 @@ public class PlayingScreen {
     private PlayingController playingController; 
     private GridPane mapView;
 
-
     public PlayingScreen(Stage parentStage) {
         this.s = new Stage();
         this.parentStage = parentStage; 
@@ -51,10 +50,22 @@ public class PlayingScreen {
 				public void handle(KeyEvent e) {
 					KeyCode pressedKeyNumber = e.getCode();
 					//Passes the key to the controller: 
-					playingController.keyToAction(pressedKeyNumber);
+					//playingController.keyToAction(pressedKeyNumber,true);
+					playingController.keyToAction(pressedKeyNumber,false);
+
 				}
             	
             });
+            sc.setOnKeyReleased(new EventHandler<KeyEvent>() {
+        				@Override
+        				public void handle(KeyEvent e) {
+        					KeyCode pressedKeyNumber = e.getCode();
+        					//Passes the key to the controller: 
+        					playingController.keyToAction(pressedKeyNumber,true);
+        				}
+                    	
+            });
+
             s.setScene(sc);
             s.show();
 

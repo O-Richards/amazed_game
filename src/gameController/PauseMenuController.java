@@ -25,6 +25,7 @@ public class PauseMenuController {
 	}
 	public PauseMenuController(Stage parentStage,Stage s) {
 		this.parentStage = parentStage; 
+		parentStage.hide();
 		this.currStage = s;
 	}
 	

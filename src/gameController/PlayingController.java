@@ -1,6 +1,8 @@
 package gameController;
 
 
+import static org.junit.Assert.fail;
+
 import java.util.ArrayList;
 
 import java.util.Timer;
@@ -63,6 +65,10 @@ public class PlayingController {
 	private Stage parentStage; 
 	Thread hunterThread; 
 	Timer timer; 
+	private boolean keyReleasedPlayer1;
+	private boolean keyReleasedPlayer2;
+
+
 	private Level l; 
 	public PlayingController(Stage s) {
 		currStage = s;
@@ -79,11 +85,10 @@ public class PlayingController {
 	}
 	@FXML
 	public void handlePauseButton(ActionEvent event) {
-		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
 		//interrupts the hunter thread: 
+		//Creates a new thread rather than resuming thread
 		hunterThread.interrupt();
-		//hides the game: 
-		currStage.hide();
+		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
 		pauseMenu.start();
 		hunterThread = new Thread(new MultiThreading());		
 		hunterThread.setDaemon(true);
@@ -158,13 +163,14 @@ public class PlayingController {
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
     }
-    public void keyToAction(KeyCode pressedKeyNumber) {
+    public void keyToAction(KeyCode pressedKeyNumber,boolean keyReleased) {
     	System.out.println("detect key pressed");
     	System.out.println(pressedKeyNumber);
 
 		if(pressedKeyNumber == KeyCode.ESCAPE) {
 			//TODO: Link the pause menu or a key??? 
 		}
+		
 		
 		//If there's only 1 player
 		if(players.size() == 1) {
@@ -175,75 +181,78 @@ public class PlayingController {
 			player2 = players.get(1);
 		}
 
-
-		if(player1 != null)player1.setMoving(false);
-
-		//Gets the direction(movement): 
-		if (pressedKeyNumber == KeyCode.W) {
-			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.LEFT);
-			System.out.println("player diretion set");
-			
-		}else if(pressedKeyNumber == KeyCode.A) {
-			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.DOWN);
-			System.out.println("player diretion set");
-
-		}else if(pressedKeyNumber == KeyCode.S) {
-			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.RIGHT);
-			System.out.println("player diretion set");
-
-		}else if(pressedKeyNumber == KeyCode.D) {
-			if(player1 != null)player1.setMoving(true);
-			player1.setDirection(Direction.UP);
-			System.out.println("player diretion set");
-
+		
+		if(player1 != null) {//player1.setMoving(false);
+			//Gets the direction(movement): 
+			if (pressedKeyNumber == KeyCode.W) {
+					System.out.println("player diretion set");
+					player1.setMoving(true);
+					player1.setDirection(Direction.LEFT);	
+					this.keyReleasedPlayer1 = keyReleased; 	
+			}else if(pressedKeyNumber == KeyCode.A) {
+					System.out.println("player diretion set");
+					player1.setMoving(true);
+					player1.setDirection(Direction.DOWN);
+					this.keyReleasedPlayer1 = keyReleased; 	
+			}else if(pressedKeyNumber == KeyCode.S) {
+					System.out.println("player diretion set");
+					player1.setMoving(true);
+					player1.setDirection(Direction.RIGHT);
+					this.keyReleasedPlayer1 = keyReleased; 	
+			}else if(pressedKeyNumber == KeyCode.D) {
+					System.out.println("player diretion set");	
+					player1.setDirection(Direction.UP);
+					player1.setMoving(true);
+					this.keyReleasedPlayer1 = keyReleased; 
+			}
+			//direction to shoot/hit: 
+			if (pressedKeyNumber == KeyCode.Z) {
+				player1.use(UseAction.ARROW);
+			}else if(pressedKeyNumber == KeyCode.X) {
+				player1.use(UseAction.BOMB);
+			}else if(pressedKeyNumber == KeyCode.C) {
+				player1.use(UseAction.SWORD);
+			}
 		}
 		//Actions for player 2: 
-		if(player2 != null)player2.setMoving(false);
+		if(player2 != null) {
+			//Gets the direction(movement): 
+			if (pressedKeyNumber == KeyCode.UP) {
+				player2.setMoving(true);
+				player2.setDirection(Direction.LEFT);
+				this.keyReleasedPlayer2 = keyReleased; 
+				System.out.println("player2 diretion set");
+			}else if(pressedKeyNumber == KeyCode.LEFT) {
+				player2.setMoving(true);
+				player2.setDirection(Direction.DOWN);
+				this.keyReleasedPlayer2 = keyReleased; 
+				System.out.println("player2 diretion set");
 
-		//direction to shoot/hit: 
-		if (pressedKeyNumber == KeyCode.Z) {
-			player2.use(UseAction.ARROW);
-		}else if(pressedKeyNumber == KeyCode.X) {
-			player2.use(UseAction.BOMB);
-		}else if(pressedKeyNumber == KeyCode.C) {
-			player2.use(UseAction.SWORD);
-		}
-		//Gets the direction(movement): 
-		if (pressedKeyNumber == KeyCode.UP) {
-			if(player2 != null)player2.setMoving(true);
-			player2.setDirection(Direction.LEFT);
-			System.out.println("player2 diretion set");
+			}else if(pressedKeyNumber == KeyCode.DOWN) {
+				player2.setMoving(true);
+				player2.setDirection(Direction.RIGHT);
+				this.keyReleasedPlayer2 = keyReleased; 
+				System.out.println("player 2 diretion set");
+
+			}else if(pressedKeyNumber == KeyCode.RIGHT) {
+				player2.setMoving(true);
+				player2.setDirection(Direction.UP);
+				keyReleasedPlayer2 = keyReleased; 
+				System.out.println("player 2 diretion set");
+			}
 			
-		}else if(pressedKeyNumber == KeyCode.LEFT) {
-			if(player2 != null)player2.setMoving(true);
-			player2.setDirection(Direction.DOWN);
-			System.out.println("player2 diretion set");
-
-		}else if(pressedKeyNumber == KeyCode.DOWN) {
-			if(player2 != null)player2.setMoving(true);
-			player2.setDirection(Direction.RIGHT);
-			System.out.println("player 2 diretion set");
-
-		}else if(pressedKeyNumber == KeyCode.RIGHT) {
-			if(player2 != null)player2.setMoving(true);
-			player2.setDirection(Direction.UP);
-			System.out.println("player 2 diretion set");
-
+			//direction to shoot/hit: 
+			if (pressedKeyNumber == KeyCode.M) {
+				player2.use(UseAction.ARROW);
+			}else if(pressedKeyNumber == KeyCode.COMMA) {
+				player2.use(UseAction.BOMB);
+			}else if(pressedKeyNumber == KeyCode.STOP) {
+				player2.use(UseAction.SWORD);
+			}
 		}
-		
-		//direction to shoot/hit: 
-		if (pressedKeyNumber == KeyCode.M) {
-			player2.use(UseAction.ARROW);
-		}else if(pressedKeyNumber == KeyCode.COMMA) {
-			player2.use(UseAction.BOMB);
-		}else if(pressedKeyNumber == KeyCode.STOP) {
-			player2.use(UseAction.SWORD);
-		}
-		
+	
     }
+    
     public void runTick() {
     	try {
     	    Platform.runLater(new Runnable(){
@@ -320,15 +329,19 @@ public class PlayingController {
     			        fadeInPlayer.play();
     					returnHome();
     				}
-
-    	    		//prevents the player from moving in the next iteration: 
-    				if(player1 != null)player1.setMoving(false);
     				
     				
     				// UPDATE INVENTORY DISPLAY HERE TODO
     				updateInventory();
-    				if(player2 != null)player2.setMoving(false);
-
+    				if(keyReleasedPlayer1 == true) {
+    					player1.setMoving(false);
+    					keyReleasedPlayer1 = false; 
+    				}
+    				if(keyReleasedPlayer2 == true) {
+    					System.out.println("RAN");
+    					player2.setMoving(false);
+    					keyReleasedPlayer2 = false; 
+    				}
     	    	}
     	    });
 		} catch (Exception e) {
@@ -339,7 +352,8 @@ public class PlayingController {
     //returns the map
     public GridPane getMap() {
     	return this.map;
-    }
+    
+}
     //Used for Hunters: 
     class MultiThreading implements Runnable 
     { 
@@ -348,7 +362,7 @@ public class PlayingController {
     	 synchronized (l) {
 			try {
 	    		while(true) {
-	          	  System.out.println("tick");
+	          	  //System.out.println("tick");
 	          	  runTick();
 	          	  Thread.sleep(400);
 	    		}

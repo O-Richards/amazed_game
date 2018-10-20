@@ -2,6 +2,7 @@ package gameController;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -11,14 +12,16 @@ public class InstructionsController {
 	private Button exitScreen;
 	
 	public Stage currStage;
-	
-	public InstructionsController(Stage s) {
+	private Stage parentStage; 
+	public InstructionsController(Stage parentStage, Stage s) {
+		this.parentStage = parentStage; 
+		parentStage.hide(); 
 		currStage = s;
 	}
 	
 	public void exitScreen(ActionEvent event) {
-		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
-		pauseMenu.start();
+		parentStage.show();
+		currStage.close();
 	}
 
 }
