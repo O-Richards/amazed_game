@@ -4,6 +4,7 @@ import gameModel.Coord;
 import gameModel.EntityMover;
 import gameModel.entity.VisType;
 import gameModel.mobileEntity.MobileEntity;
+import gameModel.usable.UseAction;
 
 public class DoorTile extends Tile {
 	
@@ -41,6 +42,10 @@ public class DoorTile extends Tile {
 	
 	@Override
 	public void addMobileEntity(MobileEntity e) throws EntityPlacementException {
+		//Tell the mobile entity to use any keys they have
+		if (e.getKeyCode() == this.doorCode) {
+			e.use(UseAction.KEY);
+		}
 		this.open |= (e.getKeyCode() == this.doorCode);
 		if (!this.open) {
 			throw new EntityPlacementException("Door is closed");
