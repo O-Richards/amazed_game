@@ -112,6 +112,7 @@ public class Level implements EntityMover {
 		Coord c = enemy.getCoord();
 		Tile placementTile = getTile(c);
 		placementTile.placeMobileEntity(enemy);
+		placementTile.notifyObservers();
 	}
 	
 	public void tick() {
@@ -211,7 +212,6 @@ public class Level implements EntityMover {
 		//Get's the coord of the current tile: 
 		Tile oldTile = this.getTile(coord);
 		WallTile newWall = new WallTile(oldTile); 
-		//WallTile newWall = new WallTile(coord, this);
 		this.map[coord.getX()][coord.getY()] = newWall;
 	}
 
