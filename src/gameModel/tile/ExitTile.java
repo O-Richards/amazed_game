@@ -29,6 +29,10 @@ public class ExitTile extends Tile {
 			this.winCondition.setType(WinType.EXIT);
 		}
 	}
+	@Override
+	public VisType getVisType() {
+		return VisType.EXIT;
+	}	
 	
 
 }

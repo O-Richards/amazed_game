@@ -142,7 +142,7 @@ public class DesigningController {
 		selectedItem.setText("Player");
 		//If player has already been placed:
 		//Maybe frontend shouldn't implement this? 
-		if(players.size() > 2) {
+		if(players.size() >= 2) {
 			Alert alert = new Alert(Alert.AlertType.WARNING);
 			alert.getDialogPane().setContent(new Text("A player has already been placed on the map"));
 			alert.showAndWait();

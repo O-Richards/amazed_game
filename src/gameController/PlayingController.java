@@ -200,14 +200,47 @@ public class PlayingController {
 			System.out.println("player diretion set");
 
 		}
+		//Actions for player 2: 
+		if(player2 != null)player2.setMoving(false);
+
+		//direction to shoot/hit: 
+		if (pressedKeyNumber == KeyCode.Z) {
+			player2.use(UseAction.ARROW);
+		}else if(pressedKeyNumber == KeyCode.X) {
+			player2.use(UseAction.BOMB);
+		}else if(pressedKeyNumber == KeyCode.C) {
+			player2.use(UseAction.SWORD);
+		}
+		//Gets the direction(movement): 
+		if (pressedKeyNumber == KeyCode.UP) {
+			if(player2 != null)player2.setMoving(true);
+			player2.setDirection(Direction.LEFT);
+			System.out.println("player2 diretion set");
+			
+		}else if(pressedKeyNumber == KeyCode.LEFT) {
+			if(player2 != null)player2.setMoving(true);
+			player2.setDirection(Direction.DOWN);
+			System.out.println("player2 diretion set");
+
+		}else if(pressedKeyNumber == KeyCode.DOWN) {
+			if(player2 != null)player2.setMoving(true);
+			player2.setDirection(Direction.RIGHT);
+			System.out.println("player 2 diretion set");
+
+		}else if(pressedKeyNumber == KeyCode.RIGHT) {
+			if(player2 != null)player2.setMoving(true);
+			player2.setDirection(Direction.UP);
+			System.out.println("player 2 diretion set");
+
+		}
 		
 		//direction to shoot/hit: 
-		if (pressedKeyNumber == KeyCode.J) {
-			player1.use(UseAction.ARROW);
-		}else if(pressedKeyNumber == KeyCode.K) {
-			player1.use(UseAction.BOMB);
-		}else if(pressedKeyNumber == KeyCode.L) {
-			player1.use(UseAction.SWORD);
+		if (pressedKeyNumber == KeyCode.M) {
+			player2.use(UseAction.ARROW);
+		}else if(pressedKeyNumber == KeyCode.COMMA) {
+			player2.use(UseAction.BOMB);
+		}else if(pressedKeyNumber == KeyCode.STOP) {
+			player2.use(UseAction.SWORD);
 		}
 		
     }
@@ -263,28 +296,6 @@ public class PlayingController {
     			        	
     			        });
     			        fadeInPlayer.play();
-
-    					//int x = 0; 
-
-    					/*doesn't work :(((((
-    					 *  lostImage.setOpacity();
-    						player1Lost.setOpacity(0);
-    					 * while(true) {
-        					lostImage.setOpacity(x/100);
-	    					player1Lost.setOpacity(x/100);
-    						try {
-								Thread.sleep(100);
-							} catch (InterruptedException e) {
-								System.out.println("COULDN't SLEEP");
-								//Couldn't sleep: 
-								returnHome();
-							}
-    						x++;
-    						if(x>100) {
-    							break;
-    						}
-    					}*/
-
     				}
     				if (player2 != null &&!player2.isAlive()) {
     					System.out.println("Player2 lost");
