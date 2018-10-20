@@ -167,6 +167,17 @@ public class PlayingController {
 			case "KEY":
 				aPane.update(null, VisType.KEY);
 				System.out.println("Added key to inventory");
+				break;				
+			case "HOVER_POTION":
+				aPane.update(null, VisType.HOVER_POTION);
+				System.out.print("Added hover potion to inventory");
+				break;
+			case "INVINCIBILITY_POTION":
+				aPane.update(null, VisType.INVINCIBILITY_POTION);
+				System.out.println("Added invinibility potion to inventory");
+				break;
+			default:
+				aPane.update(null, VisType.EMPTY_TILE);
 				break;
 				
 			
