@@ -55,7 +55,7 @@ public class PlayingController {
 
 
 	@FXML
-	private GridPane inventory; // TODO
+	private GridPane inventory;
 	
 	private ArrayList<JFXPane> invetoryDisplayPanes;
 	private ArrayList<PlayerMobileEntity> players; 
@@ -80,8 +80,8 @@ public class PlayingController {
 	}
 	@FXML
     public void initialize() {
-		lostPane.setVisible(false);
-		wonPane.setVisible(false);
+		//lostPane.setVisible(false);  	TODO
+		//wonPane.setVisible(false);	TODO
 	}
 	@FXML
 	public void handlePauseButton(ActionEvent event) {
@@ -107,6 +107,7 @@ public class PlayingController {
 	}
 
 	public void setMap(Level l) {
+		
 		this.l = l; 
 		//Displays map: 
 		int nCol = l.getNumCols();
@@ -127,7 +128,7 @@ public class PlayingController {
 		//Sets the grid size to match the map: 
 		
 		//Create inventory panes
-		//setInventory();
+		setInventory();
 		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
@@ -136,27 +137,57 @@ public class PlayingController {
 	}
 
 	
-	/*private void setInventory() {		
-		for(int col = 0; col < 7; col++) {
-			JFXPane aPane = new JFXPane(1,col);
-			//invetoryDisplayPanes.add(aPane);
-			inventory.add(aPane.getPane(), 0, col);
-			
+	private void setInventory() {
+		this.invetoryDisplayPanes = new ArrayList<JFXPane>();
+		for(int col = l.getNumCols(); col >  0; col--) {
+			JFXPane aPane = new JFXPane(col,l.getNumRows());
+			invetoryDisplayPanes.add(aPane);
+			inventory.add(aPane.getPane(), col,l.getNumRows());		
 		}
-	}*/
+	}
 	
 
 	
 	private void updateInventory() {
-		//TODO: FIX INVENTORY
-		/*PlayerMobileEntity player = players.get(0); //TODO
+		PlayerMobileEntity player = players.get(0);
 		Iterator<UseAction> playerInventory = player.inventoryIterator();
-		
-		for (int i = 0; i < 7; i++) {
-			JFXPane aPane = new JFXPane(1,i);
-			invetoryDisplayPanes.get(i);
-			aPane.update(null, VisType.ARROW);
-		}*/
+
+		for (int i = 0; i < 7 && playerInventory.hasNext(); i++) {
+			//System.out.println(playerInventory.next().name());
+			JFXPane aPane = invetoryDisplayPanes.get(i);
+			switch (playerInventory.next().name()) {
+			
+			case "ARROW":
+				aPane.update(null, VisType.ARROW);
+				System.out.println("Added arrow to Inventory");
+				break;
+			case "BOMB":
+				aPane.update(null, VisType.BOMB);
+				System.out.println("Added bomb to inventory");
+				break;
+			case "SWORD":
+				aPane.update(null, VisType.SWORD);
+				System.out.println("Added sword to inventory");
+				break;
+			case "KEY":
+				aPane.update(null, VisType.KEY);
+				System.out.println("Added key to inventory");
+				break;				
+			case "HOVER_POTION":
+				aPane.update(null, VisType.HOVER_POTION);
+				System.out.print("Added hover potion to inventory");
+				break;
+			case "INVINCIBILITY_POTION":
+				aPane.update(null, VisType.INVINCIBILITY_POTION);
+				System.out.println("Added invinibility potion to inventory");
+				break;
+			default:
+				aPane.update(null, VisType.EMPTY_TILE);
+				break;
+				
+			
+			}
+		}
 	}
 	
 	
@@ -328,10 +359,10 @@ public class PlayingController {
     			        });
     			        fadeInPlayer.play();
     					returnHome();
-    				}
-    				
-    				
+    				}    				
     				// UPDATE INVENTORY DISPLAY HERE TODO
+    	    		//prevents the player from moving in the next iteration: 
+
     				updateInventory();
     				if(keyReleasedPlayer1 == true) {
     					player1.setMoving(false);
