@@ -85,7 +85,7 @@ public class JFXPane implements Observer {
 	}
 	//uses this for images: 
 	public void update(Object arg) {
-		String img = visTypeToPath((VisType) arg); //cast object argument as what we need
+		String img = invVisTypeToPath((VisType) arg); //cast object argument as what we need
 		//removes the current image in the pane:
         pane.getChildren().remove(this.image);
         this.image = new ImageView(new Image(getClass().getResourceAsStream(img),30,30,true,true));
@@ -121,6 +121,7 @@ public class JFXPane implements Observer {
 			}
 		return spriteMap.get(visType);
 	}
+	//inventory vis type: 
 	public String invVisTypeToPath(VisType visType) {
 		Map<VisType, String> spriteMap = new HashMap<>();
 			spriteMap.put(VisType.ARROW, "/arrow&box.png");

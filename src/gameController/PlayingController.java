@@ -71,7 +71,6 @@ public class PlayingController {
 	private boolean stopPlayer2NextTick = false;
 	
 	
-	private static final int inventoryRow = 8;
 
 
 	private Level l; 
@@ -141,13 +140,12 @@ public class PlayingController {
 	}
 	
 	private void setInventory() {
-
-		for(int i = players.size(); i > 0; i--) {
+		for(int row = 0; row <   l.getNumRows(); row++) {
 			ArrayList<JFXPane> inventoryPanes  = new ArrayList<JFXPane>();
-			for(int row = 0; row <  inventoryRow; row++) {
+			for(int i = players.size(); i >= 0; i--) {
 				JFXPane aPane = new JFXPane();
 				inventoryPanes.add(aPane);
-				inventory.add(aPane.getPane(), row,i);		
+				inventory.add(aPane.getPane(), i,row);		
 			}
 			this.inventoryDisplayPanes.add(inventoryPanes);
 		}
@@ -164,6 +162,7 @@ public class PlayingController {
 				
 				//ensures we don't add an empty pane
 				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {
+					
 					continue;					
 				}
 				
