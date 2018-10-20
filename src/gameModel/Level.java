@@ -219,6 +219,15 @@ public class Level implements EntityMover {
 	}
 	
 	/**
+	 * @param c The coord of the entity to be retrieved
+	 * @return The mobile entity on the tile (or null if none)
+	 */
+	public MobileEntity getMobileEntity(Coord c) {
+		Tile t = this.getTile(c);
+		return t.getMobile();
+	}
+	
+	/**
 	 * @precondition To enable SWITCH : must be switch on map
 	 * @precondition To enable EXIT : must be exit on map
 	 * @precondition To enable ENEMY : must be ENEMY on map
