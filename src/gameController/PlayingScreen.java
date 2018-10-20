@@ -66,8 +66,8 @@ public class PlayingScreen {
     public void setMap(Level l) {
     	playingController.setMap(l);
         mapView = playingController.getMap();	
-        s.setHeight(mapView.getMinHeight());
-        s.setMinWidth(mapView.getMinWidth());
+        //s.setHeight(mapView.getMinHeight());
+        //s.setMinWidth(mapView.getMinWidth());
     }
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	playingController.setPlayers(players);

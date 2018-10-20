@@ -46,12 +46,6 @@ public class PlayerModeHomeController {
 	}
 	
 	@FXML
-	public void initialize() {
-		
-		
-	}
-	
-	@FXML
 	public void handleHomeButton(ActionEvent event) {
 		OpeningScreen openingScreen = new OpeningScreen(currStage);
 		openingScreen.start();

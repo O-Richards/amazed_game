@@ -137,14 +137,15 @@ public class PlayingController {
 
 	
 	private void updateInventory() {
-		PlayerMobileEntity player = players.get(0); //TODO
+		//TODO: FIX INVENTORY
+		/*PlayerMobileEntity player = players.get(0); //TODO
 		Iterator<UseAction> playerInventory = player.inventoryIterator();
 		
 		for (int i = 0; i < 7; i++) {
 			JFXPane aPane = new JFXPane(1,i);
 			invetoryDisplayPanes.get(i);
 			aPane.update(null, VisType.ARROW);
-		}
+		}*/
 	}
 	
 	
@@ -212,14 +213,19 @@ public class PlayingController {
     	    		l.tick();
     	    		if (l.hasWon()) {
     	    			System.out.println("YOU WON");
-    	    			
+    					lostPane.setVisible(true);
+    					wonImage.setVisible(true);
+    					player1Lost.setVisible(true);
+    					wonImage.setOpacity(0);
+    					player1Lost.setOpacity(0);
+
     	    			returnHome();
-    				}
+    				}	
     				if (player1 != null && !player1.isAlive()) {
     					System.out.println("Player1 lost");
-//    					lostPane.setVisible(true);
-//    					wonImage.setVisible(true);
-//    					player1Lost.setVisible(true);
+    					lostPane.setVisible(true);
+    					wonImage.setVisible(true);
+    					player1Lost.setVisible(true);
     					wonImage.setOpacity(0);
     					player1Lost.setOpacity(0);
 

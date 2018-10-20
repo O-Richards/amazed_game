@@ -340,6 +340,9 @@ public class DesigningController {
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
+					if(playerSelected == null) {
+						l.placeMobileEntity(make.makeCoward(new Coord(row, col),  null, difficultySlider.getValue()));
+					}
 				}
 				break; 
 			case DOOR:
@@ -367,8 +370,10 @@ public class DesigningController {
 					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, difficultySlider.getValue()));
 					playerSelected = null;
 				}else{
-					System.out.println("getting player location");
 					playerSelected = playerOnTile(row,col);
+					if(playerSelected == null) {
+						l.placeMobileEntity(make.makeHunter(new Coord(row, col),  null, difficultySlider.getValue()));
+					}
 				}
 				break;
 			case HOUND: 	
@@ -377,6 +382,9 @@ public class DesigningController {
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
+					if(playerSelected == null) {
+						l.placeMobileEntity(make.makeHound(new Coord(row, col),  null, difficultySlider.getValue()));
+					}
 				}
 				break;
 			case INVINCIBILITY_POTION:
@@ -403,6 +411,9 @@ public class DesigningController {
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
+					if(playerSelected == null) {
+						l.placeMobileEntity(make.makeStrategist(new Coord(row, col),  null, difficultySlider.getValue()));
+					}
 				}
 				break; 
 			case SWITCH:
