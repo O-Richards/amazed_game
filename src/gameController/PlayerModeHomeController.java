@@ -88,8 +88,8 @@ public class PlayerModeHomeController {
 		easy.placeMobileEntity(player);
 		players.add(player);
 		
-		MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 0.4);
-		easy.placeMobileEntity(enemy);
+		//MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 10);
+		//easy.placeMobileEntity(enemy);
 		
 		//Setup template maze
 		easy.placeItem(make.makeArrow(new Coord(1, 2)));
@@ -104,7 +104,6 @@ public class PlayerModeHomeController {
 		easy.placePit(new Coord(9,9));
 		easy.placeItem(make.makeKey(new Coord(5, 5)));
 		easy.placeItem(make.makeKey(new Coord(7, 7)));
-		// l.addItem(make.makeSword(new Coord(2, 4)));
 		easy.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
 		//easy.placeMobileEntity(make.makeEnemy(new Coord(10, 10), player, 0.4));
 		

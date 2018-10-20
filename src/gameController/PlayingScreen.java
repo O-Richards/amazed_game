@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -37,7 +38,7 @@ public class PlayingScreen {
         // set controller for start.fxml
         if(parentStage != null) {
             this.playingController = new PlayingController(parentStage, s);
-        }else {
+        } else {
         	this.playingController = new PlayingController(s);
         }      
         fxmlLoader.setController(playingController);
