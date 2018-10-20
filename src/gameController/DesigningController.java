@@ -341,6 +341,7 @@ public class DesigningController {
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
+						System.out.println(difficultySlider.getValue());
 						l.placeMobileEntity(make.makeCoward(new Coord(row, col),  null, difficultySlider.getValue()));
 					}
 				}
@@ -367,23 +368,23 @@ public class DesigningController {
 				if(playerSelected != null) {
 					System.out.println("placing hunter:");
 					System.out.println(playerSelected.getCoord() + " \\" + difficultySlider.getValue());
-					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, difficultySlider.getValue()));
+					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, 1 - (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
-						l.placeMobileEntity(make.makeHunter(new Coord(row, col),  null, difficultySlider.getValue()));
+						l.placeMobileEntity(make.makeHunter(new Coord(row, col),  null, 1 - (difficultySlider.getValue()/100)));
 					}
 				}
 				break;
 			case HOUND: 	
 				if(playerSelected != null) {
-					l.placeMobileEntity(make.makeHound(new Coord(row, col), playerSelected,  difficultySlider.getValue()));
+					l.placeMobileEntity(make.makeHound(new Coord(row, col), playerSelected,  1 - (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
-						l.placeMobileEntity(make.makeHound(new Coord(row, col),  null, difficultySlider.getValue()));
+						l.placeMobileEntity(make.makeHound(new Coord(row, col),  null, 1 - (difficultySlider.getValue()/100)));
 					}
 				}
 				break;

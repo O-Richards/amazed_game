@@ -243,9 +243,9 @@
                   <Font name="Baskerville" size="11.0" />
                </font>
             </Button>
-            <Button fx:id="save" layoutX="15.0" layoutY="447.0" mnemonicParsing="false" onAction="#saveMap" prefHeight="21.0" prefWidth="22.0" style="-fx-background-color: transparent;" text="&#10;&#10;">
+            <Button fx:id="save" layoutX="12.0" layoutY="456.0" mnemonicParsing="false" onAction="#saveMap" prefHeight="37.0" prefWidth="46.0" style="-fx-background-color: transparent;" text="&#10;&#10;">
                <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="22.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../images/save.png" />
                      </image>
@@ -254,7 +254,7 @@
                      </effect>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="clear" layoutX="188.0" layoutY="448.0" mnemonicParsing="false" onAction="#clearSelected" prefHeight="17.0" prefWidth="32.0" style="-fx-background-color: transparent;" text="&#10;">
+            <Button fx:id="clear" layoutX="196.0" layoutY="449.0" mnemonicParsing="false" onAction="#clearSelected" prefHeight="57.0" prefWidth="68.0" style="-fx-background-color: transparent;" text="&#10;">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -291,7 +291,7 @@
                   <Font name="Baskerville Bold" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="exitScreen" layoutX="68.0" layoutY="448.0" mnemonicParsing="false" onAction="#exitScreen" prefHeight="21.0" prefWidth="32.0" style="-fx-background-color: transparent;">
+            <Button fx:id="exitScreen" layoutX="61.0" layoutY="457.0" mnemonicParsing="false" onAction="#exitScreen" prefHeight="40.0" prefWidth="60.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -303,7 +303,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="play" layoutX="123.0" layoutY="444.0" mnemonicParsing="false" onAction="#playMap" style="-fx-background-color: transparent;">
+            <Button fx:id="play" layoutX="123.0" layoutY="458.0" mnemonicParsing="false" onAction="#playMap" prefHeight="38.0" prefWidth="60.0" style="-fx-background-color: transparent;">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
