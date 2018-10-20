@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Timer;
 
+import com.sun.prism.Image;
+
 import gameModel.Coord;
 import gameModel.Level;
 import java.util.Iterator;
@@ -52,7 +54,10 @@ public class PlayingController {
 	private ImageView wonImage; 
 	@FXML
 	private ImageView lostImage; 
-
+	@FXML	
+	private ImageView player1Flying;
+	@FXML
+	private ImageView player2Flying; 
 
 	@FXML
 	private GridPane inventory;
@@ -69,7 +74,6 @@ public class PlayingController {
 	private boolean player2MovedLastTick = false;
 	private boolean stopPlayer1NextTick = false;
 	private boolean stopPlayer2NextTick = false;
-	
 	
 
 
@@ -138,7 +142,7 @@ public class PlayingController {
         hunterThread.start();
         
 	}
-	
+
 	private void setInventory() {
 		for (int j = players.size(); j>0; j--) {
 			ArrayList<JFXPane> inventoryPanes  = new ArrayList<JFXPane>();
@@ -163,8 +167,17 @@ public class PlayingController {
 			Iterator<JFXPane> inventoryPanes = inventoryList.next().iterator();
 			while (inventoryPanes.hasNext() && playerInventory.hasNext()) {
 				UseAction inventoryItem = playerInventory.next();			
-				//ensures we don't add an empty pane
-				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {					
+				//ensures we don't add an empty pane			
+				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {
+					if(inventoryItem == UseAction.HOVER) {
+						int playerNo = players.indexOf(player);
+						System.out.println(playerNo);
+						if(playerNo == 1) {
+							player1Flying.setVisible(true);
+						}else if(playerNo == 2) {
+							player2Flying.setVisible(true);
+						}
+					}
 					continue;					
 				}
 				
