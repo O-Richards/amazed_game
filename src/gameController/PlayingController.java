@@ -4,13 +4,15 @@ package gameController;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
-
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import gameModel.Coord;
 import gameModel.Level;
 import java.util.Iterator;
+import java.util.Set;
 
 import gameModel.entity.VisType;
 
@@ -66,8 +68,10 @@ public class PlayingController {
 	private Stage parentStage; 
 	Thread hunterThread; 
 	Timer timer; 
-	private boolean keyReleasedPlayer1;
-	private boolean keyReleasedPlayer2;
+	private boolean player1MovedLastTick = false;
+	private boolean player2MovedLastTick = false;
+	private boolean stopPlayer1NextTick = false;
+	private boolean stopPlayer2NextTick = false;
 
 
 	private Level l; 
@@ -198,7 +202,7 @@ public class PlayingController {
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
     }
-    public void keyToAction(KeyCode pressedKeyNumber,boolean keyReleased) {
+    public void keyDownToAction(KeyCode pressedKeyNumber) {
     	System.out.println("detect key pressed");
     	System.out.println(pressedKeyNumber);
 
@@ -223,22 +227,22 @@ public class PlayingController {
 					System.out.println("player diretion set");
 					player1.setMoving(true);
 					player1.setDirection(Direction.LEFT);	
-					this.keyReleasedPlayer1 = keyReleased; 	
+					this.player1MovedLastTick = false; 
 			}else if(pressedKeyNumber == KeyCode.A) {
 					System.out.println("player diretion set");
 					player1.setMoving(true);
 					player1.setDirection(Direction.DOWN);
-					this.keyReleasedPlayer1 = keyReleased; 	
+					this.player1MovedLastTick = false; 
 			}else if(pressedKeyNumber == KeyCode.S) {
 					System.out.println("player diretion set");
 					player1.setMoving(true);
 					player1.setDirection(Direction.RIGHT);
-					this.keyReleasedPlayer1 = keyReleased; 	
+					this.player1MovedLastTick = false; 
 			}else if(pressedKeyNumber == KeyCode.D) {
 					System.out.println("player diretion set");	
 					player1.setDirection(Direction.UP);
 					player1.setMoving(true);
-					this.keyReleasedPlayer1 = keyReleased; 
+					this.player1MovedLastTick = false; 
 			}
 			//direction to shoot/hit: 
 			if (pressedKeyNumber == KeyCode.Z) {
@@ -255,24 +259,24 @@ public class PlayingController {
 			if (pressedKeyNumber == KeyCode.UP) {
 				player2.setMoving(true);
 				player2.setDirection(Direction.LEFT);
-				this.keyReleasedPlayer2 = keyReleased; 
+				this.player2MovedLastTick = false; 
 				System.out.println("player2 diretion set");
 			}else if(pressedKeyNumber == KeyCode.LEFT) {
 				player2.setMoving(true);
 				player2.setDirection(Direction.DOWN);
-				this.keyReleasedPlayer2 = keyReleased; 
+				this.player2MovedLastTick = false; 
 				System.out.println("player2 diretion set");
 
 			}else if(pressedKeyNumber == KeyCode.DOWN) {
 				player2.setMoving(true);
 				player2.setDirection(Direction.RIGHT);
-				this.keyReleasedPlayer2 = keyReleased; 
+				this.player2MovedLastTick = false; 
 				System.out.println("player 2 diretion set");
 
 			}else if(pressedKeyNumber == KeyCode.RIGHT) {
 				player2.setMoving(true);
 				player2.setDirection(Direction.UP);
-				keyReleasedPlayer2 = keyReleased; 
+				this.player2MovedLastTick = false; 
 				System.out.println("player 2 diretion set");
 			}
 			
@@ -288,12 +292,46 @@ public class PlayingController {
 	
     }
     
+    public void keyUpToAction(KeyCode e) {
+    	Set<KeyCode> player1Keys = new HashSet<>(Arrays.asList(
+    			KeyCode.W, KeyCode.A, KeyCode.D, KeyCode.S));
+    	
+    	Set<KeyCode> player2Keys = new HashSet<>(Arrays.asList(
+    			KeyCode.UP, KeyCode.DOWN, KeyCode.LEFT, KeyCode.RIGHT));
+    	
+    	if (player1Keys.contains(e) && player1 != null) {
+    		if (player1MovedLastTick) { 
+    			player1.setMoving(false);
+			} else {
+				stopPlayer1NextTick = true;
+			}
+    	}
+    	if (player2Keys.contains(e) && player2 != null) {
+    		if (player2MovedLastTick) { 
+    			player2.setMoving(false);
+			} else {
+				stopPlayer2NextTick = true;
+			}
+    	}
+    }
+    
     public void runTick() {
     	try {
     	    Platform.runLater(new Runnable(){
     	    	@Override
     	    	public void run(){
+    	    		if (player1 != null) player1MovedLastTick = player1.isMoving();
+    	    		if (player2 != null) player2MovedLastTick = player2.isMoving();
+    	    		
     	    		l.tick();
+    	    		
+    	    		if (player1 != null && stopPlayer1NextTick) {
+    	    			player1.setMoving(false);
+    	    		}
+    	    		if (player2 != null && stopPlayer2NextTick) {
+    	    			player2.setMoving(false);
+    	    		}
+    	    		
     	    		if (l.hasWon()) {
     	    			hunterThread.interrupt();
     	    			System.out.println("YOU WON");   		
@@ -368,14 +406,6 @@ public class PlayingController {
     	    		//prevents the player from moving in the next iteration: 
 
     				//updateInventory();
-    				if(keyReleasedPlayer1 == true) {
-    					player1.setMoving(false);
-    					keyReleasedPlayer1 = false; 
-    				}
-    				if(keyReleasedPlayer2 == true) {
-    					player2.setMoving(false);
-    					keyReleasedPlayer2 = false; 
-    				}
     	    	}
     	    });
 		} catch (Exception e) {

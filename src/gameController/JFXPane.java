@@ -41,7 +41,7 @@ public class JFXPane implements Observer {
 	//Listens for mouse clicks: 
 	public void detectMouseClicks() {
 		//make the pane have borders: 
-		pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
+		//pane.setStyle("-fx-border-color: black;-fx-border-width: .5;-fx-border-color:#E8E8E8");
 		pane.setOnMousePressed(e-> {
 			System.out.println("Clicked on "+ row + " "+column);
 			clicked.set(true);

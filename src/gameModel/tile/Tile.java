@@ -43,10 +43,10 @@ public class Tile extends Observable{
 	}
 	public Tile(Tile oldParent) {
 		//this.observers = oldParent.observers;
-		this.observers = oldParent.observers;
-		this.coord = oldParent.coord; 
+		this.observers = new ArrayList<Observer>(oldParent.observers);
+		this.coord = new Coord(oldParent.coord); 
+		this.entityMover = oldParent.entityMover;
 		this.notifyObservers();
-		//Doesn't take in the old parent Entities...
 	}
 
 	public void tick(int tickNum) {
