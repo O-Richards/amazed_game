@@ -136,7 +136,7 @@ public class PlayingController {
 		//Sets the grid size to match the map: 
 		
 		//Create inventory panes
-		//setInventory();
+		setInventory();
 		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
@@ -145,17 +145,17 @@ public class PlayingController {
 	}
 
 	
-	/*private void setInventory() {
+	private void setInventory() {
 		this.invetoryDisplayPanes = new ArrayList<JFXPane>();
 		for(int col = l.getNumCols(); col >  0; col--) {
 			JFXPane aPane = new JFXPane(col,l.getNumRows());
 			invetoryDisplayPanes.add(aPane);
 			inventory.add(aPane.getPane(), col,l.getNumRows());		
 		}
-	}*/
+	}
 	
 
-	/*
+	
 	private void updateInventory() {
 		PlayerMobileEntity player = players.get(0);
 		Iterator<UseAction> playerInventory = player.inventoryIterator();
@@ -181,11 +181,11 @@ public class PlayingController {
 				aPane.update(null, VisType.KEY);
 				System.out.println("Added key to inventory");
 				break;				
-			case "HOVER_POTION":
+			case "HOVER":
 				aPane.update(null, VisType.HOVER_POTION);
 				System.out.print("Added hover potion to inventory");
 				break;
-			case "INVINCIBILITY_POTION":
+			case "INVINCIBILITY":
 				aPane.update(null, VisType.INVINCIBILITY_POTION);
 				System.out.println("Added invinibility potion to inventory");
 				break;
@@ -196,8 +196,7 @@ public class PlayingController {
 			
 			}
 		}
-	}*/
-	
+	}	
 	
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	this.players = players; 
