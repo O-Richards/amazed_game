@@ -86,7 +86,7 @@ public class PlayerModeHomeController {
 		players.add(player);
 		
 		MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 0);
-		easy.placeMobileEntity(enemy);
+		//easy.placeMobileEntity(enemy);
 		
 		//Setup template maze
 		easy.placeItem(make.makeArrow(new Coord(1, 2)));
