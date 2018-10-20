@@ -52,7 +52,7 @@ public class PlayingScreen {
 					KeyCode pressedKeyNumber = e.getCode();
 					//Passes the key to the controller: 
 					//playingController.keyToAction(pressedKeyNumber,true);
-					playingController.keyToAction(pressedKeyNumber,false);
+					playingController.keyDownToAction(pressedKeyNumber);
 
 				}
             	
@@ -62,7 +62,7 @@ public class PlayingScreen {
         				public void handle(KeyEvent e) {
         					KeyCode pressedKeyNumber = e.getCode();
         					//Passes the key to the controller: 
-        					playingController.keyToAction(pressedKeyNumber,true);
+        					playingController.keyUpToAction(pressedKeyNumber);
         				}
                     	
             });
