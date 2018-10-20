@@ -85,6 +85,10 @@ public class PlayerModeHomeController {
 		easy.placeMobileEntity(player);
 		players.add(player);
 		
+		PlayerMobileEntity player1 = make.makePlayer(new Coord(15,15));
+		easy.placeMobileEntity(player1);
+		players.add(player1);
+		
 		MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 0);
 		//easy.placeMobileEntity(enemy);
 		

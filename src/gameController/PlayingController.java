@@ -60,7 +60,7 @@ public class PlayingController {
 	@FXML
 	private GridPane inventory;
 	
-	private ArrayList<JFXPane> invetoryDisplayPanes;
+	private ArrayList<ArrayList<JFXPane>> inventoryDisplayPanes;
 	private ArrayList<PlayerMobileEntity> players; 
 	PlayerMobileEntity player1;
 	PlayerMobileEntity player2; 
@@ -77,11 +77,13 @@ public class PlayingController {
 	private Level l; 
 	public PlayingController(Stage s) {
 		currStage = s;
+		this.inventoryDisplayPanes = new ArrayList<>();
 	}
 	public PlayingController(Stage parentStage, Stage s) {
 		currStage = s;
 		this.parentStage = parentStage; 
 		parentStage.hide();
+		this.inventoryDisplayPanes = new ArrayList<>();
 	}
 	@FXML
     public void initialize() {
@@ -143,57 +145,67 @@ public class PlayingController {
         hunterThread.start();
         
 	}
-
 	
 	private void setInventory() {
-		this.invetoryDisplayPanes = new ArrayList<JFXPane>();
-		for(int col = l.getNumCols(); col >  0; col--) {
-			JFXPane aPane = new JFXPane(col,l.getNumRows());
-			invetoryDisplayPanes.add(aPane);
-			inventory.add(aPane.getPane(), col,l.getNumRows());		
+		for(int i = players.size(); i > 0; i--) {
+			ArrayList<JFXPane> inventoryPanes  = new ArrayList<JFXPane>();
+			for(int col = 0; col <  l.getNumCols(); col++) {
+				JFXPane aPane = new JFXPane(col,i);
+				inventoryPanes.add(aPane);
+				inventory.add(aPane.getPane(), col,i);		
+			}
+			this.inventoryDisplayPanes.add(inventoryPanes);
 		}
 	}
-	
 
 	
 	private void updateInventory() {
-		PlayerMobileEntity player = players.get(0);
-		Iterator<UseAction> playerInventory = player.inventoryIterator();
-
-		for (int i = 0; i < 7 && playerInventory.hasNext(); i++) {
-			//System.out.println(playerInventory.next().name());
-			JFXPane aPane = invetoryDisplayPanes.get(i);
-			switch (playerInventory.next().name()) {
-			
-			case "ARROW":
-				aPane.update(null, VisType.ARROW);
-				System.out.println("Added arrow to Inventory");
-				break;
-			case "BOMB":
-				aPane.update(null, VisType.BOMB);
-				System.out.println("Added bomb to inventory");
-				break;
-			case "SWORD":
-				aPane.update(null, VisType.SWORD);
-				System.out.println("Added sword to inventory");
-				break;
-			case "KEY":
-				aPane.update(null, VisType.KEY);
-				System.out.println("Added key to inventory");
-				break;				
-			case "HOVER":
-				aPane.update(null, VisType.HOVER_POTION);
-				System.out.print("Added hover potion to inventory");
-				break;
-			case "INVINCIBILITY":
-				aPane.update(null, VisType.INVINCIBILITY_POTION);
-				System.out.println("Added invinibility potion to inventory");
-				break;
-			default:
-				aPane.update(null, VisType.EMPTY_TILE);
-				break;
-				
-			
+		System.out.println("FUCK");
+		Iterator<ArrayList<JFXPane>> inventoryList = inventoryDisplayPanes.listIterator();
+		//System.out.println(players.size());
+		for (PlayerMobileEntity player : this.players) {
+			Iterator<UseAction> playerInventory = player.inventoryIterator();
+			Iterator<JFXPane> inventoryPanes = inventoryList.next().iterator();
+			while (inventoryPanes.hasNext()) {
+				JFXPane aPane = inventoryPanes.next();
+				try {				
+					switch (playerInventory.next().name()) {					
+					case "ARROW":
+						aPane.update(null, VisType.ARROW);
+						System.out.println("Added arrow to Inventory");
+						break;
+					case "BOMB":
+						aPane.update(null, VisType.BOMB);
+						System.out.println("Added bomb to inventory");
+						break;
+					case "SWORD":
+						aPane.update(null, VisType.SWORD);
+						System.out.println("Added sword to inventory");
+						break;
+					case "KEY":
+						aPane.update(null, VisType.KEY);
+						System.out.println("Added key to inventory");
+						break;				
+					case "HOVER":
+						aPane.update(null, VisType.HOVER_POTION);
+						System.out.print("Added hover potion to inventory");
+						break;
+					case "INVINCIBILITY":
+						aPane.update(null, VisType.INVINCIBILITY_POTION);
+						System.out.println("Added invinibility potion to inventory");
+						break;
+					case "TREASURE":
+						aPane.update(null, VisType.TREASURE);
+						System.out.println("Added treasure to inventory");
+						break;
+					default:
+						aPane.update(null, VisType.EMPTY_TILE);
+						break;
+					}
+				} catch (Exception e) {
+					aPane.update(null, VisType.EMPTY_TILE);
+				}
+	
 			}
 		}
 	}	
@@ -401,10 +413,7 @@ public class PlayingController {
     			        fadeInPlayer.play();
     					returnHome();
     				}    				
-    				// UPDATE INVENTORY DISPLAY HERE TODO
-    	    		//prevents the player from moving in the next iteration: 
-
-    				//updateInventory();
+    				updateInventory();
     	    	}
     	    });
 		} catch (Exception e) {
