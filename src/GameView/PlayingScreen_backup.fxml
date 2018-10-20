@@ -45,7 +45,7 @@
             </AnchorPane>
             <Pane fx:id="lostPane" mouseTransparent="true" pickOnBounds="false" prefHeight="486.0" prefWidth="600.0" style="-fx-background-color: transparent;" visible="false">
                <children>
-                  <ImageView fx:id="lostImage" fitHeight="456.0" fitWidth="637.0" layoutX="-17.0" pickOnBounds="true">
+                  <ImageView fx:id="lostImage" fitHeight="503.0" fitWidth="633.0" layoutX="-17.0" pickOnBounds="true">
                      <image>
                         <Image url="@../../images/dead.jpg" />
                      </image>
