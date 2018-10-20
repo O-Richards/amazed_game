@@ -116,6 +116,12 @@ public class JFXPane implements Observer {
 			spriteMap.put(VisType.KEY, "/key&tile.png");
 			spriteMap.put(VisType.DOOR, "/closed door.png");
 			spriteMap.put(VisType.EMPTY_TILE, "/tile.png");
+			spriteMap.put(VisType.INVENTORY, "/inventoryBox.png");
+			spriteMap.put(VisType.INVENTORY_ARROW, "/arrow&box.png");
+			spriteMap.put(VisType.INVENTORY_BOMB, "/bomb&box.png");
+			spriteMap.put(VisType.INVENTORY_TREASURE, "/treasure&box.png");
+			spriteMap.put(VisType.INVENTORY_SWORD, "/sword&box.png");
+			spriteMap.put(VisType.INVENTORY_KEY, "/key&box.png");
 			if(spriteMap.get(visType) == null) {
 				System.out.println("unable to place tile!!!");
 			}

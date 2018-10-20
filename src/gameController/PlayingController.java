@@ -165,7 +165,13 @@ public class PlayingController {
 		for (PlayerMobileEntity player : this.players) {
 			Iterator<UseAction> playerInventory = player.inventoryIterator();
 			Iterator<JFXPane> inventoryPanes = inventoryList.next().iterator();
-			while (inventoryPanes.hasNext() && playerInventory.hasNext()) {
+			while (inventoryPanes.hasNext() ) {
+				if (playerInventory.hasNext() == false) {
+					JFXPane aPane = inventoryPanes.next(); {
+						aPane.update(null,VisType.INVENTORY);
+						continue;
+					}
+				}
 				UseAction inventoryItem = playerInventory.next();			
 				//ensures we don't add an empty pane			
 				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {
@@ -185,31 +191,31 @@ public class PlayingController {
 				try {				
 					switch (inventoryItem) {					
 					case ARROW :
-						aPane.update(null,VisType.ARROW);
+						aPane.update(null,VisType.INVENTORY_ARROW);
 						System.out.println("Added arrow to Inventory");
 						break;
 					case BOMB:
-						aPane.update(null,VisType.BOMB);
+						aPane.update(null,VisType.INVENTORY_BOMB);
 						System.out.println("Added bomb to inventory");
 						break;
 					case SWORD:
-						aPane.update(null,VisType.SWORD);
+						aPane.update(null,VisType.INVENTORY_SWORD);
 						System.out.println("Added sword to inventory");
 						break;
 					case KEY:
-						aPane.update(null,VisType.KEY);
+						aPane.update(null,VisType.INVENTORY_KEY);
 						System.out.println("Added key to inventory");
 						break;				
 					case TREASURE:
-						aPane.update(null,VisType.TREASURE);
+						aPane.update(null,VisType.INVENTORY_TREASURE);
 						System.out.println("Added treasure to inventory");
 						break;
 					default:
-						aPane.update(null,VisType.EMPTY_TILE);
+						aPane.update(null,VisType.INVENTORY);
 						break;
 					}
 				} catch (Exception e) {
-					aPane.update(null,VisType.EMPTY_TILE);
+					aPane.update(null,VisType.INVENTORY);
 				}
 	
 			}
