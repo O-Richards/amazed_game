@@ -2,9 +2,13 @@ package gameController;
 
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 import gameModel.Coord;
 import gameModel.Level;
+
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.UseAction;
@@ -12,9 +16,12 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;	
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class PlayingController {
 	
@@ -22,12 +29,30 @@ public class PlayingController {
 	private Button pause;
 	@FXML
 	private GridPane map;
+	@FXML
+	private Pane lostPane; 
+	@FXML
+	private Pane wonPane; 
+	@FXML 
+	private Text player1Lost; 
+	@FXML
+	private Text player2Lost; 
+	@FXML
+	private Text player1Won; 
+	@FXML
+	private Text player2Won; 
+	@FXML
+	private ImageView wonImage; 
+	@FXML
+	private ImageView lostImage; 
+	
 	private ArrayList<PlayerMobileEntity> players; 
 	PlayerMobileEntity player1;
 	PlayerMobileEntity player2; 
 	private Stage currStage;
 	private Stage parentStage; 
 	Thread hunterThread; 
+	Timer timer; 
 	private Level l; 
 	public PlayingController(Stage s) {
 		currStage = s;
@@ -151,14 +176,37 @@ public class PlayingController {
     	    		l.tick();
     	    		if (l.hasWon()) {
     	    			System.out.println("YOU WON");
+    	    			
     	    			returnHome();
     				}
     				if (player1 != null && !player1.isAlive()) {
     					System.out.println("Player1 lost");
+//    					lostPane.setVisible(true);
+//    					wonImage.setVisible(true);
+//    					player1Lost.setVisible(true);
+    					wonImage.setOpacity(0);
+    					player1Lost.setOpacity(0);
+
+
+    					
+    					timer = new Timer(); 
+    					timer.schedule(new TimerTask() {
+        					int x = 0; 
+    						@Override
+    						public void run() {
+    							wonImage.setOpacity(x);
+    	    					player1Lost.setOpacity(x);
+    	    					x++; 
+    	    					if(x>=100) {
+    	    						timer.cancel();
+    	    					}
+    						}
+    					}, 100);
     					returnHome();
     				}
     				if (player2 != null &&!player2.isAlive()) {
     					System.out.println("Player2 lost");
+    					
     					returnHome();
     				}
 

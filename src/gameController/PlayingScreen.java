@@ -8,14 +8,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Timer;
  
 public class PlayingScreen {
 	
@@ -24,7 +22,8 @@ public class PlayingScreen {
     private String title;
     private FXMLLoader fxmlLoader;
     private PlayingController playingController; 
-    private GridPane mapView; 
+    private GridPane mapView;
+
 
     public PlayingScreen(Stage parentStage) {
         this.s = new Stage();
@@ -66,8 +65,8 @@ public class PlayingScreen {
     public void setMap(Level l) {
     	playingController.setMap(l);
         mapView = playingController.getMap();	
-       // s.setHeight(mapView.getMinHeight());
-       //s.setMinWidth(mapView.getMinWidth());
+        s.setHeight(mapView.getMinHeight());
+        s.setMinWidth(mapView.getMinWidth());
     }
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
     	playingController.setPlayers(players);
