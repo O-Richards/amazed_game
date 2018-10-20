@@ -8,6 +8,7 @@ import gameModel.KillAction;
 import gameModel.entity.Entity;
 import gameModel.entity.VisType;
 import gameModel.usable.Usable;
+import gameModel.usable.UseAction;
 import gameModel.winCondition.WinType;
 
 public class MobileEntity implements Movement, Entity {
@@ -246,6 +247,10 @@ public class MobileEntity implements Movement, Entity {
 		public MobileEntity build() {
 			return new MobileEntity(this);
 		}
+	}
+
+	public boolean use(UseAction a) {
+		return false;
 	}
 
 

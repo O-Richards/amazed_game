@@ -23,7 +23,7 @@ private static int keyCodeGenerator = 1;
 
 	@Override
 	public boolean use(UseAction action) {
-		return false;
+		return (action == this.getUseAction());
 	}
 
 
