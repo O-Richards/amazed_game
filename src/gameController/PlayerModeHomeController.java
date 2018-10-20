@@ -83,13 +83,10 @@ public class PlayerModeHomeController {
 		PlayerMobileEntity player = make.makePlayer(new Coord(8,4));
 		easy.placeMobileEntity(player);
 		players.add(player);
+
 		
-		//PlayerMobileEntity player1 = make.makePlayer(new Coord(1,10));
-		//easy.placeMobileEntity(player1);
-		//players.add(player1);
-		
-		//MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 1);
-		//easy.placeMobileEntity(enemy);
+		MobileEntity enemy = make.makeCoward(new Coord(15, 15), player, 1);
+		easy.placeMobileEntity(enemy);
 		
 		//WALLS
 		easy.placeWall(new Coord(6, 3));
@@ -109,12 +106,15 @@ public class PlayerModeHomeController {
 		easy.placeWall(new Coord(9, 7));
 		easy.placeWall(new Coord(9, 8));
 		
+		// WALLS AROUND EXIT TILE
 		easy.placeWall(new Coord(7, 6));
 		easy.placeWall(new Coord(7, 7));
 		easy.placeWall(new Coord(7, 8));
 		easy.placeWall(new Coord(7, 9));
 		easy.placeWall(new Coord(7, 10));
 		easy.placeWall(new Coord(7, 11));
+		easy.placeWall(new Coord(7,12));
+		easy.placeWall(new Coord(7,13));
 		easy.placeWall(new Coord(8, 11));
 		easy.placeWall(new Coord(9, 10));
 		easy.placeWall(new Coord(9, 11));
@@ -124,7 +124,8 @@ public class PlayerModeHomeController {
 		easy.placeWall(new Coord(12,8));
 		easy.placeWall(new Coord(13,8));
 		easy.placeWall(new Coord(14,8));
-		
+
+		// FIRST PIT TUNNEL
 		easy.placeWall(new Coord(14,10));
 		easy.placeWall(new Coord(13,10));
 		easy.placeWall(new Coord(12,10));
@@ -141,6 +142,8 @@ public class PlayerModeHomeController {
 		easy.placeWall(new Coord(14,13));
 		easy.placeWall(new Coord(13,13));
 		easy.placeWall(new Coord(12,13));
+		easy.placeWall(new Coord(13,14));
+		easy.placeWall(new Coord(13,15));
 		
 		
 		// PLACE HOVER POTION AROUND THESE WALL CHUNKS
