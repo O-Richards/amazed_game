@@ -27,15 +27,15 @@
             <Font name="Baskerville Bold" size="23.0" />
          </font>
          <effect>
-            <DropShadow color="RED" height="255.0" radius="127.0" spread="0.94" width="255.0" />
+            <DropShadow color="RED" height="255.0" radius="127.0" spread="0.93" width="255.0" />
          </effect>
       </Button>
-      <Button fx:id="intermediateLevelButton" layoutX="87.0" layoutY="218.0" mnemonicParsing="false" onAction="#handleIntermediateLevelButton" style="-fx-background-color: transparent;" text="Intermediate" textFill="WHITE">
+      <Button fx:id="intermediateLevelButton" layoutX="86.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleIntermediateLevelButton" style="-fx-background-color: transparent;" text="Intermediate" textFill="WHITE">
          <font>
             <Font name="Baskerville Bold" size="23.0" />
          </font>
          <effect>
-            <DropShadow color="RED" height="255.0" radius="127.0" spread="0.85" width="255.0" />
+            <DropShadow color="RED" height="255.0" radius="127.0" spread="0.79" width="255.0" />
          </effect>
       </Button>
       <Button fx:id="easyLevelButton" layoutX="283.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleEasyLevelButton" style="-fx-background-color: transparent;" text="Easy " textFill="WHITE">
