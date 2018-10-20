@@ -162,7 +162,7 @@ public class PlayingController {
 		for (PlayerMobileEntity player : this.players) {
 			Iterator<UseAction> playerInventory = player.inventoryIterator();
 			Iterator<JFXPane> inventoryPanes = inventoryList.next().iterator();
-			while (inventoryPanes.hasNext()) {
+			while (inventoryPanes.hasNext() && playerInventory.hasNext()) {
 				UseAction inventoryItem = playerInventory.next();
 				
 				//ensures we don't add an empty pane
