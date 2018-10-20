@@ -437,15 +437,7 @@ public class DesigningController {
 
 			//If we have a target selected: 
 			if(playerSelected != null) {
-				if(currentlySelected == VisType.HOUND) {
-					selectedItem.setText("Hound");
-				}else if(currentlySelected == VisType.STRATEGIST){
-					selectedItem.setText("Strategist");
-				}else if(currentlySelected == VisType.HUNTER) {
-					selectedItem.setText("Hunter");					
-				}else if(currentlySelected == VisType.COWARD) {
-					selectedItem.setText("Coward");					
-				}
+				selectedItem.setText(currentlySelected.toString().toLowerCase());
 			}else {
 				System.out.println("RESETTING VALUES");
 				//Always sets it back to norm

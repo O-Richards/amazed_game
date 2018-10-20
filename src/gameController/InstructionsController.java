@@ -10,17 +10,12 @@ public class InstructionsController {
 	
 	@FXML
 	private Button exitScreen;
-	
 	public Stage currStage;
-	private Stage parentStage; 
-	public InstructionsController(Stage parentStage, Stage s) {
-		this.parentStage = parentStage; 
-		parentStage.hide(); 
+	public InstructionsController(Stage s) {
 		currStage = s;
 	}
 	
 	public void exitScreen(ActionEvent event) {
-		parentStage.show();
 		currStage.close();
 	}
 

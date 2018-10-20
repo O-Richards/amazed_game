@@ -29,6 +29,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class PlayingController {
@@ -88,11 +89,14 @@ public class PlayingController {
 		//interrupts the hunter thread: 
 		//Creates a new thread rather than resuming thread
 		hunterThread.interrupt();
-		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
+		currStage.hide();
+		PauseMenuScreen pauseMenu = new PauseMenuScreen();
 		pauseMenu.start();
+		currStage.show();
 		hunterThread = new Thread(new MultiThreading());		
 		hunterThread.setDaemon(true);
 		hunterThread.start();
+
 	}
 	@FXML
 	public void returnHome() {
@@ -128,7 +132,7 @@ public class PlayingController {
 		//Sets the grid size to match the map: 
 		
 		//Create inventory panes
-		setInventory();
+		//setInventory();
 		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
@@ -137,17 +141,17 @@ public class PlayingController {
 	}
 
 	
-	private void setInventory() {
+	/*private void setInventory() {
 		this.invetoryDisplayPanes = new ArrayList<JFXPane>();
 		for(int col = l.getNumCols(); col >  0; col--) {
 			JFXPane aPane = new JFXPane(col,l.getNumRows());
 			invetoryDisplayPanes.add(aPane);
 			inventory.add(aPane.getPane(), col,l.getNumRows());		
 		}
-	}
+	}*/
 	
 
-	
+	/*
 	private void updateInventory() {
 		PlayerMobileEntity player = players.get(0);
 		Iterator<UseAction> playerInventory = player.inventoryIterator();
@@ -188,7 +192,7 @@ public class PlayingController {
 			
 			}
 		}
-	}
+	}*/
 	
 	
     public void setPlayers(ArrayList<PlayerMobileEntity> players) {
@@ -363,13 +367,12 @@ public class PlayingController {
     				// UPDATE INVENTORY DISPLAY HERE TODO
     	    		//prevents the player from moving in the next iteration: 
 
-    				updateInventory();
+    				//updateInventory();
     				if(keyReleasedPlayer1 == true) {
     					player1.setMoving(false);
     					keyReleasedPlayer1 = false; 
     				}
     				if(keyReleasedPlayer2 == true) {
-    					System.out.println("RAN");
     					player2.setMoving(false);
     					keyReleasedPlayer2 = false; 
     				}
@@ -383,8 +386,8 @@ public class PlayingController {
     //returns the map
     public GridPane getMap() {
     	return this.map;
+    }
     
-}
     //Used for Hunters: 
     class MultiThreading implements Runnable 
     { 
@@ -393,7 +396,7 @@ public class PlayingController {
     	 synchronized (l) {
 			try {
 	    		while(true) {
-	          	  //System.out.println("tick");
+	          	  System.out.println("tick");
 	          	  runTick();
 	          	  Thread.sleep(400);
 	    		}

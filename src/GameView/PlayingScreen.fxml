@@ -26,13 +26,19 @@
          <children>
             <Button fx:id="pause" layoutY="-2.0" mnemonicParsing="false" onAction="#handlePauseButton" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0">
                <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../images/pause.png" />
+                        <Image url="@../../images/exitPage.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="exit" mnemonicParsing="false" onAction="#returnHome" prefHeight="32.0" prefWidth="33.0" style="-fx-background-color: transparent;" />
+            <ImageView fitHeight="22.0" fitWidth="24.0" layoutX="38.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/pause.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Pane fx:id="lostPane" mouseTransparent="true" pickOnBounds="false" prefHeight="432.0" prefWidth="600.0" style="-fx-background-color: transparent;" visible="false">
@@ -318,15 +324,6 @@
             </Text>
          </children>
       </Pane>
-      <Button fx:id="exit" layoutX="581.0" layoutY="401.0" mnemonicParsing="false" onAction="#returnHome" prefHeight="32.0" prefWidth="33.0" style="-fx-background-color: transparent;">
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../images/exitPage.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
       <Pane fx:id="wonPane" mouseTransparent="true" pickOnBounds="false" prefHeight="432.0" prefWidth="600.0" style="-fx-background-color: transparent;" visible="false">
          <children>
             <ImageView fx:id="wonImage" fitHeight="520.0" fitWidth="815.0" layoutX="-91.0" layoutY="-35.0" pickOnBounds="true">
