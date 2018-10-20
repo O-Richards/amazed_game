@@ -113,8 +113,13 @@ public class ASCIIGameController {
 		l.placeItem(make.makeKey(new Coord(7, 7)));
 		// l.addItem(make.makeSword(new Coord(2, 4)));
 		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
-		l.placeMobileEntity(make.makeCoward(new Coord(15, 15), player, 0.4));
-		l.placeMobileEntity(make.makeStrategist(new Coord(15, 13), player, 0.4));
+		
+		try {
+			l.placeMobileEntity(make.makeCoward(new Coord(15, 15), null, 0.4));
+			l.placeMobileEntity(make.makeStrategist(new Coord(15, 13), player, 0.4));
+		} catch (EntityCreationException e) {
+			System.out.println(e.getMessage());
+		}
 		//l.placeItem(make.makeSword(new Coord(2, 3)));
 		l.placeItem(make.makeSword(new Coord(1, 3)));
 		l.placeMobileEntity(make.makeBoulder(new Coord(2, 2)));
@@ -132,10 +137,10 @@ public class ASCIIGameController {
 			//In the frontend you would return here or something...
 		}
 		
-		//Now place a hunter
-		l.placeMobileEntity(make.makeHunter(new Coord(13, 3), player, 0.6));
 		
 		try {
+			//Now place a hunter
+			l.placeMobileEntity(make.makeHunter(new Coord(13, 3), player, 0.6));
 			hound = make.makeHound(new Coord(10, 3), player, 0.3);
 		} 
 		catch (EntityCreationException e) {

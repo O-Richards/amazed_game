@@ -28,15 +28,19 @@ public class EntityMaker {
 	private WinSystem winSystem;
 	private EntityMover entityMover;
 	private MobileEntity hunter = null;
+	private PlayerMobileEntity player = null;
 	
 	public EntityMaker(WinSystem winSystem, EntityMover entityMover) {
 		this.winSystem = winSystem;
 		this.entityMover = entityMover;
 	}
+	
 	public PlayerMobileEntity makePlayer(Coord c) {
-		return new PlayerMobileEntity.PlayerMobileEntityBuilder("P", c, entityMover)
+		this.player =  new PlayerMobileEntity.PlayerMobileEntityBuilder("P", c, entityMover)
 				.build();
+		return player;
 	}
+	
 	public Entity makeKey(Coord c) {
 		return new BasicEntity.BasicEntityBuilder(VisType.KEY, c)
 				.withEntityMover(entityMover)
@@ -152,7 +156,19 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeHunter(Coord c, MobileEntity player, double randMoveRate) {
+	/**
+	 * @param c
+	 * @param player the player target. If null defaults to the last made player
+	 * @param randMoveRate
+	 * @return
+	 * @throws EntityCreationException
+	 */
+	public MobileEntity makeHunter(Coord c, MobileEntity player, double randMoveRate) throws EntityCreationException {
+		player = player == null? this.player : player;
+		if (player == null) {
+			throw new EntityCreationException("A player must exist before an enemy can be made");
+		}
+		
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HUNTER, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -169,7 +185,18 @@ public class EntityMaker {
 		return this.hunter;
 	}
 	
+	/**
+	 * @param c
+	 * @param player the player target. If null defaults to the last made player
+	 * @param randMoveRate
+	 * @return
+	 * @throws EntityCreationException
+	 */
 	public MobileEntity makeHound(Coord c, MobileEntity player, double randMoveRate) throws EntityCreationException {
+		player = player == null? this.player : player;
+		if (player == null) {
+			throw new EntityCreationException("A player must exist before an enemy can be made");
+		}
 		if (this.hunter == null) {
 			throw new EntityCreationException("A hunter must exist before a hound can be made");
 		}
@@ -187,7 +214,18 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeCoward(Coord c, MobileEntity player, double randMoveRate) {
+	/**
+	 * @param c
+	 * @param player the player target. If null defaults to the last made player
+	 * @param randMoveRate
+	 * @return
+	 * @throws EntityCreationException
+	 */
+	public MobileEntity makeCoward(Coord c, MobileEntity player, double randMoveRate) throws EntityCreationException {
+		player = player == null? this.player : player;
+		if (player == null) {
+			throw new EntityCreationException("A player must exist before an enemy can be made");
+		}
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.COWARD, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
@@ -202,7 +240,18 @@ public class EntityMaker {
 				.build();
 	}
 	
-	public MobileEntity makeStrategist(Coord c, MobileEntity player, double randMoveRate) {
+	/**
+	 * @param c
+	 * @param player the player target. If null defaults to the last made player
+	 * @param randMoveRate
+	 * @return
+	 * @throws EntityCreationException
+	 */
+	public MobileEntity makeStrategist(Coord c, MobileEntity player, double randMoveRate) throws EntityCreationException {
+		player = player == null? this.player : player;
+		if (player == null) {
+			throw new EntityCreationException("A player must exist before an enemy can be made");
+		}
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.STRATEGIST, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)

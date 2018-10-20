@@ -111,7 +111,7 @@ public class Level implements EntityMover {
 	public void placeMobileEntity(MobileEntity enemy) throws EntityPlacementException {
 		Coord c = enemy.getCoord();
 		Tile placementTile = getTile(c);
-		placementTile.addMobileEntity(enemy);
+		placementTile.placeMobileEntity(enemy);
 	}
 	
 	public void tick() {
@@ -234,6 +234,15 @@ public class Level implements EntityMover {
 		Tile oldTile = this.getTile(coord);
 		DoorTile newDoor = new DoorTile(oldTile); 
 		this.map[coord.getX()][coord.getY()] = newDoor;
+	}
+	
+	/**
+	 * @param c The coord of the entity to be retrieved
+	 * @return The mobile entity on the tile (or null if none)
+	 */
+	public MobileEntity getMobileEntity(Coord c) {
+		Tile t = this.getTile(c);
+		return t.getMobile();
 	}
 	
 	/**

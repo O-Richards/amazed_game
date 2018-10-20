@@ -52,5 +52,5 @@ public interface EntityMover {
 	 */
 	void placeMobileEntity(MobileEntity entity) throws EntityPlacementException;
 	void placeItem(Entity base) throws EntityPlacementException;
-	void clearItem(Coord useLocation);
+	void clearItem(Coord coord);
 }

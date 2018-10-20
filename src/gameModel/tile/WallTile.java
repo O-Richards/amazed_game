@@ -26,8 +26,12 @@ public class WallTile extends Tile {
 
 	@Override
 	public void updateWinCondition() {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void placeMobileEntity(MobileEntity e) throws EntityPlacementException {
+		throw new EntityPlacementException("Entites cannot be placed on walls");
 	}
 	
 	@Override
