@@ -115,8 +115,8 @@ public class ASCIIGameController {
 		l.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
 		
 		try {
-			l.placeMobileEntity(make.makeCoward(new Coord(15, 15), 0.4));
-			l.placeMobileEntity(make.makeStrategist(new Coord(15, 13), 0.4));
+			l.placeMobileEntity(make.makeCoward(new Coord(15, 15), null, 0.4));
+			l.placeMobileEntity(make.makeStrategist(new Coord(15, 13), player, 0.4));
 		} catch (EntityCreationException e) {
 			System.out.println(e.getMessage());
 		}
@@ -129,7 +129,7 @@ public class ASCIIGameController {
 		//An example of how to make a hound
 		MobileEntity hound = null;
 		try {
-			hound = make.makeHound(new Coord(1, 1), 0.3);
+			hound = make.makeHound(new Coord(1, 1), player, 0.3);
 		} 
 		catch (EntityCreationException e) {
 			//Note that since a hunter hasn't been made yet, this catch will happen
@@ -140,8 +140,8 @@ public class ASCIIGameController {
 		
 		try {
 			//Now place a hunter
-			l.placeMobileEntity(make.makeHunter(new Coord(13, 3), 0.6));
-			hound = make.makeHound(new Coord(10, 3), 0.3);
+			l.placeMobileEntity(make.makeHunter(new Coord(13, 3), player, 0.6));
+			hound = make.makeHound(new Coord(10, 3), player, 0.3);
 		} 
 		catch (EntityCreationException e) {
 			//this time it should succeed
