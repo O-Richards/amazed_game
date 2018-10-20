@@ -15,8 +15,10 @@ import gameModel.entity.VisType;
 import gameModel.mobileEntity.Direction;
 import gameModel.mobileEntity.PlayerMobileEntity;
 import gameModel.usable.UseAction;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
@@ -25,6 +27,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class PlayingController {
 	
@@ -38,12 +41,11 @@ public class PlayingController {
 	private Pane wonPane; 
 	@FXML 
 	private Text player1Lost; 
-	@FXML
+	@FXML 
 	private Text player2Lost; 
 	@FXML
-	private Text player1Won; 
-	@FXML
-	private Text player2Won; 
+	private Text won; 
+
 	@FXML
 	private ImageView wonImage; 
 	@FXML
@@ -217,32 +219,63 @@ public class PlayingController {
     	    		l.tick();
     	    		if (l.hasWon()) {
     	    			hunterThread.interrupt();
-    	    			System.out.println("YOU WON");
-    					/*lostPane.setVisible(true);
+    	    			System.out.println("YOU WON");   		
+    					wonPane.setVisible(true);
     					wonImage.setVisible(true);
-    					player1Lost.setVisible(true);
-    					wonImage.setOpacity(0);
-    					player1Lost.setOpacity(0);*/
-
-    	    			returnHome();
+    					won.setVisible(true);
+    			        FadeTransition fadeInWonPane = new FadeTransition(Duration.millis(4000), wonPane);
+    			        FadeTransition fadeInMessage = new FadeTransition(Duration.millis(9000), won);
+    			        fadeInWonPane.setFromValue(0);
+    			        fadeInWonPane.setToValue(100);
+    			        fadeInMessage.setFromValue(0);
+    			        fadeInMessage.setToValue(100);
+    			        fadeInWonPane.play();
+    			        fadeInMessage.setOnFinished(new EventHandler<ActionEvent>(){
+							@Override
+							public void handle(ActionEvent event) {
+		    					returnHome();
+							}
+    			        	
+    			        });
+    			        fadeInMessage.play();
     				}	
     				if (player1 != null && !player1.isAlive()) {
     					hunterThread.interrupt();
 
     					System.out.println("Player1 lost");
     					lostPane.setVisible(true);
-    					lostImage.setOpacity(0);
+
     					lostImage.setVisible(true);
     					player1Lost.setVisible(true);
+    					
+    			        FadeTransition fadeInLostPane = new FadeTransition(Duration.millis(4000), lostPane);
+    			        FadeTransition fadeInPlayer = new FadeTransition(Duration.millis(9000), player1Lost);
+    			        fadeInLostPane.setFromValue(0);
+    			        fadeInLostPane.setToValue(100);
+    			        fadeInPlayer.setFromValue(0);
+    			        fadeInPlayer.setToValue(100);
+    			        fadeInLostPane.play();
+    			        fadeInPlayer.setOnFinished(new EventHandler<ActionEvent>(){
+							@Override
+							public void handle(ActionEvent event) {
+		    					returnHome();
+							}
+    			        	
+    			        });
+    			        fadeInPlayer.play();
 
+    					//int x = 0; 
 
-    					int x = 0; 
-    					while(true) {
-        					lostImage.setVisible(true);
-	    					player1Lost.setOpacity(x);
+    					/*doesn't work :(((((
+    					 *  lostImage.setOpacity();
+    						player1Lost.setOpacity(0);
+    					 * while(true) {
+        					lostImage.setOpacity(x/100);
+	    					player1Lost.setOpacity(x/100);
     						try {
 								Thread.sleep(100);
 							} catch (InterruptedException e) {
+								System.out.println("COULDN't SLEEP");
 								//Couldn't sleep: 
 								returnHome();
 							}
@@ -250,13 +283,30 @@ public class PlayingController {
     						if(x>100) {
     							break;
     						}
-    					}
-    					returnHome();
+    					}*/
 
     				}
     				if (player2 != null &&!player2.isAlive()) {
     					System.out.println("Player2 lost");
+    					lostPane.setVisible(true);
+    					lostImage.setVisible(true);
+    					player2Lost.setVisible(true);
     					
+    			        FadeTransition fadeInLostPane = new FadeTransition(Duration.millis(5000), lostPane);
+    			        FadeTransition fadeInPlayer = new FadeTransition(Duration.millis(10000), player2Lost);
+    			        fadeInLostPane.setFromValue(0);
+    			        fadeInLostPane.setToValue(100);
+    			        fadeInPlayer.setFromValue(0);
+    			        fadeInPlayer.setToValue(100);
+    			        fadeInLostPane.play();
+    			        fadeInPlayer.setOnFinished(new EventHandler<ActionEvent>(){
+							@Override
+							public void handle(ActionEvent event) {
+		    					returnHome();
+							}
+    			        	
+    			        });
+    			        fadeInPlayer.play();
     					returnHome();
     				}
 
