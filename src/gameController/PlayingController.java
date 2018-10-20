@@ -170,7 +170,6 @@ public class PlayingController {
 						int playerNo = players.indexOf(player);
 						System.out.println(playerNo);
 						if(playerNo == 1) {
-							Platform.exit();
 							player1Flying.setVisible(true);
 						}else if(playerNo == 2) {
 							player2Flying.setVisible(true);
