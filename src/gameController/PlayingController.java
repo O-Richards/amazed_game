@@ -140,12 +140,16 @@ public class PlayingController {
 	}
 	
 	private void setInventory() {
-		for(int row = 0; row <   l.getNumRows(); row++) {
+		for (int j = players.size(); j>0; j--) {
 			ArrayList<JFXPane> inventoryPanes  = new ArrayList<JFXPane>();
-			for(int i = players.size(); i >= 0; i--) {
-				JFXPane aPane = new JFXPane();
-				inventoryPanes.add(aPane);
-				inventory.add(aPane.getPane(), i,row);		
+			for(int row = 0; row < l.getNumRows(); row++) {
+				
+				for(int i = players.size(); i >= 0; i--) {
+					JFXPane aPane = new JFXPane();
+					inventoryPanes.add(aPane);
+					inventory.add(aPane.getPane(), i,row);		
+				}
+				
 			}
 			this.inventoryDisplayPanes.add(inventoryPanes);
 		}
@@ -158,11 +162,9 @@ public class PlayingController {
 			Iterator<UseAction> playerInventory = player.inventoryIterator();
 			Iterator<JFXPane> inventoryPanes = inventoryList.next().iterator();
 			while (inventoryPanes.hasNext() && playerInventory.hasNext()) {
-				UseAction inventoryItem = playerInventory.next();
-				
+				UseAction inventoryItem = playerInventory.next();			
 				//ensures we don't add an empty pane
-				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {
-					
+				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {					
 					continue;					
 				}
 				
@@ -170,31 +172,31 @@ public class PlayingController {
 				try {				
 					switch (inventoryItem) {					
 					case ARROW :
-						aPane.update(VisType.ARROW);
+						aPane.update(null,VisType.ARROW);
 						System.out.println("Added arrow to Inventory");
 						break;
 					case BOMB:
-						aPane.update(VisType.BOMB);
+						aPane.update(null,VisType.BOMB);
 						System.out.println("Added bomb to inventory");
 						break;
 					case SWORD:
-						aPane.update(VisType.SWORD);
+						aPane.update(null,VisType.SWORD);
 						System.out.println("Added sword to inventory");
 						break;
 					case KEY:
-						aPane.update(VisType.KEY);
+						aPane.update(null,VisType.KEY);
 						System.out.println("Added key to inventory");
 						break;				
 					case TREASURE:
-						aPane.update(VisType.TREASURE);
+						aPane.update(null,VisType.TREASURE);
 						System.out.println("Added treasure to inventory");
 						break;
 					default:
-						aPane.update(VisType.EMPTY_TILE);
+						aPane.update(null,VisType.EMPTY_TILE);
 						break;
 					}
 				} catch (Exception e) {
-					aPane.update(VisType.EMPTY_TILE);
+					aPane.update(null,VisType.EMPTY_TILE);
 				}
 	
 			}
