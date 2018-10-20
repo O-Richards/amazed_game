@@ -3,6 +3,7 @@ package gameController;
 import java.util.ArrayList;
 
 import gameModel.Coord;
+import gameModel.EntityCreationException;
 import gameModel.EntityMaker;
 import gameModel.Level;
 import gameModel.mobileEntity.MobileEntity;
@@ -42,6 +43,8 @@ public class PlayerModeHomeController {
 		} catch (EntityPlacementException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}catch(EntityCreationException e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -74,7 +77,7 @@ public class PlayerModeHomeController {
 	
 	
 	
-	private void makeEasyMap() throws EntityPlacementException {
+	private void makeEasyMap() throws EntityPlacementException, EntityCreationException {
 		
 		EntityMaker make = new EntityMaker(easy.getWinSystem(), easy.getEntityMover());
 		
@@ -82,8 +85,8 @@ public class PlayerModeHomeController {
 		easy.placeMobileEntity(player);
 		players.add(player);
 		
-		//MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 10);
-		//easy.placeMobileEntity(enemy);
+		MobileEntity enemy = make.makeHunter(new Coord(8, 7), player, 0);
+		easy.placeMobileEntity(enemy);
 		
 		//Setup template maze
 		easy.placeItem(make.makeArrow(new Coord(1, 2)));

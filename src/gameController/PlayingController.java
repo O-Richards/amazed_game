@@ -70,7 +70,11 @@ public class PlayingController {
 		this.parentStage = parentStage; 
 		parentStage.hide();
 	}
-	
+	@FXML
+    public void initialize() {
+		lostPane.setVisible(false);
+		wonPane.setVisible(false);
+	}
 	@FXML
 	public void handlePauseButton(ActionEvent event) {
 		PauseMenuScreen pauseMenu = new PauseMenuScreen(currStage);
@@ -116,7 +120,7 @@ public class PlayingController {
 		//Sets the grid size to match the map: 
 		
 		//Create inventory panes
-		setInventory();
+		//setInventory();
 		
         hunterThread= new Thread(new MultiThreading());
         hunterThread.setDaemon(true);
@@ -125,14 +129,14 @@ public class PlayingController {
 	}
 
 	
-	private void setInventory() {		
+	/*private void setInventory() {		
 		for(int col = 0; col < 7; col++) {
 			JFXPane aPane = new JFXPane(1,col);
 			//invetoryDisplayPanes.add(aPane);
 			inventory.add(aPane.getPane(), 0, col);
 			
 		}
-	}
+	}*/
 	
 
 	
@@ -212,39 +216,43 @@ public class PlayingController {
     	    	public void run(){
     	    		l.tick();
     	    		if (l.hasWon()) {
+    	    			hunterThread.interrupt();
     	    			System.out.println("YOU WON");
-    					lostPane.setVisible(true);
+    					/*lostPane.setVisible(true);
     					wonImage.setVisible(true);
     					player1Lost.setVisible(true);
     					wonImage.setOpacity(0);
-    					player1Lost.setOpacity(0);
+    					player1Lost.setOpacity(0);*/
 
     	    			returnHome();
     				}	
     				if (player1 != null && !player1.isAlive()) {
+    					hunterThread.interrupt();
+
     					System.out.println("Player1 lost");
     					lostPane.setVisible(true);
-    					wonImage.setVisible(true);
+    					lostImage.setOpacity(0);
+    					lostImage.setVisible(true);
     					player1Lost.setVisible(true);
-    					wonImage.setOpacity(0);
-    					player1Lost.setOpacity(0);
 
 
-    					
-    					timer = new Timer(); 
-    					timer.schedule(new TimerTask() {
-        					int x = 0; 
-    						@Override
-    						public void run() {
-    							wonImage.setOpacity(x);
-    	    					player1Lost.setOpacity(x);
-    	    					x++; 
-    	    					if(x>=100) {
-    	    						timer.cancel();
-    	    					}
+    					int x = 0; 
+    					while(true) {
+        					lostImage.setVisible(true);
+	    					player1Lost.setOpacity(x);
+    						try {
+								Thread.sleep(100);
+							} catch (InterruptedException e) {
+								//Couldn't sleep: 
+								returnHome();
+							}
+    						x++;
+    						if(x>100) {
+    							break;
     						}
-    					}, 100);
+    					}
     					returnHome();
+
     				}
     				if (player2 != null &&!player2.isAlive()) {
     					System.out.println("Player2 lost");

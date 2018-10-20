@@ -16,47 +16,28 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="wonPane" mouseTransparent="true" pickOnBounds="false" prefHeight="432.0" prefWidth="600.0" style="-fx-background-color: transparent;" visible="false">
+      <AnchorPane>
          <children>
-            <ImageView fx:id="wonImage" fitHeight="520.0" fitWidth="815.0" layoutX="-91.0" layoutY="-35.0" opacity="0.84" pickOnBounds="true" visible="false">
-               <image>
-                  <Image url="@../../images/win.jpg" />
-               </image>
-               <effect>
-                  <Bloom threshold="0.23" />
-               </effect>
-            </ImageView>
-            <Label blendMode="SRC_ATOP" layoutX="486.0" layoutY="20.0" opacity="0.8" text="ESCAPE" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
-               <font>
-                  <Font name="American Typewriter Condensed Bold" size="22.0" />
-               </font>
-               <effect>
-                  <Shadow blurType="ONE_PASS_BOX" color="#c9b1b1" height="0.0" radius="2.535" width="12.14" />
-               </effect>
-            </Label>
-            <Label blendMode="SRC_ATOP" layoutX="457.0" layoutY="11.0" prefHeight="22.0" prefWidth="145.0" text="The  a MAZE ing" textAlignment="CENTER" textFill="RED">
-               <font>
-                  <Font name="Baskerville Bold" size="16.0" />
-               </font>
-               <effect>
-                  <Glow level="1.0" />
-               </effect>
-            </Label>
-            <Text fx:id="player1Won" fill="WHITE" layoutX="81.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P l a y e r  1&#10;&#10;&#10;E s c a p e d ! " textAlignment="CENTER" visible="false">
-               <font>
-                  <Font name="Luminari" size="69.0" />
-               </font>
-            </Text>
-            <Text fx:id="Player2Won" fill="WHITE" layoutX="81.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P l a y e r  2&#10;&#10;&#10;E s c a p e d ! " textAlignment="CENTER" visible="false">
-               <font>
-                  <Font name="Luminari" size="69.0" />
-               </font>
-            </Text>
+            <GridPane fx:id="map" prefHeight="432.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      </GridPane>
          </children>
-      </Pane>
-      <Pane fx:id="lostPane" mouseTransparent="true" opacity="0.0" pickOnBounds="false" prefHeight="432.0" prefWidth="602.0" style="-fx-background-color: transparent;" visible="false">
+      </AnchorPane>
+      <AnchorPane layoutX="-2.0" prefHeight="26.0" prefWidth="75.0">
          <children>
-            <ImageView fx:id="lostImage" fitHeight="456.0" fitWidth="637.0" layoutX="-17.0" opacity="0.0" pickOnBounds="true">
+            <Button fx:id="pause" layoutY="-2.0" mnemonicParsing="false" onAction="#handlePauseButton" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../images/pause.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Pane fx:id="lostPane" mouseTransparent="true" pickOnBounds="false" prefHeight="432.0" prefWidth="600.0" style="-fx-background-color: transparent;" visible="false">
+         <children>
+            <ImageView fx:id="lostImage" fitHeight="456.0" fitWidth="637.0" layoutX="-17.0" pickOnBounds="true">
                <image>
                   <Image url="@../../images/dead.jpg" />
                </image>
@@ -337,24 +318,43 @@
             </Text>
          </children>
       </Pane>
-      <AnchorPane>
+      <Pane fx:id="wonPane" mouseTransparent="true" pickOnBounds="false" prefHeight="432.0" prefWidth="600.0" style="-fx-background-color: transparent;" visible="false">
          <children>
-            <GridPane fx:id="map" prefHeight="432.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      </GridPane>
+            <ImageView fx:id="wonImage" fitHeight="520.0" fitWidth="815.0" layoutX="-91.0" layoutY="-35.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../images/win.jpg" />
+               </image>
+               <effect>
+                  <Bloom threshold="0.23" />
+               </effect>
+            </ImageView>
+            <Label blendMode="SRC_ATOP" layoutX="486.0" layoutY="20.0" opacity="0.8" text="ESCAPE" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
+               <font>
+                  <Font name="American Typewriter Condensed Bold" size="22.0" />
+               </font>
+               <effect>
+                  <Shadow blurType="ONE_PASS_BOX" color="#c9b1b1" height="0.0" radius="2.535" width="12.14" />
+               </effect>
+            </Label>
+            <Label blendMode="SRC_ATOP" layoutX="457.0" layoutY="11.0" prefHeight="22.0" prefWidth="145.0" text="The  a MAZE ing" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font name="Baskerville Bold" size="16.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0" />
+               </effect>
+            </Label>
+            <Text fx:id="player1Won" fill="WHITE" layoutX="81.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P l a y e r  1&#10;&#10;&#10;E s c a p e d ! " textAlignment="CENTER" visible="false">
+               <font>
+                  <Font name="Luminari" size="69.0" />
+               </font>
+            </Text>
+            <Text fx:id="Player2Won" fill="WHITE" layoutX="81.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="P l a y e r  2&#10;&#10;&#10;E s c a p e d ! " textAlignment="CENTER" visible="false">
+               <font>
+                  <Font name="Luminari" size="69.0" />
+               </font>
+            </Text>
          </children>
-      </AnchorPane>
-      <AnchorPane layoutX="-2.0" prefHeight="26.0" prefWidth="75.0">
-         <children>
-            <Button fx:id="pause" layoutY="-2.0" mnemonicParsing="false" onAction="#handlePauseButton" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="0.0">
-               <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../images/pause.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </AnchorPane>
+      </Pane>
    </children>
 </Pane>
