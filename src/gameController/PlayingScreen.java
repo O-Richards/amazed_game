@@ -29,7 +29,7 @@ public class PlayingScreen {
         this.s = new Stage();
         this.parentStage = parentStage; 
         this.title = "The a MAZE ing Escape";
-        this.fxmlLoader = new FXMLLoader(getClass().getResource("/GameView/PlayingScreen_backup.fxml"));
+        this.fxmlLoader = new FXMLLoader(getClass().getResource("/GameView/PlayingScreen.fxml"));
     }
 
     public void start()  {

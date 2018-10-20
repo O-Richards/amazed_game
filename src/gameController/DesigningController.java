@@ -365,9 +365,9 @@ public class DesigningController {
 			case HUNTER:
 				//Hunter is selected: 
 				//Checks if we clicked a player to target:
+				
 				if(playerSelected != null) {
 					System.out.println("placing hunter:");
-					System.out.println(playerSelected.getCoord() + " \\" + difficultySlider.getValue());
 					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, 1 - (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
