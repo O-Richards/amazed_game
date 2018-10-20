@@ -133,9 +133,7 @@ public class PlayingController {
 				l.getTile(new Coord(row, col)).addObserver(aPane);
 			}
 		}
-		//Sets the grid size to match the map: 
 		
-		//Create inventory panes
 		setInventory();
 		
         hunterThread= new Thread(new MultiThreading());
@@ -158,46 +156,43 @@ public class PlayingController {
 
 	
 	private void updateInventory() {
-		System.out.println("FUCK");
 		Iterator<ArrayList<JFXPane>> inventoryList = inventoryDisplayPanes.listIterator();
-		//System.out.println(players.size());
 		for (PlayerMobileEntity player : this.players) {
 			Iterator<UseAction> playerInventory = player.inventoryIterator();
 			Iterator<JFXPane> inventoryPanes = inventoryList.next().iterator();
 			while (inventoryPanes.hasNext()) {
+				UseAction inventoryItem = playerInventory.next();
+				
+				//ensures we don't add an empty pane
+				if (inventoryItem == UseAction.INVINCIBILITY || inventoryItem == UseAction.HOVER ) {
+					continue;					
+				}
+				
 				JFXPane aPane = inventoryPanes.next();
 				try {				
-					switch (playerInventory.next().name()) {					
-					case "ARROW":
+					switch (inventoryItem) {					
+					case ARROW :
 						aPane.update(null, VisType.ARROW);
 						System.out.println("Added arrow to Inventory");
 						break;
-					case "BOMB":
+					case BOMB:
 						aPane.update(null, VisType.BOMB);
 						System.out.println("Added bomb to inventory");
 						break;
-					case "SWORD":
+					case SWORD:
 						aPane.update(null, VisType.SWORD);
 						System.out.println("Added sword to inventory");
 						break;
-					case "KEY":
+					case KEY:
 						aPane.update(null, VisType.KEY);
 						System.out.println("Added key to inventory");
 						break;				
-					case "HOVER":
-						aPane.update(null, VisType.HOVER_POTION);
-						System.out.print("Added hover potion to inventory");
-						break;
-					case "INVINCIBILITY":
-						aPane.update(null, VisType.INVINCIBILITY_POTION);
-						System.out.println("Added invinibility potion to inventory");
-						break;
-					case "TREASURE":
+					case TREASURE:
 						aPane.update(null, VisType.TREASURE);
 						System.out.println("Added treasure to inventory");
 						break;
 					default:
-						aPane.update(null, VisType.EMPTY_TILE);
+						aPane.update(null,VisType.EMPTY_TILE);
 						break;
 					}
 				} catch (Exception e) {
@@ -260,6 +255,8 @@ public class PlayingController {
 				player1.use(UseAction.BOMB);
 			}else if(pressedKeyNumber == KeyCode.C) {
 				player1.use(UseAction.SWORD);
+			} else if(pressedKeyNumber == KeyCode.V) {
+				player1.use(UseAction.HOVER);
 			}
 		}
 		//Actions for player 2: 
