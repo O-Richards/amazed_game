@@ -269,11 +269,9 @@ public class PlayingController {
 			if (pressedKeyNumber == KeyCode.Z) {
 				player1.use(UseAction.ARROW);
 			}else if(pressedKeyNumber == KeyCode.X) {
-				player1.use(UseAction.BOMB);
-			}else if(pressedKeyNumber == KeyCode.C) {
 				player1.use(UseAction.SWORD);
-			} else if(pressedKeyNumber == KeyCode.V) {
-				player1.use(UseAction.HOVER);
+			}else if(pressedKeyNumber == KeyCode.C) {
+				player1.use(UseAction.BOMB);
 			}
 		}
 		//Actions for player 2: 
@@ -307,9 +305,9 @@ public class PlayingController {
 			if (pressedKeyNumber == KeyCode.M) {
 				player2.use(UseAction.ARROW);
 			}else if(pressedKeyNumber == KeyCode.COMMA) {
-				player2.use(UseAction.BOMB);
-			}else if(pressedKeyNumber == KeyCode.STOP) {
 				player2.use(UseAction.SWORD);
+			}else if(pressedKeyNumber == KeyCode.STOP) {
+				player2.use(UseAction.BOMB);
 			}
 		}
 	
