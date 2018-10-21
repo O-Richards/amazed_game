@@ -21,7 +21,9 @@ public class WinSystem implements WinCondition {
 	public WinType getType() {
 		boolean win = true;
 		// for an enabled win type
+		if (DEBUG) System.out.println("Checking win conditions ");
 		for (WinType type : this.winEnabled) {
+			if (DEBUG) System.out.println("Checking enabled win condition " + type.toString());
 			win = true;
 			// check to see if it does not exist (not in win state) amongst conditions
 			for (WinCondition cond : this.winConditions) {

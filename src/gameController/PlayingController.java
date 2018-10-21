@@ -2,13 +2,11 @@ package gameController;
 
 
 
-import java.awt.print.Printable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Timer;
 
-import com.sun.prism.Image;
 
 import gameModel.Coord;
 import gameModel.Level;
@@ -356,7 +354,6 @@ public class PlayingController {
     	    		if (player2 != null && stopPlayer2NextTick) {
     	    			player2.setMoving(false);
     	    		}
-    	    		
     	    		if (l.hasWon()) {
     	    			hunterThread.interrupt();
     	    			System.out.println("YOU WON");   		
@@ -448,7 +445,6 @@ public class PlayingController {
     	 synchronized (l) {
 			try {
 	    		while(true) {
-	          	  System.out.println("tick");
 	          	  runTick();
 	          	  Thread.sleep(400);
 	    		}
