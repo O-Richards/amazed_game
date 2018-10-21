@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Timer;
 
-import com.sun.prism.Image;
 
 import gameModel.Coord;
 import gameModel.Level;
@@ -144,16 +143,12 @@ public class PlayingController {
 	}
 
 	private void setInventory() {
-		for (int j = players.size(); j>0; j--) {
+		for (int j = 0; j<players.size(); j++) {
 			ArrayList<JFXPane> inventoryPanes  = new ArrayList<JFXPane>();
 			for(int row = 0; row < l.getNumRows(); row++) {
-				
-				for(int i = players.size(); i >= 0; i--) {
 					JFXPane aPane = new JFXPane();
 					inventoryPanes.add(aPane);
-					inventory.add(aPane.getPane(), i,row);		
-				}
-				
+					inventory.add(aPane.getPane(), j,row);						
 			}
 			this.inventoryDisplayPanes.add(inventoryPanes);
 		}
@@ -178,11 +173,14 @@ public class PlayingController {
 					if(inventoryItem == UseAction.HOVER) {
 						int playerNo = players.indexOf(player);
 						System.out.println(playerNo);
-						if(playerNo == 1) {
+						if(playerNo == 0) {
 							player1Flying.setVisible(true);
-						}else if(playerNo == 2) {
+						}else if(playerNo == 1) {
 							player2Flying.setVisible(true);
 						}
+					}
+					if(inventoryItem == UseAction.INVINCIBILITY) {
+						
 					}
 					continue;					
 				}
@@ -356,7 +354,6 @@ public class PlayingController {
     	    		if (player2 != null && stopPlayer2NextTick) {
     	    			player2.setMoving(false);
     	    		}
-    	    		
     	    		if (l.hasWon()) {
     	    			hunterThread.interrupt();
     	    			System.out.println("YOU WON");   		
@@ -448,7 +445,6 @@ public class PlayingController {
     	 synchronized (l) {
 			try {
 	    		while(true) {
-	          	  System.out.println("tick");
 	          	  runTick();
 	          	  Thread.sleep(400);
 	    		}

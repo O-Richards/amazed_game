@@ -30,6 +30,7 @@ import gameModel.winCondition.WinType;
  */
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
+	private final boolean DEBUG_WINCOND = false;
 	//Some constants
 	private static final int DEFAULT_NROWS = 15;
 	private static final int DEFAULT_NCOLS = 15;
@@ -253,10 +254,12 @@ public class Level implements EntityMover {
 	 * @param winType
 	 */
 	public void enableWinCondition(WinType winType) {
+		if (DEBUG_WINCOND) System.out.println("enabling win conditon " + winType.toString());
 		this.winSystem.enableWinCondition(winType);
 	}
 	
 	public void disableWinCondition(WinType winType) {
+		if (DEBUG_WINCOND) System.out.println("disabling win conditon " + winType.toString());
 		this.winSystem.disableWinCondition(winType);
 	}
 
