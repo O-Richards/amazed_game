@@ -81,6 +81,7 @@ public class PlayerModeHomeController {
 	
 	
 	private void makeEasyMap() throws EntityPlacementException, EntityCreationException {
+		double enemyDif = 0.6;
 		
 		EntityMaker make = new EntityMaker(easy.getWinSystem(), easy.getEntityMover());
 		
@@ -89,7 +90,7 @@ public class PlayerModeHomeController {
 		players.add(player);
 
 		
-		MobileEntity enemy = make.makeCoward(new Coord(15, 15), player, 1);
+		MobileEntity enemy = make.makeCoward(new Coord(15, 15), player, enemyDif);
 		easy.placeMobileEntity(enemy);
 		
 		//WALLS
@@ -184,6 +185,7 @@ public class PlayerModeHomeController {
 	
 	
 	private void makeMediumMap() throws EntityPlacementException, EntityCreationException {
+		double enemyDif = 0.6;
 		
 		EntityMaker make = new EntityMaker(medium.getWinSystem(), medium.getEntityMover());
 		
@@ -226,7 +228,7 @@ public class PlayerModeHomeController {
 		medium.placeWall(new Coord(1,11));
 		
 		// AREA 2 ITEMS
-		MobileEntity enemy = make.makeHunter(new Coord(2, 10), player, 1);
+		MobileEntity enemy = make.makeHunter(new Coord(2, 10), player, enemyDif);
 		medium.placeMobileEntity(enemy);
 		medium.placeItem(make.makeKey(new Coord(1,10)));
 		medium.placeItem(make.makeTreasure(new Coord (1,9)));
@@ -297,12 +299,13 @@ public class PlayerModeHomeController {
 		medium.placePit(new Coord(13,15));
 		medium.placeItem(make.makeHoverPotion(new Coord(12,15)));
 		
-		MobileEntity enemy1 = make.makeStrategist(new Coord(10, 15), player, 1);
+		MobileEntity enemy1 = make.makeStrategist(new Coord(10, 15), player, enemyDif);
 		medium.placeMobileEntity(enemy1);
 		medium.enableWinCondition(WinType.TREASURE);		
 	}
 	
 	private void makeHardMap() throws EntityPlacementException, EntityCreationException {
+		double enemyDif = 0.6;
 		
 		EntityMaker make = new EntityMaker(hard.getWinSystem(), hard.getEntityMover());
 		
@@ -346,7 +349,7 @@ public class PlayerModeHomeController {
 		hard.placeSwitch(new Coord(5,5));
 		
 		// AREA 2 ITEMS
-		MobileEntity enemy = make.makeHunter(new Coord(2, 10), player, 1);
+		MobileEntity enemy = make.makeHunter(new Coord(2, 10), player, enemyDif);
 		hard.placeSwitch(new Coord(3,10));
 		hard.placeMobileEntity(enemy);
 		hard.placeItem(make.makeKey(new Coord(1,10)));
@@ -418,7 +421,7 @@ public class PlayerModeHomeController {
 		hard.placeItem(make.makeHoverPotion(new Coord(12,15)));
 		
 		
-		MobileEntity enemy1 = make.makeStrategist(new Coord(11, 15), player, 1);
+		MobileEntity enemy1 = make.makeStrategist(new Coord(11, 15), player, enemyDif);
 		hard.placeMobileEntity(enemy1);
 		// AREA 6
 		//hard.placeWall(new Coord(10,11));
@@ -432,9 +435,9 @@ public class PlayerModeHomeController {
 		hard.placeSwitch(new Coord(1,15));
 		hard.placeItem(make.makeInvincibilityPotion(new Coord(3,13)));
 		
-		MobileEntity enemy2 = make.makeHunter(new Coord(4, 13), player, 1);
+		MobileEntity enemy2 = make.makeHunter(new Coord(4, 13), player, enemyDif);
 		hard.placeMobileEntity(enemy2);
-		MobileEntity enemy3 = make.makeHound(new Coord(5,13), player, 1);
+		MobileEntity enemy3 = make.makeHound(new Coord(5,13), player, enemyDif);
 		hard.placeMobileEntity(enemy3);
 		
 		
