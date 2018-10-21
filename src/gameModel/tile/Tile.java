@@ -224,6 +224,7 @@ public class Tile extends Observable{
 			if (enemyKilled) this.mobile = null;
 			retVal |= enemyKilled;
 		}
+		notifyObservers();
 		return retVal;
 	}
 
