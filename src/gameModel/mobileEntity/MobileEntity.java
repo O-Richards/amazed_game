@@ -49,6 +49,9 @@ public class MobileEntity implements Movement, Entity {
 	}
 	
 	public void setAlive(boolean alive) {
+		if (alive == false) {
+			this.setWinConditionType(WinType.WIN);
+		}
 		this.baseEntity.setAlive(alive);
 	}
 	

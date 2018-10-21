@@ -175,6 +175,7 @@ public class EntityMaker {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HUNTER, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
+				.withWinCondition(winSystem.newWinCondition(WinType.ENEMY))
 				.build();
 		
 		this.hunter = new MobileEntity.MobileEntityBuilder(basicEntity)
@@ -206,6 +207,7 @@ public class EntityMaker {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.HOUND, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
+				.withWinCondition(winSystem.newWinCondition(WinType.ENEMY))
 				.build();
 		
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
@@ -232,6 +234,7 @@ public class EntityMaker {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.COWARD, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
+				.withWinCondition(winSystem.newWinCondition(WinType.ENEMY))
 				.build();
 		
 		return new MobileEntity.MobileEntityBuilder(basicEntity)
@@ -258,6 +261,7 @@ public class EntityMaker {
 		Entity basicEntity = new BasicEntity.BasicEntityBuilder(VisType.STRATEGIST, c)
 				.withEntityMover(entityMover)
 				.withAlive(true)
+				.withWinCondition(winSystem.newWinCondition(WinType.ENEMY))
 				.build();
 		
 		return new MobileEntity.MobileEntityBuilder(basicEntity)

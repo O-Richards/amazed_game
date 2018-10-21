@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class WinSystem implements WinCondition {
-	private static boolean DEBUG = false;
+	private static boolean DEBUG = true;
 	
 	private List<WinCondition> winConditions;
 	// enable win condition
