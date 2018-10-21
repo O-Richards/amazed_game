@@ -86,6 +86,7 @@ public class PlayerModeHomeController {
 		
 		PlayerMobileEntity player = make.makePlayer(new Coord(8,4));
 		players.add(player);
+		easy.placeMobileEntity(player);
 
 		
 		MobileEntity enemy = make.makeCoward(new Coord(15, 15), player, enemyDif);
