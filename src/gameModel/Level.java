@@ -30,7 +30,7 @@ import gameModel.winCondition.WinType;
  */
 public class Level implements EntityMover {
 	private static final boolean DEBUG = true;
-	private final boolean DEBUG_WINCOND = false;
+	private final boolean DEBUG_WINCOND = true;
 	//Some constants
 	private static final int DEFAULT_NROWS = 15;
 	private static final int DEFAULT_NCOLS = 15;
