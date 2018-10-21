@@ -252,42 +252,34 @@ public class DesigningController {
 	@FXML
 	public void setExitWinCondition() {
 		if(exitCondition.isSelected()) {
-			System.out.println("EXIT WIN CONDITION ENABLED");
 			l.enableWinCondition(WinType.EXIT);
 		}else {
-			System.out.println("EXIT WIN CONDITION DISABLED");
 			l.disableWinCondition(WinType.EXIT);
 		}
 	}
 	@FXML
 	public void setSwitchWinCondition() {
 		if(switchCondition.isSelected()) {
-			System.out.println("SWITCH WIN CONDITION ENABLED");
 			l.enableWinCondition(WinType.SWITCH);
 		}else {
-			System.out.println("SWITCH WIN CONDITION DISABLED");
 			l.disableWinCondition(WinType.SWITCH);
 		}
 	}
 	
 	@FXML
 	public void setTreasureWinCondition() {
-		if(switchCondition.isSelected()) {
-			System.out.println("Treasure WIN CONDITION ENABLED");
+		if(treasureCondition.isSelected()) {
 			l.enableWinCondition(WinType.TREASURE);
 		}else {
-			System.out.println("Treasure WIN CONDITION DISABLED");
 			l.disableWinCondition(WinType.TREASURE);
 		}
 	}
 
 	@FXML
 	public void setEnemyWinCondition() {
-		if(switchCondition.isSelected()) {
-			System.out.println("WIN CONDITION ENEMY ENABLED");
+		if(enemyCondition.isSelected()) {
 			l.enableWinCondition(WinType.ENEMY);
 		}else {
-			System.out.println("WIN CONDITION ENEMY disbled");
 			l.disableWinCondition(WinType.ENEMY);
 		}
 	}
