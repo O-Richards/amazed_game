@@ -55,7 +55,10 @@ public class DoorTile extends Tile {
 
 	@Override
 	public VisType getVisType() {
-		return VisType.DOOR;
+		if(!this.open) {
+			return VisType.DOOR;
+		}
+		return VisType.OPENED_DOOR; 
 	}
 
 	@Override

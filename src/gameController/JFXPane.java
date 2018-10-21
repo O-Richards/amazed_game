@@ -92,6 +92,7 @@ public class JFXPane implements Observer {
 			spriteMap.put(VisType.ARROW, "/arrow&tile.png");
 			spriteMap.put(VisType.BOULDER, "/boulder&tile.png");
 			spriteMap.put(VisType.BOMB, "/unlit&tile.png");
+			spriteMap.put(VisType.LIT_BOMB, "/explosion&tile.png");
 			spriteMap.put(VisType.HOVER_POTION, "/hover&tile.png");
 			spriteMap.put(VisType.INVINCIBILITY_POTION, "/invincibility&tile.png");
 			spriteMap.put(VisType.TREASURE, "/treasure&tile.png");
@@ -105,6 +106,7 @@ public class JFXPane implements Observer {
 			spriteMap.put(VisType.WALL, "/wall.png");
 			spriteMap.put(VisType.KEY, "/key&tile.png");
 			spriteMap.put(VisType.DOOR, "/closed door.png");
+			spriteMap.put(VisType.OPENED_DOOR, "/opened door.png");
 			spriteMap.put(VisType.EMPTY_TILE, "/tile.png");
 			spriteMap.put(VisType.INVENTORY, "/inventoryBox.png");
 			spriteMap.put(VisType.INVENTORY_ARROW, "/arrow&box.png");
