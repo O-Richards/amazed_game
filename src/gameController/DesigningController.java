@@ -114,8 +114,6 @@ public class DesigningController {
 	
 	private int setRow;
 	private int setCol; 
-	private static final int DEFAULT_NROWS = 50;
-	private static final int DEFAULT_NCOLS = 50;
 	//A list observable list: 
 	//updates if there's changes to clicked boolean in JFXPanes 
 	private ObservableList<JFXPane> gridOfPanes = FXCollections.observableArrayList(item -> new Observable[] {item.clickedProperty()}); 
@@ -336,13 +334,13 @@ public class DesigningController {
 				break;
 			case COWARD:
 				if(playerSelected != null) {
-					l.placeMobileEntity(make.makeCoward(new Coord(row, col), playerSelected, difficultySlider.getValue()));
+					l.placeMobileEntity(make.makeCoward(new Coord(row, col), playerSelected, (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
 						System.out.println(difficultySlider.getValue());
-						l.placeMobileEntity(make.makeCoward(new Coord(row, col),  null, difficultySlider.getValue()));
+						l.placeMobileEntity(make.makeCoward(new Coord(row, col),  null,(difficultySlider.getValue()/100)));
 					}
 				}
 				break; 
@@ -368,23 +366,23 @@ public class DesigningController {
 				
 				if(playerSelected != null) {
 					System.out.println("placing hunter:");
-					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, 1 - (difficultySlider.getValue()/100)));
+					l.placeMobileEntity(make.makeHunter(new Coord(row, col), playerSelected, (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
-						l.placeMobileEntity(make.makeHunter(new Coord(row, col),  null, 1 - (difficultySlider.getValue()/100)));
+						l.placeMobileEntity(make.makeHunter(new Coord(row, col),  null, (difficultySlider.getValue()/100)));
 					}
 				}
 				break;
 			case HOUND: 	
 				if(playerSelected != null) {
-					l.placeMobileEntity(make.makeHound(new Coord(row, col), playerSelected,  1 - (difficultySlider.getValue()/100)));
+					l.placeMobileEntity(make.makeHound(new Coord(row, col), playerSelected,  (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
-						l.placeMobileEntity(make.makeHound(new Coord(row, col),  null, 1 - (difficultySlider.getValue()/100)));
+						l.placeMobileEntity(make.makeHound(new Coord(row, col),  null,  (difficultySlider.getValue()/100)));
 					}
 				}
 				break;
@@ -408,12 +406,12 @@ public class DesigningController {
 				break;
 			case STRATEGIST:
 				if(playerSelected != null) {
-					l.placeMobileEntity(make.makeStrategist(new Coord(row, col),  playerSelected, difficultySlider.getValue()));
+					l.placeMobileEntity(make.makeStrategist(new Coord(row, col),  playerSelected, (difficultySlider.getValue()/100)));
 					playerSelected = null;
 				}else{
 					playerSelected = playerOnTile(row,col);
 					if(playerSelected == null) {
-						l.placeMobileEntity(make.makeStrategist(new Coord(row, col),  null, difficultySlider.getValue()));
+						l.placeMobileEntity(make.makeStrategist(new Coord(row, col),  null, (difficultySlider.getValue()/100)));
 					}
 				}
 				break; 
