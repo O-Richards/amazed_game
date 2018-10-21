@@ -35,7 +35,11 @@ public class PitTile extends Tile {
 	}
 	@Override
 	public VisType getVisType() {
-		return VisType.PIT;
+		VisType baseVis = super.getVisType();
+		if (baseVis == VisType.EMPTY_TILE) {
+			return VisType.PIT;
+		} 
+		return baseVis;
 	}
 
 
