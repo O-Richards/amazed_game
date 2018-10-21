@@ -26,7 +26,7 @@ public abstract class EnemyMovement implements Movement {
 	}
 
 	private Coord getRandomCoord() {
-		if (this.randMoveRate < Math.random()) {
+		if (this.randMoveRate > Math.random()) {
 			return this.entity.getCoord();
 		}
 		return null;
