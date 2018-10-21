@@ -2,6 +2,7 @@ package gameController;
 
 
 
+import java.awt.print.Printable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -179,6 +180,9 @@ public class PlayingController {
 						}else if(playerNo == 1) {
 							player2Flying.setVisible(true);
 						}
+					}
+					if(inventoryItem == UseAction.INVINCIBILITY) {
+						
 					}
 					continue;					
 				}
