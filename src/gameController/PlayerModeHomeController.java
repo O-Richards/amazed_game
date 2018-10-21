@@ -81,7 +81,7 @@ public class PlayerModeHomeController {
 	private void makeEasyMap() throws EntityPlacementException, EntityCreationException {
 		this.easy = new Level();
 
-		double enemyDif = 0.6;
+		double enemyDif = 0.4;
 		//creates an Empty array List of players: 
 		this.players = new ArrayList<PlayerMobileEntity>();
 		
@@ -189,7 +189,7 @@ public class PlayerModeHomeController {
 	private void makeMediumMap() throws EntityPlacementException, EntityCreationException {
 		this.medium = new Level();
 
-		double enemyDif = 0.6;
+		double enemyDif = 0.4;
 		//creates an Empty array List of players: 
 		this.players = new ArrayList<PlayerMobileEntity>();
 		EntityMaker make = new EntityMaker(medium.getWinSystem(), medium.getEntityMover());
@@ -312,7 +312,7 @@ public class PlayerModeHomeController {
 	private void makeHardMap() throws EntityPlacementException, EntityCreationException {
 		this.hard = new Level();
 
-		double enemyDif = 0.6;
+		double enemyDif = 0.4;
 		//creates an Empty array List of players: 
 		this.players = new ArrayList<PlayerMobileEntity>();
 		EntityMaker make = new EntityMaker(hard.getWinSystem(), hard.getEntityMover());
