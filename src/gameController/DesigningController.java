@@ -262,10 +262,10 @@ public class DesigningController {
 	@FXML
 	public void setSwitchWinCondition() {
 		if(switchCondition.isSelected()) {
-			System.out.println("Treasure WIN CONDITION ENABLED");
+			System.out.println("SWITCH WIN CONDITION ENABLED");
 			l.enableWinCondition(WinType.SWITCH);
 		}else {
-			System.out.println("Treasure WIN CONDITION DISABLED");
+			System.out.println("SWITCH WIN CONDITION DISABLED");
 			l.disableWinCondition(WinType.SWITCH);
 		}
 	}
