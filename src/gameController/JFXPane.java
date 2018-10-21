@@ -83,17 +83,7 @@ public class JFXPane implements Observer {
         image.setFitHeight(pane.getHeight());
 
 	}
-	//uses this for images: 
-	public void update(Object arg) {
-		String img = invVisTypeToPath((VisType) arg); //cast object argument as what we need
-		//removes the current image in the pane:
-        pane.getChildren().remove(this.image);
-        this.image = new ImageView(new Image(getClass().getResourceAsStream(img),30,30,true,true));
-        //Replaces the image with a new image: 
-        pane.getChildren().add(this.image);  
-        image.setFitWidth(pane.getWidth());
-        image.setFitHeight(pane.getHeight());
-	}
+
 
 	public String visTypeToPath(VisType visType) {
 		Map<VisType, String> spriteMap = new HashMap<>();
@@ -127,18 +117,5 @@ public class JFXPane implements Observer {
 			}
 		return spriteMap.get(visType);
 	}
-	//inventory vis type: 
-	public String invVisTypeToPath(VisType visType) {
-		Map<VisType, String> spriteMap = new HashMap<>();
-			spriteMap.put(VisType.ARROW, "/arrow&box.png");
-			spriteMap.put(VisType.BOMB, "/bomb&box.png");
-			spriteMap.put(VisType.TREASURE, "/treasure&box.png");
-			spriteMap.put(VisType.SWORD, "/sword&box.png");
-			spriteMap.put(VisType.KEY, "/key&box.png");
-			spriteMap.put(VisType.EMPTY_TILE, "/inventoryBox.png");
-			if(spriteMap.get(visType) == null) {
-				System.out.println("unable to place item in inventory");
-			}
-		return spriteMap.get(visType);
-	}
+
 }
