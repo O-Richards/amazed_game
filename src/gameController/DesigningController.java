@@ -351,6 +351,15 @@ public class DesigningController {
 			case EMPTY_TILE:
 				l.clearTile(new Coord(row, col));	
 				System.out.println("Cleared tile");
+				//if it's a player remove it from our list
+				//Items to be removed: 
+				ArrayList<PlayerMobileEntity> removePlayer = new ArrayList<>();
+				for(PlayerMobileEntity player: players) {
+					if(player.getCoord().equals(new Coord(row,col))) {
+						removePlayer.add(player);
+					}
+				}
+				players.removeAll(removePlayer);
 				break;
 			case EXIT:
 				l.placeExit(new Coord(row, col));
@@ -399,10 +408,15 @@ public class DesigningController {
 				System.out.println("pit");
 				break;
 			case PLAYER:
-				newPlayer = make.makePlayer(new Coord(row,col));
-				l.placeMobileEntity(newPlayer);
-				players.add(newPlayer); 
-				System.out.println("player placed");
+				if(players.size() < 2) {
+					newPlayer = make.makePlayer(new Coord(row,col));
+					l.placeMobileEntity(newPlayer);
+					players.add(newPlayer); 
+					System.out.println("player placed");
+				}else{
+					//Lets an existing function handle error: 
+					this.setPlayer();
+				}
 				break;
 			case STRATEGIST:
 				if(playerSelected != null) {
@@ -437,11 +451,6 @@ public class DesigningController {
 			//If we have a target selected: 
 			if(playerSelected != null) {
 				selectedItem.setText(currentlySelected.toString().toLowerCase());
-			}else {
-				System.out.println("RESETTING VALUES");
-				//Always sets it back to norm
-				currentlySelected = null; 
-				selectedItem.setText("-");
 			}
 			
 		} catch (EntityPlacementException s) {

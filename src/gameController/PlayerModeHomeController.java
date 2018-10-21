@@ -40,8 +40,6 @@ public class PlayerModeHomeController {
 		this.easy = new Level();
 		this.medium = new Level();
 		this.hard = new Level();
-		//creates an Empty array List of players: 
-		this.players = new ArrayList<PlayerMobileEntity>();
 	}
 	
 	@FXML
@@ -82,6 +80,8 @@ public class PlayerModeHomeController {
 	
 	private void makeEasyMap() throws EntityPlacementException, EntityCreationException {
 		double enemyDif = 0.6;
+		//creates an Empty array List of players: 
+		this.players = new ArrayList<PlayerMobileEntity>();
 		
 		EntityMaker make = new EntityMaker(easy.getWinSystem(), easy.getEntityMover());
 		
@@ -186,7 +186,8 @@ public class PlayerModeHomeController {
 	
 	private void makeMediumMap() throws EntityPlacementException, EntityCreationException {
 		double enemyDif = 0.6;
-		
+		//creates an Empty array List of players: 
+		this.players = new ArrayList<PlayerMobileEntity>();
 		EntityMaker make = new EntityMaker(medium.getWinSystem(), medium.getEntityMover());
 		
 		PlayerMobileEntity player = make.makePlayer(new Coord(1,1));
@@ -306,7 +307,8 @@ public class PlayerModeHomeController {
 	
 	private void makeHardMap() throws EntityPlacementException, EntityCreationException {
 		double enemyDif = 0.6;
-		
+		//creates an Empty array List of players: 
+		this.players = new ArrayList<PlayerMobileEntity>();
 		EntityMaker make = new EntityMaker(hard.getWinSystem(), hard.getEntityMover());
 		
 		PlayerMobileEntity player = make.makePlayer(new Coord(1,1));
