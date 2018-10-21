@@ -254,7 +254,7 @@ public class DesigningController {
 		if(exitCondition.isSelected()) {
 			l.enableWinCondition(WinType.EXIT);
 		}else {
-			l.enableWinCondition(WinType.EXIT);
+			l.disableWinCondition(WinType.EXIT);
 		}
 	}
 	@FXML
@@ -268,7 +268,7 @@ public class DesigningController {
 	
 	@FXML
 	public void setTreasureWinCondition() {
-		if(switchCondition.isSelected()) {
+		if(treasureCondition.isSelected()) {
 			l.enableWinCondition(WinType.TREASURE);
 		}else {
 			l.disableWinCondition(WinType.TREASURE);
@@ -277,7 +277,7 @@ public class DesigningController {
 
 	@FXML
 	public void setEnemyWinCondition() {
-		if(switchCondition.isSelected()) {
+		if(enemyCondition.isSelected()) {
 			l.enableWinCondition(WinType.ENEMY);
 		}else {
 			l.disableWinCondition(WinType.ENEMY);
