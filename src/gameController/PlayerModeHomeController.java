@@ -48,6 +48,7 @@ public class PlayerModeHomeController {
 	
 	@FXML
 	public void handleEasyLevelButton(ActionEvent event) throws EntityPlacementException, EntityCreationException {
+		System.out.println("making easy map..");
 		makeEasyMap();
 		PlayingScreen easyLevel = new PlayingScreen(currStage);
 		easyLevel.start();
@@ -57,6 +58,7 @@ public class PlayerModeHomeController {
 	
 	@FXML
 	public void handleIntermediateLevelButton(ActionEvent event) throws EntityPlacementException, EntityCreationException {
+		System.out.println("making medium map..");
 		PlayingScreen intermediateLevel = new PlayingScreen(currStage);
 		makeMediumMap();
 		intermediateLevel.start();
@@ -66,6 +68,7 @@ public class PlayerModeHomeController {
 	
 	@FXML
 	public void handleHardLevelButton(ActionEvent event) throws EntityPlacementException, EntityCreationException {
+		System.out.println("making hard map..");
 		PlayingScreen hardLevel = new PlayingScreen(currStage);
 		makeHardMap();
 		hardLevel.start();
