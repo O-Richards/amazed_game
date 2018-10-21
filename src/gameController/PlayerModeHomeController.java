@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 public class PlayerModeHomeController {
 	
 	private Level easy;
+	private Level medium;
+	private Level hard;
 	private ArrayList<PlayerMobileEntity> players;
 	
 	
@@ -36,15 +38,9 @@ public class PlayerModeHomeController {
 	public PlayerModeHomeController(Stage s) {
 		currStage = s;
 		this.easy = new Level();
+		this.medium = new Level();
 		//creates an Empty array List of players: 
 		this.players = new ArrayList<PlayerMobileEntity>();
-		try {
-			makeEasyMap();
-		} catch (EntityPlacementException e) {
-			e.printStackTrace();
-		}catch(EntityCreationException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	@FXML
@@ -55,7 +51,8 @@ public class PlayerModeHomeController {
 	}
 	
 	@FXML
-	public void handleEasyLevelButton(ActionEvent event) {
+	public void handleEasyLevelButton(ActionEvent event) throws EntityPlacementException, EntityCreationException {
+		makeEasyMap();
 		PlayingScreen easyLevel = new PlayingScreen(currStage);
 		easyLevel.start();
 		easyLevel.setPlayers(players);
@@ -63,9 +60,12 @@ public class PlayerModeHomeController {
 	}
 	
 	@FXML
-	public void handleIntermediateLevelButton(ActionEvent event) {
+	public void handleIntermediateLevelButton(ActionEvent event) throws EntityPlacementException, EntityCreationException {
 		PlayingScreen intermediateLevel = new PlayingScreen(currStage);
+		makeMediumMap();
 		intermediateLevel.start();
+		intermediateLevel.setPlayers(players);
+		intermediateLevel.setMap(this.medium);
 	}
 	
 	@FXML
@@ -176,36 +176,66 @@ public class PlayerModeHomeController {
 		easy.placeMobileEntity(make.makeBoulder(new Coord(10,12)));
 		easy.placeMobileEntity(make.makeBoulder(new Coord(11,12)));
 		easy.placeMobileEntity(make.makeBoulder(new Coord(8,8)));
-		
-		//Setup template maze
-/*		easy.placeItem(make.makeArrow(new Coord(1, 2)));
-		easy.placeItem(make.makeBomb(new Coord(2, 2)));
-		easy.placeSwitch(new Coord(3, 6));
-		easy.placeItem(make.makeTreasure(new Coord(3, 3)));
-		easy.placeItem(make.makeTreasure(new Coord(4, 4)));
-		easy.placeWall(new Coord(6, 3));
-		easy.placeExit(new Coord(6, 1));
-		easy.placeItem(make.makeHoverPotion(new Coord(2, 4)));
-		easy.placeItem(make.makeInvincibilityPotion(new Coord(4, 2)));
-		easy.placePit(new Coord(3,4));
-		easy.placeItem(make.makeKey(new Coord(5, 5)));
-		easy.placeItem(make.makeKey(new Coord(7, 7)));
-		easy.placeMobileEntity(make.makeBoulder(new Coord(6, 5)));
-		
-		easy.placeItem(make.makeSword(new Coord(2, 3)));
-		easy.placeItem(make.makeSword(new Coord(1, 3)));
-
-		easy.placeDoor(new Coord(4,1));
-		easy.enableWinCondition(WinType.TREASURE);
-		easy.enableWinCondition(WinType.SWITCH);
-		easy.enableWinCondition(WinType.EXIT);
-*/		
 	}
 	
-	/*
+	
 	private void makeMediumMap() throws EntityPlacementException, EntityCreationException {
 		
+		EntityMaker make = new EntityMaker(medium.getWinSystem(), medium.getEntityMover());
+		
+		PlayerMobileEntity player = make.makePlayer(new Coord(1,1));
+		medium.placeMobileEntity(player);
+		players.add(player);
+
+
+		// START AREA
+		medium.placeWall(new Coord(1, 3));
+		medium.placeWall(new Coord(2, 3));
+		medium.placeWall(new Coord(4, 3));
+		medium.placeMobileEntity(make.makeBoulder(new Coord(3, 3)));
+		medium.placeWall(new Coord(4, 2));
+		medium.placeWall(new Coord(4, 1));
+		medium.placeItem(make.makeSword(new Coord(2,2)));	
+		
+		// Tunnel Area 1 -> 2
+		medium.placeWall(new Coord(4,4));
+		medium.placeWall(new Coord(4,5));
+		medium.placeWall(new Coord(4,6));
+		medium.placeWall(new Coord(2,4));
+		medium.placeWall(new Coord(2,5));
+		medium.placeWall(new Coord(2,6));
+		medium.placeWall(new Coord(1,7));
+		
+		// AREA 2	
+		medium.placeWall(new Coord(5,6));
+		medium.placeWall(new Coord(5,7));
+		medium.placeWall(new Coord(6,7));
+		medium.placeWall(new Coord(6,8));
+		medium.placeWall(new Coord(6,9));
+		medium.placeDoor(new Coord(6,10));
+		medium.placeWall(new Coord(6,11));
+		medium.placeWall(new Coord(5,11));
+		medium.placeWall(new Coord(4,11));
+		medium.placeWall(new Coord(3,11));
+		medium.placeWall(new Coord(2,11));
+		medium.placeWall(new Coord(1,11));
+		
+		// AREA 2 ITEMS
+		MobileEntity enemy = make.makeHunter(new Coord(2, 10), player, 1);
+		medium.placeMobileEntity(enemy);
+		medium.placeItem(make.makeKey(new Coord(1,10)));
+		medium.placeItem(make.makeTreasure(new Coord (1,9)));
+		
+		
+		// AREA 3
+		medium.placeWall(new Coord(7,9));
+		medium.placeWall(new Coord(8,8));
+		medium.placeWall(new Coord(8,7));
+		medium.placeWall(new Coord(7,11));
+		medium.placeWall(new Coord(7,12));
+		medium.placeWall(new Coord(8,13));
+		medium.placeWall(new Coord(8,14));
 	}
-	*/
+	
 
 }
