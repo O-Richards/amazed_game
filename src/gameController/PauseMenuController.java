@@ -9,8 +9,6 @@ public class PauseMenuController {
 	@FXML
 	private Button howToPlay;
 	@FXML
-	private Button restart;
-	@FXML
 	private Button resume;
 	
 	private Stage currStage;
@@ -27,13 +25,6 @@ public class PauseMenuController {
 		currStage.show();
 	}
 
-	
-	@FXML 
-	public void handleRestartButton() {
-		/*PlayingScreen playing = new PlayingScreen(parentStage);
-		playing.start();*/
-		
-	}
 	
 	@FXML 
 	public void handleResumeButton() {

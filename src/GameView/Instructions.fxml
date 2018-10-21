@@ -187,7 +187,7 @@
             <Image url="@../../images/coward.png" />
          </image>
       </ImageView>
-      <Label layoutX="353.0" layoutY="79.0" text="To win" textFill="#d7cbb8">
+      <Label layoutX="352.0" layoutY="80.0" text="To win" textFill="#d7cbb8">
          <font>
             <Font name="American Typewriter Bold" size="22.0" />
          </font>
