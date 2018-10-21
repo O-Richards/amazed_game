@@ -244,26 +244,18 @@ public class PlayingController {
 		
 		if(player1 != null) {//player1.setMoving(false);
 			//Gets the direction(movement): 
-			if (pressedKeyNumber == KeyCode.W) {
-					System.out.println("player diretion set");
-					player1.setMoving(true);
-					player1.setDirection(Direction.LEFT);	
-					this.player1MovedLastTick = false; 
-			}else if(pressedKeyNumber == KeyCode.A) {
-					System.out.println("player diretion set");
-					player1.setMoving(true);
-					player1.setDirection(Direction.DOWN);
-					this.player1MovedLastTick = false; 
-			}else if(pressedKeyNumber == KeyCode.S) {
-					System.out.println("player diretion set");
-					player1.setMoving(true);
-					player1.setDirection(Direction.RIGHT);
-					this.player1MovedLastTick = false; 
-			}else if(pressedKeyNumber == KeyCode.D) {
-					System.out.println("player diretion set");	
-					player1.setDirection(Direction.UP);
-					player1.setMoving(true);
-					this.player1MovedLastTick = false; 
+			Direction dir = null;
+			switch(pressedKeyNumber) {
+				case W: dir = Direction.LEFT; break;
+				case A: dir = Direction.DOWN; break;
+				case S: dir = Direction.RIGHT; break;
+				case D: dir = Direction.UP; break;
+				default: dir = null; break;
+			}
+			if (dir != null) {
+				player1.setDirection(dir);
+				player1.setMoving(true);
+				l.moveMobileEntity(player1, dir);
 			}
 			//direction to shoot/hit: 
 			if (pressedKeyNumber == KeyCode.Z) {
@@ -277,28 +269,18 @@ public class PlayingController {
 		//Actions for player 2: 
 		if(player2 != null) {
 			//Gets the direction(movement): 
-			if (pressedKeyNumber == KeyCode.UP) {
+			Direction dir = null;
+			switch(pressedKeyNumber) {
+				case UP: dir = Direction.LEFT; break;
+				case LEFT: dir = Direction.DOWN; break;
+				case DOWN: dir = Direction.RIGHT; break;
+				case RIGHT: dir = Direction.UP; break;
+				default: dir = null; break;
+			}
+			if (dir != null) {
+				player2.setDirection(dir);
 				player2.setMoving(true);
-				player2.setDirection(Direction.LEFT);
-				this.player2MovedLastTick = false; 
-				System.out.println("player2 diretion set");
-			}else if(pressedKeyNumber == KeyCode.LEFT) {
-				player2.setMoving(true);
-				player2.setDirection(Direction.DOWN);
-				this.player2MovedLastTick = false; 
-				System.out.println("player2 diretion set");
-
-			}else if(pressedKeyNumber == KeyCode.DOWN) {
-				player2.setMoving(true);
-				player2.setDirection(Direction.RIGHT);
-				this.player2MovedLastTick = false; 
-				System.out.println("player 2 diretion set");
-
-			}else if(pressedKeyNumber == KeyCode.RIGHT) {
-				player2.setMoving(true);
-				player2.setDirection(Direction.UP);
-				this.player2MovedLastTick = false; 
-				System.out.println("player 2 diretion set");
+				l.moveMobileEntity(player2, dir);
 			}
 			
 			//direction to shoot/hit: 

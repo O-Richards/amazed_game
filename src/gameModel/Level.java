@@ -273,6 +273,7 @@ public class Level implements EntityMover {
 			System.out.println("Level.moveEntity: warning moving Entity " + e.toString() + "To an invalid coord");
 			return false;
 		}
+		e.setLastMoveTickNum(tickNum);
 		return this.moveMobileEntity(e, newTile.getCoord());
 	}
 

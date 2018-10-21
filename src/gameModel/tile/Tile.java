@@ -56,7 +56,6 @@ public class Tile extends Observable{
 		if (mobile != null && mobile.lastMoveTickNum() != tickNum && mobile.isMoving()) {
 			Coord nextCoord = mobile.nextCoord();
 			if (!nextCoord.equals(this.getCoord())) {
-				mobile.setLastMoveTickNum(tickNum);
 				entityMover.moveMobileEntity(mobile, nextCoord);
 			}
 
