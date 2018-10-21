@@ -22,30 +22,6 @@
             <SepiaTone level="0.44" />
          </effect>
       </ImageView>
-      <Button fx:id="hardLevelButton" layoutX="386.0" layoutY="281.0" mnemonicParsing="false" onAction="#handleHardLevelButton" style="-fx-background-color: transparent;" text="Hard " textFill="WHITE">
-         <font>
-            <Font name="Baskerville Bold" size="23.0" />
-         </font>
-         <effect>
-            <DropShadow color="RED" height="255.0" radius="127.0" spread="0.93" width="255.0" />
-         </effect>
-      </Button>
-      <Button fx:id="intermediateLevelButton" layoutX="86.0" layoutY="213.0" mnemonicParsing="false" onAction="#handleIntermediateLevelButton" style="-fx-background-color: transparent;" text="Intermediate" textFill="WHITE">
-         <font>
-            <Font name="Baskerville Bold" size="23.0" />
-         </font>
-         <effect>
-            <DropShadow color="RED" height="255.0" radius="127.0" spread="0.79" width="255.0" />
-         </effect>
-      </Button>
-      <Button fx:id="easyLevelButton" layoutX="283.0" layoutY="131.0" mnemonicParsing="false" onAction="#handleEasyLevelButton" style="-fx-background-color: transparent;" text="Easy " textFill="WHITE">
-         <font>
-            <Font name="Baskerville Bold" size="23.0" />
-         </font>
-         <effect>
-            <DropShadow color="#ff1f1f" height="225.34" radius="113.45" spread="0.79" width="230.46" />
-         </effect>
-      </Button>
       <Button fx:id="homeButton" layoutX="534.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="19.0" prefWidth="33.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -58,14 +34,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label blendMode="SRC_ATOP" layoutX="124.0" layoutY="47.0" prefHeight="51.0" prefWidth="377.0" text="Choose your maze..." textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="Baskerville Bold" size="38.0" />
-         </font>
-         <effect>
-            <Glow level="1.0" />
-         </effect>
-      </Label>
       <Label blendMode="SRC_ATOP" layoutX="474.0" layoutY="19.0" opacity="0.8" text="ESCAPE" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="American Typewriter Condensed Bold" size="22.0" />
@@ -77,6 +45,38 @@
       <Label blendMode="SRC_ATOP" layoutX="448.0" layoutY="10.0" prefHeight="22.0" prefWidth="145.0" text="The  a MAZE ing" textAlignment="CENTER" textFill="RED">
          <font>
             <Font name="American Typewriter Semibold" size="16.0" />
+         </font>
+         <effect>
+            <Glow level="1.0" />
+         </effect>
+      </Label>
+      <Button fx:id="easyLevelButton" layoutX="277.0" layoutY="123.0" mnemonicParsing="false" onAction="#handleEasyLevelButton" style="-fx-background-color: transparent;" text="Easy" textFill="WHITE">
+         <font>
+            <Font name="Baskerville SemiBold" size="25.0" />
+         </font>
+         <effect>
+            <DropShadow color="#d31c1c" height="255.0" radius="127.0" spread="0.88" width="255.0" />
+         </effect>
+      </Button>
+      <Button fx:id="intermediateLevelButton" layoutX="70.0" layoutY="219.0" mnemonicParsing="false" onAction="#handleIntermediateLevelButton" style="-fx-background-color: transparent;" text="Intermediate" textFill="WHITE">
+         <font>
+            <Font name="Baskerville SemiBold" size="25.0" />
+         </font>
+         <effect>
+            <DropShadow color="#d31616" height="255.0" radius="127.0" spread="0.86" width="255.0" />
+         </effect>
+      </Button>
+      <Button fx:id="hardLevelButton" layoutX="377.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleHardLevelButton" style="-fx-background-color: transparent;" text="Hard" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Bold" size="25.0" />
+         </font>
+         <effect>
+            <DropShadow color="#c91f1f" height="255.0" radius="127.0" spread="0.94" width="255.0" />
+         </effect>
+      </Button>
+      <Label blendMode="SRC_ATOP" layoutX="124.0" layoutY="47.0" prefHeight="51.0" prefWidth="377.0" text="Choose your maze..." textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Baskerville Bold" size="38.0" />
          </font>
          <effect>
             <Glow level="1.0" />
