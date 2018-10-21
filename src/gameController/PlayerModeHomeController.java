@@ -430,6 +430,7 @@ public class PlayerModeHomeController {
 		hard.placeItem(make.makeBomb(new Coord(9,14)));
 		hard.placeItem(make.makeArrow(new Coord(9,13)));
 		hard.placeSwitch(new Coord(1,15));
+		hard.placeItem(make.makeInvincibilityPotion(new Coord(3,13)));
 		
 		MobileEntity enemy2 = make.makeHunter(new Coord(4, 13), player, 1);
 		hard.placeMobileEntity(enemy2);
