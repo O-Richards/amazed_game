@@ -59,6 +59,7 @@ public class Tile extends Observable{
 				mobile.setLastMoveTickNum(tickNum);
 				entityMover.moveMobileEntity(mobile, nextCoord);
 			}
+
 		}
 	// do we notify observers here? <<== TODO
 //		notifyObservers();
@@ -101,6 +102,7 @@ public class Tile extends Observable{
 			throw new EntityPlacementException("Cannot place new entity on an occupied tile");
 		} else {
 			this.mobile = newEntity;
+			notifyObservers();
 		}
 	}
 
